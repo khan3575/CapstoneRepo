@@ -1,0 +1,8 @@
+nibabel
+SimpleITK
+numpy
+tqdm
+scipygit
+torch
+torch-geometric
+scikit-image
