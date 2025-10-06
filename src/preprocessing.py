@@ -13,6 +13,92 @@ from concurrent.futures import ProcessPoolExecutor
 from scipy.ndimage import binary_fill_holes
 import SimpleITK as sitk
 from pathlib import Path
+import json
+
+def load_slice_data(slice_path):
+    """
+    Load a single 2D slice from NPZ file.
+    
+    Args:
+        slice_path: Path to slice NPZ file
+    
+    Returns:
+        Dictionary with slice data
+    """
+    data = np.load(slice_path)
+    
+    slice_data = {
+        'T1': data['T1'],
+        'T1ce': data['T1ce'],
+        'T2': data['T2'],
+        'FLAIR': data['FLAIR'],
+        'label': data['label'],
+        'brain_mask': data['brain_mask'],
+        'patient_id': str(data['patient_id']),
+        'slice_idx': int(data['slice_idx'])
+    }
+    
+    return slice_data
+
+def load_patient_slices(patient_slice_dir):
+    """
+    Load all slices for a patient.
+    
+    Args:
+        patient_slice_dir: Directory containing patient slices
+    
+    Returns:
+        List of slice data dictionaries
+    """
+    slice_files = glob.glob(os.path.join(patient_slice_dir, "*_slice_*.npz"))
+    slice_files.sort()  # Sort by filename to maintain order
+    
+    slices = []
+    for slice_file in slice_files:
+        slice_data = load_slice_data(slice_file)
+        slices.append(slice_data)
+    
+    return slices
+
+def get_slice_statistics(slice_dir):
+    """
+    Get statistics about extracted slices.
+    
+    Args:
+        slice_dir: Directory containing extracted slices
+    
+    Returns:
+        Dictionary with statistics
+    """
+    metadata_file = os.path.join(slice_dir, "overall_slice_metadata.json")
+    
+    if os.path.exists(metadata_file):
+        with open(metadata_file, 'r') as f:
+            return json.load(f)
+    else:
+        # Calculate statistics from files
+        patient_dirs = [d for d in glob.glob(os.path.join(slice_dir, "*")) if os.path.isdir(d)]
+        
+        total_slices = 0
+        tumor_slices = 0
+        
+        for patient_dir in patient_dirs:
+            metadata_file = os.path.join(patient_dir, "*_slice_metadata.json")
+            metadata_files = glob.glob(metadata_file)
+            
+            if metadata_files:
+                with open(metadata_files[0], 'r') as f:
+                    patient_metadata = json.load(f)
+                
+                total_slices += len(patient_metadata)
+                tumor_slices += sum(1 for slice_info in patient_metadata if slice_info['has_tumor'])
+        
+        return {
+            'total_patients': len(patient_dirs),
+            'total_slices': total_slices,
+            'tumor_slices': tumor_slices,
+            'non_tumor_slices': total_slices - tumor_slices
+        }
 
 def download_brats(download_dir):
     """
@@ -243,6 +329,126 @@ def normalize_intensity(image_sitk, mask_sitk, percentile_low=0.5, percentile_hi
     
     return normalized_sitk
 
+def extract_2d_slices(volume_data, output_dir, patient_id, slice_range=None, skip_empty=True):
+    """
+    Extract 2D slices from preprocessed 3D volume data.
+    
+    Args:
+        volume_data: Dict with volume arrays (T1, T1ce, T2, FLAIR, label, brain_mask)
+        output_dir: Directory to save slices
+        patient_id: Patient ID for naming
+        slice_range: Tuple (start, end) for slice range, None for all slices
+        skip_empty: Skip slices with no brain tissue
+    
+    Returns:
+        List of slice information dictionaries
+    """
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Get volume dimensions
+    z_dim = volume_data['T1'].shape[0]
+    
+    # Determine slice range
+    if slice_range is None:
+        start_slice, end_slice = 0, z_dim
+    else:
+        start_slice, end_slice = slice_range
+        start_slice = max(0, start_slice)
+        end_slice = min(z_dim, end_slice)
+    
+    slice_info_list = []
+    
+    for z in range(start_slice, end_slice):
+        # Extract slice data
+        slice_data = {
+            'T1': volume_data['T1'][z],
+            'T1ce': volume_data['T1ce'][z],
+            'T2': volume_data['T2'][z],
+            'FLAIR': volume_data['FLAIR'][z],
+            'label': volume_data['label'][z],
+            'brain_mask': volume_data['brain_mask'][z]
+        }
+        
+        # Skip empty slices if requested
+        if skip_empty and np.sum(slice_data['brain_mask']) == 0:
+            continue
+        
+        # Create slice info
+        slice_info = {
+            'patient_id': patient_id,
+            'slice_idx': z,
+            'slice_data': slice_data,
+            'has_tumor': np.sum(slice_data['label']) > 0,
+            'brain_pixels': np.sum(slice_data['brain_mask']),
+            'tumor_pixels': np.sum(slice_data['label'])
+        }
+        
+        # Save slice as NPZ file
+        slice_filename = f"{patient_id}_slice_{z:03d}.npz"
+        slice_path = os.path.join(output_dir, slice_filename)
+        
+        np.savez_compressed(
+            slice_path,
+            **slice_data,
+            patient_id=patient_id,
+            slice_idx=z
+        )
+        
+        slice_info['slice_path'] = slice_path
+        slice_info_list.append(slice_info)
+    
+    return slice_info_list
+
+def extract_slices_from_volume(preprocessed_file, output_dir, slice_range=None):
+    """
+    Extract 2D slices from a preprocessed volume file.
+    
+    Args:
+        preprocessed_file: Path to preprocessed NPZ file
+        output_dir: Directory to save slices
+        slice_range: Tuple (start, end) for slice range
+    
+    Returns:
+        List of slice information dictionaries
+    """
+    # Load preprocessed volume
+    volume_data = np.load(preprocessed_file)
+    
+    # Get patient ID from filename
+    patient_id = Path(preprocessed_file).stem.replace('_preprocessed', '')
+    
+    # Create patient-specific slice directory
+    patient_slice_dir = os.path.join(output_dir, patient_id)
+    os.makedirs(patient_slice_dir, exist_ok=True)
+    
+    # Extract slices
+    slice_info_list = extract_2d_slices(
+        volume_data, patient_slice_dir, patient_id, slice_range
+    )
+    
+    # Save slice metadata
+    metadata_file = os.path.join(patient_slice_dir, f"{patient_id}_slice_metadata.json")
+    import json
+    
+    # Convert numpy types to Python types for JSON serialization
+    metadata = []
+    for slice_info in slice_info_list:
+        metadata_entry = {
+            'patient_id': slice_info['patient_id'],
+            'slice_idx': int(slice_info['slice_idx']),
+            'slice_path': slice_info['slice_path'],
+            'has_tumor': bool(slice_info['has_tumor']),
+            'brain_pixels': int(slice_info['brain_pixels']),
+            'tumor_pixels': int(slice_info['tumor_pixels'])
+        }
+        metadata.append(metadata_entry)
+    
+    with open(metadata_file, 'w') as f:
+        json.dump(metadata, f, indent=2)
+    
+    print(f"Extracted {len(slice_info_list)} slices for patient {patient_id}")
+    return slice_info_list
+
 def preprocess_patient(patient_dir, output_dir):
     """Preprocess a single patient's data."""
     patient_id = os.path.basename(patient_dir)
@@ -333,12 +539,98 @@ def preprocess_patient(patient_dir, output_dir):
     
     return output_file
 
+def process_slices_for_patients(preprocessed_dir, slice_output_dir, slice_range=None, num_workers=4):
+    """
+    Extract 2D slices from all preprocessed patient volumes.
+    
+    Args:
+        preprocessed_dir: Directory containing preprocessed NPZ files
+        slice_output_dir: Directory to save extracted slices
+        slice_range: Tuple (start, end) for slice range
+        num_workers: Number of parallel workers
+    
+    Returns:
+        Dictionary with slice information for all patients
+    """
+    # Find all preprocessed files
+    preprocessed_files = glob.glob(os.path.join(preprocessed_dir, "*", "*_preprocessed.npz"))
+    
+    if len(preprocessed_files) == 0:
+        print(f"No preprocessed files found in {preprocessed_dir}")
+        return {}
+    
+    print(f"Found {len(preprocessed_files)} preprocessed files")
+    
+    # Create output directory
+    os.makedirs(slice_output_dir, exist_ok=True)
+    
+    all_slice_info = {}
+    
+    # Process files in parallel
+    if num_workers > 1:
+        with ProcessPoolExecutor(max_workers=num_workers) as executor:
+            futures = [
+                executor.submit(extract_slices_from_volume, file_path, slice_output_dir, slice_range)
+                for file_path in preprocessed_files
+            ]
+            
+            for i, future in enumerate(tqdm(futures, desc="Extracting slices")):
+                try:
+                    slice_info_list = future.result()
+                    patient_id = Path(preprocessed_files[i]).stem.replace('_preprocessed', '')
+                    all_slice_info[patient_id] = slice_info_list
+                except Exception as e:
+                    patient_id = Path(preprocessed_files[i]).stem.replace('_preprocessed', '')
+                    print(f"Error processing slices for patient {patient_id}: {str(e)}")
+    else:
+        # Process files sequentially
+        for file_path in tqdm(preprocessed_files, desc="Extracting slices"):
+            try:
+                slice_info_list = extract_slices_from_volume(file_path, slice_output_dir, slice_range)
+                patient_id = Path(file_path).stem.replace('_preprocessed', '')
+                all_slice_info[patient_id] = slice_info_list
+            except Exception as e:
+                patient_id = Path(file_path).stem.replace('_preprocessed', '')
+                print(f"Error processing slices for patient {patient_id}: {str(e)}")
+    
+    # Save overall metadata
+    total_slices = sum(len(slice_list) for slice_list in all_slice_info.values())
+    tumor_slices = sum(
+        sum(1 for slice_info in slice_list if slice_info['has_tumor'])
+        for slice_list in all_slice_info.values()
+    )
+    
+    overall_metadata = {
+        'total_patients': len(all_slice_info),
+        'total_slices': total_slices,
+        'tumor_slices': tumor_slices,
+        'non_tumor_slices': total_slices - tumor_slices,
+        'slice_range': slice_range,
+        'patients': list(all_slice_info.keys())
+    }
+    
+    metadata_file = os.path.join(slice_output_dir, "overall_slice_metadata.json")
+    import json
+    with open(metadata_file, 'w') as f:
+        json.dump(overall_metadata, f, indent=2)
+    
+    print(f"Slice extraction complete:")
+    print(f"  Total patients: {overall_metadata['total_patients']}")
+    print(f"  Total slices: {overall_metadata['total_slices']}")
+    print(f"  Tumor slices: {overall_metadata['tumor_slices']}")
+    print(f"  Non-tumor slices: {overall_metadata['non_tumor_slices']}")
+    
+    return all_slice_info
+
 def main():
     parser = argparse.ArgumentParser(description='BraTS Dataset Preprocessing')
     parser.add_argument('--input_dir', type=str, required=True, help='Input directory with BraTS data')
     parser.add_argument('--output_dir', type=str, required=True, help='Output directory for preprocessed data')
     parser.add_argument('--skip_download', action='store_true', help='Skip download instructions')
     parser.add_argument('--skip_organize', action='store_true', help='Skip file organization')
+    parser.add_argument('--extract_slices', action='store_true', help='Extract 2D slices from preprocessed volumes')
+    parser.add_argument('--slice_range', type=int, nargs=2, metavar=('START', 'END'), 
+                       help='Range of slices to extract (e.g., --slice_range 60 120)')
     parser.add_argument('--num_workers', type=int, default=4, help='Number of parallel workers')
     args = parser.parse_args()
     
@@ -381,6 +673,23 @@ def main():
                 print(f"Error processing patient {os.path.basename(patient_dir)}: {str(e)}")
     
     print(f"Preprocessing complete. Preprocessed files saved to {preprocessed_dir}")
+    
+    # Step 4: Extract 2D slices if requested
+    if args.extract_slices:
+        print("Starting 2D slice extraction...")
+        slice_output_dir = os.path.join(args.output_dir, "slices")
+        
+        slice_range = tuple(args.slice_range) if args.slice_range else None
+        if slice_range:
+            print(f"Extracting slices in range: {slice_range[0]} to {slice_range[1]}")
+        else:
+            print("Extracting all slices")
+        
+        all_slice_info = process_slices_for_patients(
+            preprocessed_dir, slice_output_dir, slice_range, args.num_workers
+        )
+        
+        print(f"2D slice extraction complete. Slices saved to {slice_output_dir}")
 
 if __name__ == "__main__":
     start_time = time.time()
