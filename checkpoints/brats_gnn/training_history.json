@@ -1,0 +1,46 @@
+{
+  "train": [
+    {
+      "total": 0.08574929307449375,
+      "bce": 0.056142210905054064,
+      "dice": 0.0,
+      "sensitivity": 0.0,
+      "specificity": 0.0,
+      "precision": 0.0,
+      "accuracy": 0.0,
+      "num_batches": 877
+    },
+    {
+      "total": 0.0009638958840571418,
+      "bce": 0.00023296009163048469,
+      "dice": 1.0,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "accuracy": 1.0,
+      "num_batches": 877
+    }
+  ],
+  "val": [
+    {
+      "total": 0.00035653533251071227,
+      "bce": 9.497052266193892e-05,
+      "dice": 1.0,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "accuracy": 1.0,
+      "num_batches": 188
+    },
+    {
+      "total": 2.968200781807848e-05,
+      "bce": 8.2977425324952e-06,
+      "dice": 1.0,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "accuracy": 1.0,
+      "num_batches": 188
+    }
+  ]
+}

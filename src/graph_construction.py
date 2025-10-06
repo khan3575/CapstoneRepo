@@ -237,7 +237,10 @@ class SliceProcessor:
             
             # Compute shape features
             area = np.sum(mask)
-            tumor_ratio = np.mean(slice_data["label"][mask])
+            
+            # Fix BraTS label handling: Convert multi-class (0,1,2,4) to binary (0,1)
+            tumor_binary = slice_data["label"][mask] > 0  # Any non-zero label is tumor
+            tumor_ratio = np.mean(tumor_binary.astype(float))  # Ratio of tumor pixels in superpixel
             
             # Normalized coordinates
             norm_y = centroid_y / h
@@ -548,8 +551,9 @@ class GraphBuilder:
             edge_index = torch.tensor(all_edges, dtype=torch.long).t().contiguous()
             x = torch.tensor(all_features, dtype=torch.float32)
             
-            # Labels (tumor ratio > 0.5)
-            y = torch.tensor(all_features[:, -1] > 0.5, dtype=torch.float32)
+            # Labels: Superpixel is tumor if >10% of its pixels are tumor
+            # (More sensitive threshold for medical segmentation)
+            y = torch.tensor(all_features[:, -1] > 0.1, dtype=torch.float32)
             tumor_nodes = torch.sum(y).item()
             
             # Slice mask
