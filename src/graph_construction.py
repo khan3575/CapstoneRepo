@@ -13,6 +13,7 @@ import time
 import gc
 from pathlib import Path
 from dataclasses import dataclass
+from multiprocessing import Pool
 from typing import List, Dict, Tuple, Optional, Generator
 import warnings
 warnings.filterwarnings('ignore')
@@ -68,55 +69,131 @@ class SliceProcessor:
         return brain_pixels >= self.config.min_brain_pixels
     
     def compute_superpixels(self, slice_data: Dict[str, np.ndarray]) -> np.ndarray:
-        """Compute SLIC superpixels efficiently."""
-        # Stack modalities
-        multichannel = np.stack([
-            img_as_float(slice_data["T1"]),
-            img_as_float(slice_data["T1ce"]),
-            img_as_float(slice_data["T2"]),
-            img_as_float(slice_data["FLAIR"])
-        ], axis=-1)
-        
+        """Compute SLIC superpixels with robust fallbacks."""
         # Brain mask
         mask = slice_data["brain_mask"] > 0
+        brain_pixels = np.sum(mask)
         
         # Initialize segments
         segments = np.zeros(mask.shape, dtype=np.int32)
         
-        if not np.any(mask):
-            return segments
+        if brain_pixels < 100:  # Not enough pixels
+            print(f"⚠️  Too few brain pixels ({brain_pixels}), using grid fallback")
+            return self._create_grid_superpixels(mask, target_segments=min(20, self.config.n_superpixels))
         
-        # Compute SLIC
+        # Stack modalities (normalize to 0-1 range)
+        def safe_normalize(arr):
+            arr_min, arr_max = arr.min(), arr.max()
+            if arr_max > arr_min:
+                return (arr - arr_min) / (arr_max - arr_min)
+            else:
+                return np.zeros_like(arr)
+        
+        multichannel = np.stack([
+            safe_normalize(slice_data["T1"]),
+            safe_normalize(slice_data["T1ce"]),
+            safe_normalize(slice_data["T2"]),
+            safe_normalize(slice_data["FLAIR"])
+        ], axis=-1)
+        
+        # Adaptive parameters based on brain size
+        n_segments_adj = min(self.config.n_superpixels, max(10, brain_pixels // 200))
+        
+        # Smart SLIC with automatic version detection
         try:
-            segments_masked = slic(
-                multichannel,
-                n_segments=self.config.n_superpixels,
-                sigma=self.config.sigma,
-                compactness=self.config.compactness,
-                max_iter=self.config.max_iter,
-                mask=mask,
-                start_label=1,
-                channel_axis=-1
-            )
-            segments[mask] = segments_masked[mask]
-        except Exception:
-            # Fallback for older scikit-image
+            # Check scikit-image version and use appropriate parameters
+            import skimage
+            version = skimage.__version__
+            print(f"🔍 Using scikit-image version: {version}")
+            
+            # Try modern API first (max_num_iter)
             try:
-                segments_masked = slic(
-                    multichannel,
-                    n_segments=self.config.n_superpixels,
-                    sigma=self.config.sigma,
-                    compactness=self.config.compactness,
-                    max_iter=self.config.max_iter,
-                    mask=mask,
-                    start_label=1,
-                    multichannel=True
-                )
-                segments[mask] = segments_masked[mask]
-            except Exception:
-                print("Warning: SLIC failed, returning empty segments")
-                return segments
+                if hasattr(slic, '__code__') and 'channel_axis' in slic.__code__.co_varnames:
+                    # Modern version with channel_axis
+                    segments_full = slic(
+                        multichannel,
+                        n_segments=n_segments_adj,
+                        sigma=1.0,
+                        compactness=0.1,
+                        max_num_iter=20,
+                        start_label=1,
+                        channel_axis=-1
+                    )
+                    print("✅ Used modern SLIC API (channel_axis + max_num_iter)")
+                else:
+                    # Modern version without channel_axis
+                    segments_full = slic(
+                        multichannel,
+                        n_segments=n_segments_adj,
+                        sigma=1.0,
+                        compactness=0.1,
+                        max_num_iter=20,
+                        start_label=1,
+                        multichannel=True
+                    )
+                    print("✅ Used modern SLIC API (max_num_iter)")
+            except Exception as modern_e:
+                print(f"⚠️  Modern SLIC API failed ({modern_e}), trying legacy API...")
+                
+                # Fallback to older API (max_iter)
+                if hasattr(slic, '__code__') and 'channel_axis' in slic.__code__.co_varnames:
+                    # Legacy version with channel_axis
+                    segments_full = slic(
+                        multichannel,
+                        n_segments=n_segments_adj,
+                        sigma=1.0,
+                        compactness=0.1,
+                        max_iter=20,
+                        start_label=1,
+                        channel_axis=-1
+                    )
+                    print("✅ Used legacy SLIC API (channel_axis + max_iter)")
+                else:
+                    # Legacy version
+                    segments_full = slic(
+                        multichannel,
+                        n_segments=n_segments_adj,
+                        sigma=1.0,
+                        compactness=0.1,
+                        max_iter=20,
+                        start_label=1,
+                        multichannel=True
+                    )
+                    print("✅ Used legacy SLIC API (max_iter)")
+            
+            # Apply mask
+            segments[mask] = segments_full[mask]
+            unique_count = len(np.unique(segments)) - 1
+            print(f"✅ SLIC success: {unique_count} superpixels created")
+            return segments
+            
+        except Exception as e:
+            print(f"⚠️  All SLIC methods failed ({e}), using simple grid fallback")
+            return self._create_grid_superpixels(mask, target_segments=min(50, self.config.n_superpixels))
+    
+    def _create_grid_superpixels(self, mask: np.ndarray, target_segments: int = 50) -> np.ndarray:
+        """Create simple grid-based superpixels as fallback."""
+        h, w = mask.shape
+        segments = np.zeros((h, w), dtype=np.int32)
         
+        # Calculate grid size
+        grid_size = int(np.sqrt(target_segments))
+        if grid_size < 2:
+            grid_size = 2
+        
+        step_h = max(1, h // grid_size)
+        step_w = max(1, w // grid_size)
+        
+        segment_id = 1
+        for i in range(0, h, step_h):
+            for j in range(0, w, step_w):
+                # Only assign to brain regions
+                region_mask = mask[i:i+step_h, j:j+step_w]
+                if np.any(region_mask):
+                    segments[i:i+step_h, j:j+step_w][region_mask] = segment_id
+                    segment_id += 1
+        
+        print(f"🔧 Created {segment_id-1} grid-based superpixels")
         return segments
     
     def compute_features(self, slice_data: Dict[str, np.ndarray], 
@@ -311,52 +388,74 @@ class GraphBuilder:
         """Select slices to process intelligently."""
         n_slices = volume_data["T1"].shape[0]
         selected = []
+        tumor_slices = []
         
         # Always include tumor slices
         for z in range(n_slices):
             if np.any(volume_data["label"][z] > 0):
                 selected.append(z)
+                tumor_slices.append(z)
+        
+        print(f"🎯 Found {len(tumor_slices)} tumor slices: {tumor_slices[:10]}{'...' if len(tumor_slices) > 10 else ''}")
         
         # Add representative non-tumor slices
         tumor_set = set(selected)
         non_tumor_candidates = [z for z in range(n_slices) if z not in tumor_set]
         
+        added_non_tumor = []
         # Sample every 3rd non-tumor slice with brain content
         for z in non_tumor_candidates[::3]:
             slice_data = {key: volume_data[key][z] for key in volume_data}
             if self.slice_processor.is_valid_slice(slice_data):
                 selected.append(z)
+                added_non_tumor.append(z)
+        
+        print(f"🧠 Added {len(added_non_tumor)} non-tumor slices: {added_non_tumor[:10]}{'...' if len(added_non_tumor) > 10 else ''}")
         
         return sorted(selected)
     
     def process_volume(self, volume_data: Dict[str, np.ndarray]) -> Tuple[List[Data], List[np.ndarray]]:
         """Process entire volume into graphs."""
+        n_total_slices = volume_data["T1"].shape[0]
         selected_slices = self.select_slices(volume_data)
         
+        print(f"📊 Volume info: {n_total_slices} total slices, {len(selected_slices)} selected")
+        
         if len(selected_slices) < 2:
-            print("Warning: Not enough slices to create graphs")
+            print("❌ Warning: Not enough slices to create graphs")
             return [], []
         
-        print(f"Processing {len(selected_slices)} selected slices...")
+        print(f"🔄 Processing {len(selected_slices)} selected slices...")
         
         # Process slices
         slice_results = []
+        valid_slice_count = 0
         
         for z in tqdm(selected_slices, desc="Processing slices"):
             slice_data = {key: volume_data[key][z] for key in volume_data}
             
             if not self.slice_processor.is_valid_slice(slice_data):
+                print(f"⚠️  Slice {z}: Invalid (insufficient brain content)")
                 slice_results.append(None)
                 continue
             
             # Compute superpixels and features
             segments = self.slice_processor.compute_superpixels(slice_data)
-            features, centroids, masks = self.slice_processor.compute_features(slice_data, segments)
+            unique_segments = len(np.unique(segments)) - 1  # subtract background
             
-            if len(features) == 0:
+            if unique_segments == 0:
+                print(f"⚠️  Slice {z}: No superpixels created")
                 slice_results.append(None)
                 continue
             
+            features, centroids, masks = self.slice_processor.compute_features(slice_data, segments)
+            
+            if len(features) == 0:
+                print(f"⚠️  Slice {z}: No features extracted")
+                slice_results.append(None)
+                continue
+            
+            print(f"✅ Slice {z}: {unique_segments} superpixels, {len(features)} features")
             slice_results.append({
                 'features': features,
                 'centroids': centroids,
@@ -364,14 +463,19 @@ class GraphBuilder:
                 'segments': segments,
                 'slice_idx': z
             })
+            valid_slice_count += 1
             
             # Memory management
             if not self.memory_manager.check_memory():
                 self.memory_manager.cleanup()
         
+        print(f"📈 Valid slices processed: {valid_slice_count}/{len(selected_slices)}")
+        
         # Build graphs from consecutive slice pairs
         graphs = []
         all_segments = []
+        graph_attempts = 0
+        successful_graphs = 0
         
         for i in tqdm(range(len(slice_results) - 1), desc="Building graphs"):
             if slice_results[i] is None or slice_results[i+1] is None:
@@ -381,11 +485,17 @@ class GraphBuilder:
             
             # Skip if slices are too far apart
             if slice2['slice_idx'] - slice1['slice_idx'] > 5:
+                print(f"⚠️  Skipping slices {slice1['slice_idx']}-{slice2['slice_idx']}: too far apart")
                 continue
             
+            graph_attempts += 1
             graph = self._build_slice_pair_graph(slice1, slice2)
             if graph is not None:
                 graphs.append(graph)
+                successful_graphs += 1
+                print(f"✅ Graph {successful_graphs}: slices {slice1['slice_idx']}-{slice2['slice_idx']}")
+            else:
+                print(f"❌ Failed to create graph for slices {slice1['slice_idx']}-{slice2['slice_idx']}")
             
             # Store segments for the first slice (store last slice separately after loop)
             if i == 0:
@@ -395,6 +505,7 @@ class GraphBuilder:
         if slice_results and slice_results[-1] is not None:
             all_segments.append(slice_results[-1]['segments'])
         
+        print(f"📊 Graph creation: {successful_graphs}/{graph_attempts} successful")
         return graphs, all_segments
     
     def _build_slice_pair_graph(self, slice1: Dict, slice2: Dict) -> Optional[Data]:
@@ -405,6 +516,7 @@ class GraphBuilder:
             n1, n2 = len(features1), len(features2)
             
             if n1 == 0 or n2 == 0:
+                print(f"🚫 No features: slice1={n1}, slice2={n2}")
                 return None
             
             all_features = np.vstack([features1, features2])
@@ -426,7 +538,10 @@ class GraphBuilder:
             # Combine all edges
             all_edges = edges1 + edges2_offset + inter_edges
             
+            print(f"🔗 Edges: intra1={len(edges1)}, intra2={len(edges2_offset)}, inter={len(inter_edges)}, total={len(all_edges)}")
+            
             if not all_edges:
+                print("🚫 No edges created")
                 return None
             
             # Create tensors
@@ -435,6 +550,7 @@ class GraphBuilder:
             
             # Labels (tumor ratio > 0.5)
             y = torch.tensor(all_features[:, -1] > 0.5, dtype=torch.float32)
+            tumor_nodes = torch.sum(y).item()
             
             # Slice mask
             slice_mask = torch.zeros(len(all_features), dtype=torch.bool)
@@ -442,6 +558,8 @@ class GraphBuilder:
             
             # Slice indices
             slice_indices = torch.tensor([slice1['slice_idx'], slice2['slice_idx']], dtype=torch.long)
+            
+            print(f"📊 Graph: {len(all_features)} nodes ({tumor_nodes} tumor), {len(all_edges)} edges")
             
             return Data(
                 x=x,
@@ -452,7 +570,9 @@ class GraphBuilder:
             )
             
         except Exception as e:
-            print(f"Error building graph: {e}")
+            print(f"❌ Error building graph: {e}")
+            import traceback
+            traceback.print_exc()
             return None
 
 def process_patient_file(patient_file: str, output_dir: str, config: Config) -> Tuple[str, int]:
@@ -507,20 +627,26 @@ def process_patient_file(patient_file: str, output_dir: str, config: Config) -> 
         # Cleanup
         gc.collect()
 
+def process_patient_wrapper(args_tuple):
+    """Wrapper for multiprocessing"""
+    patient_file, output_dir, config = args_tuple
+    return process_patient_file(patient_file, output_dir, config)
+
 def main():
     parser = argparse.ArgumentParser(description='Clean Graph Construction for BraTS')
     parser.add_argument('--input_dir', type=str, required=True, help='Input directory')
     parser.add_argument('--output_dir', type=str, required=True, help='Output directory')
     parser.add_argument('--superpixels', type=int, default=200, help='Number of superpixels')
-    parser.add_argument('--max_memory_gb', type=float, default=4.0, help='Max memory usage in GB')
-    parser.add_argument('--num_workers', type=int, default=1, help='Number of workers (sequential only for now)')
+    parser.add_argument('--max_memory_gb', type=float, default=24.0, help='Max memory usage in GB')
+    parser.add_argument('--num_workers', type=int, default=12, help='Number of parallel workers')
     
     args = parser.parse_args()
     
-    # Configuration
+    # Configuration - adjust memory per worker
+    memory_per_worker = args.max_memory_gb / args.num_workers
     config = Config(
         n_superpixels=args.superpixels,
-        max_memory_gb=args.max_memory_gb
+        max_memory_gb=memory_per_worker
     )
     
     # Find patient files
@@ -532,20 +658,33 @@ def main():
         return
     
     print(f"Found {len(patient_files)} patient files")
-    print(f"Configuration: {config.n_superpixels} superpixels, {config.max_memory_gb}GB memory limit")
+    print(f"Configuration: {config.n_superpixels} superpixels, {args.max_memory_gb}GB total memory")
+    print(f"Workers: {args.num_workers} parallel processes, {memory_per_worker:.1f}GB per worker")
     
     # Create output directory
     os.makedirs(args.output_dir, exist_ok=True)
     
     # Process files
-    results = []
-    
-    for patient_file in tqdm(patient_files, desc="Processing patients"):
-        result = process_patient_file(patient_file, args.output_dir, config)
-        results.append(result)
+    if args.num_workers == 1:
+        # Sequential processing
+        results = []
+        for patient_file in tqdm(patient_files, desc="Processing patients"):
+            result = process_patient_file(patient_file, args.output_dir, config)
+            results.append(result)
+            gc.collect()
+    else:
+        # Parallel processing
+        print(f"🚀 Starting parallel processing with {args.num_workers} workers...")
         
-        # Memory cleanup between patients
-        gc.collect()
+        # Prepare arguments for multiprocessing
+        process_args = [(pf, args.output_dir, config) for pf in patient_files]
+        
+        with Pool(processes=args.num_workers) as pool:
+            results = list(tqdm(
+                pool.imap(process_patient_wrapper, process_args),
+                total=len(patient_files),
+                desc="Processing patients"
+            ))
     
     # Report results
     successful = [r for r in results if r[1] > 0]
