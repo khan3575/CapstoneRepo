@@ -1,0 +1,23 @@
+# BraTS GNN Segmentation - Minimal Dependencies
+# Use this file for minimal installation: pip install -r requirements-minimal.txt
+
+# Core ML/DL Libraries (Required)
+torch>=2.0.0
+torch-geometric>=2.3.0
+numpy>=1.21.0
+
+# Medical Image Processing (Required)
+nibabel>=5.0.0
+SimpleITK>=2.2.0
+scipy>=1.9.0
+scikit-image>=0.19.0
+
+# Essential Data Science (Required)
+pandas>=1.5.0
+scikit-learn>=1.1.0
+
+# Basic Visualization (Required)
+matplotlib>=3.5.0
+
+# Progress Bars (Required)
+tqdm>=4.64.0
