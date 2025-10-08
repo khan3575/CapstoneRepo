@@ -1,0 +1,115 @@
+{
+  "architecture_comparison": {
+    "sage": {
+      "dice": 0.7075688073394495,
+      "accuracy": 0.9332722752845741,
+      "training_time": 22.34578514099121,
+      "parameters": 15905
+    },
+    "gat": {
+      "dice": 0.49033977348434377,
+      "accuracy": 0.8999084129268612,
+      "training_time": 22.638120412826538,
+      "parameters": 504577
+    },
+    "gcn": {
+      "dice": 0.026223776223776224,
+      "accuracy": 0.8542457150333639,
+      "training_time": 22.74237871170044,
+      "parameters": 8993
+    }
+  },
+  "feature_importance": {
+    "intensity_mean": {
+      "dice": 0.8188585607940446,
+      "accuracy": 0.9522438832919011,
+      "training_time": 23.08865737915039,
+      "feature_count": 4,
+      "features_used": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "intensity_std": {
+      "dice": 0.6170212765957447,
+      "accuracy": 0.896375768677221,
+      "training_time": 23.276988744735718,
+      "feature_count": 4,
+      "features_used": [
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "spatial": {
+      "dice": 0.40043525571273125,
+      "accuracy": 0.8558157791443151,
+      "training_time": 23.423935890197754,
+      "feature_count": 3,
+      "features_used": [
+        8,
+        9,
+        10
+      ]
+    },
+    "tumor_info": {
+      "dice": 0.9919064748201439,
+      "accuracy": 0.9976449038335732,
+      "training_time": 23.493743896484375,
+      "feature_count": 1,
+      "features_used": [
+        11
+      ]
+    },
+    "all_features": {
+      "dice": 0.8314987298899238,
+      "accuracy": 0.9479262069867853,
+      "training_time": 23.391698837280273,
+      "feature_count": 12,
+      "features_used": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  },
+  "training_strategy": {
+    "baseline": {
+      "dice": 0.753887399463807,
+      "accuracy": 0.9399450477561168,
+      "training_time": 23.566789388656616,
+      "config": {
+        "use_batch_norm": true
+      }
+    },
+    "no_batch_norm": {
+      "dice": 0.3562580093976933,
+      "accuracy": 0.8028261153997122,
+      "training_time": 23.716502904891968,
+      "config": {
+        "use_batch_norm": false
+      }
+    },
+    "with_skip_connections": {
+      "dice": 0.835746380429356,
+      "accuracy": 0.9569540756247547,
+      "training_time": 24.040374040603638,
+      "config": {
+        "use_batch_norm": true,
+        "use_skip_connections": true
+      }
+    }
+  }
+}
