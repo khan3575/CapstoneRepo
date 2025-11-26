@@ -12,29 +12,68 @@ from typing import List, Tuple, Dict, Optional
 class BraTSGraphDataset(Dataset):
     """
     Custom Dataset for loading BraTS graph data
+    Supports both directory-based and explicit file list loading for CV
     """
     
     def __init__(self, 
-                 graph_dir: str,
+                 root_dir: str = None,
+                 split: str = 'train',
+                 graph_dir: str = None,
                  patient_ids: Optional[List[str]] = None,
+                 graph_files: Optional[List[str]] = None,
                  transform=None,
                  max_graphs_per_patient: Optional[int] = None):
         """
         Args:
+            root_dir: Root directory (legacy, for compatibility)
+            split: Split name (train/val/test) - informational only
             graph_dir: Directory containing graph files
             patient_ids: List of patient IDs to include (if None, use all)
+            graph_files: Explicit list of graph file paths (for CV)
             transform: Optional transform to apply
             max_graphs_per_patient: Limit graphs per patient (for debugging)
         """
+        # Handle legacy root_dir parameter
+        if graph_dir is None and root_dir is not None:
+            graph_dir = root_dir
+        
         self.graph_dir = graph_dir
+        self.split = split
         self.transform = transform
         self.max_graphs_per_patient = max_graphs_per_patient
         
-        # Find all graph files and expand to individual graphs
-        self.graph_entries = self._find_graph_files(patient_ids)
+        # Load from explicit file list (CV mode) or find files
+        if graph_files is not None:
+            # CV mode: use provided file list
+            self.graph_entries = self._load_from_file_list(graph_files)
+        else:
+            # Normal mode: find all graph files
+            self.graph_entries = self._find_graph_files(patient_ids)
         
         unique_patients = len(set([self._get_patient_id(entry[0]) for entry in self.graph_entries]))
         print(f"📊 Dataset initialized: {len(self.graph_entries)} graphs from {unique_patients} patients")
+    
+    def _load_from_file_list(self, graph_files: List[str]) -> List[Tuple[str, int]]:
+        """Load graphs from explicit file list (for CV)"""
+        graph_entries = []
+        for graph_file in sorted(graph_files):
+            try:
+                # Load file to count graphs
+                graphs = torch.load(graph_file, map_location='cpu', weights_only=False)
+                if isinstance(graphs, list):
+                    num_graphs = len(graphs)
+                else:
+                    num_graphs = 1
+                
+                # Add entry for each graph in the file
+                for i in range(num_graphs):
+                    graph_entries.append((graph_file, i))
+                    
+            except Exception as e:
+                print(f"⚠️ Warning: Could not load {graph_file}: {e}")
+                continue
+        
+        return graph_entries
     
     def _find_graph_files(self, patient_ids: Optional[List[str]] = None) -> List[Tuple[str, int]]:
         """Find all graph files and expand to individual graphs"""

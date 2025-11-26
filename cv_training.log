@@ -1,0 +1,76 @@
+================================================================================
+WEEK 1: CROSS-VALIDATION INFRASTRUCTURE
+================================================================================
+
+Step 1: Creating cross-validation folds...
+--------------------------------------------------------------------------------
+================================================================================
+CREATING CROSS-VALIDATION FOLDS
+================================================================================
+Found 1251 total graph files
+Found 1251 unique patients
+
+Created 5 folds:
+  Fold 0: 251 patients, 251 graphs
+  Fold 1: 250 patients, 250 graphs
+  Fold 2: 250 patients, 250 graphs
+  Fold 3: 250 patients, 250 graphs
+  Fold 4: 250 patients, 250 graphs
+
+================================================================================
+FOLD 0
+================================================================================
+Train: 900 patients, 900 graphs
+Val:   100 patients, 100 graphs
+Test:  251 patients, 251 graphs
+Saved fold assignment to data/cv_folds/fold_0.json
+
+================================================================================
+FOLD 1
+================================================================================
+Train: 901 patients, 901 graphs
+Val:   100 patients, 100 graphs
+Test:  250 patients, 250 graphs
+Saved fold assignment to data/cv_folds/fold_1.json
+
+================================================================================
+FOLD 2
+================================================================================
+Train: 901 patients, 901 graphs
+Val:   100 patients, 100 graphs
+Test:  250 patients, 250 graphs
+Saved fold assignment to data/cv_folds/fold_2.json
+
+================================================================================
+FOLD 3
+================================================================================
+Train: 901 patients, 901 graphs
+Val:   100 patients, 100 graphs
+Test:  250 patients, 250 graphs
+Saved fold assignment to data/cv_folds/fold_3.json
+
+================================================================================
+FOLD 4
+================================================================================
+Train: 901 patients, 901 graphs
+Val:   100 patients, 100 graphs
+Test:  250 patients, 250 graphs
+Saved fold assignment to data/cv_folds/fold_4.json
+
+================================================================================
+COMPLETE! Saved all fold assignments to data/cv_folds/all_folds.json
+================================================================================
+
+
+✅ Cross-validation folds created successfully!
+   Fold assignments saved to: ./data/cv_folds
+   Ready to train 5 folds
+
+✅ Fold assignments created!
+
+Step 2: Training Fold 0 (time estimation)...
+--------------------------------------------------------------------------------
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/typing.py:68: UserWarning: An issue occurred while importing 'pyg-lib'. Disabling its usage. Stacktrace: /mnt/bigdata/capstone/.env/lib/python3.12/site-packages/libpyg.so: undefined symbol: _ZN2at4_ops11multinomial4callERKNS_6TensorElbSt8optionalINS_9GeneratorEE
+  warnings.warn(f"An issue occurred while importing 'pyg-lib'. "
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/typing.py:124: UserWarning: An issue occurred while importing 'torch-sparse'. Disabling its usage. Stacktrace: /mnt/bigdata/capstone/.env/lib/python3.12/site-packages/libpyg.so: undefined symbol: _ZN2at4_ops11multinomial4callERKNS_6TensorElbSt8optionalINS_9GeneratorEE
+  warnings.warn(f"An issue occurred while importing 'torch-sparse'. "
