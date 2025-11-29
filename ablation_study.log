@@ -1,0 +1,489 @@
+nohup: ignoring input
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/typing.py:68: UserWarning: An issue occurred while importing 'pyg-lib'. Disabling its usage. Stacktrace: /mnt/bigdata/capstone/.env/lib/python3.12/site-packages/libpyg.so: undefined symbol: _ZN2at4_ops11multinomial4callERKNS_6TensorElbSt8optionalINS_9GeneratorEE
+  warnings.warn(f"An issue occurred while importing 'pyg-lib'. "
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/typing.py:124: UserWarning: An issue occurred while importing 'torch-sparse'. Disabling its usage. Stacktrace: /mnt/bigdata/capstone/.env/lib/python3.12/site-packages/libpyg.so: undefined symbol: _ZN2at4_ops11multinomial4callERKNS_6TensorElbSt8optionalINS_9GeneratorEE
+  warnings.warn(f"An issue occurred while importing 'torch-sparse'. "
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                         ABLATION STUDY                                        ║
+║                    GNN Architecture Analysis                                 ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Device: cuda
+Fold: 0
+Epochs: 25
+Batch Size: 96
+
+Testing 8 configurations...
+
+================================================================================
+ABLATION: Baseline (5 layers, 256D, GraphSAGE)
+================================================================================
+
+Loading data for fold 0...
+  Train: 900 graphs from 900 patients
+  Val:   100 graphs from 100 patients
+  Test:  251 graphs from 251 patients
+
+Loading graphs into memory...
+📊 Dataset initialized: 76679 graphs from 900 patients
+📊 Dataset initialized: 8629 graphs from 100 patients
+📊 Dataset initialized: 21544 graphs from 251 patients
+
+Creating model...
+  Layers: 5
+  Hidden: 256
+  Type:   sage
+  Edges:  True
+  Parameters: 437,505
+  Using FP32 (full precision) for numerical stability...
+
+Training for 25 epochs...
+/mnt/bigdata/capstone/brats_gnn_segmentation/scripts/run_ablation_study.py:200: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(scaler is not None)):
+Epoch  1/25: Train Loss=1.1564, Dice=0.1970 | Val Loss=0.9660, Dice=0.3259 | Time=212.0s
+Epoch  2/25: Train Loss=0.8334, Dice=0.5721 | Val Loss=0.6645, Dice=0.6100 | Time=217.5s
+Epoch  3/25: Train Loss=0.4419, Dice=0.7869 | Val Loss=0.2691, Dice=0.8543 | Time=221.9s
+Epoch  4/25: Train Loss=0.2701, Dice=0.8669 | Val Loss=0.1769, Dice=0.9055 | Time=222.0s
+Epoch  5/25: Train Loss=0.2314, Dice=0.8808 | Val Loss=0.3182, Dice=0.8236 | Time=216.9s
+Epoch  6/25: Train Loss=0.2048, Dice=0.8931 | Val Loss=4.4868, Dice=0.2524 | Time=216.3s
+Epoch  7/25: Train Loss=0.1838, Dice=0.9035 | Val Loss=0.3189, Dice=0.8269 | Time=217.2s
+Epoch  8/25: Train Loss=0.1542, Dice=0.9190 | Val Loss=0.1917, Dice=0.8910 | Time=219.0s
+Epoch  9/25: Train Loss=0.1257, Dice=0.9348 | Val Loss=0.5328, Dice=0.7101 | Time=219.1s
+
+Early stopping at epoch 9
+
+Evaluating on test set...
+
+================================================================================
+RESULTS: Baseline (5 layers, 256D, GraphSAGE)
+================================================================================
+  Best Val Dice:  0.9055 (epoch 4)
+  Test Dice:      0.9091
+  Parameters:     437,505
+  Training Time:  32.7 min
+================================================================================
+
+================================================================================
+ABLATION: 3 Layers (vs 5)
+================================================================================
+
+Loading data for fold 0...
+  Train: 900 graphs from 900 patients
+  Val:   100 graphs from 100 patients
+  Test:  251 graphs from 251 patients
+
+Loading graphs into memory...
+📊 Dataset initialized: 76679 graphs from 900 patients
+📊 Dataset initialized: 8629 graphs from 100 patients
+📊 Dataset initialized: 21544 graphs from 251 patients
+
+Creating model...
+  Layers: 3
+  Hidden: 256
+  Type:   sage
+  Edges:  True
+  Parameters: 173,825
+  Using FP32 (full precision) for numerical stability...
+
+Training for 25 epochs...
+Epoch  1/25: Train Loss=1.1954, Dice=0.1942 | Val Loss=0.9364, Dice=0.5087 | Time=229.0s
+Epoch  2/25: Train Loss=0.7655, Dice=0.6822 | Val Loss=0.6149, Dice=0.7313 | Time=223.9s
+Epoch  3/25: Train Loss=0.5328, Dice=0.7520 | Val Loss=0.4305, Dice=0.7388 | Time=240.9s
+Epoch  4/25: Train Loss=0.3799, Dice=0.8133 | Val Loss=0.4151, Dice=0.7366 | Time=252.8s
+Epoch  5/25: Train Loss=0.3113, Dice=0.8398 | Val Loss=0.2622, Dice=0.8830 | Time=244.5s
+Epoch  6/25: Train Loss=0.2587, Dice=0.8638 | Val Loss=0.4645, Dice=0.7684 | Time=248.4s
+Epoch  7/25: Train Loss=0.2005, Dice=0.8947 | Val Loss=1.0923, Dice=0.4949 | Time=251.3s
+Epoch  8/25: Train Loss=0.1420, Dice=0.9261 | Val Loss=0.0815, Dice=0.9532 | Time=249.6s
+Epoch  9/25: Train Loss=0.1145, Dice=0.9412 | Val Loss=1.0921, Dice=0.5255 | Time=239.8s
+Epoch 10/25: Train Loss=0.0908, Dice=0.9534 | Val Loss=0.0599, Dice=0.9647 | Time=217.8s
+Epoch 11/25: Train Loss=0.0813, Dice=0.9582 | Val Loss=0.3997, Dice=0.7876 | Time=214.1s
+Epoch 12/25: Train Loss=0.0693, Dice=0.9641 | Val Loss=0.2480, Dice=0.8831 | Time=213.3s
+Epoch 13/25: Train Loss=0.0615, Dice=0.9683 | Val Loss=0.0313, Dice=0.9810 | Time=213.0s
+Epoch 14/25: Train Loss=0.0544, Dice=0.9717 | Val Loss=0.0951, Dice=0.9475 | Time=213.1s
+Epoch 15/25: Train Loss=0.0472, Dice=0.9752 | Val Loss=0.0610, Dice=0.9686 | Time=213.2s
+Epoch 16/25: Train Loss=0.0438, Dice=0.9770 | Val Loss=0.0866, Dice=0.9526 | Time=212.5s
+Epoch 17/25: Train Loss=0.0370, Dice=0.9804 | Val Loss=0.3418, Dice=0.8214 | Time=212.1s
+Epoch 18/25: Train Loss=0.0339, Dice=0.9819 | Val Loss=0.0290, Dice=0.9818 | Time=213.1s
+Epoch 19/25: Train Loss=0.0290, Dice=0.9844 | Val Loss=0.0129, Dice=0.9929 | Time=212.7s
+Epoch 20/25: Train Loss=0.0261, Dice=0.9860 | Val Loss=0.0295, Dice=0.9826 | Time=213.1s
+Epoch 21/25: Train Loss=0.0229, Dice=0.9875 | Val Loss=0.0153, Dice=0.9900 | Time=212.5s
+Epoch 22/25: Train Loss=0.0209, Dice=0.9885 | Val Loss=0.0083, Dice=0.9955 | Time=212.0s
+Epoch 23/25: Train Loss=0.0179, Dice=0.9903 | Val Loss=0.0153, Dice=0.9900 | Time=212.7s
+Epoch 24/25: Train Loss=0.0171, Dice=0.9907 | Val Loss=0.0067, Dice=0.9963 | Time=212.8s
+Epoch 25/25: Train Loss=0.0160, Dice=0.9914 | Val Loss=0.0054, Dice=0.9975 | Time=213.3s
+
+Evaluating on test set...
+
+================================================================================
+RESULTS: 3 Layers (vs 5)
+================================================================================
+  Best Val Dice:  0.9975 (epoch 25)
+  Test Dice:      0.9977
+  Parameters:     173,825
+  Training Time:  93.2 min
+================================================================================
+
+================================================================================
+ABLATION: 4 Layers (vs 5)
+================================================================================
+
+Loading data for fold 0...
+  Train: 900 graphs from 900 patients
+  Val:   100 graphs from 100 patients
+  Test:  251 graphs from 251 patients
+
+Loading graphs into memory...
+📊 Dataset initialized: 76679 graphs from 900 patients
+📊 Dataset initialized: 8629 graphs from 100 patients
+📊 Dataset initialized: 21544 graphs from 251 patients
+
+Creating model...
+  Layers: 4
+  Hidden: 256
+  Type:   sage
+  Edges:  True
+  Parameters: 305,665
+  Using FP32 (full precision) for numerical stability...
+
+Training for 25 epochs...
+Epoch  1/25: Train Loss=1.2471, Dice=0.2543 | Val Loss=1.0097, Dice=0.4133 | Time=211.0s
+Epoch  2/25: Train Loss=0.8825, Dice=0.6078 | Val Loss=0.6297, Dice=0.6789 | Time=213.2s
+Epoch  3/25: Train Loss=0.5064, Dice=0.7767 | Val Loss=0.3872, Dice=0.7780 | Time=212.7s
+Epoch  4/25: Train Loss=0.3209, Dice=0.8571 | Val Loss=0.2466, Dice=0.8679 | Time=212.1s
+Epoch  5/25: Train Loss=0.2521, Dice=0.8784 | Val Loss=0.2532, Dice=0.8637 | Time=212.5s
+Epoch  6/25: Train Loss=0.2208, Dice=0.8860 | Val Loss=0.1511, Dice=0.9112 | Time=213.2s
+Epoch  7/25: Train Loss=0.1901, Dice=0.8990 | Val Loss=0.2308, Dice=0.8616 | Time=212.9s
+Epoch  8/25: Train Loss=0.1486, Dice=0.9203 | Val Loss=0.2586, Dice=0.8561 | Time=213.3s
+Epoch  9/25: Train Loss=0.1229, Dice=0.9339 | Val Loss=0.1153, Dice=0.9354 | Time=212.9s
+Epoch 10/25: Train Loss=0.0937, Dice=0.9498 | Val Loss=0.1652, Dice=0.9129 | Time=212.3s
+Epoch 11/25: Train Loss=0.0753, Dice=0.9597 | Val Loss=0.0600, Dice=0.9669 | Time=212.3s
+Epoch 12/25: Train Loss=0.0669, Dice=0.9641 | Val Loss=0.0921, Dice=0.9511 | Time=213.0s
+Epoch 13/25: Train Loss=0.0581, Dice=0.9685 | Val Loss=0.0452, Dice=0.9741 | Time=213.4s
+Epoch 14/25: Train Loss=0.0500, Dice=0.9728 | Val Loss=0.1000, Dice=0.9498 | Time=212.1s
+Epoch 15/25: Train Loss=0.0455, Dice=0.9749 | Val Loss=0.0697, Dice=0.9617 | Time=213.4s
+Epoch 16/25: Train Loss=0.0397, Dice=0.9781 | Val Loss=0.0491, Dice=0.9699 | Time=212.8s
+Epoch 17/25: Train Loss=0.0347, Dice=0.9805 | Val Loss=0.1149, Dice=0.9375 | Time=213.4s
+Epoch 18/25: Train Loss=0.0298, Dice=0.9833 | Val Loss=0.0447, Dice=0.9744 | Time=213.9s
+Epoch 19/25: Train Loss=0.0267, Dice=0.9850 | Val Loss=0.0178, Dice=0.9889 | Time=212.6s
+Epoch 20/25: Train Loss=0.0231, Dice=0.9870 | Val Loss=0.0373, Dice=0.9772 | Time=212.6s
+Epoch 21/25: Train Loss=0.0203, Dice=0.9885 | Val Loss=0.0192, Dice=0.9881 | Time=212.2s
+Epoch 22/25: Train Loss=0.0177, Dice=0.9899 | Val Loss=0.0157, Dice=0.9904 | Time=212.4s
+Epoch 23/25: Train Loss=0.0155, Dice=0.9913 | Val Loss=0.0086, Dice=0.9949 | Time=213.7s
+Epoch 24/25: Train Loss=0.0144, Dice=0.9918 | Val Loss=0.0060, Dice=0.9974 | Time=213.2s
+Epoch 25/25: Train Loss=0.0135, Dice=0.9923 | Val Loss=0.0058, Dice=0.9975 | Time=213.6s
+
+Evaluating on test set...
+
+================================================================================
+RESULTS: 4 Layers (vs 5)
+================================================================================
+  Best Val Dice:  0.9975 (epoch 25)
+  Test Dice:      0.9974
+  Parameters:     305,665
+  Training Time:  88.7 min
+================================================================================
+
+================================================================================
+ABLATION: 6 Layers (vs 5)
+================================================================================
+
+Loading data for fold 0...
+  Train: 900 graphs from 900 patients
+  Val:   100 graphs from 100 patients
+  Test:  251 graphs from 251 patients
+
+Loading graphs into memory...
+📊 Dataset initialized: 76679 graphs from 900 patients
+📊 Dataset initialized: 8629 graphs from 100 patients
+📊 Dataset initialized: 21544 graphs from 251 patients
+
+Creating model...
+  Layers: 6
+  Hidden: 256
+  Type:   sage
+  Edges:  True
+  Parameters: 569,345
+  Using FP32 (full precision) for numerical stability...
+
+Training for 25 epochs...
+Epoch  1/25: Train Loss=1.1537, Dice=0.1817 | Val Loss=0.8611, Dice=0.4683 | Time=211.1s
+Epoch  2/25: Train Loss=0.7664, Dice=0.6055 | Val Loss=0.6067, Dice=0.6570 | Time=212.4s
+Epoch  3/25: Train Loss=0.5153, Dice=0.7475 | Val Loss=0.5306, Dice=0.6943 | Time=212.4s
+Epoch  4/25: Train Loss=0.3515, Dice=0.8293 | Val Loss=0.4231, Dice=0.7495 | Time=212.6s
+Epoch  5/25: Train Loss=0.2547, Dice=0.8721 | Val Loss=0.2969, Dice=0.8333 | Time=213.6s
+Epoch  6/25: Train Loss=0.1871, Dice=0.9025 | Val Loss=1.6505, Dice=0.3652 | Time=213.6s
+Epoch  7/25: Train Loss=0.1522, Dice=0.9185 | Val Loss=0.1347, Dice=0.9271 | Time=212.5s
+Epoch  8/25: Train Loss=0.1233, Dice=0.9332 | Val Loss=0.2373, Dice=0.8678 | Time=213.6s
+Epoch  9/25: Train Loss=0.0989, Dice=0.9463 | Val Loss=0.3762, Dice=0.8165 | Time=212.2s
+Epoch 10/25: Train Loss=0.0843, Dice=0.9539 | Val Loss=0.3976, Dice=0.8086 | Time=213.5s
+Epoch 11/25: Train Loss=0.0722, Dice=0.9605 | Val Loss=0.2592, Dice=0.8605 | Time=212.8s
+Epoch 12/25: Train Loss=0.0647, Dice=0.9647 | Val Loss=0.1511, Dice=0.9172 | Time=212.3s
+
+Early stopping at epoch 12
+
+Evaluating on test set...
+
+================================================================================
+RESULTS: 6 Layers (vs 5)
+================================================================================
+  Best Val Dice:  0.9271 (epoch 7)
+  Test Dice:      0.9289
+  Parameters:     569,345
+  Training Time:  42.5 min
+================================================================================
+
+================================================================================
+ABLATION: Hidden Dim 128 (vs 256)
+================================================================================
+
+Loading data for fold 0...
+  Train: 900 graphs from 900 patients
+  Val:   100 graphs from 100 patients
+  Test:  251 graphs from 251 patients
+
+Loading graphs into memory...
+📊 Dataset initialized: 76679 graphs from 900 patients
+📊 Dataset initialized: 8629 graphs from 100 patients
+📊 Dataset initialized: 21544 graphs from 251 patients
+
+Creating model...
+  Layers: 5
+  Hidden: 128
+  Type:   sage
+  Edges:  True
+  Parameters: 121,601
+  Using FP32 (full precision) for numerical stability...
+
+Training for 25 epochs...
+Epoch  1/25: Train Loss=1.2213, Dice=0.2483 | Val Loss=0.8736, Dice=0.5410 | Time=212.4s
+Epoch  2/25: Train Loss=0.7709, Dice=0.6666 | Val Loss=0.6358, Dice=0.6441 | Time=212.8s
+Epoch  3/25: Train Loss=0.5424, Dice=0.7519 | Val Loss=0.3239, Dice=0.8475 | Time=212.9s
+Epoch  4/25: Train Loss=0.3948, Dice=0.8128 | Val Loss=0.3697, Dice=0.7863 | Time=212.7s
+Epoch  5/25: Train Loss=0.3493, Dice=0.8238 | Val Loss=0.2406, Dice=0.8761 | Time=212.5s
+Epoch  6/25: Train Loss=0.3342, Dice=0.8240 | Val Loss=0.2901, Dice=0.8515 | Time=213.1s
+Epoch  7/25: Train Loss=0.3054, Dice=0.8373 | Val Loss=4.6685, Dice=0.2274 | Time=213.4s
+Epoch  8/25: Train Loss=0.2468, Dice=0.8693 | Val Loss=2.4003, Dice=0.3029 | Time=213.1s
+Epoch  9/25: Train Loss=0.2004, Dice=0.8943 | Val Loss=0.2018, Dice=0.8888 | Time=213.3s
+Epoch 10/25: Train Loss=0.1710, Dice=0.9103 | Val Loss=0.4533, Dice=0.7812 | Time=212.6s
+Epoch 11/25: Train Loss=0.1350, Dice=0.9296 | Val Loss=0.1730, Dice=0.9112 | Time=212.0s
+Epoch 12/25: Train Loss=0.1102, Dice=0.9429 | Val Loss=0.0717, Dice=0.9604 | Time=212.9s
+Epoch 13/25: Train Loss=0.0864, Dice=0.9554 | Val Loss=0.0778, Dice=0.9568 | Time=212.8s
+Epoch 14/25: Train Loss=0.0761, Dice=0.9607 | Val Loss=0.0924, Dice=0.9456 | Time=214.1s
+Epoch 15/25: Train Loss=0.0672, Dice=0.9648 | Val Loss=0.0640, Dice=0.9658 | Time=213.6s
+Epoch 16/25: Train Loss=0.0584, Dice=0.9694 | Val Loss=0.0397, Dice=0.9760 | Time=212.6s
+Epoch 17/25: Train Loss=0.0533, Dice=0.9719 | Val Loss=0.0290, Dice=0.9832 | Time=212.7s
+Epoch 18/25: Train Loss=0.0454, Dice=0.9758 | Val Loss=0.1111, Dice=0.9389 | Time=212.6s
+Epoch 19/25: Train Loss=0.0390, Dice=0.9791 | Val Loss=0.0218, Dice=0.9864 | Time=213.5s
+Epoch 20/25: Train Loss=0.0365, Dice=0.9805 | Val Loss=0.0533, Dice=0.9677 | Time=212.1s
+Epoch 21/25: Train Loss=0.0312, Dice=0.9833 | Val Loss=0.0165, Dice=0.9889 | Time=213.0s
+Epoch 22/25: Train Loss=0.0287, Dice=0.9847 | Val Loss=0.0121, Dice=0.9940 | Time=213.4s
+Epoch 23/25: Train Loss=0.0263, Dice=0.9859 | Val Loss=0.0160, Dice=0.9899 | Time=212.6s
+Epoch 24/25: Train Loss=0.0241, Dice=0.9871 | Val Loss=0.0118, Dice=0.9925 | Time=213.0s
+Epoch 25/25: Train Loss=0.0231, Dice=0.9877 | Val Loss=0.0084, Dice=0.9956 | Time=212.7s
+
+Evaluating on test set...
+
+================================================================================
+RESULTS: Hidden Dim 128 (vs 256)
+================================================================================
+  Best Val Dice:  0.9956 (epoch 25)
+  Test Dice:      0.9964
+  Parameters:     121,601
+  Training Time:  88.7 min
+================================================================================
+
+================================================================================
+ABLATION: Hidden Dim 512 (vs 256)
+================================================================================
+
+Loading data for fold 0...
+  Train: 900 graphs from 900 patients
+  Val:   100 graphs from 100 patients
+  Test:  251 graphs from 251 patients
+
+Loading graphs into memory...
+📊 Dataset initialized: 76679 graphs from 900 patients
+📊 Dataset initialized: 8629 graphs from 100 patients
+📊 Dataset initialized: 21544 graphs from 251 patients
+
+Creating model...
+  Layers: 5
+  Hidden: 512
+  Type:   sage
+  Edges:  True
+  Parameters: 1,659,137
+  Using FP32 (full precision) for numerical stability...
+
+Training for 25 epochs...
+Epoch  1/25: Train Loss=1.1613, Dice=0.3486 | Val Loss=0.8863, Dice=0.5743 | Time=212.2s
+Epoch  2/25: Train Loss=0.7872, Dice=0.7220 | Val Loss=0.5735, Dice=0.8078 | Time=213.0s
+Epoch  3/25: Train Loss=0.5421, Dice=0.8040 | Val Loss=0.5629, Dice=0.6893 | Time=213.4s
+Epoch  4/25: Train Loss=0.2992, Dice=0.8740 | Val Loss=0.1700, Dice=0.9120 | Time=213.7s
+Epoch  5/25: Train Loss=0.1966, Dice=0.9031 | Val Loss=0.1694, Dice=0.9015 | Time=213.2s
+Epoch  6/25: Train Loss=0.1660, Dice=0.9144 | Val Loss=0.2675, Dice=0.8608 | Time=214.2s
+Epoch  7/25: Train Loss=0.1526, Dice=0.9200 | Val Loss=0.2374, Dice=0.8676 | Time=213.4s
+Epoch  8/25: Train Loss=0.1344, Dice=0.9286 | Val Loss=0.2213, Dice=0.8865 | Time=213.2s
+Epoch  9/25: Train Loss=0.1122, Dice=0.9402 | Val Loss=0.2301, Dice=0.8868 | Time=213.7s
+
+Early stopping at epoch 9
+
+Evaluating on test set...
+
+================================================================================
+RESULTS: Hidden Dim 512 (vs 256)
+================================================================================
+  Best Val Dice:  0.9120 (epoch 4)
+  Test Dice:      0.9193
+  Parameters:     1,659,137
+  Training Time:  32.0 min
+================================================================================
+
+================================================================================
+ABLATION: GAT (vs GraphSAGE)
+================================================================================
+
+Loading data for fold 0...
+  Train: 900 graphs from 900 patients
+  Val:   100 graphs from 100 patients
+  Test:  251 graphs from 251 patients
+
+Loading graphs into memory...
+📊 Dataset initialized: 76679 graphs from 900 patients
+📊 Dataset initialized: 8629 graphs from 100 patients
+📊 Dataset initialized: 21544 graphs from 251 patients
+
+Creating model...
+  Layers: 5
+  Hidden: 256
+  Type:   gat
+  Edges:  True
+  Parameters: 223,617
+  Using FP32 (full precision) for numerical stability...
+
+Training for 25 epochs...
+Epoch  1/25: Train Loss=1.2730, Dice=0.1593 | Val Loss=1.0757, Dice=0.3243 | Time=213.3s
+Epoch  2/25: Train Loss=0.9612, Dice=0.5115 | Val Loss=1.6798, Dice=0.2737 | Time=213.5s
+Epoch  3/25: Train Loss=0.7499, Dice=0.5828 | Val Loss=1.0696, Dice=0.2894 | Time=214.6s
+Epoch  4/25: Train Loss=0.6396, Dice=0.6336 | Val Loss=1.5882, Dice=0.3055 | Time=214.4s
+Epoch  5/25: Train Loss=0.5831, Dice=0.6655 | Val Loss=0.8148, Dice=0.5316 | Time=214.1s
+Epoch  6/25: Train Loss=0.5693, Dice=0.6741 | Val Loss=0.5422, Dice=0.6615 | Time=215.4s
+Epoch  7/25: Train Loss=0.5486, Dice=0.6864 | Val Loss=0.7886, Dice=0.5537 | Time=215.1s
+Epoch  8/25: Train Loss=0.5159, Dice=0.7067 | Val Loss=0.5459, Dice=0.7296 | Time=214.6s
+Epoch  9/25: Train Loss=0.4726, Dice=0.7350 | Val Loss=0.9135, Dice=0.5157 | Time=213.7s
+Epoch 10/25: Train Loss=0.4207, Dice=0.7670 | Val Loss=0.5535, Dice=0.6905 | Time=214.9s
+Epoch 11/25: Train Loss=0.3973, Dice=0.7816 | Val Loss=0.3380, Dice=0.8079 | Time=214.5s
+Epoch 12/25: Train Loss=0.3771, Dice=0.7933 | Val Loss=0.3808, Dice=0.8089 | Time=213.9s
+Epoch 13/25: Train Loss=0.3560, Dice=0.8056 | Val Loss=0.3527, Dice=0.8311 | Time=214.1s
+Epoch 14/25: Train Loss=0.3269, Dice=0.8221 | Val Loss=0.3704, Dice=0.8067 | Time=215.2s
+Epoch 15/25: Train Loss=0.3123, Dice=0.8313 | Val Loss=0.5992, Dice=0.7240 | Time=214.7s
+Epoch 16/25: Train Loss=0.2846, Dice=0.8464 | Val Loss=0.2327, Dice=0.8719 | Time=214.2s
+Epoch 17/25: Train Loss=0.2693, Dice=0.8550 | Val Loss=0.3799, Dice=0.8184 | Time=213.6s
+Epoch 18/25: Train Loss=0.2497, Dice=0.8656 | Val Loss=0.2193, Dice=0.8807 | Time=215.1s
+Epoch 19/25: Train Loss=0.2327, Dice=0.8746 | Val Loss=0.2045, Dice=0.8922 | Time=214.9s
+Epoch 20/25: Train Loss=0.2200, Dice=0.8810 | Val Loss=0.1655, Dice=0.9071 | Time=214.3s
+Epoch 21/25: Train Loss=0.2143, Dice=0.8839 | Val Loss=0.1707, Dice=0.9055 | Time=214.4s
+Epoch 22/25: Train Loss=0.2070, Dice=0.8876 | Val Loss=0.1583, Dice=0.9123 | Time=214.3s
+Epoch 23/25: Train Loss=0.1996, Dice=0.8914 | Val Loss=0.1541, Dice=0.9130 | Time=214.8s
+Epoch 24/25: Train Loss=0.1976, Dice=0.8928 | Val Loss=0.1521, Dice=0.9145 | Time=214.0s
+Epoch 25/25: Train Loss=0.1961, Dice=0.8934 | Val Loss=0.1520, Dice=0.9144 | Time=214.8s
+
+Evaluating on test set...
+
+================================================================================
+RESULTS: GAT (vs GraphSAGE)
+================================================================================
+  Best Val Dice:  0.9145 (epoch 24)
+  Test Dice:      0.9201
+  Parameters:     223,617
+  Training Time:  89.3 min
+================================================================================
+
+================================================================================
+ABLATION: Without Edge Features
+================================================================================
+
+Loading data for fold 0...
+  Train: 900 graphs from 900 patients
+  Val:   100 graphs from 100 patients
+  Test:  251 graphs from 251 patients
+
+Loading graphs into memory...
+📊 Dataset initialized: 76679 graphs from 900 patients
+📊 Dataset initialized: 8629 graphs from 100 patients
+📊 Dataset initialized: 21544 graphs from 251 patients
+
+Creating model...
+  Layers: 5
+  Hidden: 256
+  Type:   sage
+  Edges:  False
+  Parameters: 437,505
+  Using FP32 (full precision) for numerical stability...
+
+Training for 25 epochs...
+Epoch  1/25: Train Loss=1.1776, Dice=0.2522 | Val Loss=0.8836, Dice=0.4706 | Time=210.4s
+Epoch  2/25: Train Loss=0.7690, Dice=0.6453 | Val Loss=0.7376, Dice=0.5659 | Time=211.7s
+Epoch  3/25: Train Loss=0.5156, Dice=0.7841 | Val Loss=0.4082, Dice=0.8090 | Time=211.4s
+Epoch  4/25: Train Loss=0.3953, Dice=0.8302 | Val Loss=0.7160, Dice=0.5593 | Time=212.0s
+Epoch  5/25: Train Loss=0.3005, Dice=0.8583 | Val Loss=0.2838, Dice=0.8361 | Time=212.5s
+Epoch  6/25: Train Loss=0.2159, Dice=0.8909 | Val Loss=0.4347, Dice=0.7610 | Time=211.2s
+Epoch  7/25: Train Loss=0.1653, Dice=0.9120 | Val Loss=0.3255, Dice=0.8044 | Time=212.5s
+Epoch  8/25: Train Loss=0.1339, Dice=0.9275 | Val Loss=0.6839, Dice=0.6872 | Time=212.6s
+Epoch  9/25: Train Loss=0.1054, Dice=0.9424 | Val Loss=0.1090, Dice=0.9397 | Time=212.6s
+Epoch 10/25: Train Loss=0.0891, Dice=0.9512 | Val Loss=0.0302, Dice=0.9826 | Time=220.2s
+Epoch 11/25: Train Loss=0.0759, Dice=0.9582 | Val Loss=0.1223, Dice=0.9258 | Time=217.6s
+Epoch 12/25: Train Loss=0.0658, Dice=0.9635 | Val Loss=0.0251, Dice=0.9868 | Time=217.7s
+Epoch 13/25: Train Loss=0.0566, Dice=0.9685 | Val Loss=0.0292, Dice=0.9839 | Time=217.0s
+Epoch 14/25: Train Loss=0.0534, Dice=0.9703 | Val Loss=0.1229, Dice=0.9411 | Time=217.8s
+Epoch 15/25: Train Loss=0.0455, Dice=0.9748 | Val Loss=0.0718, Dice=0.9600 | Time=216.2s
+Epoch 16/25: Train Loss=0.0398, Dice=0.9777 | Val Loss=0.0127, Dice=0.9937 | Time=211.1s
+Epoch 17/25: Train Loss=0.0357, Dice=0.9800 | Val Loss=0.0316, Dice=0.9800 | Time=212.3s
+Epoch 18/25: Train Loss=0.0312, Dice=0.9825 | Val Loss=0.1295, Dice=0.9368 | Time=212.4s
+Epoch 19/25: Train Loss=0.0287, Dice=0.9838 | Val Loss=0.0147, Dice=0.9915 | Time=212.4s
+Epoch 20/25: Train Loss=0.0246, Dice=0.9861 | Val Loss=0.0256, Dice=0.9840 | Time=211.8s
+Epoch 21/25: Train Loss=0.0212, Dice=0.9878 | Val Loss=0.0198, Dice=0.9886 | Time=212.4s
+
+Early stopping at epoch 21
+
+Evaluating on test set...
+
+================================================================================
+RESULTS: Without Edge Features
+================================================================================
+  Best Val Dice:  0.9937 (epoch 16)
+  Test Dice:      0.9948
+  Parameters:     437,505
+  Training Time:  74.8 min
+================================================================================
+
+================================================================================
+ABLATION STUDY SUMMARY
+================================================================================
+Configuration                        Params   Val Dice  Test Dice   Time (min)
+--------------------------------------------------------------------------------
+3 Layers (vs 5)                     173,825     0.9975     0.9977         93.2
+4 Layers (vs 5)                     305,665     0.9975     0.9974         88.7
+Hidden Dim 128 (vs 256)             121,601     0.9956     0.9964         88.7
+Without Edge Features               437,505     0.9937     0.9948         74.8
+6 Layers (vs 5)                     569,345     0.9271     0.9289         42.5
+GAT (vs GraphSAGE)                  223,617     0.9145     0.9201         89.3
+Hidden Dim 512 (vs 256)           1,659,137     0.9120     0.9193         32.0
+Baseline (5 layers, 256D, GraphSAGE)      437,505     0.9055     0.9091         32.7
+--------------------------------------------------------------------------------
+
+Baseline Test Dice: 0.9091
+
+Relative Performance:
+Configuration                      Δ Dice   % Change
+--------------------------------------------------------------------------------
+3 Layers (vs 5)                   +0.0887     +9.76%
+4 Layers (vs 5)                   +0.0883     +9.72%
+Hidden Dim 128 (vs 256)           +0.0874     +9.61%
+Without Edge Features             +0.0857     +9.43%
+6 Layers (vs 5)                   +0.0198     +2.18%
+GAT (vs GraphSAGE)                +0.0111     +1.22%
+Hidden Dim 512 (vs 256)           +0.0102     +1.12%
+
+✅ Ablation study complete!
+   Results saved to: research_results/ablation_study
