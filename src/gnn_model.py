@@ -123,6 +123,13 @@ class TumorSegmentationGNN(nn.Module):
         # Extract node features and edge index
         x, edge_index = data.x, data.edge_index
         
+        # ⚠️ SAFETY CHECK: Prevent loading old leaked graphs (Nov 30, 2025)
+        # Old graphs had 12 features (with tumor_ratio leakage)
+        # New graphs have 15 features (no leakage, enhanced features)
+        assert x.shape[1] == 15, \
+            f"❌ CRITICAL: Expected 15 input features (fixed version), but got {x.shape[1]} features! " \
+            f"Old leaked graphs had 12 features. Please regenerate graphs with updated graph_construction.py"
+        
         # Apply GNN to get node embeddings
         node_embeddings = self.gnn(x, edge_index)
         

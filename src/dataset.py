@@ -9,6 +9,22 @@ from pathlib import Path
 import random
 from typing import List, Tuple, Dict, Optional
 
+class BinaryTransform:
+    """
+    Transform multi-class labels (0, 1, 2, 4) to binary (0, 1).
+    
+    ⚠️ FUTURE-PROOF (Nov 30, 2025):
+    Graphs store multi-class labels. This transform converts to binary on-the-fly.
+    - Input: y in {0, 1, 2, 4} (background, NCR, edema, enhancing)
+    - Output: y in {0, 1} (background, tumor)
+    
+    For multi-class training, simply don't use this transform.
+    """
+    def __call__(self, data: Data) -> Data:
+        # Convert multi-class to binary: any tumor class (1, 2, 4) → 1
+        data.y = (data.y > 0).float()
+        return data
+
 class BraTSGraphDataset(Dataset):
     """
     Custom Dataset for loading BraTS graph data

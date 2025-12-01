@@ -1,0 +1,164 @@
+nohup: ignoring input
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/typing.py:68: UserWarning: An issue occurred while importing 'pyg-lib'. Disabling its usage. Stacktrace: /mnt/bigdata/capstone/.env/lib/python3.12/site-packages/libpyg.so: undefined symbol: _ZN2at4_ops11multinomial4callERKNS_6TensorElbSt8optionalINS_9GeneratorEE
+  warnings.warn(f"An issue occurred while importing 'pyg-lib'. "
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/typing.py:124: UserWarning: An issue occurred while importing 'torch-sparse'. Disabling its usage. Stacktrace: /mnt/bigdata/capstone/.env/lib/python3.12/site-packages/libpyg.so: undefined symbol: _ZN2at4_ops11multinomial4callERKNS_6TensorElbSt8optionalINS_9GeneratorEE
+  warnings.warn(f"An issue occurred while importing 'torch-sparse'. "
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    RE-RUN UNDERTRAINED CONFIGS                               ║
+║               With Proper Training Settings                                  ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Improved Settings (vs original ablation):
+  Batch Size: 32 (was 96) → Better GPU utilization
+  Patience: 10 (was 5) → Less aggressive early stopping
+  Max Epochs: 50 (was 25) → Matches main CV training
+  Workers: 4 (was 8) → Matches CV, reduces disk contention
+
+================================================================================
+STEP 1: Loading Data Splits
+================================================================================
+Note: Graphs already preprocessed in data/graphs/ directory
+Loading fold 0 splits...
+  Train: 900 graphs from 900 patients
+  Val:   100 graphs from 100 patients
+  Test:  251 graphs from 251 patients
+  Note: Graphs already preprocessed in data/graphs
+
+✅ Data splits loaded! Graphs will be read from disk during training.
+
+================================================================================
+STEP 2: Training Configs Sequentially
+================================================================================
+Running 4 configurations...
+Expected time: ~4-6 hours total (1-1.5 hours each)
+
+Key improvement: batch_size=32 reduces disk I/O bottleneck
+GPU should reach 95-100% utilization (vs 40% with batch_size=96)
+
+
+================================================================================
+CONFIG: Baseline (5 layers, 256D) - Fixed Training
+================================================================================
+📊 Dataset initialized: 76679 graphs from 900 patients
+📊 Dataset initialized: 8629 graphs from 100 patients
+📊 Dataset initialized: 21544 graphs from 251 patients
+
+Model Architecture:
+  Layers: 5
+  Hidden: 256
+  Type:   sage
+  Parameters: 437,505
+
+Training for up to 50 epochs (patience=10)...
+Traceback (most recent call last):
+  File "/mnt/bigdata/capstone/brats_gnn_segmentation/scripts/rerun_undertrained_configs.py", line 446, in main
+    results = run_single_config(
+              ^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/brats_gnn_segmentation/scripts/rerun_undertrained_configs.py", line 323, in run_single_config
+    train_loss, train_dice = train_epoch(
+                             ^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/brats_gnn_segmentation/scripts/rerun_undertrained_configs.py", line 186, in train_epoch
+    logits, embeddings = model(batch)
+                         ^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/brats_gnn_segmentation/src/gnn_model.py", line 134, in forward
+    node_embeddings = self.gnn(x, edge_index)
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/brats_gnn_segmentation/src/gnn_model.py", line 40, in forward
+    x = self.convs[i](x, edge_index)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/nn/conv/sage_conv.py", line 135, in forward
+    out = self.lin_l(out)
+          ^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/nn/dense/linear.py", line 147, in forward
+    return F.linear(x, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (1340x15 and 12x256)
+
+❌ ERROR in baseline_fixed: mat1 and mat2 shapes cannot be multiplied (1340x15 and 12x256)
+
+================================================================================
+CONFIG: 6 Layers - Fixed Training
+================================================================================
+📊 Dataset initialized: 76679 graphs from 900 patients
+📊 Dataset initialized: 8629 graphs from 100 patients
+📊 Dataset initialized: 21544 graphs from 251 patients
+
+Model Architecture:
+  Layers: 6
+  Hidden: 256
+  Type:   sage
+  Parameters: 569,345
+
+Training for up to 50 epochs (patience=10)...
+Traceback (most recent call last):
+  File "/mnt/bigdata/capstone/brats_gnn_segmentation/scripts/rerun_undertrained_configs.py", line 446, in main
+    results = run_single_config(
+              ^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/brats_gnn_segmentation/scripts/rerun_undertrained_configs.py", line 323, in run_single_config
+    train_loss, train_dice = train_epoch(
+                             ^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/brats_gnn_segmentation/scripts/rerun_undertrained_configs.py", line 186, in train_epoch
+    logits, embeddings = model(batch)
+                         ^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/brats_gnn_segmentation/src/gnn_model.py", line 134, in forward
+    node_embeddings = self.gnn(x, edge_index)
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/brats_gnn_segmentation/src/gnn_model.py", line 40, in forward
+    x = self.convs[i](x, edge_index)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/nn/conv/sage_conv.py", line 135, in forward
+    out = self.lin_l(out)
+          ^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/nn/dense/linear.py", line 147, in forward
+    return F.linear(x, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (1623x15 and 12x256)

@@ -15,11 +15,14 @@ Strategy:
 - Preprocess graphs once, share across all runs
 - Run configs in parallel (4 GPUs or sequential with saved data)
 
-Expected Results:
-- baseline: 98.0-98.5% (matching CV fold 0)
-- layers_6: 98.5-99.0% (with enough training)
-- hidden_512: 97.5-98.0% (may overfit)
-- gat: 93-95% (attention might not help)
+Expected Results (CLEAN DATA - No Leakage):
+- baseline: 89.5-90.5% (matching CV fold 0: 90.41%)
+- layers_6: 89.5-91.0% (might gain +0.5-1.0% from depth)
+- hidden_512: 89.0-90.5% (more params ≠ better, might overfit)
+- gat: 65-75% (attention unsuitable for this task)
+
+NOTE: Old expectations (97-99%) were based on LEAKED DATA with tumor_ratio feature.
+      New ceiling is 90.41% after removing ground-truth leakage.
 """
 
 import os
@@ -343,7 +346,7 @@ def run_single_config(config_name, config, base_config, train_files, val_files, 
             patience_counter = 0
             
             # Save best model
-            save_dir = Path('research_results/ablation_study_fixed') / config_name
+            save_dir = Path('research_results/ablation_study_clean') / config_name
             save_dir.mkdir(parents=True, exist_ok=True)
             torch.save(model.state_dict(), save_dir / 'best_model.pth')
             print(f"  ✓ Best model saved (Val Dice: {best_val_dice:.4f})")
@@ -452,7 +455,7 @@ def main():
             continue
     
     # Save combined results
-    output_dir = Path('research_results/ablation_study_fixed')
+    output_dir = Path('research_results/ablation_study_clean')
     output_dir.mkdir(parents=True, exist_ok=True)
     
     with open(output_dir / 'all_results.json', 'w') as f:
@@ -496,7 +499,8 @@ def main():
     print("   - All configs trained with proper settings (batch=32, patience=10, epochs=50)")
     print("   - Smaller batch size reduces disk I/O contention")
     print("   - GPU utilization should be ~95-100% (vs ~40% in original)")
-    print("   - Expected: All configs should reach 97-99% Dice")
+    print("   - Expected: All configs should reach 89-91% Dice (clean data)")
+    print("   - Note: Old 97-99% expectations were from LEAKED data (invalid)")
 
 if __name__ == "__main__":
     main()

@@ -237,19 +237,47 @@ class SliceProcessor:
             
             # Compute shape features
             area = np.sum(mask)
+            norm_area = area / (h * w)  # Normalized area [0, 1]
             
-            # Fix BraTS label handling: Convert multi-class (0,1,2,4) to binary (0,1)
-            tumor_binary = slice_data["label"][mask] > 0  # Any non-zero label is tumor
-            tumor_ratio = np.mean(tumor_binary.astype(float))  # Ratio of tumor pixels in superpixel
+            # ⚠️ GROUND-TRUTH LEAKAGE FIX (Nov 30, 2025)
+            # REMOVED: tumor_ratio feature (was using ground-truth labels as input)
+            # tumor_binary = slice_data["label"][mask] > 0
+            # tumor_ratio = np.mean(tumor_binary.astype(float))
+            
+            # Compute enhanced shape/texture features (Option B)
+            # Perimeter (boundary pixels)
+            from scipy import ndimage
+            eroded = ndimage.binary_erosion(mask)
+            perimeter = np.sum(mask) - np.sum(eroded)
+            perimeter = max(1.0, float(perimeter))  # Avoid division by zero
+            
+            # Compactness (circularity measure)
+            compactness = (4 * np.pi * area) / (perimeter ** 2) if perimeter > 0 else 0.0
+            compactness = np.clip(compactness, 0.0, 1.0)
+            
+            # Intensity contrast (texture measure)
+            intensities = np.concatenate([
+                slice_data["T1"][mask],
+                slice_data["T1ce"][mask],
+                slice_data["T2"][mask],
+                slice_data["FLAIR"][mask]
+            ])
+            intensity_range = np.ptp(intensities) if len(intensities) > 0 else 0.0  # peak-to-peak
             
             # Normalized coordinates
             norm_y = centroid_y / h
             norm_x = centroid_x / w
             
+            # NEW FEATURE VECTOR (15D) - NO GROUND-TRUTH LEAKAGE
             feature = [
+                # Intensity means (4D)
                 t1_mean, t1ce_mean, t2_mean, flair_mean,
+                # Intensity stds (4D)
                 t1_std, t1ce_std, t2_std, flair_std,
-                area, norm_y, norm_x, tumor_ratio
+                # Spatial features (4D) - added norm_area
+                area, norm_area, norm_y, norm_x,
+                # Shape/texture features (3D) - NEW
+                perimeter, compactness, intensity_range
             ]
             features.append(feature)
         
@@ -464,7 +492,8 @@ class GraphBuilder:
                 'centroids': centroids,
                 'masks': masks,
                 'segments': segments,
-                'slice_idx': z
+                'slice_idx': z,
+                'slice_data': slice_data  # ⚠️ ADD: Need slice_data for label computation
             })
             valid_slice_count += 1
             
@@ -511,6 +540,38 @@ class GraphBuilder:
         print(f"📊 Graph creation: {successful_graphs}/{graph_attempts} successful")
         return graphs, all_segments
     
+    def _compute_labels_from_masks(self, masks: List[np.ndarray], slice_data: Dict[str, np.ndarray]) -> np.ndarray:
+        """
+        Compute ground-truth labels for superpixels.
+        CRITICAL: This is for SUPERVISION only, NOT for input features.
+        
+        ⚠️ FUTURE-PROOF (Nov 30, 2025):
+        Stores MULTI-CLASS labels (0, 1, 2, 4) instead of binary (0, 1).
+        This allows training:
+        - Binary models: threshold y > 0
+        - Multi-class models: use y directly
+        
+        Args:
+            masks: List of binary masks for each superpixel
+            slice_data: Dictionary containing 'label' key with ground-truth
+        
+        Returns:
+            Array of MAJORITY class labels (0=background, 1=NCR/NET, 2=Edema, 4=ET)
+        """
+        labels = []
+        for mask in masks:
+            # Get all label values in this superpixel
+            superpixel_labels = slice_data["label"][mask]
+            
+            # Find majority class (most frequent label)
+            # BraTS labels: 0=background, 1=NCR/NET, 2=Edema, 4=Enhancing Tumor
+            unique, counts = np.unique(superpixel_labels, return_counts=True)
+            majority_class = unique[np.argmax(counts)]
+            
+            labels.append(float(majority_class))
+        
+        return np.array(labels, dtype=np.float32)
+    
     def _build_slice_pair_graph(self, slice1: Dict, slice2: Dict) -> Optional[Data]:
         """Build graph from two consecutive slices."""
         try:
@@ -523,6 +584,12 @@ class GraphBuilder:
                 return None
             
             all_features = np.vstack([features1, features2])
+            
+            # ⚠️ CRITICAL: Compute labels from ACTUAL ground-truth (not from features!)
+            # This must be done separately since we removed tumor_ratio from features
+            labels1 = self._compute_labels_from_masks(slice1['masks'], slice1['slice_data'])
+            labels2 = self._compute_labels_from_masks(slice2['masks'], slice2['slice_data'])
+            all_labels = np.concatenate([labels1, labels2])
             
             # Build edges
             edges1 = self.edge_builder.build_adjacency_edges(slice1['segments'])
@@ -551,10 +618,11 @@ class GraphBuilder:
             edge_index = torch.tensor(all_edges, dtype=torch.long).t().contiguous()
             x = torch.tensor(all_features, dtype=torch.float32)
             
-            # Labels: Superpixel is tumor if >10% of its pixels are tumor
-            # (More sensitive threshold for medical segmentation)
-            y = torch.tensor(all_features[:, -1] > 0.1, dtype=torch.float32)
-            tumor_nodes = torch.sum(y).item()
+            # ⚠️ FUTURE-PROOF LABELS (Nov 30, 2025):
+            # Store multi-class labels (0, 1, 2, 4) for future multi-class training
+            # For binary training, convert on-the-fly in data loader: y_binary = (y > 0)
+            y = torch.tensor(all_labels, dtype=torch.float32)
+            tumor_nodes = torch.sum(y > 0).item()  # Count any non-background nodes
             
             # Slice mask
             slice_mask = torch.zeros(len(all_features), dtype=torch.bool)

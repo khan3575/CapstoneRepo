@@ -17,7 +17,7 @@ from torch.amp import autocast, GradScaler
 from torch_geometric.loader import DataLoader as GeometricDataLoader
 
 # Import existing modules
-from dataset import BraTSGraphDataset
+from dataset import BraTSGraphDataset, BinaryTransform
 from gnn_model import TumorSegmentationGNN
 from cross_validation import load_fold_data
 
@@ -188,24 +188,31 @@ def train_fold(
     print("\nLoading fold data...")
     fold_data = load_fold_data(fold_dir, fold_idx)
     
+    # ⚠️ BINARY TRANSFORM (Nov 30, 2025):
+    # Graphs store multi-class labels (0,1,2,4). Convert to binary on-the-fly.
+    binary_transform = BinaryTransform()
+    
     # Create datasets
     print("Creating datasets...")
     train_dataset = BraTSGraphDataset(
         root_dir=None,
         split='train',
-        graph_files=fold_data['train_graphs']
+        graph_files=fold_data['train_graphs'],
+        transform=binary_transform  # ← Convert multi-class to binary
     )
     
     val_dataset = BraTSGraphDataset(
         root_dir=None,
         split='val',
-        graph_files=fold_data['val_graphs']
+        graph_files=fold_data['val_graphs'],
+        transform=binary_transform  # ← Convert multi-class to binary
     )
     
     test_dataset = BraTSGraphDataset(
         root_dir=None,
         split='test',
-        graph_files=fold_data['test_graphs']
+        graph_files=fold_data['test_graphs'],
+        transform=binary_transform  # ← Convert multi-class to binary
     )
     
     # Create dataloaders
@@ -266,6 +273,7 @@ def train_fold(
     print("=" * 80)
     
     best_val_dice = 0.0
+    best_checkpoint = None  # Initialize to None
     history = []
     start_time = time.time()
     
@@ -318,7 +326,20 @@ def train_fold(
     
     # Evaluate on test set with best model
     print("\nEvaluating on test set...")
-    model.load_state_dict(best_checkpoint['model_state_dict'])
+    if best_checkpoint is not None:
+        model.load_state_dict(best_checkpoint['model_state_dict'])
+    else:
+        print("  ⚠️  Warning: No checkpoint saved (validation Dice never improved from 0.0)")
+        # Save current model as best
+        best_checkpoint = {
+            'epoch': epochs,
+            'model_state_dict': model.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict(),
+            'val_dice': best_val_dice,
+            'fold_idx': fold_idx
+        }
+        torch.save(best_checkpoint, fold_output_dir / 'best_model.pth')
+    
     test_metrics = evaluate(model, test_loader, criterion, device)
     
     print(f"Test Results:")

@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1764447167.33984 "/mnt/bigdata/capstone/brats_gnn_segmentation/paper_writing/main.tex" "main.pdf" "main" 1764447167.77911 0
+["pdflatex"] 1764497251.46218 "/mnt/bigdata/capstone/brats_gnn_segmentation/paper_writing/main.tex" "main.pdf" "main" 1764497251.81853 0
   "/etc/texmf/web2c/texmf.cnf" 1763937064.13544 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/mnt/bigdata/capstone/brats_gnn_segmentation/paper_writing/main.tex" 1764447167.16704 3190 9edb1c9030ae27ae4eab0cf565ac1f8a ""
+  "/mnt/bigdata/capstone/brats_gnn_segmentation/paper_writing/main.tex" 1764497251.207 3191 de3a0824021a6f41c96e19faf30c2869 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1136768653 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -78,8 +78,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1763937080.15073 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1763937140 8216275 ed24d27d87234d13831d424c4adc7ef4 ""
-  "main.aux" 1764447167.73635 1975 734ee44e0edc978707d1149bcaca1974 "pdflatex"
-  "main.tex" 1764447167.16704 3190 9edb1c9030ae27ae4eab0cf565ac1f8a ""
+  "main.aux" 1764497251.78239 1975 734ee44e0edc978707d1149bcaca1974 "pdflatex"
+  "main.tex" 1764497251.207 3191 de3a0824021a6f41c96e19faf30c2869 ""
   (generated)
   "main.aux"
   "main.log"

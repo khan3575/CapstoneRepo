@@ -1,0 +1,159 @@
+==========================================
+Generating Qualitative Visualizations
+==========================================
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/typing.py:68: UserWarning: An issue occurred while importing 'pyg-lib'. Disabling its usage. Stacktrace: /mnt/bigdata/capstone/.env/lib/python3.12/site-packages/libpyg.so: undefined symbol: _ZN2at4_ops11multinomial4callERKNS_6TensorElbSt8optionalINS_9GeneratorEE
+  warnings.warn(f"An issue occurred while importing 'pyg-lib'. "
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/typing.py:124: UserWarning: An issue occurred while importing 'torch-sparse'. Disabling its usage. Stacktrace: /mnt/bigdata/capstone/.env/lib/python3.12/site-packages/libpyg.so: undefined symbol: _ZN2at4_ops11multinomial4callERKNS_6TensorElbSt8optionalINS_9GeneratorEE
+  warnings.warn(f"An issue occurred while importing 'torch-sparse'. "
+================================================================================
+QUALITATIVE VISUALIZATION - GNN vs Ground Truth
+================================================================================
+
+📦 Loading model from checkpoints/binary_training/fold_0/best_model.pth
+✅ Loaded model from epoch 49
+   Validation Dice: 0.9041
+
+🎨 Generating visualizations for 10 patients...
+   Output: visualizations/qualitative/fold_0
+Visualizing patients:   0%|          | 0/10 [00:00<?, ?it/s]Visualizing patients:  10%|█         | 1/10 [00:03<00:31,  3.50s/it]Visualizing patients:  20%|██        | 2/10 [00:07<00:28,  3.62s/it]Visualizing patients:  30%|███       | 3/10 [00:11<00:28,  4.13s/it]Visualizing patients:  40%|████      | 4/10 [00:15<00:24,  4.10s/it]Visualizing patients:  50%|█████     | 5/10 [00:20<00:20,  4.17s/it]Visualizing patients:  60%|██████    | 6/10 [00:23<00:15,  3.86s/it]Visualizing patients:  70%|███████   | 7/10 [00:27<00:11,  3.74s/it]Visualizing patients:  80%|████████  | 8/10 [00:30<00:07,  3.77s/it]Visualizing patients:  90%|█████████ | 9/10 [00:34<00:03,  3.61s/it]Visualizing patients: 100%|██████████| 10/10 [00:37<00:00,  3.67s/it]Visualizing patients: 100%|██████████| 10/10 [00:37<00:00,  3.79s/it]
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py:3860: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/numpy/_core/_methods.py:144: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/numpy/_core/_methods.py:222: RuntimeWarning: Degrees of freedom <= 0 for slice
+  ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/numpy/_core/_methods.py:180: RuntimeWarning: invalid value encountered in divide
+  arrmean = um.true_divide(arrmean, div, out=arrmean,
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/numpy/_core/_methods.py:214: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+
+📊 Processing BraTS2021_01420...
+  🔮 Running inference on 69 graphs...
+📊 Dataset initialized: 69 graphs from 1 patients
+  🔄 Reconstructing volume...
+  ✓ Slice 73: Dice = 0.0000
+  ✓ Slice 80: Dice = 0.0000
+  ✓ Slice 87: Dice = 0.0000
+  ✓ Slice 94: Dice = 0.0000
+  ✓ Slice 101: Dice = 0.0000
+  📈 Mean Dice: 0.0000
+
+📊 Processing BraTS2021_00390...
+  🔮 Running inference on 81 graphs...
+📊 Dataset initialized: 81 graphs from 1 patients
+  🔄 Reconstructing volume...
+  ✓ Slice 38: Dice = 0.0000
+  ✓ Slice 44: Dice = 0.0000
+  ✓ Slice 50: Dice = 0.0000
+  ✓ Slice 56: Dice = 0.0000
+  ✓ Slice 62: Dice = 0.0000
+  📈 Mean Dice: 0.0000
+
+📊 Processing BraTS2021_00123...
+  🔮 Running inference on 105 graphs...
+📊 Dataset initialized: 105 graphs from 1 patients
+  🔄 Reconstructing volume...
+  ✓ Slice 34: Dice = 0.0000
+  ✓ Slice 51: Dice = 0.0000
+  ✓ Slice 68: Dice = 0.0000
+  ✓ Slice 85: Dice = 0.0000
+  ✓ Slice 102: Dice = 0.0000
+  📈 Mean Dice: 0.0000
+
+📊 Processing BraTS2021_00351...
+  🔮 Running inference on 91 graphs...
+📊 Dataset initialized: 91 graphs from 1 patients
+  🔄 Reconstructing volume...
+  ✓ Slice 22: Dice = 0.0000
+  ✓ Slice 35: Dice = 0.0000
+  ✓ Slice 48: Dice = 0.0000
+  ✓ Slice 61: Dice = 0.0000
+  ✓ Slice 74: Dice = 0.0000
+  📈 Mean Dice: 0.0000
+
+📊 Processing BraTS2021_00443...
+  🔮 Running inference on 97 graphs...
+📊 Dataset initialized: 97 graphs from 1 patients
+  🔄 Reconstructing volume...
+  ✓ Slice 53: Dice = 0.0000
+  ✓ Slice 67: Dice = 0.0000
+  ✓ Slice 81: Dice = 0.0000
+  ✓ Slice 95: Dice = 0.0000
+  ✓ Slice 109: Dice = 0.0000
+  📈 Mean Dice: 0.0000
+
+📊 Processing BraTS2021_00020...
+  🔮 Running inference on 74 graphs...
+📊 Dataset initialized: 74 graphs from 1 patients
+  🔄 Reconstructing volume...
+  ✓ Slice 46: Dice = 0.0000
+  ✓ Slice 55: Dice = 0.0000
+  ✓ Slice 64: Dice = 0.0000
+  ✓ Slice 73: Dice = 0.0000
+  ✓ Slice 82: Dice = 0.0000
+  📈 Mean Dice: 0.0000
+
+📊 Processing BraTS2021_00209...
+  🔮 Running inference on 75 graphs...
+📊 Dataset initialized: 75 graphs from 1 patients
+  🔄 Reconstructing volume...
+  ✓ Slice 40: Dice = 0.0000
+  ✓ Slice 48: Dice = 0.0000
+  ✓ Slice 56: Dice = 0.0000
+  ✓ Slice 64: Dice = 0.0000
+  ✓ Slice 72: Dice = 0.0000
+  📈 Mean Dice: 0.0000
+
+📊 Processing BraTS2021_00750...
+  🔮 Running inference on 84 graphs...
+📊 Dataset initialized: 84 graphs from 1 patients
+  🔄 Reconstructing volume...
+  ✓ Slice 67: Dice = 0.0000
+  ✓ Slice 77: Dice = 0.0000
+  ✓ Slice 87: Dice = 0.0000
+  ✓ Slice 97: Dice = 0.0000
+  ✓ Slice 107: Dice = 0.0000
+  📈 Mean Dice: 0.0000
+
+📊 Processing BraTS2021_01344...
+  🔮 Running inference on 68 graphs...
+📊 Dataset initialized: 68 graphs from 1 patients
+  🔄 Reconstructing volume...
+  ✓ Slice 105: Dice = 0.0000
+  ✓ Slice 111: Dice = 0.0000
+  ✓ Slice 117: Dice = 0.0000
+  ✓ Slice 123: Dice = 0.0000
+  ✓ Slice 129: Dice = 0.0000
+  📈 Mean Dice: 0.0000
+
+📊 Processing BraTS2021_01361...
+  🔮 Running inference on 87 graphs...
+📊 Dataset initialized: 87 graphs from 1 patients
+  🔄 Reconstructing volume...
+  ✓ Slice 35: Dice = 0.0000
+  ✓ Slice 47: Dice = 0.0000
+  ✓ Slice 59: Dice = 0.0000
+  ✓ Slice 71: Dice = 0.0000
+  ✓ Slice 83: Dice = 0.0000
+  📈 Mean Dice: 0.0000
+
+================================================================================
+VISUALIZATION COMPLETE
+================================================================================
+✅ Generated visualizations for 0 patients
+📊 Average Dice: nan ± nan
+📁 Images saved to: visualizations/qualitative/fold_0
+
+💡 Next steps:
+   1. Review the images to qualitatively assess segmentation quality
+   2. Select best examples for thesis figures
+   3. Run on other folds to ensure consistency
+
+✅ Visualization complete!
+📁 Check visualizations/qualitative/fold_0/ for images
+
+To view images:
+  ls -lh visualizations/qualitative/fold_0/*/slice_*.png
+
+Total images created:
+50

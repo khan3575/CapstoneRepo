@@ -1,0 +1,66 @@
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/typing.py:68: UserWarning: An issue occurred while importing 'pyg-lib'. Disabling its usage. Stacktrace: /mnt/bigdata/capstone/.env/lib/python3.12/site-packages/libpyg.so: undefined symbol: _ZN2at4_ops11multinomial4callERKNS_6TensorElbSt8optionalINS_9GeneratorEE
+  warnings.warn(f"An issue occurred while importing 'pyg-lib'. "
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/typing.py:124: UserWarning: An issue occurred while importing 'torch-sparse'. Disabling its usage. Stacktrace: /mnt/bigdata/capstone/.env/lib/python3.12/site-packages/libpyg.so: undefined symbol: _ZN2at4_ops11multinomial4callERKNS_6TensorElbSt8optionalINS_9GeneratorEE
+  warnings.warn(f"An issue occurred while importing 'torch-sparse'. "
+🔧 Mini-test configuration:
+   Train patients: 4
+   Val patients: 1
+   Epochs: 5
+   Batch size: 16
+
+🚀 Starting mini-training...
+⚠️  If you see assertion error about 12 features, old graphs are being used!
+
+================================================================================
+TRAINING FOLD 0
+================================================================================
+Using device: cuda
+
+Loading fold data...
+Creating datasets...
+📊 Dataset initialized: 308 graphs from 4 patients
+📊 Dataset initialized: 70 graphs from 1 patients
+📊 Dataset initialized: 70 graphs from 1 patients
+
+Dataset sizes:
+  Train: 308 graphs
+  Val:   70 graphs
+  Test:  70 graphs
+  Input features: 15
+
+Initializing model...
+  Total parameters: 56,065
+
+Starting training for 5 epochs...
+================================================================================
+Epoch 1/5 (1.8s)
+  Train - Loss: 0.5608, Dice: 0.0926, Acc: 0.7694
+  Val   - Loss: 0.3565, Dice: 0.0000, Acc: 0.9875
+Epoch 2/5 (1.8s)
+  Train - Loss: 0.3106, Dice: 0.0000, Acc: 0.9375
+  Val   - Loss: 0.1901, Dice: 0.0000, Acc: 0.9885
+Epoch 3/5 (1.8s)
+  Train - Loss: 0.2359, Dice: 0.0000, Acc: 0.9376
+  Val   - Loss: 0.1176, Dice: 0.0000, Acc: 0.9885
+Epoch 4/5 (1.8s)
+  Train - Loss: 0.2220, Dice: 0.0000, Acc: 0.9376
+  Val   - Loss: 0.1023, Dice: 0.0000, Acc: 0.9885
+Traceback (most recent call last):
+  File "<string>", line 70, in <module>
+  File "/mnt/bigdata/capstone/brats_gnn_segmentation/src/train_cv_fold.py", line 328, in train_fold
+    model.load_state_dict(best_checkpoint['model_state_dict'])
+                          ^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'best_checkpoint' where it is not associated with a value
+Epoch 5/5 (1.8s)
+  Train - Loss: 0.2193, Dice: 0.0000, Acc: 0.9376
+  Val   - Loss: 0.1023, Dice: 0.0000, Acc: 0.9885
+================================================================================
+Training complete! Total time: 0.1 minutes
+Best validation Dice: 0.0000
+
+Evaluating on test set...
+
+================================================================================
+❌ MINI-TEST ERROR!
+================================================================================
+Error: cannot access local variable 'best_checkpoint' where it is not associated with a value

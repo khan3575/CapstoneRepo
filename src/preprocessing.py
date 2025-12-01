@@ -544,9 +544,15 @@ def preprocess_patient(patient_dir, output_dir):
     t2_normalized = normalize_intensity(t2_stripped, brain_mask)
     flair_normalized = normalize_intensity(flair_stripped, brain_mask)
     
-    # Create whole tumor mask (label 1, 2, or 4 in BraTS)
+    # ⚠️ FUTURE-PROOF LABEL STORAGE (Nov 30, 2025)
+    # Store MULTI-CLASS labels (0,1,2,4), not binary!
+    # This allows training both binary (whole tumor) and multi-class (subregions)
+    # without regenerating graphs.
     seg_array = sitk.GetArrayFromImage(seg_cropped)
-    whole_tumor = (seg_array > 0).astype(np.uint8)  # Any non-zero label is tumor
+    
+    # Keep original BraTS labels: 0=Background, 1=NCR/NET, 2=Edema, 4=Enhancing
+    # DO NOT convert to binary here - let the training code decide!
+    labels_multiclass = seg_array.astype(np.uint8)  # Keep multi-class labels
     
     # Convert all to numpy arrays for saving
     t1_final = sitk.GetArrayFromImage(t1_normalized)
@@ -555,7 +561,7 @@ def preprocess_patient(patient_dir, output_dir):
     flair_final = sitk.GetArrayFromImage(flair_normalized)
     brain_mask_final = sitk.GetArrayFromImage(brain_mask)
     
-    # Step 5: Save as NPZ
+    # Step 5: Save as NPZ with multi-class labels
     output_file = os.path.join(output_patient_dir, f"{patient_id}_preprocessed.npz")
     np.savez_compressed(
         output_file,
@@ -563,7 +569,7 @@ def preprocess_patient(patient_dir, output_dir):
         T1ce=t1ce_final,
         T2=t2_final,
         FLAIR=flair_final,
-        label=whole_tumor,
+        label=labels_multiclass,  # ← Multi-class (0,1,2,4), not binary!
         brain_mask=brain_mask_final
     )
     
