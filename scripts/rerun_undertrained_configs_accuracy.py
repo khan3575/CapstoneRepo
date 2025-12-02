@@ -1,19 +1,12 @@
 #!/usr/bin/env python3
 """
-Re-run the 4 undertrained ablation configurations with proper settings
+Re-run the 4 undertrained ablation configurations optimized for ACCURACY
 
-Configurations to re-run:
-1. baseline (5 layers, 256 hidden) - stopped at epoch 9, got 90.91%
-2. layers_6 (6 layers) - stopped at epoch 12, got 92.89%
-3. hidden_512 (512 hidden) - stopped at epoch 9, got 91.93%
-4. gat (GAT instead of SAGE) - got 92.01% but might improve
-
-Strategy:
-- Use batch_size=32 (match CV, better GPU utilization)
-- Use patience=10 (less aggressive early stopping)
-- Use num_epochs=50 (match CV)
-- Preprocess graphs once, share across all runs
-- Run configs in parallel (4 GPUs or sequential with saved data)
+This version prioritizes accuracy over speed:
+- Batch size 32 (better gradient stability, less noise)
+- No mixed precision (FP32 for numerical stability)
+- More conservative learning rate warmup
+- Gradient accumulation for effective larger batch size
 
 Expected Results (CLEAN DATA - No Leakage):
 - baseline: 89.5-90.5% (matching CV fold 0: 90.41%)
@@ -37,13 +30,12 @@ import torch.nn.functional as F
 from torch.optim import AdamW
 from torch.optim.lr_scheduler import OneCycleLR
 from torch_geometric.loader import DataLoader
-from torch.cuda.amp import autocast, GradScaler
 import multiprocessing as mp
 from typing import Dict, List, Tuple
 
-# Enable GPU optimizations
-torch.backends.cudnn.benchmark = True
-torch.backends.cudnn.deterministic = False
+# Enable GPU optimizations (but keep deterministic for accuracy)
+torch.backends.cudnn.benchmark = False  # More stable
+torch.backends.cudnn.deterministic = True  # Reproducible
 torch.set_float32_matmul_precision('high')
 
 # Add src to path
@@ -52,47 +44,48 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 from gnn_model import TumorSegmentationGNN, CombinedLoss
 from dataset import BraTSGraphDataset
 
-# MAXIMUM POWER CONFIGURATION - Optimized for RTX 2060
+# ACCURACY-OPTIMIZED CONFIGURATION
 BASE_CONFIG = {
     'fold': 0,
     'data_dir': 'data/graphs',
     'cv_dir': 'data/cv_folds',
-    'batch_size': 48,      # ← Maximum stable batch size for 6GB GPU
-    'num_epochs': 50,      # ← Full training epochs
+    'batch_size': 32,          # ← Better gradient quality
+    'accumulation_steps': 2,   # ← Effective batch size = 64
+    'num_epochs': 50,
     'lr': 0.001,
     'weight_decay': 1e-5,
     'device': 'cuda' if torch.cuda.is_available() else 'cpu',
-    'patience': 10,        # ← Less aggressive early stopping
-    'num_workers': 8,      # ← Maximum workers (match 16 cores)
-    'prefetch_factor': 4,  # ← Aggressive prefetching
-    'use_amp': True,       # ← Mixed precision for speed
+    'patience': 15,            # ← More patient convergence
+    'num_workers': 4,          # ← Balanced (less disk contention)
+    'prefetch_factor': 2,
+    'use_amp': False,          # ← FP32 for numerical stability
 }
 
 # Configurations to re-run
 RERUN_CONFIGS = {
-    'baseline_fixed': {
-        'name': 'Baseline (5 layers, 256D) - Fixed Training',
+    'baseline_accuracy': {
+        'name': 'Baseline (5 layers, 256D) - Accuracy Optimized',
         'num_layers': 5,
         'hidden_channels': 256,
         'gnn_type': 'sage',
         'use_edge_features': True,
     },
-    'layers_6_fixed': {
-        'name': '6 Layers - Fixed Training',
+    'layers_6_accuracy': {
+        'name': '6 Layers - Accuracy Optimized',
         'num_layers': 6,
         'hidden_channels': 256,
         'gnn_type': 'sage',
         'use_edge_features': True,
     },
-    'hidden_512_fixed': {
-        'name': 'Hidden Dim 512 - Fixed Training',
+    'hidden_512_accuracy': {
+        'name': 'Hidden Dim 512 - Accuracy Optimized',
         'num_layers': 5,
         'hidden_channels': 512,
         'gnn_type': 'sage',
         'use_edge_features': True,
     },
-    'gat_fixed': {
-        'name': 'GAT - Fixed Training',
+    'gat_accuracy': {
+        'name': 'GAT - Accuracy Optimized',
         'num_layers': 5,
         'hidden_channels': 256,
         'gnn_type': 'gat',
@@ -171,55 +164,53 @@ def create_model(config, device):
     
     return model, total_params, trainable_params
 
-def train_epoch(model, loader, criterion, optimizer, scheduler, device, use_edge_features, scaler=None):
-    """Train for one epoch with optional mixed precision"""
+def train_epoch(model, loader, criterion, optimizer, scheduler, device, use_edge_features, accumulation_steps=1):
+    """Train for one epoch with gradient accumulation"""
     model.train()
     total_loss = 0
     total_dice = 0
     num_batches = 0
-    use_amp = scaler is not None
     
-    for batch in loader:
+    optimizer.zero_grad(set_to_none=True)
+    
+    for batch_idx, batch in enumerate(loader):
         batch = batch.to(device, non_blocking=True)
         
         if not use_edge_features:
             batch.edge_attr = None
         
-        # Forward pass with AMP
-        with autocast(enabled=use_amp):
-            logits, embeddings = model(batch)
-            loss, ce_loss, dice_loss, _ = criterion(
-                logits, embeddings, batch.y, batch.slice_mask
-            )
+        # Forward pass (FP32 for stability)
+        logits, embeddings = model(batch)
+        loss, ce_loss, dice_loss, _ = criterion(
+            logits, embeddings, batch.y, batch.slice_mask
+        )
         
-        # Backward pass with AMP
-        optimizer.zero_grad(set_to_none=True)
-        if use_amp:
-            scaler.scale(loss).backward()
-            scaler.unscale_(optimizer)
-            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
-            scaler.step(optimizer)
-            scaler.update()
-        else:
-            loss.backward()
+        # Scale loss for accumulation
+        loss = loss / accumulation_steps
+        
+        # Backward pass
+        loss.backward()
+        
+        # Update weights every accumulation_steps
+        if (batch_idx + 1) % accumulation_steps == 0 or (batch_idx + 1) == len(loader):
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
             optimizer.step()
+            scheduler.step()
+            optimizer.zero_grad(set_to_none=True)
         
-        scheduler.step()
-        
-        # Calculate Dice
+        # Calculate Dice (on unscaled predictions)
         with torch.no_grad():
             preds = torch.sigmoid(logits) > 0.5
             dice = calculate_dice_score(preds.float(), batch.y)
         
-        total_loss += loss.item()
+        total_loss += loss.item() * accumulation_steps  # Unscale for logging
         total_dice += dice
         num_batches += 1
     
     return total_loss / num_batches, total_dice / num_batches
 
-def validate(model, loader, criterion, device, use_edge_features, use_amp=False):
-    """Validate model with optional mixed precision"""
+def validate(model, loader, criterion, device, use_edge_features):
+    """Validate model"""
     model.eval()
     total_loss = 0
     total_dice = 0
@@ -232,11 +223,10 @@ def validate(model, loader, criterion, device, use_edge_features, use_amp=False)
             if not use_edge_features:
                 batch.edge_attr = None
             
-            with autocast(enabled=use_amp):
-                logits, embeddings = model(batch)
-                loss, _, _, _ = criterion(
-                    logits, embeddings, batch.y, batch.slice_mask
-                )
+            logits, embeddings = model(batch)
+            loss, _, _, _ = criterion(
+                logits, embeddings, batch.y, batch.slice_mask
+            )
             
             preds = torch.sigmoid(logits) > 0.5
             dice = calculate_dice_score(preds.float(), batch.y)
@@ -260,7 +250,7 @@ def run_single_config(config_name, config, base_config, train_files, val_files, 
     val_dataset = BraTSGraphDataset(root_dir=None, split='val', graph_files=val_files)
     test_dataset = BraTSGraphDataset(root_dir=None, split='test', graph_files=test_files)
     
-    # Create dataloaders with optimized settings
+    # Create dataloaders with balanced settings
     train_loader = DataLoader(
         train_dataset,
         batch_size=base_config['batch_size'],
@@ -306,7 +296,7 @@ def run_single_config(config_name, config, base_config, train_files, val_files, 
         weight_decay=base_config['weight_decay']
     )
     
-    steps_per_epoch = len(train_loader)
+    steps_per_epoch = len(train_loader) // base_config['accumulation_steps']
     total_steps = steps_per_epoch * base_config['num_epochs']
     
     scheduler = OneCycleLR(
@@ -319,13 +309,10 @@ def run_single_config(config_name, config, base_config, train_files, val_files, 
         final_div_factor=1e4
     )
     
-    # Mixed precision scaler
-    scaler = GradScaler() if base_config.get('use_amp', False) else None
-    use_amp = base_config.get('use_amp', False)
-    
     # Training loop
-    amp_status = "with AMP" if use_amp else "FP32"
-    print(f"\nTraining for up to {base_config['num_epochs']} epochs (patience={base_config['patience']}, {amp_status})...")
+    effective_batch = base_config['batch_size'] * base_config['accumulation_steps']
+    print(f"\nTraining for up to {base_config['num_epochs']} epochs (patience={base_config['patience']}, FP32)...")
+    print(f"  Effective batch size: {effective_batch} (accumulation steps: {base_config['accumulation_steps']})")
     
     best_val_dice = 0
     best_epoch = 0
@@ -340,11 +327,11 @@ def run_single_config(config_name, config, base_config, train_files, val_files, 
         
         train_loss, train_dice = train_epoch(
             model, train_loader, criterion, optimizer, scheduler,
-            device, config['use_edge_features'], scaler
+            device, config['use_edge_features'], base_config['accumulation_steps']
         )
         
         val_loss, val_dice = validate(
-            model, val_loader, criterion, device, config['use_edge_features'], use_amp
+            model, val_loader, criterion, device, config['use_edge_features']
         )
         
         epoch_time = time.time() - epoch_start
@@ -364,7 +351,7 @@ def run_single_config(config_name, config, base_config, train_files, val_files, 
             patience_counter = 0
             
             # Save best model
-            save_dir = Path('research_results/ablation_study_clean') / config_name
+            save_dir = Path('research_results/ablation_study_accuracy') / config_name
             save_dir.mkdir(parents=True, exist_ok=True)
             torch.save(model.state_dict(), save_dir / 'best_model.pth')
             print(f"  ✓ Best model saved (Val Dice: {best_val_dice:.4f})")
@@ -384,7 +371,7 @@ def run_single_config(config_name, config, base_config, train_files, val_files, 
     # Test
     print("\nEvaluating on test set...")
     test_loss, test_dice = validate(
-        model, test_loader, criterion, device, config['use_edge_features'], use_amp
+        model, test_loader, criterion, device, config['use_edge_features']
     )
     
     print(f"\n{'='*80}")
@@ -410,6 +397,8 @@ def run_single_config(config_name, config, base_config, train_files, val_files, 
         'val_history': val_history,
         'training_config': {
             'batch_size': base_config['batch_size'],
+            'accumulation_steps': base_config['accumulation_steps'],
+            'effective_batch_size': base_config['batch_size'] * base_config['accumulation_steps'],
             'num_epochs': base_config['num_epochs'],
             'patience': base_config['patience'],
             'lr': base_config['lr'],
@@ -424,17 +413,18 @@ def run_single_config(config_name, config, base_config, train_files, val_files, 
 def main():
     """Main execution"""
     print("\n" + "╔" + "═"*78 + "╗")
-    print("║" + " "*20 + "RE-RUN UNDERTRAINED CONFIGS" + " "*31 + "║")
-    print("║" + " "*15 + "With Proper Training Settings" + " "*34 + "║")
+    print("║" + " "*18 + "ABLATION STUDY - ACCURACY MODE" + " "*30 + "║")
+    print("║" + " "*15 + "Optimized for Best Performance" + " "*33 + "║")
     print("╚" + "═"*78 + "╝")
     
-    print(f"\nMAXIMUM POWER Settings:")
-    print(f"  Batch Size: 48 → Maximum stable for RTX 2060 (6GB)")
-    print(f"  Mixed Precision: Enabled → ~1.5-2× faster training")
-    print(f"  Workers: 8 → Maximum parallelism (16 cores)")
-    print(f"  Prefetch: 4 → Aggressive data loading")
-    print(f"  Patience: 10 → Proper convergence")
-    print(f"  Max Epochs: 50 → Full training")
+    print(f"\nAccuracy-Optimized Settings:")
+    print(f"  Batch Size: 32 → Better gradient quality (less noise)")
+    print(f"  Accumulation: 2 steps → Effective batch = 64 (stability)")
+    print(f"  Mixed Precision: DISABLED → FP32 for numerical precision")
+    print(f"  Workers: 4 → Balanced (avoids disk contention)")
+    print(f"  Patience: 15 → More patient convergence")
+    print(f"  Deterministic: ON → Reproducible results")
+    print(f"\n  Trade-off: ~1.5× slower than max power, but higher accuracy")
     
     # Step 1: Load fold splits (graphs already preprocessed!)
     print("\n" + "="*80)
@@ -455,12 +445,13 @@ def main():
     print("STEP 2: Training Configs Sequentially")
     print("="*80)
     print(f"Running {len(RERUN_CONFIGS)} configurations...")
-    print("Expected time: ~3-4 hours total (45-60 min each with AMP)")
-    print("\nOptimizations:")
-    print("  • Mixed precision (AMP) → 1.5-2× speedup")
-    print("  • Batch size 48 → Maximum GPU utilization")
-    print("  • 8 workers + prefetch 4 → Zero data loading bottleneck")
-    print("  • GPU should stay at 95-100% throughout training\n")
+    print("Expected time: ~5-6 hours total (75-90 min each)")
+    print("\nAccuracy optimizations:")
+    print("  • FP32 precision → No rounding errors from AMP")
+    print("  • Batch 32 + Accumulation 2 → Stable gradients, effective batch 64")
+    print("  • Patience 15 → Thorough convergence")
+    print("  • Deterministic mode → Reproducible results")
+    print("  • Goal: Match or exceed CV fold 0 performance (90.41%)\n")
     
     all_results = {}
     
@@ -478,52 +469,33 @@ def main():
             continue
     
     # Save combined results
-    output_dir = Path('research_results/ablation_study_clean')
+    output_dir = Path('research_results/ablation_study_accuracy')
     output_dir.mkdir(parents=True, exist_ok=True)
     
     with open(output_dir / 'all_results.json', 'w') as f:
         json.dump(all_results, f, indent=2)
     
-    # Print comparison with original
+    # Print summary
     print("\n" + "="*80)
-    print("COMPARISON: Original vs Fixed Training")
+    print("ACCURACY MODE RESULTS")
     print("="*80)
     
-    comparisons = {
-        'baseline_fixed': ('baseline', 'Baseline (5 layers, 256)'),
-        'layers_6_fixed': ('layers_6', '6 Layers'),
-        'hidden_512_fixed': ('hidden_512', 'Hidden 512'),
-        'gat_fixed': ('gat', 'GAT'),
-    }
-    
-    print(f"{'Config':<25} {'Original':>12} {'Fixed':>12} {'Improvement':>15}")
+    print(f"{'Config':<30} {'Test Dice':>12} {'Parameters':>15} {'Time (min)':>12}")
     print("-"*80)
     
-    for fixed_name, (orig_name, label) in comparisons.items():
-        if fixed_name in all_results:
-            fixed_dice = all_results[fixed_name]['test_dice']
-            
-            # Load original result
-            orig_file = Path(f'research_results/ablation_study/{orig_name}/results.json')
-            if orig_file.exists():
-                with open(orig_file) as f:
-                    orig_data = json.load(f)
-                    orig_dice = orig_data['test_dice']
-                    
-                improvement = fixed_dice - orig_dice
-                pct = (improvement / orig_dice) * 100
-                
-                print(f"{label:<25} {orig_dice:>12.4f} {fixed_dice:>12.4f} "
-                      f"{improvement:>+8.4f} ({pct:>+5.1f}%)")
+    for config_name, results in all_results.items():
+        print(f"{results['config']['name']:<30} "
+              f"{results['test_dice']:>12.4f} "
+              f"{results['parameters']:>15,} "
+              f"{results['training_time_min']:>12.1f}")
     
-    print("\n✅ Re-run complete!")
+    print("\n✅ Accuracy-optimized ablation complete!")
     print(f"   Results saved to: {output_dir}")
-    print("\n📊 Summary:")
-    print("   - All configs trained with proper settings (batch=32, patience=10, epochs=50)")
-    print("   - Smaller batch size reduces disk I/O contention")
-    print("   - GPU utilization should be ~95-100% (vs ~40% in original)")
-    print("   - Expected: All configs should reach 89-91% Dice (clean data)")
-    print("   - Note: Old 97-99% expectations were from LEAKED data (invalid)")
+    print("\n📊 Key insights:")
+    print("   - FP32 provides numerical stability")
+    print("   - Gradient accumulation gives stable training")
+    print("   - Longer patience allows full convergence")
+    print("   - Should achieve closer to CV fold 0 target (90.41%)")
 
 if __name__ == "__main__":
     main()

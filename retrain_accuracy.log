@@ -1,0 +1,62 @@
+nohup: ignoring input
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/typing.py:68: UserWarning: An issue occurred while importing 'pyg-lib'. Disabling its usage. Stacktrace: /mnt/bigdata/capstone/.env/lib/python3.12/site-packages/libpyg.so: undefined symbol: _ZN2at4_ops11multinomial4callERKNS_6TensorElbSt8optionalINS_9GeneratorEE
+  warnings.warn(f"An issue occurred while importing 'pyg-lib'. "
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/typing.py:124: UserWarning: An issue occurred while importing 'torch-sparse'. Disabling its usage. Stacktrace: /mnt/bigdata/capstone/.env/lib/python3.12/site-packages/libpyg.so: undefined symbol: _ZN2at4_ops11multinomial4callERKNS_6TensorElbSt8optionalINS_9GeneratorEE
+  warnings.warn(f"An issue occurred while importing 'torch-sparse'. "
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                  ABLATION STUDY - ACCURACY MODE                              ║
+║               Optimized for Best Performance                                 ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Accuracy-Optimized Settings:
+  Batch Size: 32 → Better gradient quality (less noise)
+  Accumulation: 2 steps → Effective batch = 64 (stability)
+  Mixed Precision: DISABLED → FP32 for numerical precision
+  Workers: 4 → Balanced (avoids disk contention)
+  Patience: 15 → More patient convergence
+  Deterministic: ON → Reproducible results
+
+  Trade-off: ~1.5× slower than max power, but higher accuracy
+
+================================================================================
+STEP 1: Loading Data Splits
+================================================================================
+Note: Graphs already preprocessed in data/graphs/ directory
+Loading fold 0 splits...
+  Train: 900 graphs from 900 patients
+  Val:   100 graphs from 100 patients
+  Test:  251 graphs from 251 patients
+  Note: Graphs already preprocessed in data/graphs
+
+✅ Data splits loaded! Graphs will be read from disk during training.
+
+================================================================================
+STEP 2: Training Configs Sequentially
+================================================================================
+Running 4 configurations...
+Expected time: ~5-6 hours total (75-90 min each)
+
+Accuracy optimizations:
+  • FP32 precision → No rounding errors from AMP
+  • Batch 32 + Accumulation 2 → Stable gradients, effective batch 64
+  • Patience 15 → Thorough convergence
+  • Deterministic mode → Reproducible results
+  • Goal: Match or exceed CV fold 0 performance (90.41%)
+
+
+================================================================================
+CONFIG: Baseline (5 layers, 256D) - Accuracy Optimized
+================================================================================
+📊 Dataset initialized: 76679 graphs from 900 patients
+📊 Dataset initialized: 8629 graphs from 100 patients
+📊 Dataset initialized: 21544 graphs from 251 patients
+
+Model Architecture:
+  Layers: 5
+  Hidden: 256
+  Type:   sage
+  Parameters: 439,041
+
+Training for up to 50 epochs (patience=15, FP32)...
+  Effective batch size: 64 (accumulation steps: 2)
