@@ -1,0 +1,258 @@
+nohup: ignoring input
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/typing.py:68: UserWarning: An issue occurred while importing 'pyg-lib'. Disabling its usage. Stacktrace: /mnt/bigdata/capstone/.env/lib/python3.12/site-packages/libpyg.so: undefined symbol: _ZN2at4_ops11multinomial4callERKNS_6TensorElbSt8optionalINS_9GeneratorEE
+  warnings.warn(f"An issue occurred while importing 'pyg-lib'. "
+/mnt/bigdata/capstone/.env/lib/python3.12/site-packages/torch_geometric/typing.py:124: UserWarning: An issue occurred while importing 'torch-sparse'. Disabling its usage. Stacktrace: /mnt/bigdata/capstone/.env/lib/python3.12/site-packages/libpyg.so: undefined symbol: _ZN2at4_ops11multinomial4callERKNS_6TensorElbSt8optionalINS_9GeneratorEE
+  warnings.warn(f"An issue occurred while importing 'torch-sparse'. "
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                  ABLATION STUDY - ACCURACY MODE                              ║
+║               Optimized for Best Performance                                 ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+EXACT MATCH TO CV FOLD 0 Settings:
+  Batch Size: 32 → MATCHES CV (no accumulation)
+  Accumulation: 1 (DISABLED) → Real batch = 32
+  Mixed Precision: DISABLED → FP32 for numerical precision
+  Workers: 4 → Balanced (avoids disk contention)
+  Patience: 15 → More patient convergence
+  Deterministic: ON → Reproducible results
+
+  Goal: Match CV Fold 0 result (90.41%) exactly
+
+================================================================================
+STEP 1: Loading Data Splits
+================================================================================
+Note: Graphs already preprocessed in data/graphs/ directory
+Loading fold 0 splits...
+  Train: 900 graphs from 900 patients
+  Val:   100 graphs from 100 patients
+  Test:  251 graphs from 251 patients
+  Note: Graphs already preprocessed in data/graphs
+
+✅ Data splits loaded! Graphs will be read from disk during training.
+
+================================================================================
+STEP 2: Training Configs Sequentially
+================================================================================
+Running 4 configurations...
+Expected time: ~5-6 hours total (75-90 min each)
+
+EXACT MATCH optimizations:
+  • FP32 precision → No rounding errors from AMP
+  • Batch 32, NO accumulation → Exact match to CV Fold 0
+  • Patience 15 → Thorough convergence
+  • Deterministic mode → Reproducible results
+  • Expected: 89.5-90.5% (matching CV fold 0: 90.41%)
+
+
+================================================================================
+CONFIG: Baseline (5 layers, 256D) - Accuracy Optimized
+================================================================================
+📊 Dataset initialized: 76679 graphs from 900 patients
+📊 Dataset initialized: 8629 graphs from 100 patients
+📊 Dataset initialized: 21544 graphs from 251 patients
+
+Model Architecture:
+  Layers: 5
+  Hidden: 256
+  Type:   sage
+  Parameters: 439,041
+
+Training for up to 50 epochs (patience=15, FP32)...
+  Batch size: 32 (NO accumulation, matches CV)
+Epoch  1/50: Train Loss=0.9246, Dice=0.3811 | Val Loss=0.7611, Dice=0.4563 | Time=360.2s
+  ✓ Best model saved (Val Dice: 0.4563)
+Epoch  2/50: Train Loss=0.4890, Dice=0.6798 | Val Loss=0.4348, Dice=0.7086 | Time=358.7s
+  ✓ Best model saved (Val Dice: 0.7086)
+Epoch  3/50: Train Loss=0.3388, Dice=0.7781 | Val Loss=0.4047, Dice=0.7201 | Time=352.0s
+  ✓ Best model saved (Val Dice: 0.7201)
+Epoch  4/50: Train Loss=0.2579, Dice=0.8315 | Val Loss=0.2933, Dice=0.7832 | Time=351.9s
+  ✓ Best model saved (Val Dice: 0.7832)
+Epoch  5/50: Train Loss=0.2231, Dice=0.8540 | Val Loss=0.3024, Dice=0.7820 | Time=355.0s
+Epoch  6/50: Train Loss=0.2061, Dice=0.8652 | Val Loss=0.2988, Dice=0.7863 | Time=355.0s
+  ✓ Best model saved (Val Dice: 0.7863)
+Epoch  7/50: Train Loss=0.1983, Dice=0.8710 | Val Loss=0.3464, Dice=0.7477 | Time=348.9s
+Epoch  8/50: Train Loss=0.1960, Dice=0.8723 | Val Loss=0.3104, Dice=0.7752 | Time=351.9s
+Epoch  9/50: Train Loss=0.1911, Dice=0.8748 | Val Loss=0.3031, Dice=0.7772 | Time=350.6s
+Epoch 10/50: Train Loss=0.1849, Dice=0.8788 | Val Loss=0.3025, Dice=0.7798 | Time=348.3s
+Epoch 11/50: Train Loss=0.1818, Dice=0.8808 | Val Loss=0.3286, Dice=0.7675 | Time=356.6s
+Epoch 12/50: Train Loss=0.1782, Dice=0.8830 | Val Loss=0.2967, Dice=0.7877 | Time=351.7s
+  ✓ Best model saved (Val Dice: 0.7877)
+Epoch 13/50: Train Loss=0.1735, Dice=0.8858 | Val Loss=0.3526, Dice=0.7591 | Time=344.7s
+Epoch 14/50: Train Loss=0.1710, Dice=0.8873 | Val Loss=0.2810, Dice=0.7994 | Time=340.7s
+  ✓ Best model saved (Val Dice: 0.7994)
+Epoch 15/50: Train Loss=0.1680, Dice=0.8894 | Val Loss=0.2588, Dice=0.8181 | Time=343.7s
+  ✓ Best model saved (Val Dice: 0.8181)
+Epoch 16/50: Train Loss=0.1650, Dice=0.8913 | Val Loss=0.2492, Dice=0.8159 | Time=358.5s
+Epoch 17/50: Train Loss=0.1619, Dice=0.8935 | Val Loss=0.2586, Dice=0.8206 | Time=364.0s
+  ✓ Best model saved (Val Dice: 0.8206)
+Epoch 18/50: Train Loss=0.1587, Dice=0.8953 | Val Loss=0.2589, Dice=0.8057 | Time=349.0s
+Epoch 19/50: Train Loss=0.1564, Dice=0.8967 | Val Loss=0.2422, Dice=0.8245 | Time=338.3s
+  ✓ Best model saved (Val Dice: 0.8245)
+Epoch 20/50: Train Loss=0.1550, Dice=0.8977 | Val Loss=0.2498, Dice=0.8212 | Time=338.6s
+Epoch 21/50: Train Loss=0.1523, Dice=0.8992 | Val Loss=0.2472, Dice=0.8242 | Time=337.0s
+Epoch 22/50: Train Loss=0.1506, Dice=0.9003 | Val Loss=0.2563, Dice=0.8179 | Time=336.7s
+Epoch 23/50: Train Loss=0.1491, Dice=0.9014 | Val Loss=0.2385, Dice=0.8244 | Time=338.2s
+Epoch 24/50: Train Loss=0.1470, Dice=0.9028 | Val Loss=0.2269, Dice=0.8351 | Time=336.8s
+  ✓ Best model saved (Val Dice: 0.8351)
+Epoch 25/50: Train Loss=0.1451, Dice=0.9038 | Val Loss=0.2412, Dice=0.8358 | Time=337.5s
+  ✓ Best model saved (Val Dice: 0.8358)
+Epoch 26/50: Train Loss=0.1437, Dice=0.9050 | Val Loss=0.2311, Dice=0.8359 | Time=337.4s
+  ✓ Best model saved (Val Dice: 0.8359)
+Epoch 27/50: Train Loss=0.1418, Dice=0.9060 | Val Loss=0.2428, Dice=0.8223 | Time=337.9s
+Epoch 28/50: Train Loss=0.1405, Dice=0.9069 | Val Loss=0.2257, Dice=0.8418 | Time=338.3s
+  ✓ Best model saved (Val Dice: 0.8418)
+Epoch 29/50: Train Loss=0.1387, Dice=0.9082 | Val Loss=0.2261, Dice=0.8432 | Time=337.4s
+  ✓ Best model saved (Val Dice: 0.8432)
+Epoch 30/50: Train Loss=0.1372, Dice=0.9091 | Val Loss=0.2200, Dice=0.8440 | Time=339.0s
+  ✓ Best model saved (Val Dice: 0.8440)
+Epoch 31/50: Train Loss=0.1354, Dice=0.9105 | Val Loss=0.2315, Dice=0.8376 | Time=338.1s
+Epoch 32/50: Train Loss=0.1342, Dice=0.9112 | Val Loss=0.2255, Dice=0.8375 | Time=336.3s
+Epoch 33/50: Train Loss=0.1324, Dice=0.9125 | Val Loss=0.2280, Dice=0.8373 | Time=338.3s
+Epoch 34/50: Train Loss=0.1306, Dice=0.9137 | Val Loss=0.2235, Dice=0.8395 | Time=343.0s
+Epoch 35/50: Train Loss=0.1297, Dice=0.9141 | Val Loss=0.2151, Dice=0.8455 | Time=338.7s
+  ✓ Best model saved (Val Dice: 0.8455)
+Epoch 36/50: Train Loss=0.1291, Dice=0.9145 | Val Loss=0.2188, Dice=0.8442 | Time=339.0s
+Epoch 37/50: Train Loss=0.1265, Dice=0.9163 | Val Loss=0.2136, Dice=0.8473 | Time=338.8s
+  ✓ Best model saved (Val Dice: 0.8473)
+Epoch 38/50: Train Loss=0.1259, Dice=0.9168 | Val Loss=0.2201, Dice=0.8417 | Time=339.1s
+Epoch 39/50: Train Loss=0.1244, Dice=0.9178 | Val Loss=0.2149, Dice=0.8456 | Time=338.6s
+Epoch 40/50: Train Loss=0.1235, Dice=0.9184 | Val Loss=0.2128, Dice=0.8448 | Time=339.1s
+Epoch 41/50: Train Loss=0.1220, Dice=0.9194 | Val Loss=0.2142, Dice=0.8445 | Time=338.2s
+Epoch 42/50: Train Loss=0.1212, Dice=0.9200 | Val Loss=0.2186, Dice=0.8414 | Time=338.7s
+Epoch 43/50: Train Loss=0.1201, Dice=0.9208 | Val Loss=0.2146, Dice=0.8451 | Time=339.8s
+Epoch 44/50: Train Loss=0.1193, Dice=0.9213 | Val Loss=0.2156, Dice=0.8450 | Time=338.1s
+Epoch 45/50: Train Loss=0.1191, Dice=0.9212 | Val Loss=0.2163, Dice=0.8435 | Time=339.4s
+Epoch 46/50: Train Loss=0.1189, Dice=0.9215 | Val Loss=0.2147, Dice=0.8461 | Time=341.0s
+Epoch 47/50: Train Loss=0.1181, Dice=0.9221 | Val Loss=0.2139, Dice=0.8457 | Time=339.8s
+Epoch 48/50: Train Loss=0.1172, Dice=0.9228 | Val Loss=0.2147, Dice=0.8470 | Time=338.7s
+Epoch 49/50: Train Loss=0.1178, Dice=0.9223 | Val Loss=0.2143, Dice=0.8473 | Time=338.1s
+Epoch 50/50: Train Loss=0.1174, Dice=0.9225 | Val Loss=0.2125, Dice=0.8484 | Time=337.4s
+  ✓ Best model saved (Val Dice: 0.8484)
+
+Evaluating on test set...
+
+================================================================================
+RESULTS: Baseline (5 layers, 256D) - Accuracy Optimized
+================================================================================
+  Best Val Dice:  0.8484 (epoch 50)
+  Test Dice:      0.8403
+  Parameters:     439,041
+  Training Time:  286.2 min
+================================================================================
+
+================================================================================
+CONFIG: 6 Layers - Accuracy Optimized
+================================================================================
+📊 Dataset initialized: 76679 graphs from 900 patients
+📊 Dataset initialized: 8629 graphs from 100 patients
+📊 Dataset initialized: 21544 graphs from 251 patients
+
+Model Architecture:
+  Layers: 6
+  Hidden: 256
+  Type:   sage
+  Parameters: 570,881
+
+Training for up to 50 epochs (patience=15, FP32)...
+  Batch size: 32 (NO accumulation, matches CV)
+Epoch  1/50: Train Loss=0.9574, Dice=0.3588 | Val Loss=0.7861, Dice=0.4543 | Time=342.2s
+  ✓ Best model saved (Val Dice: 0.4543)
+Epoch  2/50: Train Loss=0.5236, Dice=0.6582 | Val Loss=0.4427, Dice=0.7023 | Time=341.4s
+  ✓ Best model saved (Val Dice: 0.7023)
+Epoch  3/50: Train Loss=0.3433, Dice=0.7784 | Val Loss=0.3360, Dice=0.7679 | Time=342.7s
+  ✓ Best model saved (Val Dice: 0.7679)
+Epoch  4/50: Train Loss=0.2635, Dice=0.8295 | Val Loss=0.3181, Dice=0.7758 | Time=343.1s
+  ✓ Best model saved (Val Dice: 0.7758)
+Epoch  5/50: Train Loss=0.2328, Dice=0.8493 | Val Loss=0.3523, Dice=0.7509 | Time=342.4s
+Epoch  6/50: Train Loss=0.2185, Dice=0.8586 | Val Loss=0.3445, Dice=0.7614 | Time=341.2s
+Epoch  7/50: Train Loss=0.2047, Dice=0.8668 | Val Loss=0.3606, Dice=0.7486 | Time=340.8s
+Epoch  8/50: Train Loss=0.1955, Dice=0.8719 | Val Loss=0.3263, Dice=0.7711 | Time=340.6s
+Epoch  9/50: Train Loss=0.1878, Dice=0.8773 | Val Loss=0.2856, Dice=0.7983 | Time=342.2s
+  ✓ Best model saved (Val Dice: 0.7983)
+Epoch 10/50: Train Loss=0.1843, Dice=0.8792 | Val Loss=0.2784, Dice=0.8034 | Time=341.4s
+  ✓ Best model saved (Val Dice: 0.8034)
+Epoch 11/50: Train Loss=0.1804, Dice=0.8818 | Val Loss=0.3222, Dice=0.7849 | Time=342.0s
+Epoch 12/50: Train Loss=0.1765, Dice=0.8839 | Val Loss=0.2656, Dice=0.8102 | Time=341.8s
+  ✓ Best model saved (Val Dice: 0.8102)
+Epoch 13/50: Train Loss=0.1729, Dice=0.8862 | Val Loss=0.2707, Dice=0.8080 | Time=340.9s
+Epoch 14/50: Train Loss=0.1700, Dice=0.8877 | Val Loss=0.3047, Dice=0.7825 | Time=340.6s
+Epoch 15/50: Train Loss=0.1665, Dice=0.8900 | Val Loss=0.2491, Dice=0.8296 | Time=342.3s
+  ✓ Best model saved (Val Dice: 0.8296)
+Epoch 16/50: Train Loss=0.1635, Dice=0.8920 | Val Loss=0.2528, Dice=0.8263 | Time=342.1s
+Epoch 17/50: Train Loss=0.1602, Dice=0.8943 | Val Loss=0.2510, Dice=0.8248 | Time=342.2s
+Epoch 18/50: Train Loss=0.1574, Dice=0.8960 | Val Loss=0.2756, Dice=0.7963 | Time=341.3s
+Epoch 19/50: Train Loss=0.1557, Dice=0.8971 | Val Loss=0.3222, Dice=0.7751 | Time=341.0s
+Epoch 20/50: Train Loss=0.1536, Dice=0.8984 | Val Loss=0.2459, Dice=0.8284 | Time=341.0s
+Epoch 21/50: Train Loss=0.1514, Dice=0.8996 | Val Loss=0.2498, Dice=0.8231 | Time=341.4s
+Epoch 22/50: Train Loss=0.1490, Dice=0.9012 | Val Loss=0.2402, Dice=0.8300 | Time=341.1s
+  ✓ Best model saved (Val Dice: 0.8300)
+Epoch 23/50: Train Loss=0.1473, Dice=0.9024 | Val Loss=0.2397, Dice=0.8263 | Time=341.7s
+Epoch 24/50: Train Loss=0.1457, Dice=0.9035 | Val Loss=0.2497, Dice=0.8227 | Time=341.0s
+Epoch 25/50: Train Loss=0.1444, Dice=0.9042 | Val Loss=0.2605, Dice=0.8131 | Time=340.4s
+Epoch 26/50: Train Loss=0.1426, Dice=0.9054 | Val Loss=0.2461, Dice=0.8228 | Time=341.8s
+Epoch 27/50: Train Loss=0.1414, Dice=0.9062 | Val Loss=0.2310, Dice=0.8362 | Time=342.5s
+  ✓ Best model saved (Val Dice: 0.8362)
+Epoch 28/50: Train Loss=0.1391, Dice=0.9075 | Val Loss=0.2326, Dice=0.8316 | Time=341.1s
+Epoch 29/50: Train Loss=0.1380, Dice=0.9083 | Val Loss=0.2360, Dice=0.8315 | Time=343.4s
+Epoch 30/50: Train Loss=0.1364, Dice=0.9094 | Val Loss=0.2263, Dice=0.8364 | Time=341.6s
+  ✓ Best model saved (Val Dice: 0.8364)
+Epoch 31/50: Train Loss=0.1354, Dice=0.9103 | Val Loss=0.2360, Dice=0.8349 | Time=340.8s
+Epoch 32/50: Train Loss=0.1335, Dice=0.9117 | Val Loss=0.2121, Dice=0.8479 | Time=341.4s
+  ✓ Best model saved (Val Dice: 0.8479)
+Epoch 33/50: Train Loss=0.1313, Dice=0.9129 | Val Loss=0.2217, Dice=0.8409 | Time=340.7s
+Epoch 34/50: Train Loss=0.1301, Dice=0.9138 | Val Loss=0.2214, Dice=0.8456 | Time=341.3s
+Epoch 35/50: Train Loss=0.1293, Dice=0.9140 | Val Loss=0.2157, Dice=0.8472 | Time=341.5s
+Epoch 36/50: Train Loss=0.1269, Dice=0.9160 | Val Loss=0.2188, Dice=0.8396 | Time=342.1s
+Epoch 37/50: Train Loss=0.1263, Dice=0.9163 | Val Loss=0.2220, Dice=0.8368 | Time=340.9s
+Epoch 38/50: Train Loss=0.1243, Dice=0.9176 | Val Loss=0.2216, Dice=0.8365 | Time=341.8s
+Epoch 39/50: Train Loss=0.1227, Dice=0.9189 | Val Loss=0.2231, Dice=0.8376 | Time=342.7s
+Epoch 40/50: Train Loss=0.1220, Dice=0.9191 | Val Loss=0.2128, Dice=0.8452 | Time=342.0s
+Epoch 41/50: Train Loss=0.1210, Dice=0.9198 | Val Loss=0.2138, Dice=0.8473 | Time=341.8s
+Epoch 42/50: Train Loss=0.1201, Dice=0.9206 | Val Loss=0.2149, Dice=0.8433 | Time=341.5s
+Epoch 43/50: Train Loss=0.1188, Dice=0.9215 | Val Loss=0.2135, Dice=0.8467 | Time=341.9s
+Epoch 44/50: Train Loss=0.1186, Dice=0.9215 | Val Loss=0.2109, Dice=0.8461 | Time=341.7s
+Epoch 45/50: Train Loss=0.1179, Dice=0.9222 | Val Loss=0.2122, Dice=0.8459 | Time=342.0s
+Epoch 46/50: Train Loss=0.1175, Dice=0.9222 | Val Loss=0.2144, Dice=0.8444 | Time=342.6s
+Epoch 47/50: Train Loss=0.1166, Dice=0.9232 | Val Loss=0.2122, Dice=0.8491 | Time=341.5s
+  ✓ Best model saved (Val Dice: 0.8491)
+Epoch 48/50: Train Loss=0.1165, Dice=0.9230 | Val Loss=0.2150, Dice=0.8445 | Time=343.0s
+Epoch 49/50: Train Loss=0.1166, Dice=0.9229 | Val Loss=0.2113, Dice=0.8466 | Time=343.4s
+Epoch 50/50: Train Loss=0.1166, Dice=0.9229 | Val Loss=0.2135, Dice=0.8451 | Time=341.3s
+
+Evaluating on test set...
+
+================================================================================
+RESULTS: 6 Layers - Accuracy Optimized
+================================================================================
+  Best Val Dice:  0.8491 (epoch 47)
+  Test Dice:      0.8400
+  Parameters:     570,881
+  Training Time:  284.8 min
+================================================================================
+
+================================================================================
+CONFIG: Hidden Dim 512 - Accuracy Optimized
+================================================================================
+📊 Dataset initialized: 76679 graphs from 900 patients
+📊 Dataset initialized: 8629 graphs from 100 patients
+📊 Dataset initialized: 21544 graphs from 251 patients
+
+Model Architecture:
+  Layers: 5
+  Hidden: 512
+  Type:   sage
+  Parameters: 1,662,209
+
+Training for up to 50 epochs (patience=15, FP32)...
+  Batch size: 32 (NO accumulation, matches CV)
+Epoch  1/50: Train Loss=0.8688, Dice=0.5222 | Val Loss=0.6342, Dice=0.6523 | Time=341.7s
+  ✓ Best model saved (Val Dice: 0.6523)
+Epoch  2/50: Train Loss=0.4549, Dice=0.7366 | Val Loss=0.4388, Dice=0.7224 | Time=341.5s
+  ✓ Best model saved (Val Dice: 0.7224)
+Epoch  3/50: Train Loss=0.3316, Dice=0.7875 | Val Loss=0.3280, Dice=0.7786 | Time=340.6s
+  ✓ Best model saved (Val Dice: 0.7786)
+Epoch  4/50: Train Loss=0.2503, Dice=0.8378 | Val Loss=0.3053, Dice=0.7866 | Time=347.4s
+  ✓ Best model saved (Val Dice: 0.7866)
+Epoch  5/50: Train Loss=0.2296, Dice=0.8510 | Val Loss=0.3412, Dice=0.7573 | Time=357.3s
+Epoch  6/50: Train Loss=0.2152, Dice=0.8597 | Val Loss=0.4633, Dice=0.6738 | Time=352.0s

@@ -22,6 +22,7 @@ import os
 import sys
 import json
 import time
+import random
 import torch
 import numpy as np
 from pathlib import Path
@@ -44,13 +45,13 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 from gnn_model import TumorSegmentationGNN, CombinedLoss
 from dataset import BraTSGraphDataset
 
-# ACCURACY-OPTIMIZED CONFIGURATION
+# ACCURACY-OPTIMIZED CONFIGURATION - EXACT MATCH TO CV FOLD 0
 BASE_CONFIG = {
     'fold': 0,
     'data_dir': 'data/graphs',
     'cv_dir': 'data/cv_folds',
-    'batch_size': 32,          # ← Better gradient quality
-    'accumulation_steps': 2,   # ← Effective batch size = 64
+    'batch_size': 32,          # ← MATCH CV: Batch 32
+    'accumulation_steps': 1,   # ← FIXED: No accumulation (was 2, caused 83% result)
     'num_epochs': 50,
     'lr': 0.001,
     'weight_decay': 1e-5,
@@ -243,6 +244,16 @@ def run_single_config(config_name, config, base_config, train_files, val_files, 
     print(f"CONFIG: {config['name']}")
     print("="*80)
     
+    # Set random seeds for reproducibility
+    seed = 42
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+    print(f"Random seed set to: {seed}")
+    
     device = base_config['device']
     
     # Create datasets (already preprocessed)
@@ -310,9 +321,8 @@ def run_single_config(config_name, config, base_config, train_files, val_files, 
     )
     
     # Training loop
-    effective_batch = base_config['batch_size'] * base_config['accumulation_steps']
     print(f"\nTraining for up to {base_config['num_epochs']} epochs (patience={base_config['patience']}, FP32)...")
-    print(f"  Effective batch size: {effective_batch} (accumulation steps: {base_config['accumulation_steps']})")
+    print(f"  Batch size: {base_config['batch_size']} (NO accumulation, matches CV)")
     
     best_val_dice = 0
     best_epoch = 0
@@ -417,14 +427,14 @@ def main():
     print("║" + " "*15 + "Optimized for Best Performance" + " "*33 + "║")
     print("╚" + "═"*78 + "╝")
     
-    print(f"\nAccuracy-Optimized Settings:")
-    print(f"  Batch Size: 32 → Better gradient quality (less noise)")
-    print(f"  Accumulation: 2 steps → Effective batch = 64 (stability)")
+    print(f"\nEXACT MATCH TO CV FOLD 0 Settings:")
+    print(f"  Batch Size: 32 → MATCHES CV (no accumulation)")
+    print(f"  Accumulation: 1 (DISABLED) → Real batch = 32")
     print(f"  Mixed Precision: DISABLED → FP32 for numerical precision")
     print(f"  Workers: 4 → Balanced (avoids disk contention)")
     print(f"  Patience: 15 → More patient convergence")
     print(f"  Deterministic: ON → Reproducible results")
-    print(f"\n  Trade-off: ~1.5× slower than max power, but higher accuracy")
+    print(f"\n  Goal: Match CV Fold 0 result (90.41%) exactly")
     
     # Step 1: Load fold splits (graphs already preprocessed!)
     print("\n" + "="*80)
@@ -446,12 +456,12 @@ def main():
     print("="*80)
     print(f"Running {len(RERUN_CONFIGS)} configurations...")
     print("Expected time: ~5-6 hours total (75-90 min each)")
-    print("\nAccuracy optimizations:")
+    print("\nEXACT MATCH optimizations:")
     print("  • FP32 precision → No rounding errors from AMP")
-    print("  • Batch 32 + Accumulation 2 → Stable gradients, effective batch 64")
+    print("  • Batch 32, NO accumulation → Exact match to CV Fold 0")
     print("  • Patience 15 → Thorough convergence")
     print("  • Deterministic mode → Reproducible results")
-    print("  • Goal: Match or exceed CV fold 0 performance (90.41%)\n")
+    print("  • Expected: 89.5-90.5% (matching CV fold 0: 90.41%)\n")
     
     all_results = {}
     
