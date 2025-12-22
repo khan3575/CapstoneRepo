@@ -1,0 +1,11 @@
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Complete 8-Phase Pipeline Architecture.}}{19}{figure.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces 5-Layer GraphSAGE Architecture.}}{25}{figure.2}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Cross-Validation Dice Scores Across 5 Folds.}}{32}{figure.3}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Cross-Validation Performance Distribution (2×2 Grid Layout).}}{33}{figure.4}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Training Dynamics Across 5-Fold Cross-Validation.}}{34}{figure.5}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Qualitative Segmentation Example 1 (Patient BraTS2021\_00501, Slice 149).}}{41}{figure.6}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Qualitative Segmentation Example 2 (Patient BraTS2021\_00491, Slice 86).}}{41}{figure.7}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Qualitative Segmentation Example 3 (Patient BraTS2021\_00559, Slice 105).}}{41}{figure.8}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Qualitative Segmentation Example 1 (Patient BraTS2021\_00501, Slice 149).}}{42}{figure.9}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Qualitative Segmentation Example 2 (Patient BraTS2021\_00491, Slice 86).}}{43}{figure.10}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Qualitative Segmentation Example 3 (Patient BraTS2021\_00559, Slice 105).}}{43}{figure.11}%

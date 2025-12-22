@@ -1,0 +1,9 @@
+\contentsline {table}{\numberline {1}{\ignorespaces BraTS 2021 Dataset Statistics and Cross-Validation Split}}{22}{table.1}%
+\contentsline {table}{\numberline {2}{\ignorespaces 5-Fold Cross-Validation Results on BraTS 2021 Dataset}}{32}{table.2}%
+\contentsline {table}{\numberline {3}{\ignorespaces Comprehensive Performance Metrics (Average Across 5 Folds)}}{35}{table.3}%
+\contentsline {table}{\numberline {4}{\ignorespaces Single Model vs. Ensemble Performance Comparison}}{36}{table.4}%
+\contentsline {table}{\numberline {5}{\ignorespaces Efficiency Comparison: GraphSAGE (Ours) vs. 3D U-Net Baseline}}{37}{table.5}%
+\contentsline {table}{\numberline {6}{\ignorespaces Ablation Study: Network Depth Comparison}}{39}{table.6}%
+\contentsline {table}{\numberline {7}{\ignorespaces Batch Size Impact on Performance}}{40}{table.7}%
+\contentsline {table}{\numberline {8}{\ignorespaces Comparison with State-of-the-Art Methods on BraTS 2021}}{45}{table.8}%
+\contentsline {table}{\numberline {9}{\ignorespaces Project Timeline and Milestones}}{57}{table.9}%

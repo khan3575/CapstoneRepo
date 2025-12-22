@@ -1,0 +1,250 @@
+\begin{center}
+    \section*{\fontsize{20}{20}\selectfont Chapter 3}
+\end{center}
+\vspace{10mm}
+\section{Research Methodology}
+
+This chapter lays out the methodology we used to develop and validate the graph-based neural network for brain tumor segmentation. The research follows a systematic pipeline—data preprocessing, graph construction, model architecture design, training, and rigorous validation. Everything's designed to ensure reproducibility, eliminate data leakage, and enable fair comparison with baseline methods.
+
+Our framework converts 3D multi-parametric MRI volumes into 2D graph representations. Superpixels become nodes, and spatial adjacency defines edges. This cuts computational complexity while preserving essential tumor characteristics through carefully engineered node features. The GNN processes these graphs using message-passing layers that aggregate neighborhood information, enabling both  local texture analysis and global structural reasoning. All experimental procedures follow deterministic protocols with comprehensive integrity checks to ensure scientific rigor and clinical reliability.
+
+
+\subsection{Proposed Framework}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{image/pipeline_architechture.png}
+\caption{Complete 8-Phase Pipeline Architecture.}
+\label{fig:framework}
+\end{figure}
+The framework progresses from raw multi-parametric MRI input through preprocessing, graph construction with superpixel-based dimensionality reduction (890× compression), feature engineering (15 domain-specific features), GraphSAGE training, patient-level cross-validation, ensemble aggregation, efficiency benchmarking, and comprehensive validation. Each phase incorporates integrity checks to prevent data leakage.
+
+The framework consists of eight interconnected phases that transform raw MRI data into validated tumor segmentation predictions.
+
+\textbf{Phase 1: Data Preprocessing} standardizes the BraTS 2021 dataset through skull-stripping, resampling to isotropic 1mm$^3$ voxel spacing, Z-score normalization per modality, and patient-level stratified 5-fold cross-validation split generation. This prevents data leakage.
+
+\textbf{Phase 2: Graph Construction} is where things get interesting. We convert preprocessed 3D volumes into 2D graph representations. For each patient, we extract 200 axial slices using adaptive selection to focus on tumor-containing regions. The SLIC algorithm segments each slice into superpixels (compactness parameter = 10). Each superpixel becomes a graph node with 15 engineered features that capture intensity statistics, spatial information, and shape descriptors. Graph edges connect spatially adjacent superpixels based on boundary sharing.
+
+\textbf{Phase 3: Feature Engineering} extracts domain-specific features without ground-truth leakage. The 15 features include intensity statistics from all four MRI modalities (T1, T1CE, T2, FLAIR), spatial coordinates, and geometric properties. Critically, we don't use any tumor label information during feature extraction—that would be cheating and would lead to data leakage.
+
+\textbf{Phase 4: Model Training} employs a 5-layer GraphSAGE architecture with 256 hidden dimensions. We train using Adam optimizer (learning rate 0.001), binary cross-entropy loss with class weights to handle imbalance, batch size 32, and 100 epochs with early stopping. Training uses deterministic seed (42) and CUDA deterministic mode for reproducibility.
+
+\textbf{Phase 5: Cross-Validation} implements patient-level stratified 5-fold splits—no patient appears in both training and validation sets. Each fold trains independently with identical hyperparameters, which enables robust performance estimation and statistical significance testing.
+
+\textbf{Phase 6: Ensemble Methods} combine predictions from all 5 folds using soft voting (averaging sigmoid outputs) to leverage model diversity and improve robustness. The ensemble consistently shows 2-3\% improvement over individual models.
+
+\textbf{Phase 7: Efficiency Benchmarking} compares inference speed, memory consumption, and model size against 3D U-Net baseline under identical hardware conditions. We measure per-patient latency, GPU memory usage, and parameter count.
+
+\textbf{Phase 8: Integrity Validation} conducts 15 comprehensive audits to ensure research integrity and reproducibility: (1) feature dimension verification (15 features per node), (2) patient leakage detection across splits, (3) label distribution analysis across folds, (4) normalization consistency checks (Z-score per modality), (5) seed reproducibility verification (deterministic outputs), (6) graph node count validation (~10K nodes per patient), (7) edge connectivity verification (planar graph structure), (8) cross-fold data isolation audit (no shared patients), (9) ground truth label integrity (binary mask validity), (10) MRI modality completeness check (all 4 modalities present), (11) slice count validation (200 slices per patient), (12) superpixel boundary consistency, (13) training/validation/test split ratio verification (900/100/251 patients, 72\%/8\%/20\%), (14) model checkpoint consistency, and (15) prediction output format verification.
+
+
+\subsection{Data Set Analysis}
+
+This research utilizes the Brain Tumor Segmentation (BraTS) 2021 dataset, the most comprehensive and widely adopted benchmark for evaluating automated brain tumor segmentation algorithms.
+
+\textbf{Dataset Composition:} The BraTS 2021 training set contains 1,251 multi-institutional glioma cases collected from 19 institutions worldwide. Each case includes four co-registered MRI modalities: native T1-weighted (T1), T1-weighted with contrast enhancement (T1CE), T2-weighted (T2), and Fluid Attenuated Inversion Recovery (FLAIR). All images have been pre-processed by BraTS organizers to normalize orientations, resample to 1mm$^3$ isotropic resolution, and skull-strip to focus on brain tissue.
+
+\textbf{Ground Truth Annotations:} Expert neuroradiologists manually segmented three nested tumor sub-regions: (1) enhancing tumor (ET), (2) tumor core (TC = ET + necrotic core), and (3) whole tumor (WT = TC + peritumoral edema). For this research, we focus on binary segmentation (tumor vs. non-tumor) by combining all tumor regions into a single positive class.
+
+\textbf{Data Characteristics:} Glioma tumors exhibit high heterogeneity in appearance, size (ranging from small focal lesions to large infiltrative masses), location (various brain regions), and intensity patterns across modalities. Tumors typically occupy only 5-10\% of total brain volume, creating significant class imbalance. The multi-institutional nature introduces scanner variability (different field strengths, acquisition protocols, vendors) that tests generalization capability.
+
+\textbf{Patient-Level Splitting:} Critical for valid medical AI research, we implement patient-level stratified 5-fold cross-validation where each patient's complete 3D volume appears in exactly one fold. This prevents slice-level leakage where slices from the same patient could appear in both training and testing, artificially inflating performance. Stratification ensures balanced tumor distribution across folds.
+
+\begin{table}[htbp]
+\caption{BraTS 2021 Dataset Statistics and Cross-Validation Split}
+\begin{center}
+\begin{tabularx}{0.8\textwidth} { 
+  | >{\raggedright\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | }
+\hline
+\textbf{Characteristic} & \textbf{Value}\\
+\hline
+Total Patients & 1,251\\
+\hline
+MRI Modalities & 4 (T1, T1CE, T2, FLAIR)\\
+\hline
+Image Resolution & 240 $\times$ 240 $\times$ 155\\
+\hline
+Voxel Spacing & 1 mm$^3$ (isotropic)\\
+\hline
+Training Patients (per fold) & 900 (72\%)\\
+\hline
+Validation Patients (per fold) & 100 (8\%)\\
+\hline
+Test Patients (per fold) & 251 (20\%)\\
+\hline
+Average Tumor Volume & 5-10\% of brain\\
+\hline
+Ground Truth Labels & Binary (tumor/non-tumor)\\
+\hline
+Cross-Validation Folds & 5 (patient-level stratified)\\
+\hline
+Total Graph Nodes (per patient) & $\sim$10,000 superpixels\\
+\hline
+Node Features & 15 (intensity + spatial + shape)\\
+\hline
+\end{tabularx}
+\label{tab1}
+\end{center}
+\end{table}
+
+\subsubsection{Data Collection \& Preprocessing}
+
+\textbf{Data Acquisition:} The BraTS 2021 dataset was obtained through official registration with the BraTS challenge organizers. All data is de-identified and approved for research use, complying with institutional review board (IRB) requirements and patient privacy regulations.
+
+\textbf{Preprocessing Pipeline:} Although BraTS provides pre-processed images, we apply additional standardization:
+
+\begin{itemize}
+    \item \textbf{Skull-Stripping:} Remove non-brain tissue to focus computation on relevant regions (already performed by BraTS, verified in our pipeline)
+    
+    \item \textbf{Intensity Normalization:} Apply Z-score normalization independently for each MRI modality to standardize intensity distributions across patients: $x_{norm} = (x - \mu) / \sigma$ where $\mu$ and $\sigma$ are computed per modality per patient
+    
+    \item \textbf{Slice Selection:} Extract 200 axial slices per patient using adaptive sampling that prioritizes tumor-containing regions while maintaining anatomical coverage
+    
+    \item \textbf{Quality Control:} Validate data integrity through automated checks for missing files, corrupted images, inconsistent dimensions, and ground truth label validity
+\end{itemize}
+
+\subsubsection{Feature Engineering and Selection}
+
+The success of graph-based segmentation depends on node features that capture tumor-discriminative information without introducing ground-truth leakage. We engineered 15 features per superpixel node, organized into three categories:
+
+\textbf{1. Multi-Modal Intensity Statistics (12 features):} For each of the four MRI modalities (T1, T1CE, T2, FLAIR), we compute statistical descriptors over all voxels within each superpixel:
+\begin{itemize}
+    \item Mean intensity: captures average signal
+    \item Standard deviation: measures local intensity variation
+    \item Minimum/Maximum intensities: capture intensity range
+    \item Median intensity: robust central tendency
+\end{itemize}
+
+Why these? Glioma tumors exhibit characteristic intensity patterns: hypo-intense in T1, hyper-intense in T2/FLAIR, rim enhancement in T1CE. These statistics let the GNN learn discriminative tumor signatures.
+
+\textbf{2. Spatial Features (2 features):} Normalized (x, y) centroid coordinates of each superpixel provide spatial context, enabling the model to learn anatomical priors about where tumors typically occur.
+
+\textbf{3. Geometric/Shape Features (1 feature):} Superpixel area captures region size, helping distinguish focal lesions from larger tumor masses.
+
+\textbf{Critical Design Decision:} What's notably absent from our features is tumor label information or tumor ratio within superpixels. Initial experiments included a "tumor\_ratio" feature (percentage of tumor pixels in each superpixel), achieving 98\% accuracy—but that's severe data leakage. After removing this feature and retraining, we got the validated 90.39\% performance. That ensures fair evaluation and generalization capability.
+
+
+\subsection{Algorithm/ Model Analysis}
+
+\subsubsection{Graph Construction Algorithm}
+
+The graph construction process converts each 3D MRI volume into a 2D graph representation suitable for GNN processing. The procedure consists of five systematic steps:
+
+\textbf{Step 1: Slice Extraction} - Select 200 axial slices from the 3D volume (indices 20-220 of the 240-slice stack) to focus on brain tissue while maintaining computational efficiency.
+
+\textbf{Step 2: Superpixel Generation} - Apply SLIC (Simple Linear Iterative Clustering) algorithm to each slice with parameters: n\_segments=50-100 (target number per slice), compactness=10 (balance between spatial and intensity clustering). SLIC groups similar pixels into perceptually coherent regions that often align with anatomical structures.
+
+\textbf{Node Count Design Choice:} We configure SLIC to generate approximately \textbf{80-100 superpixels per slice} (parameter experimentation determined this optimal range), resulting in roughly \textbf{10,000 total nodes per patient} across all 200 slices. This design balances computational efficiency with spatial resolution—denser superpixel sampling (e.g., 800 nodes/slice yielding 160K total nodes) would preserve finer texture details but increase graph processing cost by 16$\times$, while sparser sampling (e.g., 20 nodes/slice yielding 4K total nodes) would oversimplify tumor boundaries. Preliminary experiments confirmed that 80-100 nodes/slice provides the optimal accuracy-efficiency trade-off for brain tumor segmentation.
+
+\textbf{Step 3: Node Feature Extraction} - For each superpixel, compute the 15 features described previously by aggregating information from the 4 MRI modalities.
+
+\textbf{Step 4: Edge Construction} - Build graph edges by determining spatial adjacency: two superpixel nodes are connected if they share a boundary in the image space. This creates a planar graph with average degree 4-6.
+
+\textbf{Step 5: Node Label Assignment} - Assign binary labels (tumor/non-tumor) to each node based on majority voting: if $>$50\% of voxels within a superpixel are labeled as tumor in ground truth, the node is labeled positive.
+
+\textbf{Computational Efficiency:} Converting a 3D volume (240$\times$240$\times$155 = 8.9M voxels) into a graph (200 slices $\times$ $\sim$50 superpixels average = $\sim$10K nodes) reduces representation size by \textbf{890$\times$}, enabling efficient GNN processing while preserving tumor boundary information through explicit edge connectivity.
+
+\subsubsection{GraphSAGE Architecture}
+
+We employ GraphSAGE (Graph Sample and Aggregate), a message-passing neural network designed for inductive learning on graphs with node features.
+
+\textbf{Core Mechanism:} GraphSAGE updates node representations by aggregating information from neighborhood nodes through learned transformations:
+
+\begin{equation}
+h_{\mathcal{N}(v)}^{(k)} = \frac{1}{|\mathcal{N}(v)|} \sum_{u \in \mathcal{N}(v)} h_u^{(k)}
+\end{equation}
+
+\begin{equation}
+h_v^{(k+1)} = \sigma \left( W \cdot \left[ h_v^{(k)} \oplus h_{\mathcal{N}(v)}^{(k)} \right] \right)
+\end{equation}
+
+where $h_v^{(k)}$ is the representation of node $v$ at layer $k$, $\mathcal{N}(v)$ is the neighborhood of $v$, $h_{\mathcal{N}(v)}^{(k)}$ is the mean-aggregated neighborhood representation, $\oplus$ denotes concatenation, $W$ is a learnable weight matrix, and $\sigma$ is ReLU activation.
+
+\textbf{Architecture Specification:}
+\begin{itemize}
+    \item \textbf{Input Layer:} 15 node features
+    \item \textbf{Hidden Layers:} 5 GraphSAGE layers with 256 hidden dimensions each
+    \item \textbf{Activation:} ReLU activation after each layer
+    \item \textbf{Normalization:} Batch normalization for training stability
+    \item \textbf{Output Layer:} Single neuron with sigmoid activation for binary classification
+    \item \textbf{Total Parameters:} 439,041
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1\textwidth]{image/graphsage_architecture.png}
+\caption{5-Layer GraphSAGE Architecture.}
+\label{fig:graphsage_arch}
+\end{figure}
+
+Each layer performs message passing (aggregate neighbors → concatenate with self → linear transform → ReLU activation). The 5-layer depth provides 5-hop receptive field sufficient for tumor context aggregation, as validated through ablation studies showing no benefit from 6 layers.
+
+\textbf{Design Rationale:} The 5-layer depth allows message propagation up to 5 hops in the graph, enabling each node to aggregate information from a wide spatial context. Ablation studies confirmed that 6 layers provide no additional benefit. The 256 hidden dimensions balance expressiveness with parameter efficiency.
+
+\subsubsection{Training Protocol}
+
+\textbf{Loss Function:} Binary Cross-Entropy (BCE) loss with class weights to address extreme class imbalance (tumor nodes $\sim$10\%, non-tumor $\sim$90\%):
+
+\begin{equation}
+\mathcal{L} = -\frac{1}{N} \sum_{i=1}^{N} \left[ w_1 \cdot y_i \log(\hat{y}_i) + w_0 \cdot (1-y_i) \log(1-\hat{y}_i) \right]
+\end{equation}
+
+where $w_1 = 9.0$ (weight for tumor class) and $w_0 = 1.0$ (weight for non-tumor class).
+
+\textbf{Optimization:} Adam optimizer with learning rate 0.001, $\beta_1=0.9$, $\beta_2=0.999$, weight decay $10^{-5}$.
+
+\textbf{Batch Configuration:} Batch size 32 (optimal discovered through empirical analysis), gradient accumulation disabled. Larger batches (48, 64) showed performance degradation.
+
+\textbf{Training Duration:} 100 epochs with early stopping (patience=15 epochs) based on validation Dice coefficient. Typical convergence occurs around epoch 50-70.
+
+\textbf{Hardware:} NVIDIA RTX 2060 with 6GB VRAM, demonstrating accessibility on consumer-grade GPUs. Training time: $\sim$5 hours per fold.
+
+\textbf{Reproducibility:} Deterministic training with manual seed 42 for Python, NumPy, PyTorch, and CUDA. Environment variables set: \texttt{CUBLAS\_WORKSPACE\_CONFIG=:4096:8}, \texttt{CUDNN\_DETERMINISTIC=True}.
+
+\subsubsection{Ensemble Strategy}
+
+To improve robustness and performance, we implement soft voting ensemble:
+
+\begin{equation}
+P_{ensemble}(tumor) = \frac{1}{5} \sum_{k=1}^{5} P_{fold\_k}(tumor)
+\end{equation}
+
+where $P_{fold\_k}(tumor)$ is the sigmoid output probability from fold $k$ model. Final prediction is tumor if $P_{ensemble} > 0.5$.
+
+\textbf{Rationale:} Each fold trains on different 80\% patient subsets, learning complementary patterns. Averaging reduces prediction variance and improves generalization. Our experiments show consistent 2.5\% Dice improvement (90.39\% $\rightarrow$ 92.92\%).
+
+\subsubsection{Evaluation Metrics}
+
+\textbf{Primary Metric:} Dice Similarity Coefficient (DSC), the standard metric for medical image segmentation:
+
+\begin{equation}
+\text{Dice} = \frac{2 \times |A \cap B|}{|A| + |B|}
+\end{equation}
+
+where $A$ is predicted tumor region and $B$ is ground truth. Dice ranges from 0 (no overlap) to 1 (perfect agreement).
+
+\textbf{Secondary Metrics:}
+\begin{itemize}
+    \item \textbf{Sensitivity (Recall):} $\frac{TP}{TP + FN}$ - ability to detect actual tumors
+    \item \textbf{Specificity:} $\frac{TN}{TN + FP}$ - ability to correctly identify non-tumor regions
+    \item \textbf{Precision:} $\frac{TP}{TP + FP}$ - accuracy of positive predictions
+    \item \textbf{Inference Time:} Milliseconds per patient volume
+    \item \textbf{GPU Memory:} Peak VRAM consumption during inference
+    \item \textbf{Model Size:} Total trainable parameters
+\end{itemize}
+
+
+\subsection{Implementation Details}
+
+The complete pipeline is implemented in Python using PyTorch and PyTorch Geometric frameworks. Medical image processing utilizes SimpleITK and nibabel for NIfTI file handling, while graph construction employs scikit-image's SLIC algorithm for superpixel generation. Preprocessed data is stored as compressed .npz files (4 modalities $\times$ 200 slices) for efficient loading during training. Graph representations are structured as PyTorch Geometric Data objects containing node features (N $\times$ 15), edge indices (2 $\times$ E), and labels (N $\times$ 1).
+
+Several implementation choices warrant emphasis for reproducibility: (1) \textbf{deterministic training} with manual seed 42 across Python, NumPy, PyTorch, and CUDA environments using \texttt{CUBLAS\_WORKSPACE\_CONFIG} and \texttt{CUDNN\_DETERMINISTIC} flags, (2) \textbf{batch size optimization} discovering that batch 32 significantly outperforms larger batches (48, 64) in medical imaging GNN tasks, (3) \textbf{comprehensive integrity auditing} with 15 automated validation checks detecting data leakage, patient overlap, and normalization errors, (4) \textbf{efficient data structures} converting 8.9M voxel volumes into 10K node graphs (890$\times$ compression) while preserving tumor-discriminative features, and (5) \textbf{ensemble post-processing} using soft voting to aggregate sigmoid probabilities from 5 folds before thresholding at 0.5. All experiments run on consumer-grade hardware (NVIDIA RTX 2060, 6GB VRAM) demonstrating accessibility. The complete codebase with documentation is available for reproduction, enabling other researchers to validate our findings and build upon this work.
+
+\vspace{5mm}
+
+This methodology chapter has presented a comprehensive and rigorous approach to graph-based brain tumor segmentation. The proposed framework systematically transforms 3D MRI volumes into graph representations through superpixel-based node generation and careful feature engineering that avoids ground-truth leakage. The GraphSAGE architecture with 5 layers and 256 hidden dimensions provides an optimal balance between expressiveness and parameter efficiency, validated through systematic ablation studies. Patient-level stratified cross-validation ensures statistically valid performance estimation, while the ensemble strategy leverages model diversity for robust predictions. Comprehensive integrity validation with 15 auditing checks (covering data isolation, feature validity, graph structure, reproducibility, and output verification) guarantees reproducibility and eliminates data leakage, addressing critical concerns in medical AI research. The modular pipeline design enables efficient experimentation, adaptation to new datasets, and potential clinical translation. The subsequent chapter will present experimental results demonstrating that this methodology achieves competitive accuracy (92.92\% Dice) with substantial efficiency improvements (6.9$\times$ speedup, 156$\times$ parameter reduction) suitable for real-world clinical deployment.
+
+\clearpage
+
