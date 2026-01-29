@@ -1,9 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.24)  23 DEC 2025 02:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.24)  23 DEC 2025 12:57
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**main.tex
-(./main.tex
+**/mnt/bigdata/capstone/brats_gnn_segmentation/paperWriting/Template/main.tex
+(/mnt/bigdata/capstone/brats_gnn_segmentation/paperWriting/Template/main.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -22,58 +23,42 @@ File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
-)
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks17
 \inpenc@posthook=\toks18
-)
-(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
-)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
 Package: adjustbox 2022/10/17 v1.3a Adjusting TeX boxes (trim, clip, ...)
-
-(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
-
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+ (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
 \XKV@toks=\toks19
 \XKV@tempa@toks=\toks20
-
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/keyval.tex))
+ (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/keyval.tex))
 \XKV@depth=\count195
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
-))
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty
-Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
--ends (calc, etex, pgfmath)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back-ends (calc, etex, pgfmath)
+) (/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
 Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen141
 \Gin@req@width=\dimen142
-)
-(/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty
 Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
 \collectedbox=\box51
 )
@@ -82,8 +67,7 @@ Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
 \tc@urx=\dimen145
 \tc@ury=\dimen146
 Package trimclip Info: Using driver 'tc-pdftex.def'.
-
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+ (/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
 File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 ))
 \adjbox@Width=\dimen147
@@ -94,36 +78,30 @@ File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 \adjbox@pheight=\dimen152
 \adjbox@pdepth=\dimen153
 \adjbox@ptotalheight=\dimen154
-
-(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
 \c@checkoddpage=\count196
-)
-(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box52
 \sift@deathcycles=\count197
 \@vwid@loff=\dimen155
 \@vwid@roff=\dimen156
-))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2023/05/13 v2.17o AMS math features
 \@mathmargin=\skip50
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks21
 \ex@=\dimen157
-))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen158
-)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
 \inf@bad=\count198
@@ -173,37 +151,29 @@ LaTeX Info: Redefining \Relbar on input line 971.
 \mathdisplay@stack=\toks25
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
-)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-(/usr/share/texlive/texmf-dist/tex/latex/acronym/acronym.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/acronym/acronym.sty
 Package: acronym 2020/04/17 v1.47 Support for acronyms (Tobias Oetiker)
-
-(/usr/share/texlive/texmf-dist/tex/latex/bigfoot/suffix.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/bigfoot/suffix.sty
 Package: suffix 2006/07/15 1.5a Variant command support
-)
-(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
-(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
 \xs_counta=\count276
 \xs_countb=\count277
 )
 Package: xstring 2023/08/22 v1.86 String manipulations (CT)
 )
 \AC@clearlist=\toks26
-)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2023/07/08 v2.11c `tabularx' package (DPC)
-
-(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
 Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
 \col@sep=\dimen166
 \ar@mcellbox=\box55
@@ -220,16 +190,13 @@ Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
 \TX@delta=\dimen172
 \TX@cols=\count278
 \TX@ftn=\toks28
-)
-(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 274.
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
 Package xcolor Info: Model `RGB' extended on input line 1366.
@@ -239,16 +206,13 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
-)
-(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2022/06/20 v1.0f Color table columns (DPC)
 \everycr=\toks29
 \minrowclearance=\skip55
 \rownum=\count279
-)
-(/usr/share/texlive/texmf-dist/tex/latex/sectsty/sectsty.sty
-Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading sty
-les
+) (/usr/share/texlive/texmf-dist/tex/latex/sectsty/sectsty.sty
+Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading styles
 
 
 LaTeX Warning: Command \underbar  has changed.
@@ -261,16 +225,13 @@ LaTeX Warning: Command \underline  has changed.
 ) (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
 Package: algorithm2e 2017/07/18 v5.2 algorithms environments
 \c@AlgoLine=\count280
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 )
 \algocf@hangindent=\skip56
-
-(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
 )
 \skiptotal=\skip57
@@ -308,45 +269,33 @@ Package: relsize 2013/03/29 ver 4.1
 \c@algocf=\count283
 \algocf@algoframe=\box63
 \algocf@algobox=\box64
-)
-(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
 Package: biblatex 2023/03/05 v3.19 programmable bibliographies (PK/MW)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
-Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+) (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
-)
-(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+) (/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-)
-(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count284
-)
-(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
-
-(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-))
-(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
 \lrq@indent=\count285
-
-(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
+ (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
-))
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -409,8 +358,7 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \c@mincompwidth=\count331
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
-
-(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def
+ (/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def
 File: blx-dm.def 2023/03/05 v3.19 biblatex localization (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex custom data model...
@@ -499,14 +447,12 @@ Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \localshorteditorwidth=\skip96
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
-
-(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-compat.def
+ (/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-compat.def
 File: blx-compat.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
 )
 Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
-
-(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
+ (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
 \c@textcitecount=\count400
 \c@textcitetotal=\count401
@@ -524,21 +470,18 @@ File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
 )
 Package biblatex Info: Trying to load bibliography style 'numeric'...
 Package biblatex Info: ... file 'numeric.bbx' found.
-
-(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+ (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
 File: numeric.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
-
-(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+ (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
 \c@bbx:relatedcount=\count409
 \c@bbx:relatedtotal=\count410
 ))
 Package biblatex Info: Trying to load citation style 'numeric'...
 Package biblatex Info: ... file 'numeric.cbx' found.
-
-(/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
+ (/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
 File: numeric.cbx 2023/03/05 v3.19 biblatex citation style (PK/MW)
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
@@ -554,17 +497,14 @@ Package biblatex Info: Redefining '\smartcites'.
 )
 Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
-
-(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.cfg
+ (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.cfg
 File: biblatex.cfg 
 )
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Document encoding is UTF8 ....
-
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2024-01-22 L3 programming layer (loader) 
-
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+ (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count411
 \l__pdf_internal_box=\box65
@@ -573,14 +513,11 @@ Package biblatex Info: ... and expl3
 (biblatex)             2024-01-22 L3 programming layer (loader) 
 (biblatex)             is new enough (at least 2020/04/06),
 (biblatex)             setting 'casechanger=expl3'.
-
-(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 Package: xparse 2023-10-10 L3 Experimental document command parser
 )
 Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
-))
-(/usr/share/texlive/texmf-dist/tex/latex/tocloft/tocloft.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/tocloft/tocloft.sty
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
 Package tocloft Info: The document has section divisions on input line 51.
 \cftparskip=\skip97
@@ -616,29 +553,21 @@ Package tocloft Info: The document has section divisions on input line 51.
 \cftbeforetabskip=\skip125
 \cfttabindent=\skip126
 \cfttabnumwidth=\skip127
-)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
-
-(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+) (/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
-
-(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count414
@@ -646,18 +575,15 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 \@linkdim=\dimen179
 \Hy@linkcounter=\count415
 \Hy@pagecounter=\count416
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
-)
-(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
+) (/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count417
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
@@ -672,13 +598,10 @@ Package hyperref Info: Bookmarks ON on input line 4446.
 \c@Hy@tempcnt=\count418
 LaTeX Info: Redefining \url on input line 4784.
 \XeTeXLinkMargin=\dimen180
-
-(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
-Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
-)
+ (/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
 \Fld@menulength=\count419
 \Field@Width=\dimen181
@@ -690,8 +613,7 @@ Package hyperref Info: backreferencing OFF on input line 6078.
 Package hyperref Info: Link coloring OFF on input line 6083.
 Package hyperref Info: Link coloring with OCG OFF on input line 6088.
 Package hyperref Info: PDF/A mode OFF on input line 6093.
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
@@ -700,35 +622,27 @@ package with kernel methods
 \c@Hfootnote=\count422
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2024-01-20 v7.01h Hyperref driver for pdfTeX
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty
-Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
-kage
+ (/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
 \Fld@listcount=\count423
 \c@bookmark@seq@number=\count424
-
-(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
-Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
-85.
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
 \Hy@SectionHShift=\skip128
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 50.
-
-(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
-
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
 \Gm@cnth=\count425
@@ -792,17 +706,13 @@ LaTeX Font Info:    ... okay on input line 53.
 \everyMPtoPDFconversion=\toks32
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
-
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
-
-(/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+ (/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 File: english.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
 )
 Package biblatex Info: Input encoding 'utf8' detected.
@@ -816,7 +726,7 @@ Package biblatex Info: ... file 'main.bbl' found.
 Package biblatex Info: Reference section=0 on input line 53.
 Package biblatex Info: Reference segment=0 on input line 53.
 Package hyperref Info: Link coloring ON on input line 53.
-(./main.out) (./main.out)
+ (./main.out) (./main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
@@ -857,14 +767,11 @@ Package hyperref Info: Link coloring ON on input line 53.
 
 (./cover_page.tex
 LaTeX Font Info:    Trying to load font information for U+msa on input line 18.
-
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 18.
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 <image/BUBT-Logo.png, id=349, 412.54124pt x 529.98pt>
@@ -874,8 +781,7 @@ Package pdftex.def Info: image/BUBT-Logo.png  used on input line 32.
 (pdftex.def)             Requested size: 82.50677pt x 105.99411pt.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
-dvips/cm-super/cm-super-ts1.enc} <./image/BUBT-Logo.png>]) (./Declaration.tex
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./image/BUBT-Logo.png>]) (./Declaration.tex
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <16> not available
 (Font)              size <17.28> substituted on input line 2.
@@ -884,45 +790,38 @@ LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <16> not available
 
 ] (./Dedication.tex) [4
 
-] (./Acknowledgement.tex)
-[5
+] (./Acknowledgement.tex) [5
 
 ] (./Abstruct.tex) [6
 
 ] (./main.lof
 Overfull \hbox (5.02676pt too wide) in paragraph at lines 6--6
- [][] [][][]\OT1/cmr/m/n/12 Qualitative Seg-men-ta-tion Ex-am-ple 1 (Pa-tient B
-raTS2021[]00501, 
+ [][] [][][]\OT1/cmr/m/n/12 Qualitative Seg-men-ta-tion Ex-am-ple 1 (Pa-tient BraTS2021[]00501, 
  []
 
 
 Overfull \hbox (5.02676pt too wide) in paragraph at lines 7--7
- [][] [][][]\OT1/cmr/m/n/12 Qualitative Seg-men-ta-tion Ex-am-ple 2 (Pa-tient B
-raTS2021[]00491, 
+ [][] [][][]\OT1/cmr/m/n/12 Qualitative Seg-men-ta-tion Ex-am-ple 2 (Pa-tient BraTS2021[]00491, 
  []
 
 
 Overfull \hbox (5.02676pt too wide) in paragraph at lines 8--8
- [][] [][][]\OT1/cmr/m/n/12 Qualitative Seg-men-ta-tion Ex-am-ple 3 (Pa-tient B
-raTS2021[]00559, 
+ [][] [][][]\OT1/cmr/m/n/12 Qualitative Seg-men-ta-tion Ex-am-ple 3 (Pa-tient BraTS2021[]00559, 
  []
 
 
 Overfull \hbox (5.02676pt too wide) in paragraph at lines 9--9
- [][] [][][]\OT1/cmr/m/n/12 Qualitative Seg-men-ta-tion Ex-am-ple 1 (Pa-tient B
-raTS2021[]00501, 
+ [][] [][][]\OT1/cmr/m/n/12 Qualitative Seg-men-ta-tion Ex-am-ple 1 (Pa-tient BraTS2021[]00501, 
  []
 
 
 Overfull \hbox (5.02676pt too wide) in paragraph at lines 10--10
- [][] [][][]\OT1/cmr/m/n/12 Qualitative Seg-men-ta-tion Ex-am-ple 2 (Pa-tient B
-raTS2021[]00491, 
+ [][] [][][]\OT1/cmr/m/n/12 Qualitative Seg-men-ta-tion Ex-am-ple 2 (Pa-tient BraTS2021[]00491, 
  []
 
 
 Overfull \hbox (5.02676pt too wide) in paragraph at lines 11--11
- [][] [][][]\OT1/cmr/m/n/12 Qualitative Seg-men-ta-tion Ex-am-ple 3 (Pa-tient B
-raTS2021[]00559, 
+ [][] [][][]\OT1/cmr/m/n/12 Qualitative Seg-men-ta-tion Ex-am-ple 3 (Pa-tient BraTS2021[]00559, 
  []
 
 )
@@ -945,34 +844,28 @@ LaTeX Warning: Hyper reference `acro:3D' on page ix undefined on input line 4.
 LaTeX Warning: Hyper reference `acro:3D' on page ix undefined on input line 4.
 
 
-LaTeX Warning: Hyper reference `acro:ABET' on page ix undefined on input line 5
-.
+LaTeX Warning: Hyper reference `acro:ABET' on page ix undefined on input line 5.
 
 
-LaTeX Warning: Hyper reference `acro:ABET' on page ix undefined on input line 5
-.
-
-
-LaTeX Warning: Hyper reference `acro:AI' on page ix undefined on input line 6.
+LaTeX Warning: Hyper reference `acro:ABET' on page ix undefined on input line 5.
 
 
 LaTeX Warning: Hyper reference `acro:AI' on page ix undefined on input line 6.
 
 
-LaTeX Warning: Hyper reference `acro:BAETE' on page ix undefined on input line 
-7.
+LaTeX Warning: Hyper reference `acro:AI' on page ix undefined on input line 6.
 
 
-LaTeX Warning: Hyper reference `acro:BAETE' on page ix undefined on input line 
-7.
+LaTeX Warning: Hyper reference `acro:BAETE' on page ix undefined on input line 7.
 
 
-LaTeX Warning: Hyper reference `acro:BraTS' on page ix undefined on input line 
-8.
+LaTeX Warning: Hyper reference `acro:BAETE' on page ix undefined on input line 7.
 
 
-LaTeX Warning: Hyper reference `acro:BraTS' on page ix undefined on input line 
-8.
+LaTeX Warning: Hyper reference `acro:BraTS' on page ix undefined on input line 8.
+
+
+LaTeX Warning: Hyper reference `acro:BraTS' on page ix undefined on input line 8.
 
 
 LaTeX Warning: Hyper reference `acro:CE' on page ix undefined on input line 9.
@@ -981,140 +874,106 @@ LaTeX Warning: Hyper reference `acro:CE' on page ix undefined on input line 9.
 LaTeX Warning: Hyper reference `acro:CE' on page ix undefined on input line 9.
 
 
-LaTeX Warning: Hyper reference `acro:CNN' on page ix undefined on input line 10
-.
+LaTeX Warning: Hyper reference `acro:CNN' on page ix undefined on input line 10.
 
 
-LaTeX Warning: Hyper reference `acro:CNN' on page ix undefined on input line 10
-.
+LaTeX Warning: Hyper reference `acro:CNN' on page ix undefined on input line 10.
 
 
-LaTeX Warning: Hyper reference `acro:CPU' on page ix undefined on input line 11
-.
+LaTeX Warning: Hyper reference `acro:CPU' on page ix undefined on input line 11.
 
 
-LaTeX Warning: Hyper reference `acro:CPU' on page ix undefined on input line 11
-.
+LaTeX Warning: Hyper reference `acro:CPU' on page ix undefined on input line 11.
 
 
 LaTeX Warning: Hyper reference `acro:CT' on page ix undefined on input line 12.
 
 
-
 LaTeX Warning: Hyper reference `acro:CT' on page ix undefined on input line 12.
 
 
-
-LaTeX Warning: Hyper reference `acro:CUDA' on page ix undefined on input line 1
-3.
+LaTeX Warning: Hyper reference `acro:CUDA' on page ix undefined on input line 13.
 
 
-LaTeX Warning: Hyper reference `acro:CUDA' on page ix undefined on input line 1
-3.
+LaTeX Warning: Hyper reference `acro:CUDA' on page ix undefined on input line 13.
 
 
 LaTeX Warning: Hyper reference `acro:CV' on page ix undefined on input line 14.
 
 
-
 LaTeX Warning: Hyper reference `acro:CV' on page ix undefined on input line 14.
 
 
-
-LaTeX Warning: Hyper reference `acro:DICOM' on page ix undefined on input line 
-15.
+LaTeX Warning: Hyper reference `acro:DICOM' on page ix undefined on input line 15.
 
 
-LaTeX Warning: Hyper reference `acro:DICOM' on page ix undefined on input line 
-15.
+LaTeX Warning: Hyper reference `acro:DICOM' on page ix undefined on input line 15.
 
 
-LaTeX Warning: Hyper reference `acro:FDA' on page ix undefined on input line 16
-.
+LaTeX Warning: Hyper reference `acro:FDA' on page ix undefined on input line 16.
 
 
-LaTeX Warning: Hyper reference `acro:FDA' on page ix undefined on input line 16
-.
+LaTeX Warning: Hyper reference `acro:FDA' on page ix undefined on input line 16.
 
 
-LaTeX Warning: Hyper reference `acro:FLAIR' on page ix undefined on input line 
-17.
+LaTeX Warning: Hyper reference `acro:FLAIR' on page ix undefined on input line 17.
 
 
-LaTeX Warning: Hyper reference `acro:FLAIR' on page ix undefined on input line 
-17.
+LaTeX Warning: Hyper reference `acro:FLAIR' on page ix undefined on input line 17.
 
 
-LaTeX Warning: Hyper reference `acro:GAT' on page ix undefined on input line 18
-.
+LaTeX Warning: Hyper reference `acro:GAT' on page ix undefined on input line 18.
 
 
-LaTeX Warning: Hyper reference `acro:GAT' on page ix undefined on input line 18
-.
+LaTeX Warning: Hyper reference `acro:GAT' on page ix undefined on input line 18.
 
 
-LaTeX Warning: Hyper reference `acro:GDPR' on page ix undefined on input line 1
-9.
+LaTeX Warning: Hyper reference `acro:GDPR' on page ix undefined on input line 19.
 
 
-LaTeX Warning: Hyper reference `acro:GDPR' on page ix undefined on input line 1
-9.
+LaTeX Warning: Hyper reference `acro:GDPR' on page ix undefined on input line 19.
 
 
 LaTeX Warning: Hyper reference `acro:GE' on page ix undefined on input line 20.
 
 
-
 LaTeX Warning: Hyper reference `acro:GE' on page ix undefined on input line 20.
 
 
-
-LaTeX Warning: Hyper reference `acro:GNN' on page ix undefined on input line 21
-.
+LaTeX Warning: Hyper reference `acro:GNN' on page ix undefined on input line 21.
 
 
-LaTeX Warning: Hyper reference `acro:GNN' on page ix undefined on input line 21
-.
+LaTeX Warning: Hyper reference `acro:GNN' on page ix undefined on input line 21.
 
 
-LaTeX Warning: Hyper reference `acro:GPU' on page ix undefined on input line 22
-.
+LaTeX Warning: Hyper reference `acro:GPU' on page ix undefined on input line 22.
 
 
-LaTeX Warning: Hyper reference `acro:GPU' on page ix undefined on input line 22
-.
+LaTeX Warning: Hyper reference `acro:GPU' on page ix undefined on input line 22.
 
 
-LaTeX Warning: Hyper reference `acro:GraphSAGE' on page ix undefined on input l
-ine 23.
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page ix undefined on input line 23.
 
 
-LaTeX Warning: Hyper reference `acro:GraphSAGE' on page ix undefined on input l
-ine 23.
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page ix undefined on input line 23.
 
 
-LaTeX Warning: Hyper reference `acro:HIPAA' on page ix undefined on input line 
-24.
+LaTeX Warning: Hyper reference `acro:HIPAA' on page ix undefined on input line 24.
 
 
-LaTeX Warning: Hyper reference `acro:HIPAA' on page ix undefined on input line 
-24.
+LaTeX Warning: Hyper reference `acro:HIPAA' on page ix undefined on input line 24.
 
 
-LaTeX Warning: Hyper reference `acro:HPC' on page ix undefined on input line 25
-.
+LaTeX Warning: Hyper reference `acro:HPC' on page ix undefined on input line 25.
 
 
-LaTeX Warning: Hyper reference `acro:HPC' on page ix undefined on input line 25
-.
+LaTeX Warning: Hyper reference `acro:HPC' on page ix undefined on input line 25.
 
 
-LaTeX Warning: Hyper reference `acro:LGG' on page ix undefined on input line 26
-.
+LaTeX Warning: Hyper reference `acro:LGG' on page ix undefined on input line 26.
 
 
-LaTeX Warning: Hyper reference `acro:LGG' on page ix undefined on input line 26
-.
+LaTeX Warning: Hyper reference `acro:LGG' on page ix undefined on input line 26.
 
 [9
 
@@ -1129,49 +988,37 @@ LaTeX Warning: Hyper reference `acro:ML' on page x undefined on input line 27.
 LaTeX Warning: Hyper reference `acro:MRI' on page x undefined on input line 28.
 
 
-
 LaTeX Warning: Hyper reference `acro:MRI' on page x undefined on input line 28.
 
 
-
-LaTeX Warning: Hyper reference `acro:NIfTI' on page x undefined on input line 2
-9.
+LaTeX Warning: Hyper reference `acro:NIfTI' on page x undefined on input line 29.
 
 
-LaTeX Warning: Hyper reference `acro:NIfTI' on page x undefined on input line 2
-9.
+LaTeX Warning: Hyper reference `acro:NIfTI' on page x undefined on input line 29.
 
 
-LaTeX Warning: Hyper reference `acro:PACS' on page x undefined on input line 30
-.
+LaTeX Warning: Hyper reference `acro:PACS' on page x undefined on input line 30.
 
 
-LaTeX Warning: Hyper reference `acro:PACS' on page x undefined on input line 30
-.
+LaTeX Warning: Hyper reference `acro:PACS' on page x undefined on input line 30.
 
 
-LaTeX Warning: Hyper reference `acro:ReLU' on page x undefined on input line 31
-.
+LaTeX Warning: Hyper reference `acro:ReLU' on page x undefined on input line 31.
 
 
-LaTeX Warning: Hyper reference `acro:ReLU' on page x undefined on input line 31
-.
+LaTeX Warning: Hyper reference `acro:ReLU' on page x undefined on input line 31.
 
 
 LaTeX Warning: Hyper reference `acro:RTX' on page x undefined on input line 32.
 
 
-
 LaTeX Warning: Hyper reference `acro:RTX' on page x undefined on input line 32.
 
 
-
-LaTeX Warning: Hyper reference `acro:SLIC' on page x undefined on input line 33
-.
+LaTeX Warning: Hyper reference `acro:SLIC' on page x undefined on input line 33.
 
 
-LaTeX Warning: Hyper reference `acro:SLIC' on page x undefined on input line 33
-.
+LaTeX Warning: Hyper reference `acro:SLIC' on page x undefined on input line 33.
 
 
 LaTeX Warning: Hyper reference `acro:T1' on page x undefined on input line 34.
@@ -1180,50 +1027,40 @@ LaTeX Warning: Hyper reference `acro:T1' on page x undefined on input line 34.
 LaTeX Warning: Hyper reference `acro:T1' on page x undefined on input line 34.
 
 
-LaTeX Warning: Hyper reference `acro:T1ce' on page x undefined on input line 35
-.
+LaTeX Warning: Hyper reference `acro:T1ce' on page x undefined on input line 35.
 
 
-LaTeX Warning: Hyper reference `acro:T1ce' on page x undefined on input line 35
-.
-
-
-LaTeX Warning: Hyper reference `acro:T2' on page x undefined on input line 36.
+LaTeX Warning: Hyper reference `acro:T1ce' on page x undefined on input line 35.
 
 
 LaTeX Warning: Hyper reference `acro:T2' on page x undefined on input line 36.
 
 
-LaTeX Warning: Hyper reference `acro:TCGA' on page x undefined on input line 37
-.
+LaTeX Warning: Hyper reference `acro:T2' on page x undefined on input line 36.
 
 
-LaTeX Warning: Hyper reference `acro:TCGA' on page x undefined on input line 37
-.
+LaTeX Warning: Hyper reference `acro:TCGA' on page x undefined on input line 37.
 
 
-LaTeX Warning: Hyper reference `acro:U-Net' on page x undefined on input line 3
-8.
+LaTeX Warning: Hyper reference `acro:TCGA' on page x undefined on input line 37.
 
 
-LaTeX Warning: Hyper reference `acro:U-Net' on page x undefined on input line 3
-8.
+LaTeX Warning: Hyper reference `acro:U-Net' on page x undefined on input line 38.
 
 
-LaTeX Warning: Hyper reference `acro:VRAM' on page x undefined on input line 39
-.
+LaTeX Warning: Hyper reference `acro:U-Net' on page x undefined on input line 38.
 
 
-LaTeX Warning: Hyper reference `acro:VRAM' on page x undefined on input line 39
-.
+LaTeX Warning: Hyper reference `acro:VRAM' on page x undefined on input line 39.
+
+
+LaTeX Warning: Hyper reference `acro:VRAM' on page x undefined on input line 39.
 
 
 LaTeX Warning: Hyper reference `acro:WHO' on page x undefined on input line 40.
 
 
-
 LaTeX Warning: Hyper reference `acro:WHO' on page x undefined on input line 40.
-
 
 ) [10] (./main.toc [11
 
@@ -1237,107 +1074,91 @@ LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <20> not available
 (Font)              size <20.74> substituted on input line 2.
 
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.17 
+l.13 
       [1
 
 ] [2]
-Overfull \hbox (0.1809pt too wide) in paragraph at lines 45--46
-[]\OT1/cmr/m/n/12 Implement en-sem-ble meth-ods to ex-plore up-per per-for-manc
-e bounds and demon-
+Overfull \hbox (0.1809pt too wide) in paragraph at lines 41--42
+[]\OT1/cmr/m/n/12 Implement en-sem-ble meth-ods to ex-plore up-per per-for-mance bounds and demon-
  []
 
 [3] [4]
-Overfull \hbox (0.30064pt too wide) in paragraph at lines 82--83
-[]\OT1/cmr/bx/n/12 Methodological Ad-vance-ment: \OT1/cmr/m/n/12 We demon-strat
-e that graph-based ap-proaches
+Overfull \hbox (0.30064pt too wide) in paragraph at lines 78--79
+[]\OT1/cmr/bx/n/12 Methodological Ad-vance-ment: \OT1/cmr/m/n/12 We demon-strate that graph-based ap-proaches
  []
 
 [5]
-Overfull \hbox (2.31935pt too wide) in paragraph at lines 104--105
-[]\OT1/cmr/bx/n/12 Comprehensive Val-i-da-tion Frame-work: \OT1/cmr/m/n/12 Pati
-ent-level strat-i-fied 5-fold splits
+Overfull \hbox (2.31935pt too wide) in paragraph at lines 100--101
+[]\OT1/cmr/bx/n/12 Comprehensive Val-i-da-tion Frame-work: \OT1/cmr/m/n/12 Patient-level strat-i-fied 5-fold splits
  []
 
 [6]
-Overfull \hbox (1.6322pt too wide) in paragraph at lines 124--125
-\OT1/cmr/m/n/12 soft-ware en-gi-neer-ing (Py-Torch Ge-o-met-ric, CUDA op-ti-miz
-a-tion, NIfTI/DICOM stan-
+Overfull \hbox (1.6322pt too wide) in paragraph at lines 120--121
+\OT1/cmr/m/n/12 soft-ware en-gi-neer-ing (Py-Torch Ge-o-met-ric, CUDA op-ti-miza-tion, NIfTI/DICOM stan-
  []
 
 [7] [8] [9]
-Overfull \hbox (11.60965pt too wide) in paragraph at lines 150--151
-\OT1/cmr/m/n/12 stripping al-go-rithms, graph the-ory mes-sage pass-ing and at-
-ten-tion mech-a-nisms, patient-
+Overfull \hbox (11.60965pt too wide) in paragraph at lines 146--147
+\OT1/cmr/m/n/12 stripping al-go-rithms, graph the-ory mes-sage pass-ing and at-ten-tion mech-a-nisms, patient-
  []
 
 [10]) [11] [12] (./chapter2.tex [13
 
 ]
 Overfull \hbox (15.83554pt too wide) in paragraph at lines 25--26
-\OT1/cmr/m/n/12 Recent works have ex-plored vi-sion trans-form-ers for med-i-ca
-l seg-men-ta-tion. Hatamizadeh
+\OT1/cmr/m/n/12 Recent works have ex-plored vi-sion trans-form-ers for med-i-cal seg-men-ta-tion. Hatamizadeh
  []
 
 [14]
 Overfull \hbox (14.78242pt too wide) in paragraph at lines 45--46
-[]\OT1/cmr/bx/n/12 Point Cloud Rep-re-sen-ta-tions: \OT1/cmr/m/n/12 Voxel-to-po
-int sam-pling com-bined with PointNet-
+[]\OT1/cmr/bx/n/12 Point Cloud Rep-re-sen-ta-tions: \OT1/cmr/m/n/12 Voxel-to-point sam-pling com-bined with PointNet-
  []
 
 [15] [16]
 Overfull \hbox (4.72733pt too wide) in paragraph at lines 81--82
-\OT1/cmr/m/n/12 cre-ate de-ploy-ment bar-ri-ers that limit clin-i-cal im-pact. 
-Graph neu-ral net-works, through
+\OT1/cmr/m/n/12 cre-ate de-ploy-ment bar-ri-ers that limit clin-i-cal im-pact. Graph neu-ral net-works, through
  []
 
 [17]) (./chapter3.tex
 Overfull \hbox (11.60965pt too wide) in paragraph at lines 9--10
-\OT1/cmr/m/n/12 cuts com-pu-ta-tional com-plex-ity while pre-serv-ing es-sen-ti
-al tu-mor char-ac-ter-is-tics through
+\OT1/cmr/m/n/12 cuts com-pu-ta-tional com-plex-ity while pre-serv-ing es-sen-tial tu-mor char-ac-ter-is-tics through
  []
 
 <image/pipeline_architechture.png, id=682, 2762.32pt x 1541.76pt>
 File: image/pipeline_architechture.png Graphic file (type png)
 <use image/pipeline_architechture.png>
-Package pdftex.def Info: image/pipeline_architechture.png  used on input line 1
-6.
+Package pdftex.def Info: image/pipeline_architechture.png  used on input line 16.
 (pdftex.def)             Requested size: 426.79135pt x 238.19398pt.
 [18
 
 
 ]
 Overfull \hbox (12.10881pt too wide) in paragraph at lines 28--29
-[]\OT1/cmr/bx/n/12 Phase 3: Fea-ture En-gi-neer-ing \OT1/cmr/m/n/12 ex-tracts d
-omain-specific fea-tures with-out ground-
+[]\OT1/cmr/bx/n/12 Phase 3: Fea-ture En-gi-neer-ing \OT1/cmr/m/n/12 ex-tracts domain-specific fea-tures with-out ground-
  []
 
 [19 <./image/pipeline_architechture.png (PNG copy)>] [20] [21]
 Overfull \hbox (8.7909pt too wide) in paragraph at lines 101--102
-\OT1/cmr/m/n/12 each MRI modal-ity to stan-dard-ize in-ten-sity dis-tri-bu-tion
-s across pa-tients: $\OML/cmm/m/it/12 x[] \OT1/cmr/m/n/12 =
+\OT1/cmr/m/n/12 each MRI modal-ity to stan-dard-ize in-ten-sity dis-tri-bu-tions across pa-tients: $\OML/cmm/m/it/12 x[] \OT1/cmr/m/n/12 =
  []
 
 [22] [23] [24]
 <image/graphsage_architecture.png, id=717, 803.0pt x 372.39125pt>
 File: image/graphsage_architecture.png Graphic file (type png)
 <use image/graphsage_architecture.png>
-Package pdftex.def Info: image/graphsage_architecture.png  used on input line 1
-77.
+Package pdftex.def Info: image/graphsage_architecture.png  used on input line 177.
 (pdftex.def)             Requested size: 426.79135pt x 197.92896pt.
  [25 <./image/graphsage_architecture.png>]
 Overfull \hbox (9.45114pt too wide) in paragraph at lines 204--205
-[]\OT1/cmr/bx/n/12 Reproducibility: \OT1/cmr/m/n/12 De-ter-min-is-tic train-ing
- with man-ual seed 42 for Python, NumPy,
+[]\OT1/cmr/bx/n/12 Reproducibility: \OT1/cmr/m/n/12 De-ter-min-is-tic train-ing with man-ual seed 42 for Python, NumPy,
  []
 
 
 Overfull \hbox (14.99118pt too wide) in paragraph at lines 204--205
-\OT1/cmr/m/n/12 Py-Torch, and CUDA. En-vi-ron-ment vari-ables set: \OT1/cmtt/m/
-n/12 CUBLAS[]WORKSPACE[]CONFIG=:4096:8\OT1/cmr/m/n/12 ,
+\OT1/cmr/m/n/12 Py-Torch, and CUDA. En-vi-ron-ment vari-ables set: \OT1/cmtt/m/n/12 CUBLAS[]WORKSPACE[]CONFIG=:4096:8\OT1/cmr/m/n/12 ,
  []
 
 [26] [27] [28] [29]) (./chapter4.tex [30
@@ -1347,92 +1168,76 @@ n/12 CUBLAS[]WORKSPACE[]CONFIG=:4096:8\OT1/cmr/m/n/12 ,
 <image/results/cv_dice_per_fold.png, id=759, 715.473pt x 426.393pt>
 File: image/results/cv_dice_per_fold.png Graphic file (type png)
 <use image/results/cv_dice_per_fold.png>
-Package pdftex.def Info: image/results/cv_dice_per_fold.png  used on input line
- 85.
+Package pdftex.def Info: image/results/cv_dice_per_fold.png  used on input line 86.
 (pdftex.def)             Requested size: 341.43437pt x 203.47566pt.
 <image/results/cv_boxplots.png, id=760, 1004.553pt x 866.5173pt>
 File: image/results/cv_boxplots.png Graphic file (type png)
 <use image/results/cv_boxplots.png>
-Package pdftex.def Info: image/results/cv_boxplots.png  used on input line 93.
+Package pdftex.def Info: image/results/cv_boxplots.png  used on input line 94.
 (pdftex.def)             Requested size: 405.45047pt x 349.73439pt.
 <image/results/cv_training_curves.png, id=761, 1293.633pt x 866.5173pt>
 File: image/results/cv_training_curves.png Graphic file (type png)
 <use image/results/cv_training_curves.png>
-Package pdftex.def Info: image/results/cv_training_curves.png  used on input li
-ne 101.
+Package pdftex.def Info: image/results/cv_training_curves.png  used on input line 102.
 (pdftex.def)             Requested size: 426.79135pt x 285.87227pt.
- [32 <./image/results/cv_dice_per_fold.png>] [33 <./image/results/cv_boxplots.p
-ng>] [34 <./image/results/cv_training_curves.png>] [35]
-Overfull \hbox (14.0427pt too wide) in paragraph at lines 171--172
-[]\OT1/cmr/bx/n/12 Results: \OT1/cmr/m/n/12 The en-sem-ble achieves \OT1/cmr/bx
-/n/12 92.92% Dice co-ef-fi-cient\OT1/cmr/m/n/12 , rep-re-sent-ing a \OT1/cmr/bx
-/n/12 +2.53%
+ [32 <./image/results/cv_dice_per_fold.png>] [33 <./image/results/cv_boxplots.png>] [34 <./image/results/cv_training_curves.png>] [35]
+Overfull \hbox (14.0427pt too wide) in paragraph at lines 172--173
+[]\OT1/cmr/bx/n/12 Results: \OT1/cmr/m/n/12 The en-sem-ble achieves \OT1/cmr/bx/n/12 92.92% Dice co-ef-fi-cient\OT1/cmr/m/n/12 , rep-re-sent-ing a \OT1/cmr/bx/n/12 +2.53%
  []
 
 [36]
-Overfull \hbox (11.2827pt too wide) in paragraph at lines 237--237
+Overfull \hbox (11.2827pt too wide) in paragraph at lines 238--238
  []|\OT1/cmr/bx/n/10 Speedup/Reduction| 
  []
 
 [37]
-Overfull \hbox (9.24895pt too wide) in paragraph at lines 268--269
-\OT1/cmr/m/n/12 power con-sump-tion, im-por-tant for sus-tain-able health-care 
-AI and battery-powered
+Overfull \hbox (9.24895pt too wide) in paragraph at lines 269--270
+\OT1/cmr/m/n/12 power con-sump-tion, im-por-tant for sus-tain-able health-care AI and battery-powered
  []
 
 [38]
-Overfull \hbox (4.94781pt too wide) in paragraph at lines 301--302
-[]\OT1/cmr/bx/n/12 Note on Ab-la-tion Dice Val-ues: \OT1/cmr/m/n/12 The ab-la-t
-ion study re-ports lower Dice (84.03%)
+Overfull \hbox (4.94781pt too wide) in paragraph at lines 302--303
+[]\OT1/cmr/bx/n/12 Note on Ab-la-tion Dice Val-ues: \OT1/cmr/m/n/12 The ab-la-tion study re-ports lower Dice (84.03%)
  []
 
 [39]
 <image/results/BraTS2021_00501_slice149.png, id=808, 1469.9718pt x 411.4572pt>
 File: image/results/BraTS2021_00501_slice149.png Graphic file (type png)
 <use image/results/BraTS2021_00501_slice149.png>
-Package pdftex.def Info: image/results/BraTS2021_00501_slice149.png  used on in
-put line 358.
+Package pdftex.def Info: image/results/BraTS2021_00501_slice149.png  used on input line 359.
 (pdftex.def)             Requested size: 405.45047pt x 113.48695pt.
  [40]
 <image/results/BraTS2021_00491_slice086.png, id=813, 1469.9718pt x 411.4572pt>
 File: image/results/BraTS2021_00491_slice086.png Graphic file (type png)
 <use image/results/BraTS2021_00491_slice086.png>
-Package pdftex.def Info: image/results/BraTS2021_00491_slice086.png  used on in
-put line 366.
+Package pdftex.def Info: image/results/BraTS2021_00491_slice086.png  used on input line 367.
 (pdftex.def)             Requested size: 405.45047pt x 113.48695pt.
 <image/results/BraTS2021_00559_slice105.png, id=814, 1469.9718pt x 411.4572pt>
 File: image/results/BraTS2021_00559_slice105.png Graphic file (type png)
 <use image/results/BraTS2021_00559_slice105.png>
-Package pdftex.def Info: image/results/BraTS2021_00559_slice105.png  used on in
-put line 374.
+Package pdftex.def Info: image/results/BraTS2021_00559_slice105.png  used on input line 375.
 (pdftex.def)             Requested size: 405.45047pt x 113.48695pt.
- [41 <./image/results/BraTS2021_00501_slice149.png> <./image/results/BraTS2021_
-00491_slice086.png> <./image/results/BraTS2021_00559_slice105.png>]
-Overfull \hbox (1.33215pt too wide) in paragraph at lines 382--383
-[]\OT1/cmr/bx/n/12 Boundary Ac-cu-racy: \OT1/cmr/m/n/12 Model pre-dic-tions clo
-sely fol-low ir-reg-u-lar tu-mor bound-
+ [41 <./image/results/BraTS2021_00501_slice149.png> <./image/results/BraTS2021_00491_slice086.png> <./image/results/BraTS2021_00559_slice105.png>]
+Overfull \hbox (1.33215pt too wide) in paragraph at lines 383--384
+[]\OT1/cmr/bx/n/12 Boundary Ac-cu-racy: \OT1/cmr/m/n/12 Model pre-dic-tions closely fol-low ir-reg-u-lar tu-mor bound-
  []
 
 File: image/results/BraTS2021_00501_slice149.png Graphic file (type png)
 <use image/results/BraTS2021_00501_slice149.png>
-Package pdftex.def Info: image/results/BraTS2021_00501_slice149.png  used on in
-put line 393.
+Package pdftex.def Info: image/results/BraTS2021_00501_slice149.png  used on input line 394.
 (pdftex.def)             Requested size: 405.45047pt x 113.48695pt.
 File: image/results/BraTS2021_00491_slice086.png Graphic file (type png)
 <use image/results/BraTS2021_00491_slice086.png>
-Package pdftex.def Info: image/results/BraTS2021_00491_slice086.png  used on in
-put line 401.
+Package pdftex.def Info: image/results/BraTS2021_00491_slice086.png  used on input line 402.
 (pdftex.def)             Requested size: 405.45047pt x 113.48695pt.
 [42]
 File: image/results/BraTS2021_00559_slice105.png Graphic file (type png)
 <use image/results/BraTS2021_00559_slice105.png>
-Package pdftex.def Info: image/results/BraTS2021_00559_slice105.png  used on in
-put line 410.
+Package pdftex.def Info: image/results/BraTS2021_00559_slice105.png  used on input line 411.
 (pdftex.def)             Requested size: 405.45047pt x 113.48695pt.
  [43] [44] [45]
-Overfull \hbox (2.29552pt too wide) in paragraph at lines 505--506
-\OT1/cmr/m/n/12 posed graph-based seg-men-ta-tion ap-proach. Cross-validation r
-e-sults (90.39% $\OMS/cmsy/m/n/12 ^^F$ \OT1/cmr/m/n/12 0.69%
+Overfull \hbox (2.29552pt too wide) in paragraph at lines 506--507
+\OT1/cmr/m/n/12 posed graph-based seg-men-ta-tion ap-proach. Cross-validation re-sults (90.39% $\OMS/cmsy/m/n/12 ^^F$ \OT1/cmr/m/n/12 0.69%
  []
 
 [46]) (./chapter5.tex [47
@@ -1440,56 +1245,47 @@ e-sults (90.39% $\OMS/cmsy/m/n/12 ^^F$ \OT1/cmr/m/n/12 0.69%
 
 ]
 Overfull \hbox (0.62459pt too wide) in paragraph at lines 23--24
-\OT1/cmr/bx/n/12 ISO/IEC 25010 Soft-ware Qual-ity Model: \OT1/cmr/m/n/12 Our im
--ple-men-ta-tion pri-or-i-tizes main-
+\OT1/cmr/bx/n/12 ISO/IEC 25010 Soft-ware Qual-ity Model: \OT1/cmr/m/n/12 Our im-ple-men-ta-tion pri-or-i-tizes main-
  []
 
 [48] [49]
 Overfull \hbox (8.53474pt too wide) in paragraph at lines 68--69
-[]\OT1/cmr/bx/n/12 Skill Aug-men-ta-tion: \OT1/cmr/m/n/12 AI as-sis-tance may h
-elp less-experienced ra-di-ol-o-gists achieve
+[]\OT1/cmr/bx/n/12 Skill Aug-men-ta-tion: \OT1/cmr/m/n/12 AI as-sis-tance may help less-experienced ra-di-ol-o-gists achieve
  []
 
 [50] [51] [52]
 Overfull \hbox (3.69754pt too wide) in paragraph at lines 124--125
-[]\OT1/cmr/bx/n/12 Regulatory Ap-proval: \OT1/cmr/m/n/12 Med-i-cal AI de-vices 
-re-quire FDA 510(k) clear-ance (USA),
+[]\OT1/cmr/bx/n/12 Regulatory Ap-proval: \OT1/cmr/m/n/12 Med-i-cal AI de-vices re-quire FDA 510(k) clear-ance (USA),
  []
 
 [53]
 Overfull \hbox (11.74771pt too wide) in paragraph at lines 126--127
-[]\OT1/cmr/bx/n/12 Reimbursement Un-cer-tainty: \OT1/cmr/m/n/12 Health-care re-
-im-burse-ment poli-cies for AI-assisted
+[]\OT1/cmr/bx/n/12 Reimbursement Un-cer-tainty: \OT1/cmr/m/n/12 Health-care re-im-burse-ment poli-cies for AI-assisted
  []
 
 
 Overfull \hbox (4.80045pt too wide) in paragraph at lines 134--135
-[]\OT1/cmr/bx/n/12 Reproducibility Bar-ri-ers: \OT1/cmr/m/n/12 Many pub-lished 
-med-i-cal AI re-sults lack code, trained
+[]\OT1/cmr/bx/n/12 Reproducibility Bar-ri-ers: \OT1/cmr/m/n/12 Many pub-lished med-i-cal AI re-sults lack code, trained
  []
 
 [54]
 Overfull \hbox (9.317pt too wide) in paragraph at lines 155--156
-\OT1/cmr/m/n/12 spe-cific data struc-tures (torch[]geometric.data.Data) and mes
-sage-passing APIs. While
+\OT1/cmr/m/n/12 spe-cific data struc-tures (torch[]geometric.data.Data) and message-passing APIs. While
  []
 
 
 Overfull \hbox (4.49445pt too wide) in paragraph at lines 155--156
-\OT1/cmr/m/n/12 en-abling ef-fi-cient graph op-er-a-tions, framework-specific i
-m-ple-men-ta-tions re-duce porta-
+\OT1/cmr/m/n/12 en-abling ef-fi-cient graph op-er-a-tions, framework-specific im-ple-men-ta-tions re-duce porta-
  []
 
 [55] [56] [57]
 Overfull \hbox (33.34698pt too wide) in paragraph at lines 240--241
-\OT1/cmr/m/n/12 soft-ware qual-ity prac-tices, data man-age-ment com-pli-ance (
-NIfTI, DI-COM, HIPAA/GDPR),
+\OT1/cmr/m/n/12 soft-ware qual-ity prac-tices, data man-age-ment com-pli-ance (NIfTI, DI-COM, HIPAA/GDPR),
  []
 
 [58]
 Overfull \hbox (3.17517pt too wide) in paragraph at lines 246--247
-[]\OT1/cmr/m/n/12 The 16-week project time-line demon-strates sys-tem-atic meth
-od-ol-ogy across dataset
+[]\OT1/cmr/m/n/12 The 16-week project time-line demon-strates sys-tem-atic method-ol-ogy across dataset
  []
 
 [59]) (./chapter6.tex [60
@@ -1520,30 +1316,15 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 21601 strings out of 474222
- 367667 string characters out of 5748732
+ 21602 strings out of 474222
+ 367866 string characters out of 5748732
  1940975 words of memory out of 5000000
  43300 multiletter control sequences out of 15000+600000
  568122 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 86i,12n,93p,1402b,1237s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share
-/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/p
-ublic/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1
-200.pfb>
-Output written on main.pdf (76 pages, 7461185 bytes).
+ 86i,12n,93p,1879b,1237s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on main.pdf (76 pages, 7461289 bytes).
 PDF statistics:
  1048 PDF objects out of 1200 (max. 8388607)
  909 compressed objects within 10 object streams

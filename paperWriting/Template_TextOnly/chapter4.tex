@@ -54,26 +54,27 @@ Table~\ref{tab:cv_results} presents Dice coefficients for each fold, demonstrati
 \begin{table}[htbp]
 \caption{5-Fold Cross-Validation Results on BraTS 2021 Dataset}
 \begin{center}
-\begin{tabularx}{0.85\textwidth} { 
+\begin{tabularx}{0.95\textwidth} { 
+  | >{\centering\arraybackslash}X 
   | >{\centering\arraybackslash}X 
   | >{\centering\arraybackslash}X 
   | >{\centering\arraybackslash}X 
   | >{\centering\arraybackslash}X 
   | }
 \hline
-\textbf{Fold} & \textbf{Train Patients} & \textbf{Val Patients} & \textbf{Dice (\%)}\\
+\textbf{Fold} & \textbf{Train Patients} & \textbf{Val Patients} & \textbf{Test Patients} & \textbf{Dice (\%)}\\
 \hline
-Fold 0 & 1,000 & 251 & 90.41\\
+Fold 0 & 900 & 100 & 251 & 90.41\\
 \hline
-Fold 1 & 1,000 & 251 & 89.62\\
+Fold 1 & 900 & 100 & 251 & 89.62\\
 \hline
-Fold 2 & 1,000 & 251 & 90.38\\
+Fold 2 & 900 & 100 & 251 & 90.38\\
 \hline
-Fold 3 & 1,000 & 251 & 91.06\\
+Fold 3 & 900 & 100 & 251 & 91.06\\
 \hline
-Fold 4 & 1,000 & 251 & 90.50\\
+Fold 4 & 900 & 100 & 251 & 90.50\\
 \hline
-\textbf{Mean $\pm$ Std} & - & - & \textbf{90.39 $\pm$ 0.69}\\
+\textbf{Mean $\pm$ Std} & - & - & - & \textbf{90.39 $\pm$ 0.69}\\
 \hline
 \end{tabularx}
 \label{tab:cv_results}

@@ -79,39 +79,7 @@ brats_gnn_segmentation/
 
 ---
 
-## 🗑️ Files Deleted (Cleanup Summary)
 
-### Outdated Documentation (Wrong 98% Data)
-- ❌ `research_results/PUBLICATION_READINESS.md`
-- ❌ `research_results/ablation_comparison.md`
-- ❌ `research_results/mathematical_formulation.md`
-- ❌ `research_results/space_complexity/`
-- ❌ `research_results/complexity_analysis/`
-- ❌ `research_results/cv_analysis/cv_report.md`
-- ❌ `research_results/baseline_comparison/comparison_report.md`
-
-### Old Debug Scripts
-- ❌ `scripts/phase1_*.py` (3 files)
-- ❌ `scripts/phase2_mini_test.sh`
-- ❌ `scripts/monitor_ablation.sh`
-- ❌ `scripts/week*.sh` (4 files)
-- ❌ `scripts/train_remaining_folds.sh`
-- ❌ `scripts/compute_resources_and_plan.py`
-
-### Unused Root Scripts
-- ❌ `run_full_graph_generation.sh`
-- ❌ `run_ensemble.sh`
-- ❌ `run_training.sh`
-- ❌ `run_visualization.sh`
-- ❌ `run_benchmark.sh`
-- ❌ `compile_paper.sh`
-
-### Empty/Outdated Directories
-- ❌ `configs/`
-- ❌ `results/`
-- ❌ `paper_writing/` (contained 89% outdated drafts)
-
-**Total Deleted:** ~30 files/folders with outdated or wrong data
 
 ---
 
