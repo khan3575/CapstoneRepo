@@ -9,6 +9,11 @@ from pathlib import Path
 import random
 from typing import List, Tuple, Dict, Optional
 
+# Import configuration (lazy load to avoid circular imports)
+def _get_config():
+    from config import get_config
+    return get_config()
+
 class BinaryTransform:
     """
     Transform multi-class labels (0, 1, 2, 4) to binary (0, 1).
@@ -314,23 +319,26 @@ def analyze_dataset(dataset: BraTSGraphDataset, name: str = "Dataset") -> Dict:
 
 # Example usage and testing
 if __name__ == "__main__":
-    # Test the dataset
-    graph_dir = "./data/graphs"
-    
+    # Test the dataset with config
+    config = _get_config()
+    graph_dir = config.data_graphs
+
+    print(f"📁 Using graph directory from config: {graph_dir}")
+
     # Create splits
     train_patients, val_patients, test_patients = create_data_splits(graph_dir)
-    
+
     # Create datasets (limit for testing)
     train_dataset, val_dataset, test_dataset = create_datasets(
         graph_dir, train_patients, val_patients, test_patients,
         max_graphs_per_patient=5  # Limit for testing
     )
-    
+
     # Analyze datasets
     analyze_dataset(train_dataset, "Training Set")
-    analyze_dataset(val_dataset, "Validation Set") 
+    analyze_dataset(val_dataset, "Validation Set")
     analyze_dataset(test_dataset, "Test Set")
-    
+
     # Test loading a sample
     if len(train_dataset) > 0:
         print(f"\n🔍 Testing sample loading...")

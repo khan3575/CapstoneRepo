@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.24)  23 DEC 2025 02:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.24)  5 MAR 2026 05:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -775,313 +775,313 @@ LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <16> not available
 
 ] (./Abstruct.tex) [6
 
-] (./Acronyms.tex
+] [7] (./Acronyms.tex
 
-LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 4.
-
-
-
-LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 4.
-
-
-
-LaTeX Warning: Hyper reference `acro:ABET' on page vii undefined on input line 
-5.
-
-
-LaTeX Warning: Hyper reference `acro:ABET' on page vii undefined on input line 
-5.
-
-
-LaTeX Warning: Hyper reference `acro:AI' on page vii undefined on input line 6.
-
-
-
-LaTeX Warning: Hyper reference `acro:AI' on page vii undefined on input line 6.
-
-
-
-LaTeX Warning: Hyper reference `acro:BAETE' on page vii undefined on input line
- 7.
-
-
-LaTeX Warning: Hyper reference `acro:BAETE' on page vii undefined on input line
- 7.
-
-
-LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
- 8.
-
-
-LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
- 8.
-
-
-LaTeX Warning: Hyper reference `acro:CE' on page vii undefined on input line 9.
-
-
-
-LaTeX Warning: Hyper reference `acro:CE' on page vii undefined on input line 9.
-
-
-
-LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 1
-0.
-
-
-LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 1
-0.
-
-
-LaTeX Warning: Hyper reference `acro:CPU' on page vii undefined on input line 1
-1.
-
-
-LaTeX Warning: Hyper reference `acro:CPU' on page vii undefined on input line 1
-1.
-
-
-LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 12
+LaTeX Warning: Hyper reference `acro:3D' on page viii undefined on input line 4
 .
 
 
-LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 12
+LaTeX Warning: Hyper reference `acro:3D' on page viii undefined on input line 4
 .
 
 
-LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
-13.
+LaTeX Warning: Hyper reference `acro:ABET' on page viii undefined on input line
+ 5.
 
 
-LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
-13.
+LaTeX Warning: Hyper reference `acro:ABET' on page viii undefined on input line
+ 5.
 
 
-LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 14
+LaTeX Warning: Hyper reference `acro:AI' on page viii undefined on input line 6
 .
 
 
-LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 14
+LaTeX Warning: Hyper reference `acro:AI' on page viii undefined on input line 6
 .
 
 
-LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
- 15.
+LaTeX Warning: Hyper reference `acro:BAETE' on page viii undefined on input lin
+e 7.
 
 
-LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
- 15.
+LaTeX Warning: Hyper reference `acro:BAETE' on page viii undefined on input lin
+e 7.
 
 
-LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 1
-6.
+LaTeX Warning: Hyper reference `acro:BraTS' on page viii undefined on input lin
+e 8.
 
 
-LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 1
-6.
+LaTeX Warning: Hyper reference `acro:BraTS' on page viii undefined on input lin
+e 8.
 
 
-LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
- 17.
-
-
-LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
- 17.
-
-
-LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 1
-8.
-
-
-LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 1
-8.
-
-
-LaTeX Warning: Hyper reference `acro:GDPR' on page vii undefined on input line 
-19.
-
-
-LaTeX Warning: Hyper reference `acro:GDPR' on page vii undefined on input line 
-19.
-
-
-LaTeX Warning: Hyper reference `acro:GE' on page vii undefined on input line 20
+LaTeX Warning: Hyper reference `acro:CE' on page viii undefined on input line 9
 .
 
 
-LaTeX Warning: Hyper reference `acro:GE' on page vii undefined on input line 20
+LaTeX Warning: Hyper reference `acro:CE' on page viii undefined on input line 9
 .
 
 
-LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
-1.
+LaTeX Warning: Hyper reference `acro:CNN' on page viii undefined on input line 
+10.
 
 
-LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
-1.
+LaTeX Warning: Hyper reference `acro:CNN' on page viii undefined on input line 
+10.
 
 
-LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+LaTeX Warning: Hyper reference `acro:CPU' on page viii undefined on input line 
+11.
+
+
+LaTeX Warning: Hyper reference `acro:CPU' on page viii undefined on input line 
+11.
+
+
+LaTeX Warning: Hyper reference `acro:CT' on page viii undefined on input line 1
 2.
 
 
-LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+LaTeX Warning: Hyper reference `acro:CT' on page viii undefined on input line 1
 2.
 
 
-LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
-line 23.
+LaTeX Warning: Hyper reference `acro:CUDA' on page viii undefined on input line
+ 13.
 
 
-LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
-line 23.
+LaTeX Warning: Hyper reference `acro:CUDA' on page viii undefined on input line
+ 13.
 
 
-LaTeX Warning: Hyper reference `acro:HIPAA' on page vii undefined on input line
- 24.
+LaTeX Warning: Hyper reference `acro:CV' on page viii undefined on input line 1
+4.
 
 
-LaTeX Warning: Hyper reference `acro:HIPAA' on page vii undefined on input line
- 24.
+LaTeX Warning: Hyper reference `acro:CV' on page viii undefined on input line 1
+4.
 
 
-LaTeX Warning: Hyper reference `acro:HPC' on page vii undefined on input line 2
-5.
+LaTeX Warning: Hyper reference `acro:DICOM' on page viii undefined on input lin
+e 15.
 
 
-LaTeX Warning: Hyper reference `acro:HPC' on page vii undefined on input line 2
-5.
+LaTeX Warning: Hyper reference `acro:DICOM' on page viii undefined on input lin
+e 15.
 
 
-LaTeX Warning: Hyper reference `acro:LGG' on page vii undefined on input line 2
-6.
+LaTeX Warning: Hyper reference `acro:FDA' on page viii undefined on input line 
+16.
 
 
-LaTeX Warning: Hyper reference `acro:LGG' on page vii undefined on input line 2
-6.
+LaTeX Warning: Hyper reference `acro:FDA' on page viii undefined on input line 
+16.
 
-[7
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page viii undefined on input lin
+e 17.
+
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page viii undefined on input lin
+e 17.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page viii undefined on input line 
+18.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page viii undefined on input line 
+18.
+
+
+LaTeX Warning: Hyper reference `acro:GDPR' on page viii undefined on input line
+ 19.
+
+
+LaTeX Warning: Hyper reference `acro:GDPR' on page viii undefined on input line
+ 19.
+
+
+LaTeX Warning: Hyper reference `acro:GE' on page viii undefined on input line 2
+0.
+
+
+LaTeX Warning: Hyper reference `acro:GE' on page viii undefined on input line 2
+0.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page viii undefined on input line 
+21.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page viii undefined on input line 
+21.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page viii undefined on input line 
+22.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page viii undefined on input line 
+22.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page viii undefined on input
+ line 23.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page viii undefined on input
+ line 23.
+
+
+LaTeX Warning: Hyper reference `acro:HIPAA' on page viii undefined on input lin
+e 24.
+
+
+LaTeX Warning: Hyper reference `acro:HIPAA' on page viii undefined on input lin
+e 24.
+
+
+LaTeX Warning: Hyper reference `acro:HPC' on page viii undefined on input line 
+25.
+
+
+LaTeX Warning: Hyper reference `acro:HPC' on page viii undefined on input line 
+25.
+
+
+LaTeX Warning: Hyper reference `acro:LGG' on page viii undefined on input line 
+26.
+
+
+LaTeX Warning: Hyper reference `acro:LGG' on page viii undefined on input line 
+26.
+
+[8
 
 ]
 
-LaTeX Warning: Hyper reference `acro:ML' on page viii undefined on input line 2
+LaTeX Warning: Hyper reference `acro:ML' on page ix undefined on input line 27.
+
+
+
+LaTeX Warning: Hyper reference `acro:ML' on page ix undefined on input line 27.
+
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page ix undefined on input line 28
+.
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page ix undefined on input line 28
+.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page ix undefined on input line 
+29.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page ix undefined on input line 
+29.
+
+
+LaTeX Warning: Hyper reference `acro:PACS' on page ix undefined on input line 3
+0.
+
+
+LaTeX Warning: Hyper reference `acro:PACS' on page ix undefined on input line 3
+0.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page ix undefined on input line 3
+1.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page ix undefined on input line 3
+1.
+
+
+LaTeX Warning: Hyper reference `acro:RTX' on page ix undefined on input line 32
+.
+
+
+LaTeX Warning: Hyper reference `acro:RTX' on page ix undefined on input line 32
+.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page ix undefined on input line 3
+3.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page ix undefined on input line 3
+3.
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page ix undefined on input line 34.
+
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page ix undefined on input line 34.
+
+
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page ix undefined on input line 3
+5.
+
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page ix undefined on input line 3
+5.
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page ix undefined on input line 36.
+
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page ix undefined on input line 36.
+
+
+
+LaTeX Warning: Hyper reference `acro:TCGA' on page ix undefined on input line 3
 7.
 
 
-LaTeX Warning: Hyper reference `acro:ML' on page viii undefined on input line 2
+LaTeX Warning: Hyper reference `acro:TCGA' on page ix undefined on input line 3
 7.
 
 
-LaTeX Warning: Hyper reference `acro:MRI' on page viii undefined on input line 
-28.
+LaTeX Warning: Hyper reference `acro:U-Net' on page ix undefined on input line 
+38.
 
 
-LaTeX Warning: Hyper reference `acro:MRI' on page viii undefined on input line 
-28.
+LaTeX Warning: Hyper reference `acro:U-Net' on page ix undefined on input line 
+38.
 
 
-LaTeX Warning: Hyper reference `acro:NIfTI' on page viii undefined on input lin
-e 29.
+LaTeX Warning: Hyper reference `acro:VRAM' on page ix undefined on input line 3
+9.
 
 
-LaTeX Warning: Hyper reference `acro:NIfTI' on page viii undefined on input lin
-e 29.
+LaTeX Warning: Hyper reference `acro:VRAM' on page ix undefined on input line 3
+9.
 
 
-LaTeX Warning: Hyper reference `acro:PACS' on page viii undefined on input line
- 30.
+LaTeX Warning: Hyper reference `acro:WHO' on page ix undefined on input line 40
+.
 
 
-LaTeX Warning: Hyper reference `acro:PACS' on page viii undefined on input line
- 30.
+LaTeX Warning: Hyper reference `acro:WHO' on page ix undefined on input line 40
+.
 
+) [9] (./main.toc [10
 
-LaTeX Warning: Hyper reference `acro:ReLU' on page viii undefined on input line
- 31.
-
-
-LaTeX Warning: Hyper reference `acro:ReLU' on page viii undefined on input line
- 31.
-
-
-LaTeX Warning: Hyper reference `acro:RTX' on page viii undefined on input line 
-32.
-
-
-LaTeX Warning: Hyper reference `acro:RTX' on page viii undefined on input line 
-32.
-
-
-LaTeX Warning: Hyper reference `acro:SLIC' on page viii undefined on input line
- 33.
-
-
-LaTeX Warning: Hyper reference `acro:SLIC' on page viii undefined on input line
- 33.
-
-
-LaTeX Warning: Hyper reference `acro:T1' on page viii undefined on input line 3
-4.
-
-
-LaTeX Warning: Hyper reference `acro:T1' on page viii undefined on input line 3
-4.
-
-
-LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
- 35.
-
-
-LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
- 35.
-
-
-LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 3
-6.
-
-
-LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 3
-6.
-
-
-LaTeX Warning: Hyper reference `acro:TCGA' on page viii undefined on input line
- 37.
-
-
-LaTeX Warning: Hyper reference `acro:TCGA' on page viii undefined on input line
- 37.
-
-
-LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
-e 38.
-
-
-LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
-e 38.
-
-
-LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
- 39.
-
-
-LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
- 39.
-
-
-LaTeX Warning: Hyper reference `acro:WHO' on page viii undefined on input line 
-40.
-
-
-LaTeX Warning: Hyper reference `acro:WHO' on page viii undefined on input line 
-40.
-
-) [8] (./main.toc [9
-
-] [10] [11])
+] [11] [12])
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
- [12] (./chapter1.tex
+ [13] (./chapter1.tex
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <20> not available
 (Font)              size <20.74> substituted on input line 2.
@@ -1094,13 +1094,13 @@ been already used, duplicate ignored
 l.17 
       [1
 
-] [2]
+] [2] [3]
 Overfull \hbox (0.1809pt too wide) in paragraph at lines 45--46
 []\OT1/cmr/m/n/12 Implement en-sem-ble meth-ods to ex-plore up-per per-for-manc
 e bounds and demon-
  []
 
-[3] [4]
+[4]
 Overfull \hbox (0.30064pt too wide) in paragraph at lines 77--78
 []\OT1/cmr/bx/n/12 Methodological Ad-vance-ment: \OT1/cmr/m/n/12 We demon-strat
 e that graph-based ap-proaches
@@ -1112,19 +1112,19 @@ Overfull \hbox (2.31935pt too wide) in paragraph at lines 99--100
 ent-level strat-i-fied 5-fold splits
  []
 
-[6]
+[6] [7]
 Overfull \hbox (1.6322pt too wide) in paragraph at lines 119--120
 \OT1/cmr/m/n/12 soft-ware en-gi-neer-ing (Py-Torch Ge-o-met-ric, CUDA op-ti-miz
 a-tion, NIfTI/DICOM stan-
  []
 
-[7] [8] [9]
+[8] [9]
 Overfull \hbox (11.60965pt too wide) in paragraph at lines 145--146
 \OT1/cmr/m/n/12 stripping al-go-rithms, graph the-ory mes-sage pass-ing and at-
 ten-tion mech-a-nisms, patient-
  []
 
-[10]) [11] [12] (./chapter2.tex [13
+[10] [11]) [12] (./chapter2.tex [13
 
 ]
 Overfull \hbox (15.83554pt too wide) in paragraph at lines 25--26
@@ -1144,13 +1144,7 @@ Overfull \hbox (4.72733pt too wide) in paragraph at lines 81--82
 Graph neu-ral net-works, through
  []
 
-[17]) (./chapter3.tex
-Overfull \hbox (11.60965pt too wide) in paragraph at lines 9--10
-\OT1/cmr/m/n/12 cuts com-pu-ta-tional com-plex-ity while pre-serv-ing es-sen-ti
-al tu-mor char-ac-ter-is-tics through
- []
-
-[18
+[17]) (./chapter3.tex [18
 
 
 ]
@@ -1166,6 +1160,11 @@ s across pa-tients: $\OML/cmm/m/it/12 x[] \OT1/cmr/m/n/12 =
  []
 
 [21] [22] [23] [24] [25]
+
+LaTeX Warning: Reference `sec:ablation' on page 26 undefined on input line 186.
+
+
+
 Overfull \hbox (9.45114pt too wide) in paragraph at lines 192--193
 []\OT1/cmr/bx/n/12 Reproducibility: \OT1/cmr/m/n/12 De-ter-min-is-tic train-ing
  with man-ual seed 42 for Python, NumPy,
@@ -1181,47 +1180,43 @@ n/12 CUBLAS[]WORKSPACE[]CONFIG=:4096:8\OT1/cmr/m/n/12 ,
 
 
 ] [30] [31] [32]
-Overfull \hbox (14.0427pt too wide) in paragraph at lines 153--154
+Overfull \hbox (14.0427pt too wide) in paragraph at lines 154--155
 []\OT1/cmr/bx/n/12 Results: \OT1/cmr/m/n/12 The en-sem-ble achieves \OT1/cmr/bx
 /n/12 92.92% Dice co-ef-fi-cient\OT1/cmr/m/n/12 , rep-re-sent-ing a \OT1/cmr/bx
 /n/12 +2.53%
  []
 
 [33]
-Overfull \hbox (11.2827pt too wide) in paragraph at lines 219--219
+Overfull \hbox (11.2827pt too wide) in paragraph at lines 220--220
  []|\OT1/cmr/bx/n/10 Speedup/Reduction| 
  []
 
-[34]
-Overfull \hbox (9.24895pt too wide) in paragraph at lines 250--251
+[34] [35]
+Overfull \hbox (9.24895pt too wide) in paragraph at lines 253--254
 \OT1/cmr/m/n/12 power con-sump-tion, im-por-tant for sus-tain-able health-care 
 AI and battery-powered
  []
 
-[35]
-Overfull \hbox (4.94781pt too wide) in paragraph at lines 283--284
+
+Overfull \hbox (4.94781pt too wide) in paragraph at lines 286--287
 []\OT1/cmr/bx/n/12 Note on Ab-la-tion Dice Val-ues: \OT1/cmr/m/n/12 The ab-la-t
 ion study re-ports lower Dice (84.03%)
  []
 
-[36]
-
-LaTeX Warning: Reference `fig:qual1' on page 37 undefined on input line 336.
-
-
-LaTeX Warning: Reference `fig:qual2' on page 37 undefined on input line 336.
-
-
-LaTeX Warning: Reference `fig:qual3' on page 37 undefined on input line 336.
-
-[37]
-Overfull \hbox (1.33215pt too wide) in paragraph at lines 346--347
+[36] [37] [38]
+Overfull \hbox (7.85986pt too wide) in paragraph at lines 349--350
 []\OT1/cmr/bx/n/12 Boundary Ac-cu-racy: \OT1/cmr/m/n/12 Model pre-dic-tions clo
-sely fol-low ir-reg-u-lar tu-mor bound-
+sely fol-low ir-reg-u-lar tu-mour bound-
  []
 
-[38] [39] [40] [41]
-Overfull \hbox (2.29552pt too wide) in paragraph at lines 451--452
+[39] [40]
+Underfull \hbox (badness 1472) in paragraph at lines 403--403
+[]\OT1/cmr/m/n/10 Table 8: []Comparison with State-of-the-Art Meth-ods on BraTS
+ 2021. Dice scores for
+ []
+
+[41]
+Overfull \hbox (2.29552pt too wide) in paragraph at lines 447--448
 \OT1/cmr/m/n/12 posed graph-based seg-men-ta-tion ap-proach. Cross-validation r
 e-sults (90.39% $\OMS/cmsy/m/n/12 ^^F$ \OT1/cmr/m/n/12 0.69%
  []
@@ -1271,22 +1266,10 @@ Overfull \hbox (4.49445pt too wide) in paragraph at lines 155--156
 m-ple-men-ta-tions re-duce porta-
  []
 
-[51] [52] [53]
-Overfull \hbox (33.34698pt too wide) in paragraph at lines 240--241
-\OT1/cmr/m/n/12 soft-ware qual-ity prac-tices, data man-age-ment com-pli-ance (
-NIfTI, DI-COM, HIPAA/GDPR),
- []
-
-[54]
-Overfull \hbox (3.17517pt too wide) in paragraph at lines 246--247
-[]\OT1/cmr/m/n/12 The 16-week project time-line demon-strates sys-tem-atic meth
-od-ol-ogy across dataset
- []
-
-[55]) (./chapter6.tex [56
+[51] [52] [53] [54] [55]) (./chapter6.tex [56
 
 
-]) [57] [58
+] [57]) [58] [59
 
 
 ] (./main.aux)
@@ -1303,19 +1286,19 @@ LaTeX Font Warning: Size substitutions with differences
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: EFD785781426D38F3434DCCCB534AF2F;15837.
+(rerunfilecheck)             Checksum: 2BFCBE480EF2C5EAA171DDAB4AAF2C7C;15837.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
  19820 strings out of 474222
- 336346 string characters out of 5748732
+ 336343 string characters out of 5748732
  1939975 words of memory out of 5000000
- 41594 multiletter control sequences out of 15000+600000
+ 41592 multiletter control sequences out of 15000+600000
  567787 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,12n,81p,1402b,1221s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 66i,12n,81p,1414b,1221s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
@@ -1331,10 +1314,10 @@ y8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share
 /texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/p
 ublic/cm-super/sfrm1200.pfb>
-Output written on main.pdf (70 pages, 354896 bytes).
+Output written on main.pdf (72 pages, 359701 bytes).
 PDF statistics:
- 957 PDF objects out of 1000 (max. 8388607)
- 844 compressed objects within 9 object streams
- 230 named destinations out of 1000 (max. 500000)
+ 965 PDF objects out of 1000 (max. 8388607)
+ 850 compressed objects within 9 object streams
+ 232 named destinations out of 1000 (max. 500000)
  689 words of extra memory for PDF output out of 10000 (max. 10000000)
 

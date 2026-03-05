@@ -1,0 +1,162 @@
+# BraTS GNN Segmentation - Centralized Configuration
+# This file contains all paths and settings for the project
+# Edit this file to adapt to your system
+
+# =============================================================================
+# PROJECT SETTINGS
+# =============================================================================
+project:
+  name: "BraTS GNN Segmentation"
+  version: "1.0.0"
+  seed: 42  # Random seed for reproducibility
+
+# =============================================================================
+# PATH CONFIGURATION
+# =============================================================================
+paths:
+  # Project root (auto-detected, don't change unless needed)
+  project_root: "."
+
+  # Raw Data Directories
+  # Change this to your BraTS dataset location
+  brats_2021_raw: "/mnt/bigdata/capstone/BraTS2021_Training_Data"
+  brats_2023_raw: "/mnt/bigdata/capstone/BraTS2023_Training_Data"  # For future use
+
+  # Processed Data Directories (relative to project_root)
+  data:
+    root: "data"
+    organized: "data/organized"
+    preprocessed: "data/preprocessed"
+    graphs: "data/graphs"
+    cv_folds: "data/cv_folds"
+
+  # Model Checkpoints (relative to project_root)
+  checkpoints:
+    root: "checkpoints"
+    binary_training: "checkpoints/binary_training"
+    multiclass_training: "checkpoints/multiclass_training"
+    baseline_models: "checkpoints/baseline_models"
+
+  # Research Results (relative to project_root)
+  results:
+    root: "research_results"
+    ensemble: "research_results/ensemble"
+    ablation: "research_results/ablation_study_accuracy"
+    baseline_comparison: "research_results/baseline_comparison"
+    speed_benchmark: "research_results/speed_benchmark"
+    qualitative_examples: "research_results/qualitative_examples"
+
+  # Visualizations (relative to project_root)
+  visualizations:
+    root: "visualizations"
+    qualitative: "visualizations/qualitative"
+    training_curves: "visualizations/training_curves"
+
+  # Logs (relative to project_root)
+  logs:
+    root: "logs"
+    training: "logs/training"
+    evaluation: "logs/evaluation"
+
+# =============================================================================
+# MODEL CONFIGURATION
+# =============================================================================
+model:
+  # GNN Architecture
+  gnn:
+    in_channels: 15  # Node feature dimension
+    hidden_channels: 256
+    num_layers: 5
+    dropout: 0.1
+    architecture: "graphsage"  # Options: graphsage, gat
+
+  # Training Hyperparameters
+  training:
+    batch_size: 32
+    accumulation_steps: 4
+    learning_rate: 0.001
+    weight_decay: 0.00001
+    max_epochs: 50
+    early_stopping_patience: 10
+    num_workers: 4
+    use_amp: false  # Automatic Mixed Precision (disabled for stability)
+
+  # Cross-Validation
+  cross_validation:
+    n_folds: 5
+    val_split: 0.1  # 10% of train for validation
+    stratified: true
+
+# =============================================================================
+# DATA PROCESSING CONFIGURATION
+# =============================================================================
+preprocessing:
+  # MRI Processing
+  target_spacing: [1.0, 1.0, 1.0]  # Isotropic 1mm spacing
+  target_size: [240, 240, 155]  # Standard BraTS size
+  normalization: "z-score"  # Options: z-score, minmax
+
+  # Slice Extraction
+  num_slices_per_patient: 200  # Tumor-priority slices
+  min_brain_pixels: 1000  # Minimum pixels for valid slice
+
+# Graph Construction
+graph_construction:
+  # SLIC Superpixel Parameters
+  n_superpixels: 200
+  sigma: 0.3
+  compactness: 0.1
+  max_iter: 30
+
+  # Edge Construction
+  inter_slice_threshold: 10.0
+  iou_threshold: 0.1
+  knn_k: 3  # KNN connections between slices
+
+  # Memory Management
+  max_memory_gb: 4.0
+  num_workers: 8
+
+# =============================================================================
+# EVALUATION CONFIGURATION
+# =============================================================================
+evaluation:
+  # Metrics to compute
+  metrics:
+    - dice
+    - accuracy
+    - sensitivity
+    - specificity
+    - precision
+    - hausdorff_distance
+
+  # Threshold for binary classification
+  threshold: 0.5
+
+  # Qualitative visualization
+  num_qualitative_examples: 50
+
+# =============================================================================
+# HARDWARE CONFIGURATION
+# =============================================================================
+hardware:
+  device: "cuda"  # Options: cuda, cpu
+  gpu_id: 0
+  num_workers: 4
+  pin_memory: true
+
+# =============================================================================
+# DATASET SPECIFIC SETTINGS
+# =============================================================================
+datasets:
+  brats_2021:
+    name: "BraTS 2021"
+    num_patients: 1251
+    num_classes: 4  # 0, 1, 2, 4 (background, NCR, edema, enhancing)
+    modalities: ["T1", "T1ce", "T2", "FLAIR"]
+
+  brats_2023:
+    name: "BraTS 2023"
+    num_patients: 1400  # Approximate
+    num_classes: 4
+    modalities: ["T1", "T1ce", "T2", "FLAIR"]

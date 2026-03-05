@@ -4,20 +4,20 @@
 \vspace{10mm}
 \section{Introduction}
 
-Segmenting brain tumors from MRI scans is crucial for diagnosis, treatment planning, and tracking how well therapies are working. The BraTS (Brain Tumor Segmentation) challenge has become the go-to benchmark for testing automated segmentation algorithms on multi-parametric MRI data. Binary segmentation—simply detecting tumor vs. non-tumor tissue—might seem straightforward compared to multi-class approaches, but it's actually essential for screening workflows, quick assessments, and initial diagnostics.
+Accurate brain tumour segmentation from MRI scans is essential for diagnosis, treatment planning, and longitudinal monitoring of therapeutic response. The BraTS (Brain Tumour Segmentation) challenge has established itself as the standard benchmark for evaluating automated segmentation algorithms on multi-parametric MRI data. Binary segmentation — detecting tumour versus non-tumour tissue — is a fundamental prerequisite for screening workflows, rapid clinical assessment, and initial diagnostics, forming the basis upon which multi-class sub-region delineation builds.
 
-Most current methods rely heavily on volumetric CNNs, especially 3D U-Net architectures. These work well but come with a catch: they're computationally expensive. We're talking 60-80 million parameters and needing 8+ GB of GPU memory, which creates real barriers when you want to deploy these in clinics with limited resources, on edge devices, or anywhere you need fast results. Healthcare systems need efficient automated tools, which means we need approaches that stay accurate while cutting down the computational demands significantly.
+Most current methods rely on volumetric CNNs, particularly 3D U-Net architectures. These approaches achieve strong performance but impose substantial computational demands: 60--80 million parameters and 8+ GB of GPU memory. These requirements create significant barriers to deployment in resource-limited clinical environments, on edge devices, and in settings where rapid inference is essential. There is therefore a clear need for approaches that maintain competitive accuracy while substantially reducing computational cost.
 
-This is where Graph Neural Networks come in. Instead of processing entire 3D volumes, GNNs represent images as graphs—superpixels become nodes, and spatial relationships become edges. This lets them capture local texture and global structure while working with much smaller data. It's actually a natural fit for medical images, and it takes advantage of an important fact: tumors typically only occupy 5-10\% of brain volume in MRI scans, so there's inherent sparsity we can exploit.
+Graph Neural Networks (GNNs) offer a compelling alternative paradigm. Rather than processing entire 3D volumes, GNNs represent images as graphs — superpixels become nodes and spatial relationships become edges — capturing local texture and global structure while operating on substantially smaller data representations. This is a natural fit for medical images of brain tumours, which typically occupy only 5--10\% of total brain volume, creating inherent sparsity that graph-based representations can exploit directly.
 
 
 \subsection{Problem Statement}
 
-Here's the issue: automated brain tumor segmentation is clinically important, but current deep learning methods are stuck in an efficiency-accuracy trade-off. Volumetric CNNs hit high accuracy numbers, sure, but they need massive computational resources—68M+ parameters, over 8 GB GPU memory, and 80+ ms per patient inference time. That makes them impractical for most real-world clinical settings. On the flip side, lightweight alternatives usually sacrifice too much accuracy to be useful.
+Automated brain tumour segmentation is clinically important, yet current deep learning methods face a persistent efficiency-accuracy trade-off. Volumetric CNNs achieve high accuracy but require substantial computational resources — 68M+ parameters, over 8 GB of GPU memory, and 80+ ms per patient inference time — rendering them impractical for most real-world clinical settings. Lightweight alternatives, conversely, typically sacrifice too much accuracy to be clinically useful.
 
-So the core question becomes: \textit{Can we build a segmentation method that hits competitive accuracy ($>$90\% Dice) while still being efficient enough for resource-constrained clinics?}
+The central research question is therefore: \textit{Can a graph-based neural network achieve competitive segmentation accuracy ($>$90\% Dice) while remaining efficient enough for deployment in resource-constrained clinical environments?}
 
-Answering this means tackling several technical hurdles. First, we need to convert 3D medical images into meaningful graph representations without losing the diagnostic features that matter. Second, the neural architecture has to be compact but still expressive enough to detect tumors reliably. Third, validation needs to be rigorous—absolutely zero data leakage. And finally, we need to show real efficiency gains through solid benchmarking.
+Addressing this question requires resolving several technical challenges. First, 3D medical images must be converted into meaningful graph representations without losing diagnostically relevant features. Second, the neural architecture must be compact yet sufficiently expressive for reliable tumour detection. Third, validation must ensure zero data leakage through rigorous patient-level experimental protocols. Finally, efficiency gains must be quantified through systematic benchmarking against established baselines.
 
 \subsection{Problem Background}
 
@@ -53,19 +53,19 @@ The primary objective of this research is to develop and rigorously validate an 
  
 \subsection{Motivations}
 
-A few things pushed this research in this direction:
+Several factors motivated this research direction:
 
-\textbf{Clinical Deployment Challenges:} Talking with radiologists and clinical partners, it became clear that even though current deep learning models are accurate, they're hard to actually deploy. The hardware requirements, slow inference, and complexity of integrating with existing hospital systems create real problems.
+\textbf{Clinical Deployment Challenges:} Despite impressive accuracy, current deep learning models for brain tumour segmentation are difficult to deploy in practice. Hardware requirements, slow inference, and the complexity of integrating with existing hospital Picture Archiving and Communication Systems (PACS) create substantial operational barriers.
 
-\textbf{Resource-Constrained Settings:} Lots of healthcare facilities—especially in developing regions—don't have access to the high-end GPUs that volumetric CNNs need. This creates an equity problem where AI-assisted diagnosis is only available to well-funded institutions.
+\textbf{Resource-Constrained Settings:} Many healthcare facilities, particularly in developing regions, lack access to the high-end GPUs required by volumetric CNNs. This creates a diagnostic equity problem in which AI-assisted analysis is available only to well-funded institutions.
 
-\textbf{Real-Time Applications:} New clinical applications like intra-operative guidance, emergency screening, and telemedicine need near-instant results. Current methods just can't deliver that consistently.
+\textbf{Real-Time Applications:} Emerging clinical applications — including intra-operative guidance, emergency screening, and telemedicine — require near-instant segmentation results. Current volumetric methods cannot consistently meet these latency requirements.
 
-\textbf{Theoretical Promise of Graphs:} Tumors are sparse—they typically only take up 5-10\% of brain volume. GNNs have worked well in other domains, so it seemed like graph representations might be able to exploit this sparsity for computational efficiency.
+\textbf{Structural Promise of Graphs:} Tumours are spatially sparse, typically occupying only 5--10\% of total brain volume. Graph representations that exploit this sparsity have the potential to achieve meaningful efficiency gains relative to dense volumetric processing.
 
-\textbf{Data Integrity Concerns:} There've been concerning reports of data leakage in medical imaging studies lately. This motivated us to implement comprehensive auditing procedures (we ended up with 15/15 integrity checks passing).
+\textbf{Data Integrity Concerns:} Recent literature has identified concerning instances of data leakage in medical imaging studies, where patient information inadvertently crosses training and evaluation boundaries. This motivated the implementation of comprehensive auditing procedures, resulting in 15 out of 15 integrity checks passing.
 
-\textbf{Efficiency-Accuracy Trade-off:} The broader AI community has been focusing more on sustainable and efficient AI. We wanted to see if medical imaging could benefit from similar improvements without losing clinical usefulness.
+\textbf{Sustainable and Efficient AI:} The broader AI research community has increasingly prioritised efficiency alongside accuracy. This work investigates whether medical imaging can benefit from similar efficiency improvements without sacrificing clinical utility.
 
 
 \subsection{Significance of the Research}
@@ -164,4 +164,4 @@ This thesis is organized into six chapters that provide a comprehensive and syst
 
 \vspace{5mm}
 
-This introduction chapter has established the foundation for a comprehensive investigation into efficient graph-based brain tumor segmentation. We have motivated the research by highlighting the critical gap between high-performing but computationally expensive volumetric CNNs and the clinical need for efficient, deployable diagnostic tools. The specific objectives outlined provide a roadmap for rigorous validation, from graph construction to ensemble methods, with emphasis on reproducibility and data integrity. By framing this work within complex engineering problem-solving contexts, we underscore the interdisciplinary nature of medical AI research that requires bridging computer science, medical imaging, and clinical practice. The subsequent chapters will demonstrate how graph neural networks can achieve the ambitious goal of maintaining competitive accuracy (92.92\% Dice) while delivering substantial efficiency improvements (6.9$\times$ speedup, 156$\times$ parameter reduction) suitable for real-world clinical deployment. 
+This chapter has established the foundation for a comprehensive investigation into efficient graph-based brain tumour segmentation. The critical gap between high-performing but computationally expensive volumetric CNNs and the clinical need for efficient, deployable diagnostic tools has been identified and motivated. The specific objectives outlined provide a roadmap for rigorous validation — from graph construction through to ensemble methods — with emphasis on reproducibility and data integrity. By framing this work within complex engineering problem-solving contexts, the interdisciplinary nature of medical AI research bridging computer science, medical imaging, and clinical practice has been underscored. The subsequent chapters demonstrate how graph neural networks can achieve competitive accuracy (92.92\% Dice) while delivering substantial efficiency improvements (6.9$\times$ inference speedup, 156$\times$ parameter reduction) suitable for real-world clinical deployment.

@@ -35,6 +35,7 @@ from gnn_model import TumorSegmentationGNN
 from dataset import BraTSGraphDataset, BinaryTransform
 from torch_geometric.loader import DataLoader as GeometricDataLoader
 from graph_construction import GraphBuilder, Config
+from config import get_config
 
 
 def benchmark_graph_construction(patient_ids, preprocessed_dir, output_dir):
@@ -283,19 +284,22 @@ def main():
                         help='Output directory for results')
     
     args = parser.parse_args()
-    
+
+    # Load configuration
+    config = get_config()
+
     print("="*80)
     print("SPEED BENCHMARK: GNN vs U-Net")
     print("="*80)
     print(f"Hardware: {torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU'}")
     print(f"Patients: {args.num_patients}")
     print(f"Device: {args.device}")
-    
+
     # Setup
     device = torch.device(args.device if torch.cuda.is_available() else 'cpu')
-    
+
     # Load fold data
-    fold_file = Path('data/cv_folds') / f'fold_{args.fold}.json'
+    fold_file = Path(config.data_cv_folds) / f'fold_{args.fold}.json'
     with open(fold_file) as f:
         fold_data = json.load(f)
     
@@ -307,16 +311,16 @@ def main():
     # ========================================================================
     graph_construction_times = benchmark_graph_construction(
         test_patients,
-        'data/preprocessed',
-        'data/graphs'
+        config.data_preprocessed,
+        config.data_graphs
     )
     
     # ========================================================================
     # PART 2: GNN Inference Time
     # ========================================================================
-    
+
     # Load GNN model
-    checkpoint_path = Path('checkpoints/binary_training') / f'fold_{args.fold}' / 'best_model.pth'
+    checkpoint_path = Path(config.checkpoints_binary) / f'fold_{args.fold}' / 'best_model.pth'
     
     if not checkpoint_path.exists():
         print(f"❌ GNN checkpoint not found: {checkpoint_path}")
@@ -334,7 +338,7 @@ def main():
     
     # Prepare graph files
     graph_files = [
-        str(Path('data/graphs') / pid / f'{pid}_graphs_200.pt')
+        str(Path(config.data_graphs) / pid / f'{pid}_graphs_200.pt')
         for pid in test_patients
     ]
     
@@ -345,7 +349,7 @@ def main():
     # ========================================================================
     unet_inference_times = benchmark_unet_inference(
         test_patients,
-        'data/preprocessed',
+        config.data_preprocessed,
         device
     )
     

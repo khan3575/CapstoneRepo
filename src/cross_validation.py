@@ -12,6 +12,11 @@ from collections import defaultdict
 from typing import Dict, List, Tuple
 import torch
 
+# Import configuration (lazy load to avoid circular imports)
+def _get_config():
+    from config import get_config
+    return get_config()
+
 
 def set_seed(seed: int = 42):
     """Set random seeds for reproducibility"""
@@ -342,32 +347,46 @@ def get_fold_dataloaders(
 
 if __name__ == "__main__":
     import argparse
-    
-    parser = argparse.ArgumentParser(description='Create cross-validation folds')
-    parser.add_argument('--graphs_dir', type=str, 
-                       default='./data/graphs',
-                       help='Directory containing graph files')
+
+    # Load config for defaults
+    config = _get_config()
+
+    parser = argparse.ArgumentParser(description='Create cross-validation folds (uses config.yaml for defaults)')
+    parser.add_argument('--graphs_dir', type=str,
+                       default=None,
+                       help=f'Directory containing graph files (default: {config.data_graphs})')
     parser.add_argument('--output_dir', type=str,
-                       default='./data/cv_folds',
-                       help='Directory to save fold assignments')
-    parser.add_argument('--k', type=int, default=5,
-                       help='Number of folds')
-    parser.add_argument('--seed', type=int, default=42,
-                       help='Random seed')
-    parser.add_argument('--val_ratio', type=float, default=0.1,
-                       help='Ratio of training data for validation')
-    
+                       default=None,
+                       help=f'Directory to save fold assignments (default: {config.data_cv_folds})')
+    parser.add_argument('--k', type=int, default=None,
+                       help=f'Number of folds (default: {config.get("model.cross_validation.n_folds", 5)})')
+    parser.add_argument('--seed', type=int, default=None,
+                       help=f'Random seed (default: {config.get("project.seed", 42)})')
+    parser.add_argument('--val_ratio', type=float, default=None,
+                       help=f'Ratio of training data for validation (default: {config.get("model.cross_validation.val_split", 0.1)})')
+
     args = parser.parse_args()
-    
+
+    # Use config defaults for None values
+    graphs_dir = args.graphs_dir or config.data_graphs
+    output_dir = args.output_dir or config.data_cv_folds
+    k = args.k if args.k is not None else config.get('model.cross_validation.n_folds', 5)
+    seed = args.seed if args.seed is not None else config.get('project.seed', 42)
+    val_ratio = args.val_ratio if args.val_ratio is not None else config.get('model.cross_validation.val_split', 0.1)
+
+    print(f"📁 Using paths from config:")
+    print(f"   Graphs dir: {graphs_dir}")
+    print(f"   Output dir: {output_dir}\n")
+
     # Create folds
     fold_assignments = create_cv_folds(
-        graphs_dir=args.graphs_dir,
-        output_dir=args.output_dir,
-        k=args.k,
-        seed=args.seed,
-        val_ratio=args.val_ratio
+        graphs_dir=graphs_dir,
+        output_dir=output_dir,
+        k=k,
+        seed=seed,
+        val_ratio=val_ratio
     )
-    
+
     print("\n✅ Cross-validation folds created successfully!")
-    print(f"   Fold assignments saved to: {args.output_dir}")
-    print(f"   Ready to train {args.k} folds")
+    print(f"   Fold assignments saved to: {output_dir}")
+    print(f"   Ready to train {k} folds")

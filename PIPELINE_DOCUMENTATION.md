@@ -1,8 +1,11 @@
 # BraTS GNN Segmentation - Complete Pipeline Documentation
 
-**Last Updated:** December 4, 2025  
-**Status:** ✅ Validated (15/15 checks passed)  
+**Last Updated:** February 9, 2026
+**Status:** ✅ Validated (15/15 checks passed)
 **Performance:** 92.92% Ensemble Dice (90.39% ± 0.69% CV)
+
+> **⚙️ Configuration Note:** This project now uses `config.yaml` for centralized path and hyperparameter management.
+> All hardcoded paths have been replaced with config-based paths. Edit `config.yaml` to adapt to your system.
 
 ---
 
@@ -67,16 +70,22 @@ Training Time: ~5 hours per fold
 
 ### Step 1: Clone Repository
 ```bash
-cd /mnt/bigdata/capstone
+# Clone to your preferred location
 git clone <repository-url> brats_gnn_segmentation
 cd brats_gnn_segmentation
 ```
 
-### Step 2: Create Virtual Environment
+### Step 2: Configure Paths
 ```bash
-cd /mnt/bigdata/capstone
-python3 -m venv .env
-source .env/bin/activate
+# Edit config.yaml to set your BraTS dataset paths
+# Update brats_2021_raw and brats_2023_raw to your data locations
+nano config.yaml
+```
+
+### Step 3: Create Virtual Environment
+```bash
+python3 -m venv venv
+source venv/bin/activate
 ```
 
 ### Step 3: Install Dependencies

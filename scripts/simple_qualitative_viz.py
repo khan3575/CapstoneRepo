@@ -4,12 +4,18 @@ Simple qualitative visualization using test set patients.
 Shows BEFORE (MRI) and AFTER (with segmentation overlay).
 """
 
+import os
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 import nibabel as nib
 from pathlib import Path
 import json
 import random
+
+# Add src to path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+from config import get_config
 
 def load_patient_mri_seg(patient_dir):
     """Load MRI and segmentation."""
@@ -130,12 +136,19 @@ def main():
     print("Using Test Set Patients (Unseen During Training)")
     print("="*80)
     print()
-    
-    # Paths
-    fold_dir = Path("./data/cv_folds")
-    data_dir = Path("/mnt/bigdata/capstone/BraTS2021_Training_Data")
-    output_dir = Path("./research_results/qualitative_examples")
+
+    # Load configuration (lazy loading to avoid import-time crashes)
+    config = get_config()
+
+    # Paths (using config.yaml)
+    fold_dir = Path(config.data_cv_folds)
+    data_dir = Path(config.brats_2021_raw)
+    output_dir = Path(config.results_qualitative)
     output_dir.mkdir(parents=True, exist_ok=True)
+
+    print(f"📁 Using paths from config:")
+    print(f"   Data dir: {data_dir}")
+    print(f"   Output dir: {output_dir}\n")
     
     # Load fold 0 test patients
     with open(fold_dir / "fold_0.json") as f:

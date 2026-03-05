@@ -71,20 +71,31 @@ python src/graph_construction.py --input_dir ./data/preprocessed --output_dir ./
 
 ### 3. Model Training
 ```bash
-# Train the GNN model
-python src/train_maxpower.py --epochs 50 --batch_size 1 --accumulation_steps 16
+# Train a specific cross-validation fold (uses config.yaml for paths/hyperparameters)
+python src/train_cv_fold.py --fold_idx 0
+
+# Override config settings if needed
+python src/train_cv_fold.py --fold_idx 0 --batch_size 32 --epochs 50
+
+# Train all 5 folds sequentially
+for fold in {0..4}; do python src/train_cv_fold.py --fold_idx $fold; done
 ```
+
+**Note:** All paths and hyperparameters are configured in `config.yaml`. Edit this file to adapt to your system.
 
 ### 4. Evaluation
 ```bash
-# Comprehensive evaluation
-python run_comprehensive_evaluation.py
+# Ensemble inference (combines predictions from all 5 folds)
+python src/inference_ensemble.py
 
-# Baseline comparison
-python run_baseline_comparison.py
+# Speed benchmark (GNN vs U-Net)
+python scripts/benchmark_speed.py
 
-# Ablation studies
-python run_ablation_study.py
+# Generate qualitative visualizations
+python scripts/create_qualitative_examples.py
+
+# Aggregate cross-validation results
+python src/aggregate_cv_results.py
 ```
 
 ## 🔬 Research Components

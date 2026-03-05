@@ -4,21 +4,21 @@
 \vspace{10mm}
 \section{Background Study and Literature Review}
 
-Brain tumor segmentation has come a long way over the past two decades. Advances in medical imaging and deep learning have pushed the field forward significantly. Accurately outlining tumor boundaries from multi-parametric MRI scans matters for diagnosis, treatment planning, and tracking patients over time. This chapter walks through how automated segmentation methods have evolved—from classical image processing to the CNN revolution, and now toward graph-based approaches. Along the way, we'll see why computational efficiency and clinical deployment remain persistent challenges, which is exactly what motivates the GNN framework proposed in this thesis.
+Brain tumour segmentation has advanced substantially over the past two decades, driven by progress in both medical imaging technology and deep learning methodology. Accurately delineating tumour boundaries from multi-parametric MRI scans is fundamental to diagnosis, treatment planning, and longitudinal patient monitoring. This chapter surveys the evolution of automated segmentation methods — from classical image processing techniques through the convolutional neural network era, to emerging graph-based approaches — and identifies the persistent challenges of computational efficiency and clinical deployability that motivate the GNN framework proposed in this thesis.
 
 \subsection{Evolution of Medical Image Segmentation}
 
 \subsubsection{Classical Approaches}
 
-Early brain tumor segmentation depended on traditional computer vision techniques: intensity thresholding, region growing, atlas-based methods. These required lots of manual tuning and struggled with how differently tumors can look from patient to patient. The BraTS Challenge, which started in 2012 \cite{menze2015multimodal}, changed things by standardizing evaluation protocols and providing large-scale annotated datasets. That really accelerated innovation in the field.
+Early brain tumour segmentation relied on traditional computer vision techniques including intensity thresholding, region growing, and atlas-based registration. These methods required extensive manual parameter tuning and struggled to accommodate the high inter-patient variability in tumour appearance. The BraTS Challenge, established in 2012 \cite{menze2015multimodal}, standardised evaluation protocols and provided large-scale annotated datasets, substantially accelerating innovation in automated segmentation.
 
 \subsubsection{The CNN Revolution: U-Net and Its Variants}
 
-Fully convolutional networks really transformed medical image segmentation. When Ronneberger et al. \cite{ronneberger2015unet} introduced U-Net in 2015, it was a game-changer. The symmetric encoder-decoder architecture with skip connections preserved spatial information during upsampling, which proved crucial. U-Net became the go-to standard for medical segmentation, achieving way better performance than classical methods while needing minimal training data—thanks to aggressive data augmentation.
+Fully convolutional networks fundamentally transformed medical image segmentation. Ronneberger et al.\ \cite{ronneberger2015unet} introduced U-Net in 2015, establishing the symmetric encoder-decoder architecture with skip connections that preserves spatial information during upsampling. U-Net became the standard baseline for medical segmentation, substantially outperforming classical methods while requiring comparatively little training data through the use of aggressive data augmentation.
 
-Taking U-Net to 3D medical imaging, \c{C}i\c{c}ek et al. \cite{cicek20163d} extended it with 3D convolutions, which enabled direct processing of multi-slice MRI scans. But there's a catch: 3D U-Net's computational requirements scale cubically with volume dimensions. That means you need substantial GPU memory—8GB+ VRAM—and that limits deployment on devices with fewer resources.
+\c{C}i\c{c}ek et al.\ \cite{cicek20163d} extended U-Net to 3D medical imaging through volumetric convolutions, enabling direct processing of multi-slice MRI volumes. However, 3D U-Net's computational requirements scale cubically with volume dimensions, necessitating 8GB+ of VRAM and limiting deployment on resource-constrained hardware.
 
-Then came nnU-Net from Isensee et al. \cite{isensee2021nnunet}, a self-configuring framework that automatically optimizes preprocessing, architecture, and training hyperparameters for whatever medical segmentation task you throw at it. It achieves state-of-the-art results across diverse datasets. However, the automatic configuration needs extensive computational resources for hyperparameter search, and the final models stay large (80M+ parameters).
+Isensee et al.\ \cite{isensee2021nnunet} introduced nnU-Net, a self-configuring framework that automatically optimises preprocessing, architecture, and training hyperparameters for diverse medical segmentation tasks, achieving state-of-the-art results across multiple datasets. However, automatic configuration requires extensive computational resources for hyperparameter search, and the resulting models remain large (80M+ parameters).
 
 \subsubsection{Transformer-Based Architectures}
 
@@ -48,23 +48,23 @@ Several studies have explored graph representations for medical imaging:
 
 \subsubsection{The Efficiency-Accuracy Dilemma}
 
-Despite impressive accuracy numbers, modern deep learning methods hit persistent deployment barriers:
+Despite impressive accuracy, modern deep learning methods face persistent deployment barriers:
 
-\textbf{Computational Requirements:} State-of-the-art models like nnU-Net, Swin-UNETR, and TransBTS need 68M-92M parameters and 8GB-24GB of GPU memory. That limits deployment to high-end research hardware. Rural clinics, mobile diagnostic units, and developing regions just don't have access to that kind of infrastructure.
+\textbf{Computational Requirements:} State-of-the-art models including nnU-Net, Swin-UNETR, and TransBTS require 68M--92M parameters and 8--24GB of GPU memory, limiting deployment to high-end research hardware. Rural clinics, mobile diagnostic units, and healthcare systems in developing regions typically lack access to such infrastructure.
 
-\textbf{Inference Latency:} Processing a full 240$\times$240$\times$155 MRI volume through deep 3D CNNs takes 50-100ms per patient. That's a problem for real-time clinical workflows where radiologists expect immediate feedback.
+\textbf{Inference Latency:} Processing a 240$\times$240$\times$155 MRI volume through deep 3D CNNs requires 50--100ms per patient, which is problematic for real-time clinical workflows where immediate feedback is expected.
 
-\textbf{Energy Consumption:} Large models burn through power during inference. As medical AI scales to millions of patients globally, this raises environmental concerns. Sustainable healthcare AI needs architectures that balance accuracy with resource efficiency.
+\textbf{Energy Consumption:} Large models consume substantial power during inference. As medical AI scales to millions of patients globally, the environmental impact becomes significant, motivating the development of architectures that balance accuracy with energy efficiency.
 
 \subsubsection{Unexplored GNN Potential}
 
-Graph neural networks have proven themselves in social networks, molecular modeling, and recommendation systems. But their application to medical image segmentation? Still pretty new:
+Graph neural networks have demonstrated strong performance in social network analysis, molecular modelling, and recommendation systems. Their application to medical image segmentation, however, remains relatively unexplored:
 
-\textbf{Pure GNN Approaches Lacking:} Most medical imaging GNN research uses hybrid CNN-GNN designs. \textit{Nobody's rigorously benchmarked a pure, lightweight GNN architecture for efficient brain tumor segmentation.}
+\textbf{Pure GNN Approaches Absent:} Most medical imaging GNN research employs hybrid CNN-GNN designs in which a convolutional backbone provides features and a GNN provides spatial reasoning. No prior work has rigorously benchmarked a pure, lightweight GNN architecture — without a CNN backbone — for efficient brain tumour segmentation.
 
-\textbf{Superpixel-GNN Integration Underexplored:} Combining superpixel preprocessing (890$\times$ dimensionality reduction) with inductive graph learning (GraphSAGE) is an unexplored avenue. It could potentially achieve competitive accuracy with dramatic efficiency improvements.
+\textbf{Superpixel-GNN Integration Underexplored:} Combining superpixel-based preprocessing (enabling up to 890$\times$ dimensionality reduction) with inductive graph learning via GraphSAGE is an underexplored avenue that may achieve competitive accuracy with dramatic efficiency improvements.
 
-\textbf{Reproducibility Gap:} Medical AI research suffers from reproducibility issues—insufficient documentation, unreported hyperparameters, potential data leakage. Establishing rigorous validation standards (patient-level splits, comprehensive integrity checks) is critical for the field to mature.
+\textbf{Reproducibility Gap:} Medical AI research has faced scrutiny over reproducibility — insufficient documentation, unreported hyperparameters, and potential data leakage have undermined confidence in reported results. Establishing rigorous validation standards including patient-level splits and comprehensive integrity checks is critical for the field's maturity.
 
 \subsection{Positioning This Work}
 
@@ -78,6 +78,6 @@ This thesis addresses the identified research gap through three key contribution
 
 \vspace{5mm}
 
-This literature review establishes that while CNNs and transformers have pushed accuracy boundaries for brain tumor segmentation, their computational demands create deployment barriers that limit clinical impact. Graph neural networks, through exploitation of tumor sparsity via superpixel representations, offer a promising yet underexplored paradigm for efficient medical image analysis. The following chapters detail our systematic investigation of this approach, demonstrating that competitive accuracy need not require massive models when architectural design aligns with domain-specific structural properties.
+This literature review establishes that while CNNs and transformers have pushed accuracy boundaries for brain tumour segmentation, their computational demands create deployment barriers that limit clinical impact. Graph neural networks, through exploitation of tumour sparsity via superpixel representations, offer a promising yet underexplored paradigm for efficient medical image analysis. The following chapters detail the systematic investigation of this approach, demonstrating that competitive accuracy does not require massive models when architectural design aligns with the structural properties of the target domain.
 
 \clearpage

@@ -16,6 +16,7 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
+from config import get_config
 from gnn_model import TumorSegmentationGNN
 
 
@@ -189,15 +190,23 @@ def main():
     print("Using TEST SET patients only (unseen during training)")
     print("="*80)
     print()
-    
-    # Configuration
+
+    # Load configuration (lazy loading to avoid import-time crashes)
+    config = get_config()
+
+    # Configuration (using config.yaml)
     fold_idx = 0  # Use fold 0
-    fold_dir = Path("./data/cv_folds")
-    data_dir = Path("/mnt/bigdata/capstone/BraTS2021_Training_Data")
-    checkpoint_dir = Path("./checkpoints/cv_experiments")
-    output_dir = Path("./research_results/qualitative_examples")
-    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    fold_dir = Path(config.data_cv_folds)
+    data_dir = Path(config.brats_2021_raw)
+    checkpoint_dir = Path(config.checkpoints_binary)
+    output_dir = Path(config.results_qualitative)
+    device = config.get('hardware.device', 'cuda') if torch.cuda.is_available() else 'cpu'
     n_patients = 4  # Number of patients to visualize
+
+    print(f"📁 Using paths from config:")
+    print(f"   Data dir: {data_dir}")
+    print(f"   Checkpoint dir: {checkpoint_dir}")
+    print(f"   Output dir: {output_dir}\n")
     
     output_dir.mkdir(parents=True, exist_ok=True)
     

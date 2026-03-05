@@ -32,9 +32,11 @@ warnings.filterwarnings('ignore')
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 from gnn_model import TumorSegmentationGNN
+from config import get_config
 
 class ParanoidAuditor:
-    def __init__(self):
+    def __init__(self, config=None):
+        self.config = config if config else get_config()
         self.issues = []
         self.warnings = []
         self.checks_passed = 0
@@ -55,8 +57,8 @@ class ParanoidAuditor:
         print("\n" + "="*70)
         print("🔍 CHECK 1: FEATURE DIMENSION CONSISTENCY")
         print("="*70)
-        
-        graph_files = glob.glob("data/graphs/*/*.pt")
+
+        graph_files = glob.glob(str(Path(self.config.data_graphs) / "*" / "*.pt"))
         if not graph_files:
             self.log_issue("No graph files found!")
             return
@@ -103,11 +105,11 @@ class ParanoidAuditor:
         print("\n" + "="*70)
         print("🔍 CHECK 2: PATIENT LEAKAGE (Train/Val/Test Overlap)")
         print("="*70)
-        
-        cv_dir = "data/cv_folds"
-        
+
+        cv_dir = self.config.data_cv_folds
+
         for fold in range(5):
-            fold_file = f"{cv_dir}/fold_{fold}.json"
+            fold_file = str(Path(cv_dir) / f"fold_{fold}.json")
             if not os.path.exists(fold_file):
                 print(f"   ⚠️  Fold {fold} file missing")
                 continue
@@ -136,9 +138,9 @@ class ParanoidAuditor:
         print("\n" + "="*70)
         print("🔍 CHECK 3: MODEL ARCHITECTURE CONSISTENCY")
         print("="*70)
-        
+
         # Check CV checkpoint
-        cv_checkpoint = "checkpoints/binary_training/fold_0/best_model.pth"
+        cv_checkpoint = str(Path(self.config.checkpoints_binary) / "fold_0" / "best_model.pth")
         if not os.path.exists(cv_checkpoint):
             print(f"   ⚠️  CV checkpoint not found: {cv_checkpoint}")
             return
@@ -233,8 +235,8 @@ class ParanoidAuditor:
         print("\n" + "="*70)
         print("🔍 CHECK 5: LABEL DISTRIBUTION")
         print("="*70)
-        
-        graph_files = glob.glob("data/graphs/*/*.pt")
+
+        graph_files = glob.glob(str(Path(self.config.data_graphs) / "*" / "*.pt"))
         samples = np.random.choice(graph_files, min(100, len(graph_files)), replace=False)
         
         all_labels = []
@@ -307,9 +309,9 @@ class ParanoidAuditor:
         print("\n" + "="*70)
         print("🔍 CHECK 7: DATA LOADING BEHAVIOR")
         print("="*70)
-        
+
         # Load a fold and check dataset
-        fold_file = "data/cv_folds/fold_0.json"
+        fold_file = str(Path(self.config.data_cv_folds) / "fold_0.json")
         if not os.path.exists(fold_file):
             print("   ⚠️  Fold 0 file not found")
             return
@@ -320,9 +322,9 @@ class ParanoidAuditor:
         # Check if test set is used correctly
         test_patients = split['test_patients']
         print(f"   Test set size: {len(test_patients)} patients")
-        
+
         # Count graphs per patient
-        graph_files = glob.glob("data/graphs/*/*.pt")
+        graph_files = glob.glob(str(Path(self.config.data_graphs) / "*" / "*.pt"))
         patient_graph_counts = defaultdict(int)
         
         for gf in graph_files[:200]:  # Sample
@@ -341,7 +343,7 @@ class ParanoidAuditor:
         print("="*70)
         
         checkpoints = {
-            "CV Fold 0": "checkpoints/binary_training/fold_0/best_model.pth",
+            "CV Fold 0": str(Path(self.config.checkpoints_binary) / "fold_0" / "best_model.pth"),
             "Baseline Ablation": "research_results/ablation_study_accuracy/baseline_accuracy/best_model.pth",
         }
         

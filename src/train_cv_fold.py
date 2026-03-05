@@ -17,6 +17,7 @@ from torch.amp import autocast, GradScaler
 from torch_geometric.loader import DataLoader as GeometricDataLoader
 
 # Import existing modules
+from config import get_config
 from dataset import BraTSGraphDataset, BinaryTransform
 from gnn_model import TumorSegmentationGNN
 from cross_validation import load_fold_data
@@ -144,37 +145,55 @@ def evaluate(model, data_loader, criterion, device):
 
 def train_fold(
     fold_idx: int,
-    fold_dir: str = './data/cv_folds',
-    output_dir: str = './checkpoints/cv_experiments',
-    epochs: int = 50,
-    batch_size: int = 32,
-    learning_rate: float = 0.001,
-    hidden_channels: int = 256,
-    num_layers: int = 5,
-    accumulation_steps: int = 4,
-    device: str = 'cuda'
+    fold_dir: str = None,
+    output_dir: str = None,
+    epochs: int = None,
+    batch_size: int = None,
+    learning_rate: float = None,
+    hidden_channels: int = None,
+    num_layers: int = None,
+    accumulation_steps: int = None,
+    device: str = None
 ):
     """
     Train a single cross-validation fold
-    
+
     Args:
         fold_idx: Which fold to train (0 to k-1)
-        fold_dir: Directory containing fold assignments
-        output_dir: Directory to save checkpoints and results
-        epochs: Number of training epochs
-        batch_size: Batch size
-        learning_rate: Initial learning rate
-        hidden_channels: Hidden dimension size
-        num_layers: Number of GNN layers
-        accumulation_steps: Gradient accumulation steps
-        device: Device to use for training
+        fold_dir: Directory containing fold assignments (default from config)
+        output_dir: Directory to save checkpoints and results (default from config)
+        epochs: Number of training epochs (default from config)
+        batch_size: Batch size (default from config)
+        learning_rate: Initial learning rate (default from config)
+        hidden_channels: Hidden dimension size (default from config)
+        num_layers: Number of GNN layers (default from config)
+        accumulation_steps: Gradient accumulation steps (default from config)
+        device: Device to use for training (default from config)
     """
+    # Load config (lazy loading to avoid import-time crashes)
+    config = get_config()
+
+    # Load defaults from config if not provided
+    fold_dir = fold_dir or config.data_cv_folds
+    output_dir = output_dir or config.checkpoints_binary
+    epochs = epochs if epochs is not None else config.get('model.training.max_epochs', 50)
+    batch_size = batch_size if batch_size is not None else config.get('model.training.batch_size', 32)
+    learning_rate = learning_rate if learning_rate is not None else config.get('model.training.learning_rate', 0.001)
+    hidden_channels = hidden_channels if hidden_channels is not None else config.get('model.gnn.hidden_channels', 256)
+    num_layers = num_layers if num_layers is not None else config.get('model.gnn.num_layers', 5)
+    accumulation_steps = accumulation_steps if accumulation_steps is not None else config.get('model.training.accumulation_steps', 4)
+    device = device or config.get('hardware.device', 'cuda')
+
     print("=" * 80)
     print(f"TRAINING FOLD {fold_idx}")
     print("=" * 80)
-    
+    print(f"📁 Using paths from config:")
+    print(f"   Fold dir: {fold_dir}")
+    print(f"   Output dir: {output_dir}")
+
     # Set seed for reproducibility
-    set_seed(42)
+    seed = config.get('project.seed', 42)
+    set_seed(seed)
     
     # Set device
     device = torch.device(device if torch.cuda.is_available() else 'cpu')
@@ -378,30 +397,30 @@ def train_fold(
 
 if __name__ == "__main__":
     import argparse
-    
-    parser = argparse.ArgumentParser(description='Train a single CV fold')
+
+    parser = argparse.ArgumentParser(description='Train a single CV fold (uses config.yaml for defaults)')
     parser.add_argument('--fold_idx', type=int, required=True,
                        help='Fold index to train (0 to k-1)')
-    parser.add_argument('--fold_dir', type=str, default='./data/cv_folds',
-                       help='Directory containing fold assignments')
-    parser.add_argument('--output_dir', type=str, default='./checkpoints/cv_experiments',
-                       help='Output directory for checkpoints')
-    parser.add_argument('--epochs', type=int, default=50,
-                       help='Number of training epochs')
-    parser.add_argument('--batch_size', type=int, default=32,
-                       help='Batch size')
-    parser.add_argument('--lr', type=float, default=0.001,
-                       help='Learning rate')
-    parser.add_argument('--hidden_channels', type=int, default=256,
-                       help='Hidden dimension size')
-    parser.add_argument('--num_layers', type=int, default=5,
-                       help='Number of GNN layers')
-    parser.add_argument('--device', type=str, default='cuda',
-                       help='Device to use (cuda/cpu)')
-    
+    parser.add_argument('--fold_dir', type=str, default=None,
+                       help='Directory containing fold assignments (default from config.yaml)')
+    parser.add_argument('--output_dir', type=str, default=None,
+                       help='Output directory for checkpoints (default from config.yaml)')
+    parser.add_argument('--epochs', type=int, default=None,
+                       help='Number of training epochs (default from config.yaml: 50)')
+    parser.add_argument('--batch_size', type=int, default=None,
+                       help='Batch size (default from config.yaml: 32)')
+    parser.add_argument('--lr', type=float, default=None,
+                       help='Learning rate (default from config.yaml: 0.001)')
+    parser.add_argument('--hidden_channels', type=int, default=None,
+                       help='Hidden dimension size (default from config.yaml: 256)')
+    parser.add_argument('--num_layers', type=int, default=None,
+                       help='Number of GNN layers (default from config.yaml: 5)')
+    parser.add_argument('--device', type=str, default=None,
+                       help='Device to use (default from config.yaml: cuda)')
+
     args = parser.parse_args()
-    
-    # Train fold
+
+    # Train fold (config defaults will be used for None values)
     results = train_fold(
         fold_idx=args.fold_idx,
         fold_dir=args.fold_dir,
@@ -413,5 +432,5 @@ if __name__ == "__main__":
         num_layers=args.num_layers,
         device=args.device
     )
-    
+
     print("\n✅ Fold training complete!")

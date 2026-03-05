@@ -19,6 +19,7 @@ import json
 import argparse
 from tqdm import tqdm
 
+from config import get_config
 from gnn_model import TumorSegmentationGNN
 from dataset import BraTSGraphDataset, BinaryTransform
 from torch_geometric.loader import DataLoader as GeometricDataLoader
@@ -196,32 +197,45 @@ def evaluate_ensemble(models, test_dataset, device='cuda', batch_size=1, method=
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Ensemble inference from 5-fold models')
-    parser.add_argument('--checkpoint_dir', type=str, default='checkpoints/binary_training',
-                        help='Directory containing fold_X subdirectories')
-    parser.add_argument('--fold_file', type=str, default='data/cv_folds/fold_0.json',
-                        help='Fold file to use for test set (any fold has same test set)')
+    parser = argparse.ArgumentParser(description='Ensemble inference from 5-fold models (uses config.yaml for defaults)')
+    parser.add_argument('--checkpoint_dir', type=str, default=None,
+                        help='Directory containing fold_X subdirectories (default from config.yaml)')
+    parser.add_argument('--fold_file', type=str, default=None,
+                        help='Fold file to use for test set (default from config.yaml: fold_0.json)')
     parser.add_argument('--method', type=str, default='mean', choices=['mean', 'vote'],
                         help='Ensemble method: mean (average logits) or vote (majority)')
-    parser.add_argument('--output_dir', type=str, default='research_results/ensemble',
-                        help='Output directory for results')
-    parser.add_argument('--device', type=str, default='cuda',
-                        help='Device to use')
-    
+    parser.add_argument('--output_dir', type=str, default=None,
+                        help='Output directory for results (default from config.yaml)')
+    parser.add_argument('--device', type=str, default=None,
+                        help='Device to use (default from config.yaml: cuda)')
+
     args = parser.parse_args()
-    
-    device = torch.device(args.device if torch.cuda.is_available() else 'cpu')
-    output_dir = Path(args.output_dir)
+
+    # Load config (lazy loading to avoid import-time crashes)
+    config = get_config()
+
+    # Use config defaults for None values
+    checkpoint_dir = args.checkpoint_dir or config.checkpoints_binary
+    fold_file = args.fold_file or str(Path(config.data_cv_folds) / 'fold_0.json')
+    output_dir_arg = args.output_dir or config.results_ensemble
+    device_str = args.device or config.get('hardware.device', 'cuda')
+
+    device = torch.device(device_str if torch.cuda.is_available() else 'cpu')
+    output_dir = Path(output_dir_arg)
     output_dir.mkdir(parents=True, exist_ok=True)
-    
+
     print("="*80)
     print("ENSEMBLE INFERENCE - THE +1% BOOSTER")
     print("="*80)
+    print(f"📁 Using paths from config:")
+    print(f"   Checkpoint dir: {checkpoint_dir}")
+    print(f"   Fold file: {fold_file}")
+    print(f"   Output dir: {output_dir}")
     print(f"Method: {args.method.upper()}")
     print(f"Device: {device}")
-    
+
     # Load models
-    models, fold_info = load_ensemble_models(args.checkpoint_dir, device)
+    models, fold_info = load_ensemble_models(checkpoint_dir, device)
     
     if len(models) == 0:
         print("\n❌ No models found! Train all 5 folds first.")
@@ -232,12 +246,12 @@ def main():
         print("   For best ensemble performance, train all 5 folds.")
     
     # Load test data
-    with open(args.fold_file) as f:
+    with open(fold_file) as f:
         fold_data = json.load(f)
-    
+
     test_patients = fold_data['test_patients']
     test_graphs = [
-        str(Path('data/graphs') / pid / f'{pid}_graphs_200.pt')
+        str(Path(config.data_graphs) / pid / f'{pid}_graphs_200.pt')
         for pid in test_patients
     ]
     
