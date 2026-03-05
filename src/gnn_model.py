@@ -3,7 +3,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch_geometric.nn import SAGEConv, GATConv, global_mean_pool
+from torch_geometric.nn import SAGEConv, GATConv, GCNConv, GINConv, TransformerConv, global_mean_pool
 
 class GraphSAGE(nn.Module):
     def __init__(self, in_channels, hidden_channels=128, out_channels=64, num_layers=3, dropout=0.2):
@@ -84,6 +84,92 @@ class GAT(nn.Module):
                 x = F.dropout(x, p=self.dropout, training=self.training)
         return x
 
+class GCN(nn.Module):
+    def __init__(self, in_channels, hidden_channels=128, out_channels=64, num_layers=3, dropout=0.2):
+        super(GCN, self).__init__()
+        self.num_layers = num_layers
+        self.convs = nn.ModuleList()
+        self.convs.append(GCNConv(in_channels, hidden_channels))
+        for _ in range(num_layers - 2):
+            self.convs.append(GCNConv(hidden_channels, hidden_channels))
+        self.convs.append(GCNConv(hidden_channels, out_channels))
+        self.bns = nn.ModuleList()
+        for i in range(num_layers):
+            self.bns.append(nn.BatchNorm1d(hidden_channels if i < num_layers - 1 else out_channels))
+        self.dropout = dropout
+
+    def reset_parameters(self):
+        for conv in self.convs: conv.reset_parameters()
+        for bn in self.bns: bn.reset_parameters()
+
+    def forward(self, x, edge_index):
+        for i in range(self.num_layers):
+            x = self.convs[i](x, edge_index)
+            x = self.bns[i](x)
+            if i < self.num_layers - 1:
+                x = F.relu(x)
+                x = F.dropout(x, p=self.dropout, training=self.training)
+        return x
+
+
+class GIN(nn.Module):
+    def __init__(self, in_channels, hidden_channels=128, out_channels=64, num_layers=3, dropout=0.2):
+        super(GIN, self).__init__()
+        self.num_layers = num_layers
+        self.dropout = dropout
+
+        def make_mlp(in_c, out_c):
+            return nn.Sequential(
+                nn.Linear(in_c, out_c),
+                nn.BatchNorm1d(out_c),
+                nn.ReLU(),
+                nn.Linear(out_c, out_c),
+            )
+
+        self.convs = nn.ModuleList()
+        self.convs.append(GINConv(make_mlp(in_channels, hidden_channels)))
+        for _ in range(num_layers - 2):
+            self.convs.append(GINConv(make_mlp(hidden_channels, hidden_channels)))
+        self.convs.append(GINConv(make_mlp(hidden_channels, out_channels)))
+
+        self.bns = nn.ModuleList()
+        for i in range(num_layers):
+            self.bns.append(nn.BatchNorm1d(hidden_channels if i < num_layers - 1 else out_channels))
+
+    def forward(self, x, edge_index):
+        for i in range(self.num_layers):
+            x = self.convs[i](x, edge_index)
+            x = self.bns[i](x)
+            if i < self.num_layers - 1:
+                x = F.relu(x)
+                x = F.dropout(x, p=self.dropout, training=self.training)
+        return x
+
+
+class GraphTransformer(nn.Module):
+    def __init__(self, in_channels, hidden_channels=128, out_channels=64, num_layers=3, heads=4, dropout=0.2):
+        super(GraphTransformer, self).__init__()
+        self.num_layers = num_layers
+        self.dropout = dropout
+        self.convs = nn.ModuleList()
+        self.convs.append(TransformerConv(in_channels, hidden_channels // heads, heads=heads, dropout=dropout, concat=True))
+        for _ in range(num_layers - 2):
+            self.convs.append(TransformerConv(hidden_channels, hidden_channels // heads, heads=heads, dropout=dropout, concat=True))
+        self.convs.append(TransformerConv(hidden_channels, out_channels, heads=1, dropout=dropout, concat=False))
+        self.bns = nn.ModuleList()
+        for i in range(num_layers):
+            self.bns.append(nn.BatchNorm1d(hidden_channels if i < num_layers - 1 else out_channels))
+
+    def forward(self, x, edge_index):
+        for i in range(self.num_layers):
+            x = self.convs[i](x, edge_index)
+            x = self.bns[i](x)
+            if i < self.num_layers - 1:
+                x = F.relu(x)
+                x = F.dropout(x, p=self.dropout, training=self.training)
+        return x
+
+
 class TumorSegmentationGNN(nn.Module):
     def __init__(self, in_channels, hidden_channels=128, gnn_out_channels=64, 
                  gnn_type='sage', num_layers=3, dropout=0.2, heads=4, use_consistency=True):
@@ -108,8 +194,33 @@ class TumorSegmentationGNN(nn.Module):
                 heads=heads,
                 dropout=dropout
             )
+        elif gnn_type.lower() == 'gcn':
+            self.gnn = GCN(
+                in_channels=in_channels,
+                hidden_channels=hidden_channels,
+                out_channels=gnn_out_channels,
+                num_layers=num_layers,
+                dropout=dropout
+            )
+        elif gnn_type.lower() == 'gin':
+            self.gnn = GIN(
+                in_channels=in_channels,
+                hidden_channels=hidden_channels,
+                out_channels=gnn_out_channels,
+                num_layers=num_layers,
+                dropout=dropout
+            )
+        elif gnn_type.lower() in ('graph_transformer', 'gt'):
+            self.gnn = GraphTransformer(
+                in_channels=in_channels,
+                hidden_channels=hidden_channels,
+                out_channels=gnn_out_channels,
+                num_layers=num_layers,
+                heads=heads,
+                dropout=dropout
+            )
         else:
-            raise ValueError(f"Unsupported GNN type: {gnn_type}")
+            raise ValueError(f"Unsupported GNN type: {gnn_type}. Choose from: sage, gat, gcn, gin, graph_transformer")
         
         # Classifier MLP
         self.classifier = nn.Sequential(

@@ -1,3 +1,4 @@
+
 # BraTS GNN Segmentation - Centralized Configuration
 # This file contains all paths and settings for the project
 # Edit this file to adapt to your system
@@ -28,19 +29,21 @@ paths:
     organized: "data/organized"
     preprocessed: "data/preprocessed"
     graphs: "data/graphs"
-    cv_folds: "data/cv_folds"
+    cv_folds: "data/cv_folds_v2"  # Updated Phase 1.2: leakage-free folds from cv_pool only
+    cv_folds_v2: "data/cv_folds_v2"
+    splits: "data/splits"  # held_out_test.json and cv_pool.json
 
   # Model Checkpoints (relative to project_root)
   checkpoints:
     root: "checkpoints"
-    binary_training: "checkpoints/binary_training"
+    binary_training: "checkpoints/binary_v2"  # Updated Phase 2: retrained on cv_pool only
     multiclass_training: "checkpoints/multiclass_training"
     baseline_models: "checkpoints/baseline_models"
 
   # Research Results (relative to project_root)
   results:
     root: "research_results"
-    ensemble: "research_results/ensemble"
+    ensemble: "research_results/ensemble_v2"  # Updated Phase 4: clean held-out evaluation
     ablation: "research_results/ablation_study_accuracy"
     baseline_comparison: "research_results/baseline_comparison"
     speed_benchmark: "research_results/speed_benchmark"
@@ -72,14 +75,14 @@ model:
 
   # Training Hyperparameters
   training:
-    batch_size: 32
-    accumulation_steps: 4
+    batch_size: 64           # up from 32 — RTX 2060 6GB handles 439K-param model fine
+    accumulation_steps: 2    # down from 4 — effective batch = 128 (same as before)
     learning_rate: 0.001
     weight_decay: 0.00001
     max_epochs: 50
     early_stopping_patience: 10
-    num_workers: 4
-    use_amp: false  # Automatic Mixed Precision (disabled for stability)
+    num_workers: 4           # parallel DataLoader workers (was 0)
+    use_amp: true            # Automatic Mixed Precision (RTX 2060 Tensor Cores: ~1.5-2x speedup)
 
   # Cross-Validation
   cross_validation:
@@ -140,9 +143,9 @@ evaluation:
 # HARDWARE CONFIGURATION
 # =============================================================================
 hardware:
-  device: "cuda"  # Options: cuda, cpu
+  device: "cuda"       # Options: cuda, cpu
   gpu_id: 0
-  num_workers: 4
+  num_workers: 4       # DataLoader workers — matches i7-10700 (16 cores)
   pin_memory: true
 
 # =============================================================================

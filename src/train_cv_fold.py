@@ -31,9 +31,10 @@ def set_seed(seed: int = 42):
     torch.manual_seed(seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
-        # Enable deterministic algorithms for reproducibility
-        torch.backends.cudnn.deterministic = True
-        torch.backends.cudnn.benchmark = False
+        # benchmark=True lets cuDNN auto-tune kernels for current input shapes
+        # (~10-30% speedup on RTX 2060 Tensor Cores)
+        torch.backends.cudnn.benchmark = True
+        torch.backends.cudnn.deterministic = False
 
 
 def compute_metrics(predictions, labels):
@@ -79,8 +80,8 @@ def train_epoch(model, train_loader, criterion, optimizer, scheduler, scaler, de
     optimizer.zero_grad()
     
     for batch_idx, data in enumerate(train_loader):
-        data = data.to(device)
-        
+        data = data.to(device, non_blocking=True)  # non_blocking exploits pin_memory
+
         # Mixed precision training
         with autocast(device_type='cuda'):
             out, _ = model(data)  # Model returns (logits, embeddings)
@@ -123,8 +124,8 @@ def evaluate(model, data_loader, criterion, device):
     all_labels = []
     
     for data in data_loader:
-        data = data.to(device)
-        
+        data = data.to(device, non_blocking=True)
+
         with autocast(device_type='cuda'):
             out, _ = model(data)  # Model returns (logits, embeddings)
             loss = criterion(out.squeeze(), data.y.float())
@@ -234,19 +235,19 @@ def train_fold(
         transform=binary_transform  # ← Convert multi-class to binary
     )
     
-    # Create dataloaders
-    train_loader = GeometricDataLoader(
-        train_dataset, batch_size=batch_size, shuffle=True,
-        num_workers=4, pin_memory=True
+    # Create dataloaders — num_workers=4 parallelises loading; data is already
+    # in RAM so workers read from the preloaded dict (no disk I/O bottleneck)
+    num_workers = config.get('hardware.num_workers', 4)
+    loader_kwargs = dict(
+        batch_size=batch_size,
+        num_workers=num_workers,
+        pin_memory=True,
+        persistent_workers=(num_workers > 0),
+        prefetch_factor=2 if num_workers > 0 else None,
     )
-    val_loader = GeometricDataLoader(
-        val_dataset, batch_size=batch_size, shuffle=False,
-        num_workers=4, pin_memory=True
-    )
-    test_loader = GeometricDataLoader(
-        test_dataset, batch_size=batch_size, shuffle=False,
-        num_workers=4, pin_memory=True
-    )
+    train_loader = GeometricDataLoader(train_dataset, shuffle=True,  **loader_kwargs)
+    val_loader   = GeometricDataLoader(val_dataset,   shuffle=False, **loader_kwargs)
+    test_loader  = GeometricDataLoader(test_dataset,  shuffle=False, **loader_kwargs)
     
     print(f"\nDataset sizes:")
     print(f"  Train: {len(train_dataset)} graphs")
@@ -269,6 +270,15 @@ def train_fold(
     
     total_params = sum(p.numel() for p in model.parameters())
     print(f"  Total parameters: {total_params:,}")
+
+    # torch.compile — fuses GNN ops into optimized kernels (~15-25% speedup)
+    try:
+        # 'default' mode — operator fusion without CUDA Graphs.
+        # PyG has variable-size graphs per batch so 'reduce-overhead' (CUDA Graphs) fails.
+        model = torch.compile(model, mode='default')
+        print("  torch.compile() enabled (default mode)")
+    except Exception as e:
+        print(f"  torch.compile() skipped: {e}")
     
     # Loss and optimizer
     criterion = nn.BCEWithLogitsLoss()

@@ -75,59 +75,46 @@ class BraTSGraphDataset(Dataset):
         print(f"📊 Dataset initialized: {len(self.graph_entries)} graphs from {unique_patients} patients")
     
     def _load_from_file_list(self, graph_files: List[str]) -> List[Tuple[str, int]]:
-        """Load graphs from explicit file list (for CV)"""
+        """Load graphs from explicit file list (for CV) — preloads all into RAM"""
+        self._preloaded = {}
         graph_entries = []
         for graph_file in sorted(graph_files):
             try:
-                # Load file to count graphs
                 graphs = torch.load(graph_file, map_location='cpu', weights_only=False)
-                if isinstance(graphs, list):
-                    num_graphs = len(graphs)
-                else:
-                    num_graphs = 1
-                
-                # Add entry for each graph in the file
-                for i in range(num_graphs):
+                if not isinstance(graphs, list):
+                    graphs = [graphs]
+                self._preloaded[graph_file] = graphs
+                for i in range(len(graphs)):
                     graph_entries.append((graph_file, i))
-                    
             except Exception as e:
                 print(f"⚠️ Warning: Could not load {graph_file}: {e}")
                 continue
-        
         return graph_entries
-    
+
     def _find_graph_files(self, patient_ids: Optional[List[str]] = None) -> List[Tuple[str, int]]:
-        """Find all graph files and expand to individual graphs"""
+        """Find all graph files and expand to individual graphs — preloads all into RAM"""
         if patient_ids is None:
-            # Use all patients
             pattern = os.path.join(self.graph_dir, "BraTS2021_*", "*_graphs_*.pt")
             all_files = glob.glob(pattern)
         else:
-            # Filter by specific patient IDs
             all_files = []
             for patient_id in patient_ids:
                 pattern = os.path.join(self.graph_dir, patient_id, f"{patient_id}_graphs_*.pt")
                 all_files.extend(glob.glob(pattern))
-        
-        # Expand to individual graphs: (file_path, graph_index)
+
+        self._preloaded = {}
         graph_entries = []
         for graph_file in sorted(all_files):
             try:
-                # Load file to count graphs
                 graphs = torch.load(graph_file, map_location='cpu', weights_only=False)
-                if isinstance(graphs, list):
-                    num_graphs = len(graphs)
-                else:
-                    num_graphs = 1
-                
-                # Add entry for each graph in the file
-                for i in range(num_graphs):
+                if not isinstance(graphs, list):
+                    graphs = [graphs]
+                self._preloaded[graph_file] = graphs
+                for i in range(len(graphs)):
                     graph_entries.append((graph_file, i))
-                    
             except Exception as e:
                 print(f"⚠️ Warning: Could not load {graph_file}: {e}")
                 continue
-        
         return graph_entries
     
     def _get_patient_id(self, graph_file: str) -> str:
@@ -138,20 +125,11 @@ class BraTSGraphDataset(Dataset):
         return len(self.graph_entries)
     
     def __getitem__(self, idx: int) -> Data:
-        """Load and return a specific graph"""
+        """Load and return a specific graph (from preloaded RAM cache)"""
         graph_file, graph_idx = self.graph_entries[idx]
-        
+
         try:
-            # Load the graph with weights_only=False for PyTorch 2.6+
-            graphs = torch.load(graph_file, map_location='cpu', weights_only=False)
-            
-            # Handle different formats
-            if isinstance(graphs, list):
-                # Multiple graphs in file - get the specific one
-                graph = graphs[graph_idx]
-            else:
-                # Single graph (graph_idx should be 0)
-                graph = graphs
+            graph = self._preloaded[graph_file][graph_idx]
             
             # Ensure it's a PyTorch Geometric Data object
             if not isinstance(graph, Data):

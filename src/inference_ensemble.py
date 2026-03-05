@@ -62,7 +62,12 @@ def load_ensemble_models(checkpoint_dir, device='cuda'):
             dropout=0.1
         ).to(device)
         
-        model.load_state_dict(checkpoint['model_state_dict'])
+        # torch.compile() adds '_orig_mod.' prefix to state dict keys.
+        # Strip it so weights load into a fresh uncompiled model.
+        state_dict = checkpoint['model_state_dict']
+        if any(k.startswith('_orig_mod.') for k in state_dict):
+            state_dict = {k.replace('_orig_mod.', '', 1): v for k, v in state_dict.items()}
+        model.load_state_dict(state_dict)
         model.eval()
         models.append(model)
         
@@ -105,8 +110,7 @@ def predict_ensemble(models, data, device='cuda', method='mean'):
         probs: Ensemble probabilities [num_nodes]
         preds: Binary predictions [num_nodes]
     """
-    data = data.to(device)
-    
+    # data already on device (moved by caller with non_blocking=True)
     with torch.no_grad():
         if method == 'mean':
             # Average logits before sigmoid
@@ -135,15 +139,17 @@ def predict_ensemble(models, data, device='cuda', method='mean'):
     return probs, preds
 
 
-def evaluate_ensemble(models, test_dataset, device='cuda', batch_size=1, method='mean'):
+def evaluate_ensemble(models, test_dataset, device='cuda', batch_size=64, method='mean'):
     """
     Evaluate ensemble on entire test set.
-    
+
     Returns:
         metrics: Dict with dice, accuracy, etc.
         per_graph_results: List of per-graph Dice scores
     """
-    loader = GeometricDataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+    # batch_size=64: process 64 graphs at once instead of 1 — ~64x throughput gain
+    loader = GeometricDataLoader(test_dataset, batch_size=batch_size, shuffle=False,
+                                 num_workers=4, pin_memory=True, persistent_workers=True)
     
     all_dice = []
     all_accuracy = []
@@ -157,6 +163,7 @@ def evaluate_ensemble(models, test_dataset, device='cuda', batch_size=1, method=
     print("="*80)
     
     for data in tqdm(loader, desc="Evaluating ensemble"):
+        data = data.to(device, non_blocking=True)
         probs, preds = predict_ensemble(models, data, device, method)
         
         # Ground truth
@@ -200,14 +207,16 @@ def main():
     parser = argparse.ArgumentParser(description='Ensemble inference from 5-fold models (uses config.yaml for defaults)')
     parser.add_argument('--checkpoint_dir', type=str, default=None,
                         help='Directory containing fold_X subdirectories (default from config.yaml)')
-    parser.add_argument('--fold_file', type=str, default=None,
-                        help='Fold file to use for test set (default from config.yaml: fold_0.json)')
+    parser.add_argument('--test_file', type=str, default=None,
+                        help='JSON file with test patients (default: data/splits/held_out_test.json)')
     parser.add_argument('--method', type=str, default='mean', choices=['mean', 'vote'],
                         help='Ensemble method: mean (average logits) or vote (majority)')
     parser.add_argument('--output_dir', type=str, default=None,
                         help='Output directory for results (default from config.yaml)')
     parser.add_argument('--device', type=str, default=None,
                         help='Device to use (default from config.yaml: cuda)')
+    parser.add_argument('--demo', action='store_true',
+                        help='Demo mode: run on 10 held-out patients only')
 
     args = parser.parse_args()
 
@@ -216,7 +225,8 @@ def main():
 
     # Use config defaults for None values
     checkpoint_dir = args.checkpoint_dir or config.checkpoints_binary
-    fold_file = args.fold_file or str(Path(config.data_cv_folds) / 'fold_0.json')
+    # Default to held-out test set (Phase 4 requirement — leakage-free evaluation)
+    test_file = args.test_file or str(Path(config.get('paths.data.splits', 'data/splits')) / 'held_out_test.json')
     output_dir_arg = args.output_dir or config.results_ensemble
     device_str = args.device or config.get('hardware.device', 'cuda')
 
@@ -225,14 +235,15 @@ def main():
     output_dir.mkdir(parents=True, exist_ok=True)
 
     print("="*80)
-    print("ENSEMBLE INFERENCE - THE +1% BOOSTER")
+    print("ENSEMBLE INFERENCE — HELD-OUT TEST SET EVALUATION")
     print("="*80)
-    print(f"📁 Using paths from config:")
-    print(f"   Checkpoint dir: {checkpoint_dir}")
-    print(f"   Fold file: {fold_file}")
-    print(f"   Output dir: {output_dir}")
-    print(f"Method: {args.method.upper()}")
-    print(f"Device: {device}")
+    print(f"Checkpoint dir: {checkpoint_dir}")
+    print(f"Test file:      {test_file}")
+    print(f"Output dir:     {output_dir}")
+    print(f"Method:         {args.method.upper()}")
+    print(f"Device:         {device}")
+    if args.demo:
+        print(f"[DEMO MODE: 10 patients only]")
 
     # Load models
     models, fold_info = load_ensemble_models(checkpoint_dir, device)
@@ -245,11 +256,21 @@ def main():
         print(f"\n⚠️  Only {len(models)}/5 folds available. Results may be suboptimal.")
         print("   For best ensemble performance, train all 5 folds.")
     
-    # Load test data
-    with open(fold_file) as f:
-        fold_data = json.load(f)
+    # Load test patients — supports both held_out_test.json and fold_X.json formats
+    with open(test_file) as f:
+        test_file_data = json.load(f)
 
-    test_patients = fold_data['test_patients']
+    # held_out_test.json uses 'patients'; fold_X.json uses 'test_patients'
+    if 'patients' in test_file_data:
+        test_patients = test_file_data['patients']
+    elif 'test_patients' in test_file_data:
+        test_patients = test_file_data['test_patients']
+    else:
+        raise ValueError(f"Cannot find patient list in {test_file}. Keys: {list(test_file_data.keys())}")
+
+    if args.demo:
+        test_patients = test_patients[:10]
+
     test_graphs = [
         str(Path(config.data_graphs) / pid / f'{pid}_graphs_200.pt')
         for pid in test_patients
@@ -318,13 +339,16 @@ def main():
     print("\n" + "="*80)
     print("FOR YOUR THESIS")
     print("="*80)
-    print(f"""
+    if individual_scores:
+        print(f"""
 Ensemble Statement:
-"By combining predictions from all 5 cross-validation folds using logit averaging,
-we achieved an ensemble Dice score of {metrics['dice']:.4f}, representing a
-{(metrics['dice'] - mean_individual)*100:+.2f}% improvement over the mean individual
-fold performance ({mean_individual:.4f})."
-    """)
+"By combining predictions from all {len(models)} cross-validation fold models using
+logit averaging, we achieved an ensemble Dice score of {metrics['dice']:.4f} on the
+251-patient held-out test set, representing a {(metrics['dice'] - mean_individual)*100:+.2f}%
+improvement over the mean individual fold performance ({mean_individual:.4f})."
+        """)
+    else:
+        print(f"Ensemble Dice on held-out set: {metrics['dice']:.4f}")
 
 
 if __name__ == "__main__":

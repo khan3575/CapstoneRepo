@@ -1,0 +1,46 @@
+{
+  "scenario1_inference_only": {
+    "mean_ms": 74.0474697660365,
+    "std_ms": 6.5937893589952346,
+    "median_ms": 72.58573100261856,
+    "min_ms": 61.79164600325748,
+    "max_ms": 94.93474299961235,
+    "n": 47
+  },
+  "scenario2_graph_construction": {
+    "mean_ms": 1560.926676340967,
+    "std_ms": 200.9864153660596,
+    "median_ms": 1610.6657999989693,
+    "min_ms": 1216.2008800005424,
+    "max_ms": 2046.962196000095,
+    "n": 47
+  },
+  "scenario2_gnn_inference": {
+    "mean_ms": 5.753195234029454,
+    "std_ms": 0.9991995279296434,
+    "median_ms": 5.894078996789176,
+    "min_ms": 4.035638005007058,
+    "max_ms": 7.607241997902747,
+    "n": 47
+  },
+  "scenario2_end_to_end": {
+    "mean_ms": 1569.610715319249,
+    "std_ms": 202.37098186368283,
+    "median_ms": 1619.8169909985154,
+    "min_ms": 1222.554702006164,
+    "max_ms": 2058.3903590013506,
+    "n": 47
+  },
+  "model_size_mb": 5.072284698486328,
+  "memory": {
+    "peak_mb": 11.06201171875,
+    "allocated_mb": 9.81884765625
+  },
+  "metadata": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 2060",
+    "fold": 0,
+    "num_patients": 47,
+    "checkpoint": "/mnt/bigdata/capstone/brats_gnn_segmentation/checkpoints/binary_v2/fold_0/best_model.pth"
+  }
+}

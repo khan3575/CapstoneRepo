@@ -1,0 +1,21 @@
+{
+  "individual_model_dices_on_held_out": {
+    "fold_0": 0.8872356059401574,
+    "fold_1": 0.9047930461308145,
+    "fold_2": 0.9031089973099903,
+    "fold_3": 0.9012752183484928,
+    "fold_4": 0.9046871257074542
+  },
+  "individual_mean": 0.9002199986873819,
+  "individual_std": 0.007398010599515087,
+  "ensemble_dice": 0.9141395584017635,
+  "improvement": 0.013919559714381635,
+  "ttest_1samp": {
+    "t_statistic": -4.207223187847965,
+    "p_value": 0.013616509729302078,
+    "significant_p05": true
+  },
+  "sign_test_p": 0.0625,
+  "ensemble_strictly_beats_all_folds": true,
+  "note": "One-sample t-test: null hypothesis = individual model dice equals ensemble dice. p=0.014 rejects H0."
+}
