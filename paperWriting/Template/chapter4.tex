@@ -154,6 +154,13 @@ Precision & 89.67 $\pm$ 0.91\\
     \item \textbf{Trade-off Analysis:} The slight imbalance (sensitivity $>$ precision) indicates the model errs toward over-segmentation rather than under-segmentation, clinically preferable as radiologists can easily dismiss false positives but cannot recover false negatives.
 \end{itemize}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{image/results/metrics_distribution.png}
+\caption{Distribution of Key Evaluation Metrics Across 5 Cross-Validation Folds. Boxplots show Dice coefficient, accuracy, sensitivity, and specificity with tight inter-quartile ranges, confirming low inter-fold variance and stable model generalisation.}
+\label{fig:metrics_dist}
+\end{figure}
+
 
 \subsection{Ensemble Performance}
 
@@ -204,6 +211,13 @@ Average Single Model & 90.39 $\pm$ 0.69 & -\\
     \item \textbf{Performance Ceiling:} The 92.92\% result approaches state-of-the-art performance on BraTS binary segmentation, demonstrating that graph-based methods can match volumetric CNNs in accuracy.
 \end{itemize}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{image/results/statistical_analysis.png}
+\caption{Statistical Analysis of Ensemble vs.\ Individual Model Performance. Comparison of Dice coefficient distributions between single fold models and the 5-model soft-voting ensemble, demonstrating the variance-reduction benefit of model aggregation.}
+\label{fig:statistical_analysis}
+\end{figure}
+
 
 \subsection{Efficiency Benchmarking}
 
@@ -252,6 +266,13 @@ Dice Coefficient & 90.39\% & 91.2\% & -0.81\% (comparable)\\
     
     \item \textbf{Storage Efficiency:} 1.7MB model size enables easy distribution, version control, and edge deployment compared to 264MB volumetric models.
 \end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{image/results/performance.png}
+\caption{Efficiency--Accuracy Comparison: GraphSAGE GNN vs.\ 3D U-Net Baseline. Bar charts comparing inference time, parameter count, GPU memory, and Dice coefficient, illustrating the GNN's substantial computational advantages while maintaining competitive segmentation accuracy.}
+\label{fig:performance}
+\end{figure}
 
 \subsubsection{Clinical Deployment Implications}
 

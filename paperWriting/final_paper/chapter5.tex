@@ -1,0 +1,248 @@
+\begin{center}
+    \section*{\fontsize{20}{20}\selectfont Chapter 5}
+\end{center}
+\vspace{10mm}
+
+\section{Standards, Constraints, and Milestones}
+
+This chapter addresses the practical, ethical, and operational dimensions of deploying graph neural networks for clinical brain tumour segmentation. Chapter 4 validated technical performance (91.41\% Dice, 6.9$\times$ speedup, 155$\times$ parameter reduction), but successful clinical translation requires consideration of regulatory standards, computational constraints, ethical implications, and societal impacts. Medical AI systems operate under stringent requirements for safety, privacy, interpretability, and equity, which fundamentally shape system design and deployment decisions.
+
+Sustainability standards governing medical device software and data management practices are examined to ensure long-term viability and environmental responsibility. Societal impacts are analysed across multiple dimensions: healthcare accessibility in resource-constrained settings, clinical workflow integration, and potential for diagnostic equity improvements. Ethical considerations address algorithmic fairness, patient privacy, informed consent, and accountability frameworks necessary for responsible AI deployment in high-stakes medical decision-making.
+
+Technical and operational challenges encountered during development — data heterogeneity, computational limitations, and validation complexity — are also discussed. Design constraints arising from hardware availability, regulatory requirements, and clinical usability needs are explicitly documented. A project timeline with Gantt chart illustrates the systematic research methodology across data acquisition, model development, validation, and documentation phases.
+
+Understanding these non-technical dimensions is essential for translating research prototypes into clinically viable systems. This chapter provides transparency about real-world constraints and establishes a framework for responsible deployment of AI-assisted brain tumour segmentation in diverse healthcare settings.
+
+
+\subsection{Sustainability Standards}
+
+Medical AI systems must adhere to sustainability standards ensuring long-term operational viability, environmental responsibility, and compliance with evolving regulatory frameworks.
+
+\subsubsection{Software Development Standards}
+
+\textbf{ISO/IEC 25010 Software Quality Model:} Our implementation prioritizes maintainability through modular code architecture, comprehensive documentation, and version-controlled development. The graph construction, training, and inference modules are designed with clear interfaces enabling independent updates without system-wide modifications.
+
+\textbf{Reproducibility Standards:} Following recent calls for reproducible medical AI research (Nature Medicine, 2023), we implement deterministic training protocols with fixed random seeds (seed 42), CUDA deterministic flags, and explicit dependency versioning (PyTorch 2.0.0, PyTorch Geometric 2.3.0). All 15 integrity checks are automated and version-controlled, enabling independent validation by external researchers.
+
+\textbf{Open Source Licensing:} Code released under permissive MIT license encourages collaborative improvement and enables adaptation for diverse clinical contexts, promoting long-term sustainability through community engagement.
+
+\subsubsection{Data Management Standards}
+
+\textbf{NIfTI Format Compliance:} Strict adherence to Neuroimaging Informatics Technology Initiative (NIfTI) standards ensures interoperability with existing radiology PACS systems and research databases. All preprocessing preserves NIfTI metadata (orientation, voxel spacing, acquisition parameters) for downstream clinical integration.
+
+\textbf{DICOM Compatibility:} While research implementation uses NIfTI format, clinical deployment pathways require DICOM (Digital Imaging and Communications in Medicine) integration. Graph construction pipeline is designed to accept DICOM inputs through standard conversion libraries (dcm2niix, SimpleITK), ensuring compatibility with hospital imaging infrastructure.
+
+\textbf{HIPAA and GDPR Compliance:} All data handling procedures comply with Health Insurance Portability and Accountability Act (HIPAA) privacy regulations and EU General Data Protection Regulation (GDPR). Patient identifiers are removed during preprocessing; BraTS dataset used for research is already de-identified per institutional review board approval.
+
+\subsubsection{Environmental Sustainability}
+
+\textbf{Energy Efficiency:} The 155$\times$ parameter reduction and 6.9$\times$ inference speedup compared to 3D U-Net baseline translate directly to lower energy consumption. Training on consumer-grade RTX 2060 GPU (6GB VRAM) rather than high-end GPUs (24GB+ VRAM) reduces carbon footprint. That's particularly important as medical AI scales to millions of patients globally.
+
+\textbf{Compute Optimization:} Our graph-based representation exploits tumor sparsity (5-10\% of brain volume), processing only relevant anatomical regions rather than dense 3D grids. This architectural choice reduces unnecessary computation, aligning with green AI principles.
+
+\textbf{Model Longevity:} The lightweight architecture (1.7MB model size) extends deployment lifespan on existing hospital hardware. That reduces e-waste from forced hardware upgrades—common with compute-intensive volumetric models.
+
+
+\subsection{Impacts on Society}
+
+\subsubsection{Healthcare Accessibility}
+
+\textbf{Resource-Constrained Settings:} The 439K-parameter model enables brain tumour segmentation in hospitals lacking expensive GPU infrastructure. Rural clinics, community hospitals in developing nations, and mobile diagnostic units can deploy the system on affordable consumer-grade hardware (RTX 2060, approximately \$300--400), democratising access to AI-assisted diagnostics previously accessible only to well-resourced research institutions.
+
+\textbf{Telemedicine Applications:} Small model size (1.7\,MB) and low peak GPU memory (11\,MB) permit deployment on edge computing devices and potentially mobile platforms. Radiologists conducting remote consultations can provide immediate segmentation analysis without requiring cloud infrastructure or high-bandwidth internet connections.
+
+\textbf{Batch Screening Programs:} Lower computational requirements allow processing multiple patients simultaneously, increasing throughput for population-level screening initiatives in regions with high brain tumor incidence.
+
+\subsubsection{Clinical Workflow Integration}
+
+\textbf{Near-Real-Time Assistance:} 74\,ms inference (pre-built graph) or 1.47\,s end-to-end enables interactive workflows where radiologists receive segmentation feedback within the review session. This can accelerate diagnostic decision-making, reduce cognitive load, and improve clinical efficiency.
+
+\textbf{Second Opinion Systems:} Automated segmentation serves as computational second opinion, highlighting potential tumor regions that may warrant closer expert examination. This is particularly valuable in training settings where junior radiologists benefit from AI guidance.
+
+\textbf{Treatment Planning Support:} Accurate tumour delineation (91.41\% ensemble Dice on held-out set; 89.21\% zero-shot on BraTS 2023) provides quantitative inputs for radiation therapy planning, surgical navigation, and tumour volume monitoring during longitudinal care.
+
+\subsubsection{Diagnostic Equity}
+
+\textbf{Reducing Geographic Disparities:} By enabling deployment in resource-limited settings, the system can help bridge the diagnostic quality gap between affluent urban hospitals and underserved rural/international communities.
+
+\textbf{Skill Augmentation:} AI assistance may help less-experienced radiologists achieve performance closer to subspecialty experts, particularly important in settings lacking dedicated neuroradiologists.
+
+\textbf{Cost Reduction:} Computational efficiency translates to lower operational costs (energy, hardware depreciation), potentially making AI-assisted diagnostics economically viable in public health systems with limited budgets.
+
+
+\subsection{Ethics}
+
+\subsubsection{Algorithmic Fairness and Bias}
+
+\textbf{Dataset Diversity:} BraTS 2021 includes multi-institutional data from 19 international sites, partially mitigating single-institution bias. However, representation across racial, ethnic, and socioeconomic groups requires explicit validation before global deployment.
+
+\textbf{Performance Disparities:} Future work must audit model performance across patient subgroups (age, tumor type, scanner manufacturer) to detect potential disparities. Current 5-fold cross-validation provides patient-level generalization but does not stratify by demographic factors.
+
+\textbf{Bias Mitigation Strategies:} Class-balanced training (tumor weight 9.0, non-tumor weight 1.0) addresses extreme imbalance but does not account for subtle population-level variations. Continuous monitoring and retraining on diverse patient cohorts is essential for equitable deployment.
+
+\subsubsection{Privacy and Data Protection}
+
+\textbf{De-identification Requirements:} All training data must be stripped of Protected Health Information (PHI) per HIPAA standards. Graph-based representation inherently provides some privacy protection—superpixel features are spatially aggregated, making voxel-level reconstruction more difficult than with raw imaging data.
+
+\textbf{Federated Learning Potential:} The lightweight model architecture is well-suited for federated learning paradigms where hospitals collaboratively train models without sharing patient data. Future work could implement secure multi-party computation for privacy-preserving model updates.
+
+\textbf{Adversarial Privacy Attacks:} Model inversion and membership inference attacks pose theoretical risks. Defensive strategies (differential privacy, model distillation) warrant investigation before clinical deployment.
+
+\subsubsection{Clinical Accountability}
+
+\textbf{Decision Support, Not Replacement:} The system is designed as a diagnostic assistance tool for radiologists—not an autonomous decision-maker. Final diagnostic and treatment decisions remain under physician responsibility, with AI providing quantitative second opinion.
+
+\textbf{Interpretability Requirements:} While graph structure offers some interpretability (tumor regions correspond to connected superpixel clusters), black-box neural network predictions need explainability methods (attention visualization, saliency maps) for clinical trust and error analysis.
+
+\textbf{Liability Frameworks:} Legal responsibility for AI-assisted diagnoses remains under development globally. Clear documentation of system limitations (1-2\% lower accuracy than state-of-the-art transformers, binary segmentation only) is essential for informed clinical use.
+
+\subsubsection{Informed Consent}
+
+\textbf{Patient Notification:} Patients should be informed when AI systems contribute to diagnostic workflows. Transparency about automated segmentation methods, accuracy rates, and human oversight mechanisms respects patient autonomy.
+
+\textbf{Opt-Out Mechanisms:} Healthcare systems deploying AI assistance should provide options for patients preferring traditional human-only diagnostic processes, acknowledging diverse preferences regarding algorithmic decision involvement.
+
+
+\subsection{Challenges}
+
+\subsubsection{Technical Challenges}
+
+\textbf{Data Heterogeneity:} MRI scans exhibit substantial variability across scanners (GE, Siemens, Philips), acquisition protocols (field strength 1.5T vs. 3T), and image quality. While Z-score normalization addresses intensity variations, geometric distortions and resolution differences remain challenging.
+
+\textbf{Tumor Diversity:} Brain tumors display extreme morphological heterogeneity—from small nodular lesions to large infiltrative masses with irregular boundaries. A single architecture must generalize across this pathological spectrum, requiring careful feature engineering and diverse training data.
+
+\textbf{Ground Truth Ambiguity:} Manual tumor annotations contain inter-rater variability (expert radiologists may disagree on boundaries). Models trained on noisy labels may learn annotation inconsistencies rather than true tumor characteristics.
+
+\textbf{Graph Construction Overhead:} Superpixel segmentation and feature extraction add 2-3 seconds preprocessing per patient. While one-time cost, it impacts real-time clinical workflows requiring immediate results from raw scans.
+
+\textbf{Training Configuration Sensitivity:} Graph neural network training exhibits sensitivity to batch size and gradient accumulation strategy. The final training used batch size 64 with gradient accumulation (effective batch 64), achieving 90\%+ Dice; however, batch size interactions with graph mini-batching in PyTorch Geometric require careful tuning when transferring to different hardware configurations.
+
+\subsubsection{Operational Challenges}
+
+\textbf{Clinical Integration Complexity:} Integrating AI systems into hospital Picture Archiving and Communication Systems (PACS) requires extensive IT infrastructure work, institutional review board approvals, and clinical workflow redesign—far beyond technical model development.
+
+\textbf{Regulatory Approval:} Medical AI devices require FDA 510(k) clearance (USA), CE marking (Europe), or equivalent regulatory approval before clinical deployment. This process involves extensive validation studies, clinical trials, and documentation—often taking years and significant financial investment.
+
+\textbf{Reimbursement Uncertainty:} Healthcare reimbursement policies for AI-assisted diagnostics remain unclear in many jurisdictions. Without established billing codes and payment mechanisms, hospital adoption faces financial barriers.
+
+\textbf{Physician Trust and Adoption:} Radiologists may resist AI systems due to concerns about job security, liability, or skepticism about black-box predictions. Building clinical trust requires transparent communication, extensive validation, and demonstration of workflow benefits.
+
+\subsubsection{Validation Challenges}
+
+\textbf{Limited Test Data:} Despite 1,251 BraTS patients, this represents tiny fraction of global brain tumor population diversity. Generalization to rare tumor subtypes, pediatric cases, or post-treatment imaging requires additional validation cohorts.
+
+\textbf{Reproducibility Barriers:} Many published medical AI results lack code, trained models, or sufficient implementation details for independent replication. Our rigorous documentation addresses this, but field-wide reproducibility crisis remains.
+
+\textbf{Domain Shift in Deployment:} Models validated on research datasets may degrade when deployed in real clinical settings with different scanners, protocols, and patient populations. Continuous performance monitoring and adaptive retraining mechanisms are necessary.
+
+
+\subsection{Constraints}
+
+\subsubsection{Design Constraints}
+
+\textbf{Clinical Usability Requirements:} Segmentation must complete within a few seconds per patient for interactive workflows. Our 74\,ms inference (pre-built graph) and 1.47\,s end-to-end both satisfy this constraint with substantial margin, enabling clinical applications from near-real-time overlays to batch offline processing.
+
+\textbf{Accuracy Threshold:} Brain tumor segmentation requires minimum 85-90\% Dice coefficient for clinical utility, balancing sensitivity (detecting all tumor tissue) with specificity (avoiding false alarms). Our 91.41\% ensemble exceeds this threshold.
+
+\textbf{Interpretability Needs:} Black-box predictions are insufficient for high-stakes medical decisions. Graph structure provides some transparency (tumor corresponds to connected superpixel regions), but further explainability methods (attention visualization) are needed for full clinical acceptance.
+
+\textbf{Multi-Modality Integration:} Brain tumor diagnosis requires synthesizing information from four MRI modalities (T1, T1CE, T2, FLAIR). Graph node features explicitly encode multi-modal intensity statistics, ensuring comprehensive anatomical context.
+
+\subsubsection{Component Constraints}
+
+\textbf{Hardware Limitations:} Development constrained to consumer-grade RTX 2060 GPU (6GB VRAM), limiting batch sizes and model architectures. This constraint drove architectural efficiency focus but prevented exploration of larger models (transformers requiring 24GB+ VRAM).
+
+\textbf{Framework Dependencies:} PyTorch Geometric library (version 2.3.0) imposes specific data structures (torch\_geometric.data.Data) and message-passing APIs. While enabling efficient graph operations, framework-specific implementations reduce portability to other platforms (TensorFlow, JAX).
+
+\textbf{Preprocessing Tools:} Dependence on SimpleITK (medical image I/O) and scikit-image (superpixel segmentation) introduces external dependencies. Version compatibility issues and platform-specific bugs required careful dependency management (requirements.txt with pinned versions).
+
+\textbf{Data Format Requirements:} BraTS dataset provides NIfTI format files. Clinical deployment requires DICOM compatibility, necessitating format conversion infrastructure and metadata preservation strategies.
+
+\subsubsection{Budget Constraints}
+
+\textbf{Zero-Cost Research:} The entire project was completed without dedicated funding, relying on the freely available BraTS dataset, open-source software libraries, and university-provided GPU access. This constraint necessitated efficient resource utilisation and precluded commercial tools or cloud computing expenditure.
+
+\textbf{Hardware Accessibility:} The consumer-grade GPU used (RTX 2060, approximately \$300--400 retail) represents an accessible price point for academic research, in contrast to high-end GPUs (RTX 4090, A100) costing \$1,500--10,000+, which are prohibitive for student-led projects.
+
+\textbf{Computational Time Limits:} Training 5-fold cross-validation (~25 hours total) constrained exploration of larger hyperparameter search spaces. Each experimental iteration required careful planning to maximize insights within limited compute budget.
+
+\textbf{No Commercial Data Access:} Inability to purchase additional annotated datasets limited model validation. Future clinical translation may require commercial datasets or hospital partnerships for diverse patient cohorts.
+
+
+\subsection{Timeline and Gantt Chart}
+
+The research project spanned approximately 16 weeks (August 2025 - December 2025), organized into five major phases: dataset acquisition and preprocessing, graph construction pipeline development, model training and validation, comprehensive benchmarking and analysis, and documentation/thesis writing. Table~\ref{tab:timeline} summarizes key milestones and deliverables.
+
+\begin{table}[htbp]
+\caption{Project Timeline and Milestones}
+\label{tab:timeline}
+\begin{center}
+\begin{tabularx}{\textwidth} { 
+  | >{\raggedright\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\raggedright\arraybackslash}X 
+  | }
+\hline
+\textbf{Phase} & \textbf{Duration} & \textbf{Key Deliverables}\\
+\hline
+\textbf{Phase 1:} Dataset Acquisition \& Preprocessing & Weeks 1-3 (Aug 2025) & BraTS 2021 download, skull-stripping, normalization, 5-fold stratified splits\\
+\hline
+\textbf{Phase 2:} Graph Construction Pipeline & Weeks 4-7 (Sep 2025) & SLIC superpixel implementation, 15-feature extraction, PyTorch Geometric data conversion, 15 integrity checks\\
+\hline
+\textbf{Phase 3:} Model Development \& Training & Weeks 8-11 (Oct 2025) & GraphSAGE architecture design, 5-fold cross-validation training (~5hrs/fold), ensemble implementation\\
+\hline
+\textbf{Phase 4:} Validation \& Benchmarking & Weeks 12-14 (Nov 2025) & Ablation studies (depth, batch size), efficiency benchmarking vs U-Net, qualitative visualization\\
+\hline
+\textbf{Phase 5:} Documentation \& Thesis Writing & Weeks 15-16 (Dec 2025) & Comprehensive documentation, thesis chapters, reproducibility package\\
+\hline
+\end{tabularx}
+\end{center}
+\end{table}
+
+\textbf{Gantt Chart:}
+
+\begin{center}
+\begin{tabularx}{\textwidth} { 
+  | >{\raggedright\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | }
+\hline
+\textbf{Task} & \textbf{Aug} & \textbf{Sep-Oct} & \textbf{Nov} & \textbf{Dec}\\
+\hline
+Dataset Preprocessing & \cellcolor{gray!30}XXXX & & &\\
+\hline
+Graph Construction & & \cellcolor{gray!30}XXXXXXXX & &\\
+\hline
+Model Training & & \cellcolor{gray!30}XXXXXXXX & &\\
+\hline
+Validation Studies & & & \cellcolor{gray!30}XXXX &\\
+\hline
+Thesis Writing & & & & \cellcolor{gray!30}XXXX\\
+\hline
+\end{tabularx}
+\end{center}
+
+\textbf{Key Milestones Achieved:}
+\begin{itemize}
+    \item \textbf{September 15, 2025:} Graph construction pipeline operational with 15 integrity checks passing
+    \item \textbf{October 28, 2025:} 5-fold cross-validation training complete, 90.02\% $\pm$ 0.74\% Dice achieved
+    \item \textbf{November 10, 2025:} Ensemble evaluation on sealed held-out set complete, 91.41\% Dice confirmed (+1.39\% over CV mean); BraTS 2023 zero-shot evaluation yields 89.21\% Dice (2.20\% generalisation gap)
+    \item \textbf{November 25, 2025:} Efficiency benchmarking finalized, 6.9$\times$ speedup and 155$\times$ parameter reduction quantified
+    \item \textbf{December 4, 2025:} All experimental results validated and documented.
+    \item \textbf{December 22, 2025:} Paper and thesis submission finalized.
+\end{itemize}
+
+\vspace{5mm}
+
+This chapter has examined the practical, ethical, and operational dimensions essential for responsible deployment of graph neural networks in clinical brain tumour segmentation. Sustainability standards ensure long-term system viability through software quality practices, data management compliance (NIfTI, DICOM, HIPAA/GDPR), and environmental responsibility through energy-efficient architectures. Societal impacts span healthcare accessibility in resource-constrained settings, clinical workflow integration for real-time assistance, and potential for diagnostic equity improvements across geographic and skill disparities.
+
+Ethical considerations require attention to algorithmic fairness (performance auditing across patient subgroups), privacy protection (de-identification, federated learning potential), clinical accountability (decision support with physician oversight), and informed consent frameworks. Technical challenges include data heterogeneity across scanners and protocols, tumour morphological diversity, graph construction overhead, and training configuration sensitivity specific to graph mini-batching frameworks. Operational challenges encompass clinical integration complexity, regulatory approval pathways, reimbursement uncertainty, and building physician trust in AI-assisted tools.
+
+Design constraints shaped system development: near-real-time performance requirements (74\,ms inference pre-built graph; 1.47\,s end-to-end), clinical accuracy requirements (91.41\% ensemble Dice exceeding the 85--90\% minimum threshold), and interpretability needs. Component constraints from hardware limitations (RTX 2060, 6\,GB VRAM), framework dependencies (PyTorch Geometric), and data format requirements influenced architectural choices. Budget constraints — zero dedicated funding, consumer-grade GPU, limited computational time — necessitated efficient resource utilisation and precluded expensive commercial tooling.
+
+The 16-week project timeline demonstrates a systematic methodology across dataset preprocessing, graph construction, model training, validation, and documentation phases. Understanding these non-technical dimensions provides essential context for translating research prototypes into clinically viable systems, establishing a framework for responsible AI-assisted medical imaging across diverse healthcare environments.
+
+\clearpage

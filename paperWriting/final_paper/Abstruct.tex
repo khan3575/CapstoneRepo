@@ -1,0 +1,13 @@
+\begin{center}
+    \section*{Abstract}
+\end{center}
+
+Accurate brain tumour segmentation is essential for diagnosis and treatment planning, yet current deep learning methods demand substantial computational resources that hinder clinical deployment. This thesis proposes a graph neural network (GNN) framework for efficient binary brain tumour segmentation on the BraTS 2021 dataset. Rather than processing entire 3D MRI volumes, patient scans are converted into graph representations using SLIC superpixels, with each node encoding 15 handcrafted multi-modal features. This representation exploits inherent tumour sparsity to reduce spatial dimensionality by at least 890$\times$ (conservatively; measured compression $\approx$2,284$\times$) while preserving discriminative spatial and intensity information across four MRI modalities (T1, T1CE, T2, FLAIR).
+
+The framework is evaluated through rigorous 5-fold cross-validation on a 1,000-patient training pool with patient-level stratified splits, and a sealed 251-patient held-out test set used exclusively for final evaluation. The 5-layer GraphSAGE model achieves \textbf{90.02\% $\pm$ 0.74\% Dice coefficient} across folds. Soft-voting ensemble aggregation of all five models on the held-out set yields \textbf{91.41\% Dice}, a statistically significant improvement over individual models (one-sample $t$-test, $t = -4.19$, $p = 0.014$, 95\% CI $[89.10\%, 90.94\%]$, $df = 4$). Inference time is \textbf{74\,ms per patient} (GPU, pre-built graph) or \textbf{1.47\,s end-to-end} including fast superpixel construction, representing a \textbf{6.9$\times$ speedup} over a 3D U-Net baseline. The model requires only \textbf{439K parameters} (155$\times$ fewer than U-Net) and \textbf{11\,MB peak GPU memory}.
+
+To assess cross-dataset generalisation, the trained ensemble is applied zero-shot to the BraTS 2023 dataset (1,245 patients), achieving \textbf{89.21\% Dice} — a 2.20\% generalisation gap consistent with expected domain shift. Ablation studies over network depth (5 vs.\ 6 layers), hidden dimensionality (256 vs.\ 512), and GNN architecture (GraphSAGE vs.\ GAT) validate the chosen design. Qualitative failure case analysis identifies complete-miss failures on atypical tumours as the primary error mode.
+
+These results demonstrate that graph neural networks deliver a compelling accuracy-efficiency trade-off for medical image segmentation, enabling deployment on consumer-grade hardware (NVIDIA RTX 2060, 6\,GB VRAM) in resource-constrained settings where volumetric models are not feasible.
+
+\textbf{Keywords:} Brain Tumour Segmentation, Graph Neural Networks, Medical Image Analysis, BraTS 2021, BraTS 2023, Computational Efficiency, GraphSAGE, Cross-Dataset Generalisation

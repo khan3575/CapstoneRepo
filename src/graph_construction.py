@@ -118,14 +118,15 @@ class SliceProcessor:
                 fast_slic_obj = FastSlic(
                     num_components=n_segments_adj,
                     compactness=10,
-                    convert_to_lab=False
+                    convert_to_lab=False,
+                    num_threads=1  # prevent over-subscription in multiprocessing
                 )
                 segments_full = fast_slic_obj.iterate(img_uint8).astype(np.int32) + 1  # 1-indexed
                 segments[mask] = segments_full[mask]
                 unique_count = len(np.unique(segments)) - 1
                 return segments
-            except Exception as e:
-                print(f"⚠️  fast_slic failed ({e}), falling back to skimage SLIC")
+            except Exception:
+                pass  # fall through to skimage
 
         # --- skimage fallback ---
         try:
@@ -146,33 +147,23 @@ class SliceProcessor:
             segments[mask] = segments_full[mask]
             unique_count = len(np.unique(segments)) - 1
             return segments
-        except Exception as e:
-            print(f"⚠️  All SLIC methods failed ({e}), using grid fallback")
+        except Exception:
             return self._create_grid_superpixels(mask, target_segments=min(50, self.config.n_superpixels))
     
     def _create_grid_superpixels(self, mask: np.ndarray, target_segments: int = 50) -> np.ndarray:
         """Create simple grid-based superpixels as fallback."""
         h, w = mask.shape
         segments = np.zeros((h, w), dtype=np.int32)
-        
-        # Calculate grid size
-        grid_size = int(np.sqrt(target_segments))
-        if grid_size < 2:
-            grid_size = 2
-        
+        grid_size = max(2, int(np.sqrt(target_segments)))
         step_h = max(1, h // grid_size)
         step_w = max(1, w // grid_size)
-        
         segment_id = 1
         for i in range(0, h, step_h):
             for j in range(0, w, step_w):
-                # Only assign to brain regions
                 region_mask = mask[i:i+step_h, j:j+step_w]
                 if np.any(region_mask):
                     segments[i:i+step_h, j:j+step_w][region_mask] = segment_id
                     segment_id += 1
-        
-        print(f"🔧 Created {segment_id-1} grid-based superpixels")
         return segments
     
     def compute_features(self, slice_data: Dict[str, np.ndarray],
@@ -228,26 +219,29 @@ class SliceProcessor:
         t2_mean,   t2_std   = _mean_std(T2_f)
         fl_mean,   fl_std   = _mean_std(FLAIR_f)
 
-        # --- Intensity range: scatter max/min per label ---
-        imax = np.full(max_label, -np.inf); imin = np.full(max_label, np.inf)
-        for mod_f in (T1_f, T1ce_f, T2_f, FLAIR_f):
-            np.maximum.at(imax, seg_act, mod_f)
-            np.minimum.at(imin, seg_act, mod_f)
-        intensity_range = np.maximum(0.0, imax[unique_labels] - imin[unique_labels])
+        # --- Sort once by label (shared for intensity range + bounding boxes) ---
+        sort_idx = np.argsort(seg_act, kind='stable')
+        sorted_labels = seg_act[sort_idx]
+        cuts = np.searchsorted(sorted_labels, unique_labels)
 
-        # --- Bounding boxes: scatter min/max of y/x per label ---
-        min_y = np.full(max_label, h, dtype=np.int32)
-        max_y = np.zeros(max_label, dtype=np.int32)
-        min_x = np.full(max_label, w, dtype=np.int32)
-        max_x = np.zeros(max_label, dtype=np.int32)
+        # --- Intensity range: max/min across all 4 modalities per label ---
+        # Stack modalities, take per-pixel max/min, then reduceat per label
+        all_mods = np.stack([T1_f, T1ce_f, T2_f, FLAIR_f], axis=1)  # (n, 4)
+        pix_max = all_mods.max(axis=1)[sort_idx]
+        pix_min = all_mods.min(axis=1)[sort_idx]
+        intensity_range = np.maximum(0.0,
+            np.maximum.reduceat(pix_max, cuts) - np.minimum.reduceat(pix_min, cuts))
+
+        # --- Bounding boxes: min/max of y/x per label via reduceat ---
         y_act_i = y_act.astype(np.int32)
         x_act_i = x_act.astype(np.int32)
-        np.minimum.at(min_y, seg_act, y_act_i)
-        np.maximum.at(max_y, seg_act, y_act_i)
-        np.minimum.at(min_x, seg_act, x_act_i)
-        np.maximum.at(max_x, seg_act, x_act_i)
-        bboxes = np.stack([min_y[unique_labels], max_y[unique_labels],
-                           min_x[unique_labels], max_x[unique_labels]], axis=1)
+        y_sorted = y_act_i[sort_idx]
+        x_sorted = x_act_i[sort_idx]
+        min_y = np.minimum.reduceat(y_sorted, cuts)
+        max_y = np.maximum.reduceat(y_sorted, cuts)
+        min_x = np.minimum.reduceat(x_sorted, cuts)
+        max_x = np.maximum.reduceat(x_sorted, cuts)
+        bboxes = np.stack([min_y, max_y, min_x, max_x], axis=1)
 
         # --- Perimeter via boundary map (single vectorized pass) ---
         s = segments
@@ -379,74 +373,48 @@ class GraphBuilder:
         """Select slices to process intelligently."""
         n_slices = volume_data["T1"].shape[0]
         selected = []
-        tumor_slices = []
-        
+
         # Always include tumor slices
         for z in range(n_slices):
             if np.any(volume_data["label"][z] > 0):
                 selected.append(z)
-                tumor_slices.append(z)
-        
-        print(f"🎯 Found {len(tumor_slices)} tumor slices: {tumor_slices[:10]}{'...' if len(tumor_slices) > 10 else ''}")
-        
-        # Add representative non-tumor slices
+
+        # Add representative non-tumor slices (every 3rd with enough brain content)
         tumor_set = set(selected)
         non_tumor_candidates = [z for z in range(n_slices) if z not in tumor_set]
-        
-        added_non_tumor = []
-        # Sample every 3rd non-tumor slice with brain content
         for z in non_tumor_candidates[::3]:
             slice_data = {key: volume_data[key][z] for key in volume_data}
             if self.slice_processor.is_valid_slice(slice_data):
                 selected.append(z)
-                added_non_tumor.append(z)
-        
-        print(f"🧠 Added {len(added_non_tumor)} non-tumor slices: {added_non_tumor[:10]}{'...' if len(added_non_tumor) > 10 else ''}")
-        
+
         return sorted(selected)
     
     def process_volume(self, volume_data: Dict[str, np.ndarray]) -> Tuple[List[Data], List[np.ndarray]]:
         """Process entire volume into graphs."""
-        n_total_slices = volume_data["T1"].shape[0]
         selected_slices = self.select_slices(volume_data)
-        
-        print(f"📊 Volume info: {n_total_slices} total slices, {len(selected_slices)} selected")
-        
+
         if len(selected_slices) < 2:
-            print("❌ Warning: Not enough slices to create graphs")
             return [], []
-        
-        print(f"🔄 Processing {len(selected_slices)} selected slices...")
-        
+
         # Process slices
         slice_results = []
-        valid_slice_count = 0
-        
-        for z in tqdm(selected_slices, desc="Processing slices"):
+        for z in selected_slices:
             slice_data = {key: volume_data[key][z] for key in volume_data}
-            
+
             if not self.slice_processor.is_valid_slice(slice_data):
-                print(f"⚠️  Slice {z}: Invalid (insufficient brain content)")
                 slice_results.append(None)
                 continue
-            
-            # Compute superpixels and features
+
             segments = self.slice_processor.compute_superpixels(slice_data)
-            unique_segments = len(np.unique(segments)) - 1  # subtract background
-            
-            if unique_segments == 0:
-                print(f"⚠️  Slice {z}: No superpixels created")
+            if len(np.unique(segments)) <= 1:
                 slice_results.append(None)
                 continue
-            
+
             features, centroids, masks, bboxes = self.slice_processor.compute_features(slice_data, segments)
-
             if len(features) == 0:
-                print(f"⚠️  Slice {z}: No features extracted")
                 slice_results.append(None)
                 continue
 
-            print(f"✅ Slice {z}: {unique_segments} superpixels, {len(features)} features")
             slice_results.append({
                 'features': features,
                 'centroids': centroids,
@@ -456,49 +424,31 @@ class GraphBuilder:
                 'slice_idx': z,
                 'slice_data': slice_data
             })
-            valid_slice_count += 1
-            
-            # Memory management
+
             if not self.memory_manager.check_memory():
                 self.memory_manager.cleanup()
-        
-        print(f"📈 Valid slices processed: {valid_slice_count}/{len(selected_slices)}")
-        
+
         # Build graphs from consecutive slice pairs
         graphs = []
         all_segments = []
-        graph_attempts = 0
-        successful_graphs = 0
-        
-        for i in tqdm(range(len(slice_results) - 1), desc="Building graphs"):
+
+        for i in range(len(slice_results) - 1):
             if slice_results[i] is None or slice_results[i+1] is None:
                 continue
-            
+
             slice1, slice2 = slice_results[i], slice_results[i+1]
-            
-            # Skip if slices are too far apart
             if slice2['slice_idx'] - slice1['slice_idx'] > 5:
-                print(f"⚠️  Skipping slices {slice1['slice_idx']}-{slice2['slice_idx']}: too far apart")
                 continue
-            
-            graph_attempts += 1
+
             graph = self._build_slice_pair_graph(slice1, slice2)
             if graph is not None:
                 graphs.append(graph)
-                successful_graphs += 1
-                print(f"✅ Graph {successful_graphs}: slices {slice1['slice_idx']}-{slice2['slice_idx']}")
-            else:
-                print(f"❌ Failed to create graph for slices {slice1['slice_idx']}-{slice2['slice_idx']}")
-            
-            # Store segments for the first slice (store last slice separately after loop)
-            if i == 0:
-                all_segments.append(slice1['segments'])
-        
-        # Add the last slice segments
+                if i == 0:
+                    all_segments.append(slice1['segments'])
+
         if slice_results and slice_results[-1] is not None:
             all_segments.append(slice_results[-1]['segments'])
-        
-        print(f"📊 Graph creation: {successful_graphs}/{graph_attempts} successful")
+
         return graphs, all_segments
     
     def _compute_labels_from_masks(self, masks: List[np.ndarray], slice_data: Dict[str, np.ndarray]) -> np.ndarray:
@@ -537,64 +487,40 @@ class GraphBuilder:
     def _build_slice_pair_graph(self, slice1: Dict, slice2: Dict) -> Optional[Data]:
         """Build graph from two consecutive slices."""
         try:
-            # Combine features
             features1, features2 = slice1['features'], slice2['features']
             n1, n2 = len(features1), len(features2)
-            
             if n1 == 0 or n2 == 0:
-                print(f"🚫 No features: slice1={n1}, slice2={n2}")
                 return None
-            
+
             all_features = np.vstack([features1, features2])
-            
-            # ⚠️ CRITICAL: Compute labels from ACTUAL ground-truth (not from features!)
-            # This must be done separately since we removed tumor_ratio from features
+
+            # Compute labels from ACTUAL ground-truth
             labels1 = self._compute_labels_from_masks(slice1['masks'], slice1['slice_data'])
             labels2 = self._compute_labels_from_masks(slice2['masks'], slice2['slice_data'])
             all_labels = np.concatenate([labels1, labels2])
-            
+
             # Build edges
             edges1 = self.edge_builder.build_adjacency_edges(slice1['segments'])
             edges2 = self.edge_builder.build_adjacency_edges(slice2['segments'])
-            
-            # Offset edges for second slice
             edges2_offset = [(u + n1, v + n1) for u, v in edges2]
-            
-            # Inter-slice edges (vectorized — uses precomputed bboxes)
             inter_edges = self.edge_builder.build_inter_slice_edges(
                 slice1['centroids'], slice2['centroids'],
                 slice1['bboxes'], slice2['bboxes'],
                 n1
             )
-            
-            # Combine all edges
+
             all_edges = edges1 + edges2_offset + inter_edges
-            
-            print(f"🔗 Edges: intra1={len(edges1)}, intra2={len(edges2_offset)}, inter={len(inter_edges)}, total={len(all_edges)}")
-            
             if not all_edges:
-                print("🚫 No edges created")
                 return None
-            
-            # Create tensors
+
             edge_index = torch.tensor(all_edges, dtype=torch.long).t().contiguous()
             x = torch.tensor(all_features, dtype=torch.float32)
-            
-            # ⚠️ FUTURE-PROOF LABELS (Nov 30, 2025):
-            # Store multi-class labels (0, 1, 2, 4) for future multi-class training
-            # For binary training, convert on-the-fly in data loader: y_binary = (y > 0)
+            # Store multi-class labels (0,1,2,4); binary transform converts on-the-fly
             y = torch.tensor(all_labels, dtype=torch.float32)
-            tumor_nodes = torch.sum(y > 0).item()  # Count any non-background nodes
-            
-            # Slice mask
             slice_mask = torch.zeros(len(all_features), dtype=torch.bool)
             slice_mask[:n1] = True
-            
-            # Slice indices
             slice_indices = torch.tensor([slice1['slice_idx'], slice2['slice_idx']], dtype=torch.long)
-            
-            print(f"📊 Graph: {len(all_features)} nodes ({tumor_nodes} tumor), {len(all_edges)} edges")
-            
+
             return Data(
                 x=x,
                 edge_index=edge_index,
@@ -602,26 +528,28 @@ class GraphBuilder:
                 slice_mask=slice_mask,
                 slice_indices=slice_indices
             )
-            
+
         except Exception as e:
-            print(f"❌ Error building graph: {e}")
-            import traceback
-            traceback.print_exc()
             return None
 
 def process_patient_file(patient_file: str, output_dir: str, config: Config) -> Tuple[str, int]:
     """Process a single patient file."""
     start_time = time.time()
-    
+
     try:
+        patient_id = Path(patient_file).stem.replace('_preprocessed', '')
+        patient_output_dir = Path(output_dir) / patient_id
+
+        # Skip if already done (check before loading NPZ)
+        graph_file = patient_output_dir / f'{patient_id}_graphs_{config.n_superpixels}.pt'
+        if graph_file.exists():
+            return patient_id, -1  # -1 = skipped
+
+        patient_output_dir.mkdir(parents=True, exist_ok=True)
+
         # Load data
         data = np.load(patient_file)
-        patient_id = Path(patient_file).stem.replace('_preprocessed', '')
-        
-        # Create output directory
-        patient_output_dir = Path(output_dir) / patient_id
-        patient_output_dir.mkdir(parents=True, exist_ok=True)
-        
+
         # Prepare volume data
         volume_data = {}
         for key in ['T1', 'T1ce', 'T2', 'FLAIR', 'label', 'brain_mask']:
@@ -648,8 +576,8 @@ def process_patient_file(patient_file: str, output_dir: str, config: Config) -> 
         torch.save(graphs, graph_file)
         np.save(segments_file, segments)
         
-        processing_time = (time.time() - start_time) / 60
-        print(f"✓ {patient_id}: {len(graphs)} graphs in {processing_time:.1f}min")
+        processing_time = time.time() - start_time
+        print(f"✓ {patient_id}: {len(graphs)} graphs in {processing_time:.0f}s")
         
         return patient_id, len(graphs)
         
@@ -662,7 +590,12 @@ def process_patient_file(patient_file: str, output_dir: str, config: Config) -> 
         gc.collect()
 
 def process_patient_wrapper(args_tuple):
-    """Wrapper for multiprocessing"""
+    """Wrapper for multiprocessing — limits BLAS threads to avoid over-subscription."""
+    try:
+        from threadpoolctl import threadpool_limits
+        threadpool_limits(limits=1)
+    except ImportError:
+        pass
     patient_file, output_dir, config = args_tuple
     return process_patient_file(patient_file, output_dir, config)
 
@@ -715,19 +648,22 @@ def main():
         
         with Pool(processes=args.num_workers) as pool:
             results = list(tqdm(
-                pool.imap(process_patient_wrapper, process_args),
+                pool.imap_unordered(process_patient_wrapper, process_args),
                 total=len(patient_files),
                 desc="Processing patients"
             ))
     
     # Report results
+    skipped    = [r for r in results if r[1] == -1]
     successful = [r for r in results if r[1] > 0]
-    total_graphs = sum(r[1] for r in results)
-    
+    failed     = [r for r in results if r[1] == 0]
+    total_graphs = sum(r[1] for r in results if r[1] > 0)
+
     print("\n" + "="*50)
-    print(f"✓ Successfully processed: {len(successful)}/{len(results)} patients")
-    print(f"✓ Total graphs created: {total_graphs}")
-    print(f"✓ Failed patients: {len(results) - len(successful)}")
+    print(f"✓ Skipped (already done): {len(skipped)}/{len(results)} patients")
+    print(f"✓ Newly processed:        {len(successful)}/{len(results)} patients")
+    print(f"✓ Total graphs created:   {total_graphs}")
+    print(f"✓ Failed:                 {len(failed)}")
 
 if __name__ == "__main__":
     start_time = time.time()

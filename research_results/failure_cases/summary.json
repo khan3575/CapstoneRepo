@@ -1,0 +1,37 @@
+[
+  {
+    "patient": "BraTS2021_01405",
+    "label": "worst",
+    "dice": 2.5000000292152436e-08,
+    "slice": 108,
+    "figure": "research_results/failure_cases/worst_BraTS2021_01405_z108.png"
+  },
+  {
+    "patient": "BraTS2021_01366",
+    "label": "worst",
+    "dice": 5.000000058430487e-08,
+    "slice": 105,
+    "figure": "research_results/failure_cases/worst_BraTS2021_01366_z105.png"
+  },
+  {
+    "patient": "BraTS2021_01407",
+    "label": "worst",
+    "dice": 5.000000058430487e-08,
+    "slice": 56,
+    "figure": "research_results/failure_cases/worst_BraTS2021_01407_z056.png"
+  },
+  {
+    "patient": "BraTS2021_00209",
+    "label": "median",
+    "dice": 0.9230769276618958,
+    "slice": 59,
+    "figure": "research_results/failure_cases/median_BraTS2021_00209_z059.png"
+  },
+  {
+    "patient": "BraTS2021_01594",
+    "label": "best",
+    "dice": 1.0,
+    "slice": 97,
+    "figure": "research_results/failure_cases/best_BraTS2021_01594_z097.png"
+  }
+]

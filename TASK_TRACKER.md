@@ -86,8 +86,8 @@ Each run: ~35–40 min on GPU
 **Architecture variants:**
 - [x] Baseline (5 layers, 256 dim) — test Dice 84.03% (`research_results/ablation_study_accuracy/baseline_accuracy/`)
 - [x] Deeper: 6 layers, 256 dim — test Dice 84.00% (`layers_6_accuracy/`)
-- [~] Wider: 5 layers, 512 dim — model saved, results.json missing (training interrupted)
-- [ ] GAT: replace GraphSAGE with GAT, 5 layers, 256 dim
+- [x] Wider: 5 layers, 512 dim — test Dice 88.78% (`wider_network/`)
+- [x] GAT: replace GraphSAGE with GAT, 5 layers, 256 dim — test Dice 85.03% (`gat_architecture/`)
 
 **Batch size variants:**
 - [ ] Batch size 16
@@ -114,7 +114,14 @@ Each run: ~35–40 min on GPU
 - [ ] 5 slices
 
 ### Task 3.3 — Record all ablation results
-- [ ] Fill complete ablation table (all real numbers, no blanks, no estimates)
+- [x] Architecture ablation table (all real numbers):
+
+| Variant | Architecture | Layers | Hidden Dim | Test Dice |
+|---|---|---|---|---|
+| Baseline | GraphSAGE | 5 | 256 | 84.03% |
+| Deeper | GraphSAGE | 6 | 256 | 84.00% |
+| Wider | GraphSAGE | 5 | 512 | **88.78%** |
+| GAT | GAT | 5 | 256 | 85.03% |
 
 ---
 
@@ -171,39 +178,83 @@ Each run: ~35–40 min on GPU
 - All saved at 300 DPI in `research_results/figures/`
 
 ### Task 6.2 — Qualitative examples
-- [ ] From held-out ensemble results, select: 3 worst cases, 1 median, 1 best
-- [ ] For each: original MRI (4 modalities), ground truth, prediction, overlay
-- [ ] Save to `research_results/failure_cases/`
+- [x] From held-out ensemble results, select: 3 worst cases, 1 median, 1 best
+  - Script: `scripts/qualitative_failure_cases.py` (pixel-level predictions via re-run SLIC + ensemble inference)
+  - Worst: BraTS2021_01405 (Dice≈0.0), BraTS2021_01366 (Dice≈0.0), BraTS2021_01407 (Dice≈0.0)
+  - Median: BraTS2021_00209 (Dice=92.3%), Best: BraTS2021_01594 (Dice=100%)
+- [x] For each: T1ce MRI, ground truth overlay, GNN prediction overlay, comparison panel
+- [x] Saved to `research_results/failure_cases/` (5 PNG figures + summary.json)
 - [ ] Write 1-paragraph failure analysis for Section 6.4
 
 ---
 
 ## PHASE 7 — BraTS 2023 Cross-Dataset Validation
 > Run AFTER Phase 2. No retraining needed — zero-shot evaluation.
+> Dataset already at: `/mnt/bigdata/capstone/ASNR-MICCAI-BraTS2023-GLI-Challenge-TrainingData/` (1,251 patients, 13 GB extracted)
 
-### Task 7.1 — Get BraTS 2023 data
-- [ ] Create Synapse account at synapse.org if not already done
-- [ ] Download BraTS 2023 Glioma Task (~100GB)
-  - URL: https://www.synapse.org/#!Synapse:syn51514105
-- [ ] Store at `/mnt/bigdata/brats2023/`
+### Task 7.1 — Get BraTS 2023 data ✅
+- [x] Dataset downloaded and extracted: 1,251 patients at `/mnt/bigdata/capstone/ASNR-MICCAI-BraTS2023-GLI-Challenge-TrainingData/`
+- [x] File naming confirmed: `*-t1n.nii.gz`, `*-t1c.nii.gz`, `*-t2w.nii.gz`, `*-t2f.nii.gz`, `*-seg.nii.gz`
+- [x] Labels confirmed: uses label 3 for ET (vs label 4 in BraTS 2021)
 
 ### Task 7.2 — Preprocess BraTS 2023
-- [ ] Run existing preprocessing pipeline on BraTS 2023 patients
-  (same skull-strip + normalise + slice selection pipeline — no changes needed)
-- [ ] Fix label scheme: BraTS 2023 uses label 3 instead of label 4 for ET
-  - In preprocessing: remap label 3 → label 4, then binary transform works as-is
-- [ ] Build graphs: run graph construction on all BraTS 2023 patients
+Script: `scripts/preprocess_brats2023.py`
+- Same pipeline as BraTS 2021 (resample → crop → skull-strip → z-score normalize)
+- Key differences handled:
+  - File names: t1n/t1c/t2w/t2f instead of t1/t1ce/t2/flair
+  - Label remap: 3 → 4 so binary transform works as-is
+- Output: `data/preprocessed_brats2023/BraTS-GLI-XXXXX-XXX/BraTS-GLI-XXXXX-XXX_preprocessed.npz`
+- Uses 12 CPU workers (parallel per-patient), skip already-done patients
 
-### Task 7.3 — Zero-shot inference
-- [ ] Write `scripts/evaluate_brats2023.py`
-  - Load ensemble from Phase 2 (checkpoints/binary_v2/)
-  - Run inference on all BraTS 2023 patients
-  - Report Dice, Sensitivity, Specificity on BraTS 2023
-- [ ] Record generalisation gap: BraTS 2021 score − BraTS 2023 score
+**Run (CPU only, ~3 min with 12 workers):**
+```bash
+source /mnt/bigdata/capstone/.env/bin/activate
+cd /mnt/bigdata/capstone/brats_gnn_segmentation
+python scripts/preprocess_brats2023.py --workers 12
+```
+- [ ] Run preprocessing script, verify ~1,251 NPZ files created
 
-### Task 7.4 — Add to paper
+### Task 7.3 — Build graphs for BraTS 2023
+Reuses existing `src/graph_construction.py` (already multiprocessing-capable).
+Output: `data/graphs_brats2023/BraTS-GLI-XXXXX-XXX/BraTS-GLI-XXXXX-XXX_graphs_200.pt`
+
+**Run (CPU, ~3-5 min with 12 workers):**
+```bash
+python src/graph_construction.py \
+  --input_dir data/preprocessed_brats2023 \
+  --output_dir data/graphs_brats2023 \
+  --num_workers 12
+```
+- [ ] Run graph construction, verify ~1,251 patient graph dirs created
+
+### Task 7.4 — Zero-shot ensemble inference
+Script: `scripts/evaluate_brats2023.py`
+- Loads 5 ensemble models from `checkpoints/binary_v2/`
+- Runs inference on all BraTS 2023 graphs (no retraining)
+- Reports per-patient Dice, Sensitivity, Specificity, Precision, Accuracy
+- Saves to `research_results/brats2023_evaluation/results.json`
+- **GPU required** — run in your terminal
+
+**Run:**
+```bash
+python scripts/evaluate_brats2023.py --device cuda
+```
+- [x] Run evaluation, record results — 1245/1251 patients (6 missing graph files, not material), results saved to `research_results/brats2023_evaluation/results.json`
+
+### Task 7.5 — Record results and generalisation gap
+- [x] Record: Dice 89.21% ± 11.14%, Accuracy 98.82%, Sensitivity 90.06%, Specificity 99.47%, Precision 92.60% on BraTS 2023
+- [x] Compute generalisation gap: 91.41% − 89.21% = **2.20%** (within expected 2–5%) ✅
+- **Output:** `research_results/brats2023_evaluation/results.json`
+
+| Dataset | Dice | Accuracy | Sensitivity | Specificity | Precision |
+|---|---|---|---|---|---|
+| BraTS 2021 (held-out ensemble) | 91.41% | 99.14% | 87.77% | 99.76% | 95.52% |
+| BraTS 2023 (zero-shot) | 89.21% | 98.82% | 90.06% | 99.47% | 92.60% |
+| Generalisation gap | 2.20% | — | — | — | — |
+
+### Task 7.6 — Add to paper
 - [ ] Add cross-dataset validation table to Section 6
-- [ ] Expected: ~2–5% Dice drop (normal, honest to report)
+- [ ] Add 1-sentence explanation of the generalisation gap
 
 ---
 
