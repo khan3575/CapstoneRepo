@@ -4,14 +4,16 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-orange.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A Graph Neural Network approach for brain tumor segmentation on BraTS 2021 dataset, achieving **92.92% ensemble Dice coefficient** with **6.9× speedup** over U-Net.
+A Graph Neural Network approach for brain tumor segmentation on BraTS 2021 dataset, achieving **91.41% ensemble Dice coefficient** with **5.9× speedup** over U-Net end-to-end (>135× for pre-built graphs).
 
 ## 🏆 Performance Highlights
 
-- **92.92% Ensemble Dice** - Strong performance with model averaging
-- **90.39% ± 0.69% CV Dice** - Consistent 5-fold cross-validation results
-- **6.9× faster than U-Net** - 12.7ms vs 87.8ms inference time
-- **156× smaller model** - 439K vs 68M parameters (memory efficient)
+- **91.41% Ensemble Dice** - Strong performance with 5-fold soft-voting (sealed 251-patient held-out)
+- **90.02% ± 0.66% CV Dice** - Consistent 5-fold cross-validation results
+- **5.9× faster than U-Net end-to-end** - 1.73s vs 10.16s per patient
+- **>135× faster (pre-built graph)** - 75.4ms GNN inference only
+- **155× smaller model** - 439K vs 68M parameters (memory efficient)
+- **227× less GPU memory** - 11MB vs 2,500MB peak inference memory
 
 ## 🔬 Key Features
 
@@ -75,7 +77,7 @@ python src/graph_construction.py --input_dir ./data/preprocessed --output_dir ./
 python src/train_cv_fold.py --fold_idx 0
 
 # Override config settings if needed
-python src/train_cv_fold.py --fold_idx 0 --batch_size 32 --epochs 50
+python src/train_cv_fold.py --fold_idx 0 --batch_size 24 --epochs 50
 
 # Train all 5 folds sequentially
 for fold in {0..4}; do python src/train_cv_fold.py --fold_idx $fold; done
@@ -176,28 +178,33 @@ See `requirements.txt` for complete list.
 
 ### Network Architecture
 - **5-layer GraphSAGE** with 256-dimensional hidden layers (validated by ablation)
-- **FP32 precision training** for numerical stability
-- **Gradient accumulation** for effective batch size 128
-- **Combined loss function**: 0.3 × BCE + 0.7 × Dice
+- **Mixed precision training** (AMP) for numerical stability and speed
+- **Gradient accumulation** (steps=2, effective batch size 48)
+- **Loss function**: BCEWithLogitsLoss
 - **Early stopping** with patience 10
 
 ### Performance Optimizations
 - **CUDA optimizations** for maximum GPU utilization
 - **Multi-threaded data loading** (5 workers) with prefetching
 - **Patient-level stratified splits** (no data leakage)
-- **Deterministic training** (seed 42, reproducible results)
+- **Non-deterministic training** (cudnn.benchmark=True; seed 42 used for splits only)
 
 ## 📈 Results Summary
 
-| Metric | 5-Fold CV | Ensemble | U-Net Baseline |
-|--------|-----------|----------|----------------|
-| Dice Score | 90.39% ± 0.69% | **92.92%** | ~85-87% |
-| Inference Time | 12.7ms | 12.7ms | 87.8ms |
-| Parameters | 439K | 439K | 68M |
-| GPU Memory | 2.1 GB | 2.1 GB | 8.4 GB |
+| Metric | 5-Fold CV | Ensemble (held-out) | U-Net Baseline |
+|--------|-----------|---------------------|----------------|
+| Dice Score | 90.02% ± 0.66% | **91.41%** | ~87.5% |
+| Accuracy | — | 99.14% | — |
+| Sensitivity | — | 87.77% | — |
+| Specificity | — | 99.76% | — |
+| Inference Time (end-to-end) | 1.73s | 1.73s | 10.16s |
+| Inference Time (GNN only) | 75.4ms | 75.4ms | — |
+| Parameters | 439K | 439K × 5 | 68M |
+| Peak GPU Memory | 11 MB | 11 MB | ~2,500 MB |
+| BraTS 2023 zero-shot Dice | — | 89.40% (gap: 2.01pp) | — |
 
-### Cross-Validation Details
-- Fold 0: 90.41% | Fold 1: 89.62% | Fold 2: 90.38% | Fold 3: 91.06% | Fold 4: 90.50%
+### Cross-Validation Details (binary_v3, 5 folds, 720/80/200 split)
+- Fold 0: 88.72% | Fold 1: 90.48% | Fold 2: 90.31% | Fold 3: 90.13% | Fold 4: 90.47%
 
 ### Ablation Study Key Findings
 - **5 layers = 6 layers** (84.03% vs 84.00%) - validates architecture choice
@@ -209,22 +216,22 @@ See `requirements.txt` for complete list.
 This work includes comprehensive research validation:
 - **Peer-reviewed methodology** with statistical rigor
 - **5-fold cross-validation** with patient-level stratified splits
-- **Ablation studies** validating each design choice (5L vs 6L, batch size sensitivity)
-- **Reproducible results** with complete code availability (seed 42, deterministic mode)
-- **Efficiency analysis** demonstrating practical deployment value (6.9× speedup)
+- **Ablation studies** validating each design choice (5L vs 6L, depth vs width)
+- **Non-deterministic training** with documented seed (42) for data splits
+- **Efficiency analysis** demonstrating practical deployment value (5.9× end-to-end speedup)
 
 ### Research Artifacts Generated
-- Comprehensive 5-fold CV with confidence intervals (90.39% ± 0.69%)
-- Ensemble predictions achieving 92.92% Dice
-- Speed benchmark validating 6.9× inference speedup
-- Ablation study confirming 5-layer architecture optimal
-- 50 qualitative visualization examples
+- Comprehensive 5-fold CV with confidence intervals (90.02% ± 0.66%)
+- Ensemble predictions achieving 91.41% Dice on 251 sealed held-out patients
+- Speed benchmark: 75.4ms inference-only, 1.73s end-to-end (vs 10.16s U-Net)
+- Ablation study confirming 5-layer architecture Pareto-optimal
+- BraTS 2023 zero-shot evaluation: 89.40% Dice, 2.01pp generalisation gap
 
 ### Data Integrity
-- ✅ **No data leakage**: Validated with comprehensive audit (15/15 checks passed)
-- ✅ **15 clean features**: Removed tumor_ratio ground-truth leakage
+- ✅ **No data leakage**: Validated with comprehensive forensic audit
+- ✅ **15 clean features**: Removed tumor_ratio ground-truth leakage (was 12 features)
 - ✅ **Patient-level splits**: Zero train/test overlap across all 5 folds
-- ✅ **Reproducible**: Seed 42, deterministic mode, documented configurations
+- ✅ **Sealed held-out set**: 251 patients never seen during training or fold selection
 
 ## 🤝 Contributing
 
@@ -256,13 +263,13 @@ If you use this work in your research, please cite:
 
 ```bibtex
 @article{brats_gnn_2025,
-  title={Graph Neural Networks for Brain Tumor Segmentation: 
-         Efficient Superpixel-Based Approach with 6.9× Speedup},
+  title={Graph Neural Networks for Brain Tumor Segmentation:
+         Efficient Superpixel-Based Approach},
   author={[Your Name]},
   journal={[Target Journal/Conference]},
   year={2025},
-  note={Achieving 92.92\% ensemble Dice on BraTS 2021 with 
-        156× parameter reduction and 6.9× inference speedup}
+  note={Achieving 91.41\% ensemble Dice on BraTS 2021 with
+        155× parameter reduction vs 3D U-Net}
 }
 ```
 

@@ -35,7 +35,7 @@ from torch_geometric.loader import DataLoader as GeometricDataLoader
 # Paths
 # ---------------------------------------------------------------------------
 GRAPHS_DIR    = "data/graphs_brats2023"
-CHECKPOINT_DIR = "checkpoints/binary_v2"
+CHECKPOINT_DIR = "checkpoints/binary_v3"  # FIX-5 (2026-03-14): was binary_v2 — production model is binary_v3
 OUTPUT_DIR    = "research_results/brats2023_evaluation"
 
 BRATS2021_ENSEMBLE_DICE = 0.9141   # Reference: Phase 4 held-out result

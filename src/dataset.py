@@ -149,7 +149,8 @@ class BraTSGraphDataset(Dataset):
         except Exception as e:
             print(f"⚠️  Error loading {graph_file}: {e}")
             # Return a dummy graph with patient info to avoid crashing
-            dummy_graph = Data(x=torch.zeros(1, 12), edge_index=torch.zeros(2, 0, dtype=torch.long))
+            # FIX-4 (2026-03-14): 15 features to match current model assertion (was 12 — latent crash)
+            dummy_graph = Data(x=torch.zeros(1, 15), edge_index=torch.zeros(2, 0, dtype=torch.long))
             dummy_graph.patient_id = self._get_patient_id(graph_file)
             dummy_graph.graph_file = graph_file
             return dummy_graph

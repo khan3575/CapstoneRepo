@@ -1,11 +1,11 @@
 {
   "brats2023_metrics": {
-    "dice": 0.8920614721918768,
-    "dice_std": 0.11143402202958842,
-    "accuracy": 0.9882200468491078,
-    "sensitivity": 0.9006430136284747,
-    "specificity": 0.9946850674022928,
-    "precision": 0.9259771715410673,
+    "dice": 0.8940234409955046,
+    "dice_std": 0.11099749831904797,
+    "accuracy": 0.9885157877112628,
+    "sensitivity": 0.9069365806469969,
+    "specificity": 0.9945380429874184,
+    "precision": 0.9245720285643015,
     "num_graphs": 1662,
     "num_patients": 1245
   },
@@ -13,11 +13,11 @@
     "ensemble_dice": 0.9141,
     "note": "Phase 4 held-out set (251 patients, no data leakage)"
   },
-  "generalisation_gap": 0.02203852780812321,
+  "generalisation_gap": 0.020076559004495453,
   "metadata": {
     "device": "cuda",
     "demo_mode": false,
     "graphs_dir": "/mnt/bigdata/capstone/brats_gnn_segmentation/data/graphs_brats2023",
-    "checkpoint_dir": "/mnt/bigdata/capstone/brats_gnn_segmentation/checkpoints/binary_v2"
+    "checkpoint_dir": "/mnt/bigdata/capstone/brats_gnn_segmentation/checkpoints/binary_v3"
   }
 }

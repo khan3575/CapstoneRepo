@@ -69,8 +69,8 @@ def compute_metrics(predictions, labels):
     }
 
 
-def train_epoch(model, train_loader, criterion, optimizer, scheduler, scaler, device, 
-                accumulation_steps=4):
+def train_epoch(model, train_loader, criterion, optimizer, scheduler, scaler, device,
+                accumulation_steps=2):  # FIX-3 (2026-03-14): default matches config.yaml value
     """Train for one epoch with gradient accumulation"""
     model.train()
     total_loss = 0
@@ -282,7 +282,8 @@ def train_fold(
     
     # Loss and optimizer
     criterion = nn.BCEWithLogitsLoss()
-    optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=0.01)
+    weight_decay = config.get('model.training.weight_decay', 0.01)  # FIX-2 (2026-03-14): read from config
+    optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
     
     # Learning rate scheduler
     total_steps = len(train_loader) * epochs // accumulation_steps
@@ -425,6 +426,8 @@ if __name__ == "__main__":
                        help='Hidden dimension size (default from config.yaml: 256)')
     parser.add_argument('--num_layers', type=int, default=None,
                        help='Number of GNN layers (default from config.yaml: 5)')
+    parser.add_argument('--accumulation_steps', type=int, default=None,
+                       help='Gradient accumulation steps (default from config.yaml: 2)')  # FIX-3 (2026-03-14)
     parser.add_argument('--device', type=str, default=None,
                        help='Device to use (default from config.yaml: cuda)')
 
@@ -440,6 +443,7 @@ if __name__ == "__main__":
         learning_rate=args.lr,
         hidden_channels=args.hidden_channels,
         num_layers=args.num_layers,
+        accumulation_steps=args.accumulation_steps,  # FIX-3 (2026-03-14)
         device=args.device
     )
 

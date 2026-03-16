@@ -1,0 +1,1061 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.24)  15 MAR 2026 20:26
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**main_bubt_paper_no_images.tex
+(./main_bubt_paper_no_images.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count187
+\c@section=\count188
+\c@subsection=\count189
+\c@subsubsection=\count190
+\c@paragraph=\count191
+\c@subparagraph=\count192
+\c@figure=\count193
+\c@table=\count194
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2023/05/13 v2.17o AMS math features
+\@mathmargin=\skip50
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen141
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen142
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count195
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count196
+\leftroot@=\count197
+LaTeX Info: Redefining \overline on input line 399.
+LaTeX Info: Redefining \colon on input line 410.
+\classnum@=\count198
+\DOTSCASE@=\count199
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box51
+\strutbox@=\box52
+LaTeX Info: Redefining \big on input line 722.
+LaTeX Info: Redefining \Big on input line 723.
+LaTeX Info: Redefining \bigg on input line 724.
+LaTeX Info: Redefining \Bigg on input line 725.
+\big@size=\dimen143
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count266
+LaTeX Info: Redefining \bmod on input line 905.
+LaTeX Info: Redefining \pmod on input line 910.
+LaTeX Info: Redefining \smash on input line 940.
+LaTeX Info: Redefining \relbar on input line 970.
+LaTeX Info: Redefining \Relbar on input line 971.
+\c@MaxMatrixCols=\count267
+\dotsspace@=\muskip16
+\c@parentequation=\count268
+\dspbrk@lvl=\count269
+\tag@help=\toks20
+\row@=\count270
+\column@=\count271
+\maxfields@=\count272
+\andhelp@=\toks21
+\eqnshift@=\dimen144
+\alignsep@=\dimen145
+\tagshift@=\dimen146
+\tagwidth@=\dimen147
+\totwidth@=\dimen148
+\lineht@=\dimen149
+\@envbody=\toks22
+\multlinegap=\skip51
+\multlinetaggap=\skip52
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/acronym/acronym.sty
+Package: acronym 2020/04/17 v1.47 Support for acronyms (Tobias Oetiker)
+
+(/usr/share/texlive/texmf-dist/tex/latex/bigfoot/suffix.sty
+Package: suffix 2006/07/15 1.5a Variant command support
+)
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
+\xs_counta=\count273
+\xs_countb=\count274
+)
+Package: xstring 2023/08/22 v1.86 String manipulations (CT)
+)
+\AC@clearlist=\toks24
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2023/07/08 v2.11c `tabularx' package (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
+\col@sep=\dimen150
+\ar@mcellbox=\box53
+\extrarowheight=\dimen151
+\NC@list=\toks25
+\extratabsurround=\skip53
+\backup@length=\skip54
+\ar@cellbox=\box54
+)
+\TX@col@width=\dimen152
+\TX@old@table=\dimen153
+\TX@old@col=\dimen154
+\TX@target=\dimen155
+\TX@delta=\dimen156
+\TX@cols=\count275
+\TX@ftn=\toks26
+)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
+Package xcolor Info: Model `RGB' extended on input line 1366.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2022/06/20 v1.0f Color table columns (DPC)
+\everycr=\toks27
+\minrowclearance=\skip55
+\rownum=\count276
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks28
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+)
+\Gin@req@height=\dimen157
+\Gin@req@width=\dimen158
+)
+(/usr/share/texlive/texmf-dist/tex/latex/sectsty/sectsty.sty
+Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading sty
+les
+
+
+LaTeX Warning: Command \underbar  has changed.
+               Check if current package is valid.
+
+
+LaTeX Warning: Command \underline  has changed.
+               Check if current package is valid.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2017/07/18 v5.2 algorithms environments
+\c@AlgoLine=\count277
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+)
+\algocf@hangindent=\skip56
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
+\c@checkoddpage=\count278
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+\skiptotal=\skip57
+\skiplinenumber=\skip58
+\skiprule=\skip59
+\skiphlne=\skip60
+\skiptext=\skip61
+\skiplength=\skip62
+\algomargin=\skip63
+\skipalgocfslide=\skip64
+\algowidth=\dimen159
+\inoutsize=\dimen160
+\inoutindent=\dimen161
+\interspacetitleruled=\dimen162
+\interspacealgoruled=\dimen163
+\interspacetitleboxruled=\dimen164
+\algocf@ruledwidth=\skip65
+\algocf@inoutbox=\box55
+\algocf@inputbox=\box56
+\AlCapSkip=\skip66
+\AlCapHSkip=\skip67
+\algoskipindent=\skip68
+\algocf@nlbox=\box57
+\algocf@hangingbox=\box58
+\algocf@untilbox=\box59
+\algocf@skipuntil=\skip69
+\algocf@capbox=\box60
+\algocf@lcaptionbox=\skip70
+\algoheightruledefault=\skip71
+\algoheightrule=\skip72
+\algotitleheightruledefault=\skip73
+\algotitleheightrule=\skip74
+\c@algocfline=\count279
+\c@algocfproc=\count280
+\c@algocf=\count281
+\algocf@algoframe=\box61
+\algocf@algobox=\box62
+)
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip75
+\bibsep=\skip76
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count282
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count283
+)
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count284
+)
+\@linkdim=\dimen165
+\Hy@linkcounter=\count285
+\Hy@pagecounter=\count286
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count287
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4179.
+Package hyperref Info: Link nesting OFF on input line 4184.
+Package hyperref Info: Hyper index ON on input line 4187.
+Package hyperref Info: Plain pages OFF on input line 4194.
+Package hyperref Info: Backreferencing OFF on input line 4199.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4446.
+\c@Hy@tempcnt=\count288
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4784.
+\XeTeXLinkMargin=\dimen166
+
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count289
+\Field@Width=\dimen167
+\Fld@charsize=\dimen168
+Package hyperref Info: Hyper figures OFF on input line 6063.
+Package hyperref Info: Link nesting OFF on input line 6068.
+Package hyperref Info: Hyper index ON on input line 6071.
+Package hyperref Info: backreferencing OFF on input line 6078.
+Package hyperref Info: Link coloring OFF on input line 6083.
+Package hyperref Info: Link coloring with OCG OFF on input line 6088.
+Package hyperref Info: PDF/A mode OFF on input line 6093.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count290
+\c@Item=\count291
+\c@Hfootnote=\count292
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2024-01-20 v7.01h Hyperref driver for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
+with kernel methods
+)
+\Fld@listcount=\count293
+\c@bookmark@seq@number=\count294
+
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+85.
+)
+\Hy@SectionHShift=\skip77
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 32.
+
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count295
+\Gm@cntv=\count296
+\c@Gm@tempcnt=\count297
+\Gm@bindingoffset=\dimen169
+\Gm@wd@mp=\dimen170
+\Gm@odd@mp=\dimen171
+\Gm@even@mp=\dimen172
+\Gm@layoutwidth=\dimen173
+\Gm@layoutheight=\dimen174
+\Gm@layouthoffset=\dimen175
+\Gm@layoutvoffset=\dimen176
+\Gm@dimlist=\toks29
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count298
+\l__pdf_internal_box=\box63
+)
+(./main_bubt_paper_no_images.aux)
+\openout1 = `main_bubt_paper_no_images.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count299
+\scratchdimen=\dimen177
+\scratchbox=\box64
+\nofMPsegments=\count300
+\nofMParguments=\count301
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count302
+\MPscratchDim=\dimen178
+\MPnumerator=\count303
+\makeMPintoPDFobject=\count304
+\everyMPtoPDFconversion=\toks31
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Package hyperref Info: Link coloring ON on input line 36.
+
+(./main_bubt_paper_no_images.out) (./main_bubt_paper_no_images.out)
+\@outlinefile=\write3
+\openout3 = `main_bubt_paper_no_images.out'.
+
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(85.35826pt, 426.79135pt, 85.35826pt)
+* v-part:(T,H,B)=(85.35826pt, 688.5567pt, 71.13188pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=426.79135pt
+* \textheight=688.5567pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=13.08827pt
+* \topmargin=-23.91173pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 47.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 47.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+<BUBT-Logo.png, id=128, 412.54124pt x 529.98pt>
+ [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <16> not available
+(Font)              size <17.28> substituted on input line 85.
+
+[2] [3
+
+] [4
+
+] [5
+
+]
+Overfull \hbox (6.97937pt too wide) in paragraph at lines 233--236
+\OT1/cmr/m/n/12 BraTS 2021, BraTS 2023, Com-pu-ta-tional Ef-fi-ciency, Su-per-p
+ixel Graph, Cross-Dataset
+ []
+
+[6
+
+]
+
+LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 24
+4.
+
+
+LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 24
+4.
+
+
+LaTeX Warning: Hyper reference `acro:AMP' on page vii undefined on input line 2
+45.
+
+
+LaTeX Warning: Hyper reference `acro:AMP' on page vii undefined on input line 2
+45.
+
+
+LaTeX Warning: Hyper reference `acro:BCE' on page vii undefined on input line 2
+46.
+
+
+LaTeX Warning: Hyper reference `acro:BCE' on page vii undefined on input line 2
+46.
+
+
+LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
+ 247.
+
+
+LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
+ 247.
+
+
+LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 2
+48.
+
+
+LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 2
+48.
+
+
+LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 24
+9.
+
+
+LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 24
+9.
+
+
+LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
+250.
+
+
+LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
+250.
+
+
+LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 25
+1.
+
+
+LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 25
+1.
+
+
+LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
+ 252.
+
+
+LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
+ 252.
+
+
+LaTeX Warning: Hyper reference `acro:ET' on page vii undefined on input line 25
+3.
+
+
+LaTeX Warning: Hyper reference `acro:ET' on page vii undefined on input line 25
+3.
+
+
+LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 2
+54.
+
+
+LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 2
+54.
+
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
+ 255.
+
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
+ 255.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 2
+56.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 2
+56.
+
+
+LaTeX Warning: Hyper reference `acro:GCN' on page vii undefined on input line 2
+57.
+
+
+LaTeX Warning: Hyper reference `acro:GCN' on page vii undefined on input line 2
+57.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
+58.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
+58.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+59.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+59.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
+line 260.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
+line 260.
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page vii undefined on input line 2
+61.
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page vii undefined on input line 2
+61.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page vii undefined on input line
+ 262.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page vii undefined on input line
+ 262.
+
+
+LaTeX Warning: Hyper reference `acro:RAG' on page vii undefined on input line 2
+63.
+
+
+LaTeX Warning: Hyper reference `acro:RAG' on page vii undefined on input line 2
+63.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page vii undefined on input line 
+264.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page vii undefined on input line 
+264.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page vii undefined on input line 
+265.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page vii undefined on input line 
+265.
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page vii undefined on input line 26
+6.
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page vii undefined on input line 26
+6.
+
+[7
+
+]
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
+ 267.
+
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
+ 267.
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 2
+68.
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 2
+68.
+
+
+LaTeX Warning: Hyper reference `acro:TC' on page viii undefined on input line 2
+69.
+
+
+LaTeX Warning: Hyper reference `acro:TC' on page viii undefined on input line 2
+69.
+
+
+LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
+e 270.
+
+
+LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
+e 270.
+
+
+LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
+ 271.
+
+
+LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
+ 271.
+
+
+LaTeX Warning: Hyper reference `acro:WT' on page viii undefined on input line 2
+72.
+
+
+LaTeX Warning: Hyper reference `acro:WT' on page viii undefined on input line 2
+72.
+
+[8] (./main_bubt_paper_no_images.toc [9
+
+])
+\tf@toc=\write4
+\openout4 = `main_bubt_paper_no_images.toc'.
+
+ [10]
+
+Package natbib Warning: Citation `menze2015multimodal' on page 1 undefined on i
+nput line 298.
+
+
+Package natbib Warning: Citation `menze2015multimodal' on page 1 undefined on i
+nput line 303.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 1 undefined on input 
+line 303.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 1 undefined on inp
+ut line 309.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 1 undefined on i
+nput line 310.
+
+
+Overfull \hbox (9.22496pt too wide) in paragraph at lines 303--312
+\OT1/cmr/m/n/12 glioma cases---covering T1-weighted (T1), contrast-enhanced T1 
+(T1CE), T2-weighted
+ []
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 1 undefined on
+ input line 324.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 1 undefined on input
+ line 326.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.329 
+       [1
+
+]
+
+Package natbib Warning: Citation `loshchilov2019adamw' on page 2 undefined on i
+nput line 343.
+
+
+Overfull \hbox (1.41458pt too wide) in paragraph at lines 353--356
+[]\OT1/cmr/bx/n/12 Zero-shot cross-edition eval-u-a-tion. \OT1/cmr/m/n/12 Di-re
+ct eval-u-a-tion on BraTS 2023 (1,245
+ []
+
+[2]
+
+Package natbib Warning: Citation `ronneberger2015unet' on page 3 undefined on i
+nput line 378.
+
+
+Package natbib Warning: Citation `cicek20163d' on page 3 undefined on input lin
+e 380.
+
+
+Package natbib Warning: Citation `oktay2018attention' on page 3 undefined on in
+put line 382.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 3 undefined on inp
+ut line 383.
+
+
+Package natbib Warning: Citation `wang2021transbts' on page 3 undefined on inpu
+t line 386.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 3 undefined on i
+nput line 388.
+
+
+Package natbib Warning: Citation `liu2021swin' on page 3 undefined on input lin
+e 389.
+
+
+Package natbib Warning: Citation `kipf2017gcn' on page 3 undefined on input lin
+e 402.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 3 undefined on
+ input line 404.
+
+
+Package natbib Warning: Citation `velickovic2018gat' on page 3 undefined on inp
+ut line 407.
+
+
+Package natbib Warning: Citation `milletari2016vnet' on page 3 undefined on inp
+ut line 408.
+
+
+Package natbib Warning: Citation `qi2017pointnet' on page 3 undefined on input 
+line 411.
+
+[3]
+Overfull \hbox (18.46375pt too wide) in paragraph at lines 414--424
+\OT1/cmr/m/n/12 mod-elling on or-gan meshes, dis-ease clas-si-fi-ca-tion via po
+p-u-la-tion graphs, and histopathol-
+ []
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 4 undefined on input
+ line 427.
+
+[4]
+
+Package natbib Warning: Citation `menze2015multimodal' on page 5 undefined on i
+nput line 450.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 5 undefined on input 
+line 450.
+
+
+Package natbib Warning: Citation `bakas2017advancing' on page 5 undefined on in
+put line 450.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 5 undefined on input
+ line 480.
+
+[5{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 6 undefined on
+ input line 520.
+
+[6]
+
+Package natbib Warning: Citation `fey2019pyg' on page 7 undefined on input line
+ 533.
+
+
+Package natbib Warning: Citation `loshchilov2019adamw' on page 7 undefined on i
+nput line 544.
+
+[7]
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 5
+85.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 585.
+ [8]
+Overfull \hbox (2.17448pt too wide) in paragraph at lines 627--627
+ []|\OT1/cmr/bx/n/10 Mean$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 SD| 
+ []
+
+
+Overfull \hbox (5.43837pt too wide) in paragraph at lines 627--627
+ []|\OT1/cmr/bx/n/10 90.02$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 0.66| 
+ []
+
+
+Overfull \hbox (50.38109pt too wide) in paragraph at lines 636--641
+\OT1/cmr/m/n/12 (88.72%) re-flects the stochas-tic train-ing pro-cess un-der th
+e non-deterministic \OT1/cmtt/m/n/12 cudnn.benchmark
+ []
+
+<fig_A_cv_performance.jpg, id=303, 1324.95pt x 814.04124pt>
+
+Overfull \hbox (13.97646pt too wide) in paragraph at lines 684--691
+[]\OT1/cmr/m/n/12 Precision (95.52%) sub-stan-tially ex-ceeds Sen-si-tiv-ity (8
+7.77%), in-di-cat-ing a precision-
+ []
+
+[9] [10]
+<fig_B_efficiency_bubble.jpg, id=327, 1340.00626pt x 889.3225pt>
+<fig_D_speed_memory.jpg, id=328, 1923.185pt x 754.82pt>
+ [11] [12]
+<fig_F_ablation.jpg, id=345, 1491.5725pt x 814.04124pt>
+ [13]
+Overfull \hbox (3.38364pt too wide) in paragraph at lines 821--825
+\OT1/cmr/m/n/12 neigh-bour-hood sam-pling ag-gre-ga-tion pro-vides a bet-ter ac
+curacy-efficiency trade-
+ []
+
+<fig_C_generalisation.jpg, id=353, 1861.95625pt x 728.7225pt>
+<fig_G_dice_distribution.jpg, id=354, 1883.035pt x 754.82pt>
+[14]
+<fig_E_ensemble_vs_individual.jpg, id=360, 1490.56876pt x 815.045pt>
+ [15] [16]
+
+Package natbib Warning: Citation `cicek20163d' on page 17 undefined on input li
+ne 984.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 17 undefined on in
+put line 984.
+
+
+Package natbib Warning: Citation `wang2021transbts' on page 17 undefined on inp
+ut line 984.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 17 undefined on 
+input line 984.
+
+[17] [18] [19]
+No file main_bubt_paper_no_images.bbl.
+
+Package natbib Warning: There were undefined citations.
+
+(./main_bubt_paper_no_images.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+ ***********
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.28pt have occurred.
+
+
+LaTeX Warning: There were undefined references.
+
+Package rerunfilecheck Info: File `main_bubt_paper_no_images.out' has not chang
+ed.
+(rerunfilecheck)             Checksum: 2F8BFCD11FC9F5D7DB91BED814C6109C;5291.
+ ) 
+Here is how much of TeX's memory you used:
+ 13209 strings out of 474222
+ 199835 string characters out of 5748732
+ 1941975 words of memory out of 5000000
+ 35147 multiletter control sequences out of 15000+600000
+ 568715 words of font info for 77 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 75i,12n,79p,683b,641s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmtt8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on main_bubt_paper_no_images.pdf (29 pages, 348989 bytes).
+PDF statistics:
+ 517 PDF objects out of 1000 (max. 8388607)
+ 424 compressed objects within 5 object streams
+ 126 named destinations out of 1000 (max. 500000)
+ 289 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -1,0 +1,202 @@
+================================================================================
+TRAINING FOLD 0
+================================================================================
+📁 Using paths from config:
+   Fold dir: /mnt/bigdata/capstone/brats_gnn_segmentation/data/cv_folds_v2
+   Output dir: checkpoints/pos_weight_search/pw_10
+Using device: cuda
+
+Loading fold data...
+Creating datasets...
+📊 Dataset initialized: 61411 graphs from 720 patients
+📊 Dataset initialized: 6819 graphs from 80 patients
+📊 Dataset initialized: 17079 graphs from 200 patients
+
+Dataset sizes:
+  Train: 61411 graphs
+  Val:   6819 graphs
+  Test:  17079 graphs
+  Input features: 15
+
+Initializing model...
+  Total parameters: 439,041
+  torch.compile() enabled (default mode)
+  Loss: BCE(pos_weight=10.0) + DiceLoss (0.5 + 0.5)
+
+Starting training for 50 epochs...
+================================================================================
+Epoch 1/50 (24.1s)
+  Train - Loss: 0.5145, Dice: 0.4899, Acc: 0.9074
+  Val   - Loss: 0.3496, Dice: 0.7694, Acc: 0.9719
+  ✓ Best model saved (Val Dice: 0.7694)
+Epoch 2/50 (20.6s)
+  Train - Loss: 0.2655, Dice: 0.7951, Acc: 0.9749
+  Val   - Loss: 0.3528, Dice: 0.7644, Acc: 0.9711
+Epoch 3/50 (20.9s)
+  Train - Loss: 0.2238, Dice: 0.8323, Acc: 0.9799
+  Val   - Loss: 0.3323, Dice: 0.8479, Acc: 0.9833
+  ✓ Best model saved (Val Dice: 0.8479)
+Epoch 4/50 (20.7s)
+  Train - Loss: 0.2024, Dice: 0.8493, Acc: 0.9821
+  Val   - Loss: 0.2811, Dice: 0.8756, Acc: 0.9869
+  ✓ Best model saved (Val Dice: 0.8756)
+Epoch 5/50 (20.8s)
+  Train - Loss: 0.1918, Dice: 0.8579, Acc: 0.9832
+  Val   - Loss: 0.2698, Dice: 0.8671, Acc: 0.9856
+Epoch 6/50 (20.9s)
+  Train - Loss: 0.1826, Dice: 0.8658, Acc: 0.9842
+  Val   - Loss: 0.2858, Dice: 0.8691, Acc: 0.9862
+Epoch 7/50 (21.0s)
+  Train - Loss: 0.1748, Dice: 0.8705, Acc: 0.9848
+  Val   - Loss: 0.2988, Dice: 0.8778, Acc: 0.9880
+  ✓ Best model saved (Val Dice: 0.8778)
+Epoch 8/50 (20.8s)
+  Train - Loss: 0.1686, Dice: 0.8737, Acc: 0.9852
+  Val   - Loss: 0.2603, Dice: 0.8816, Acc: 0.9873
+  ✓ Best model saved (Val Dice: 0.8816)
+Epoch 9/50 (20.8s)
+  Train - Loss: 0.1640, Dice: 0.8768, Acc: 0.9856
+  Val   - Loss: 0.2789, Dice: 0.8857, Acc: 0.9886
+  ✓ Best model saved (Val Dice: 0.8857)
+Epoch 10/50 (21.1s)
+  Train - Loss: 0.1598, Dice: 0.8792, Acc: 0.9859
+  Val   - Loss: 0.2739, Dice: 0.8819, Acc: 0.9880
+Epoch 11/50 (20.6s)
+  Train - Loss: 0.1555, Dice: 0.8816, Acc: 0.9861
+  Val   - Loss: 0.2977, Dice: 0.8067, Acc: 0.9766
+Epoch 12/50 (21.0s)
+  Train - Loss: 0.1514, Dice: 0.8840, Acc: 0.9864
+  Val   - Loss: 0.2793, Dice: 0.8875, Acc: 0.9886
+  ✓ Best model saved (Val Dice: 0.8875)
+Epoch 13/50 (20.9s)
+  Train - Loss: 0.1480, Dice: 0.8867, Acc: 0.9868
+  Val   - Loss: 0.3079, Dice: 0.8759, Acc: 0.9875
+Epoch 14/50 (20.5s)
+  Train - Loss: 0.1451, Dice: 0.8874, Acc: 0.9868
+  Val   - Loss: 0.2543, Dice: 0.8939, Acc: 0.9889
+  ✓ Best model saved (Val Dice: 0.8939)
+Epoch 15/50 (21.5s)
+  Train - Loss: 0.1427, Dice: 0.8890, Acc: 0.9870
+  Val   - Loss: 0.2545, Dice: 0.8763, Acc: 0.9866
+Epoch 16/50 (21.5s)
+  Train - Loss: 0.1396, Dice: 0.8908, Acc: 0.9872
+  Val   - Loss: 0.2586, Dice: 0.8899, Acc: 0.9885
+Epoch 17/50 (21.5s)
+  Train - Loss: 0.1372, Dice: 0.8921, Acc: 0.9874
+  Val   - Loss: 0.2902, Dice: 0.8458, Acc: 0.9827
+Epoch 18/50 (20.7s)
+  Train - Loss: 0.1339, Dice: 0.8951, Acc: 0.9878
+  Val   - Loss: 0.2563, Dice: 0.8936, Acc: 0.9891
+Epoch 19/50 (21.0s)
+  Train - Loss: 0.1320, Dice: 0.8947, Acc: 0.9877
+  Val   - Loss: 0.2517, Dice: 0.8927, Acc: 0.9889
+Epoch 20/50 (21.3s)
+  Train - Loss: 0.1287, Dice: 0.8968, Acc: 0.9879
+  Val   - Loss: 0.2545, Dice: 0.8914, Acc: 0.9889
+Epoch 21/50 (20.8s)
+  Train - Loss: 0.1262, Dice: 0.8986, Acc: 0.9882
+  Val   - Loss: 0.2655, Dice: 0.8876, Acc: 0.9882
+Epoch 22/50 (20.8s)
+  Train - Loss: 0.1225, Dice: 0.9015, Acc: 0.9885
+  Val   - Loss: 0.2479, Dice: 0.8746, Acc: 0.9863
+Epoch 23/50 (21.0s)
+  Train - Loss: 0.1217, Dice: 0.9004, Acc: 0.9884
+  Val   - Loss: 0.2553, Dice: 0.8912, Acc: 0.9887
+Epoch 24/50 (20.7s)
+  Train - Loss: 0.1179, Dice: 0.9037, Acc: 0.9888
+  Val   - Loss: 0.2528, Dice: 0.8863, Acc: 0.9880
+Epoch 25/50 (20.6s)
+  Train - Loss: 0.1158, Dice: 0.9046, Acc: 0.9889
+  Val   - Loss: 0.2509, Dice: 0.8951, Acc: 0.9891
+  ✓ Best model saved (Val Dice: 0.8951)
+Epoch 26/50 (20.4s)
+  Train - Loss: 0.1129, Dice: 0.9063, Acc: 0.9891
+  Val   - Loss: 0.2599, Dice: 0.8745, Acc: 0.9863
+Epoch 27/50 (21.0s)
+  Train - Loss: 0.1109, Dice: 0.9071, Acc: 0.9891
+  Val   - Loss: 0.2461, Dice: 0.8944, Acc: 0.9889
+Epoch 28/50 (21.0s)
+  Train - Loss: 0.1077, Dice: 0.9090, Acc: 0.9894
+  Val   - Loss: 0.2603, Dice: 0.8942, Acc: 0.9889
+Epoch 29/50 (22.6s)
+  Train - Loss: 0.1044, Dice: 0.9115, Acc: 0.9897
+  Val   - Loss: 0.2521, Dice: 0.8869, Acc: 0.9880
+Epoch 30/50 (20.9s)
+  Train - Loss: 0.1013, Dice: 0.9133, Acc: 0.9899
+  Val   - Loss: 0.2512, Dice: 0.8882, Acc: 0.9881
+Epoch 31/50 (21.1s)
+  Train - Loss: 0.0990, Dice: 0.9151, Acc: 0.9901
+  Val   - Loss: 0.2607, Dice: 0.8940, Acc: 0.9889
+Epoch 32/50 (20.7s)
+  Train - Loss: 0.0965, Dice: 0.9162, Acc: 0.9902
+  Val   - Loss: 0.2485, Dice: 0.8869, Acc: 0.9879
+Epoch 33/50 (20.9s)
+  Train - Loss: 0.0939, Dice: 0.9181, Acc: 0.9905
+  Val   - Loss: 0.2675, Dice: 0.8932, Acc: 0.9889
+Epoch 34/50 (21.2s)
+  Train - Loss: 0.0912, Dice: 0.9197, Acc: 0.9906
+  Val   - Loss: 0.2527, Dice: 0.8886, Acc: 0.9881
+Epoch 35/50 (21.2s)
+  Train - Loss: 0.0888, Dice: 0.9209, Acc: 0.9908
+  Val   - Loss: 0.2672, Dice: 0.8888, Acc: 0.9883
+Epoch 36/50 (21.2s)
+  Train - Loss: 0.0864, Dice: 0.9233, Acc: 0.9911
+  Val   - Loss: 0.2650, Dice: 0.8916, Acc: 0.9886
+Epoch 37/50 (20.7s)
+  Train - Loss: 0.0831, Dice: 0.9254, Acc: 0.9913
+  Val   - Loss: 0.2758, Dice: 0.8923, Acc: 0.9888
+Epoch 38/50 (20.9s)
+  Train - Loss: 0.0820, Dice: 0.9262, Acc: 0.9914
+  Val   - Loss: 0.2885, Dice: 0.8924, Acc: 0.9890
+Epoch 39/50 (20.9s)
+  Train - Loss: 0.0800, Dice: 0.9276, Acc: 0.9916
+  Val   - Loss: 0.2750, Dice: 0.8931, Acc: 0.9888
+Epoch 40/50 (21.2s)
+  Train - Loss: 0.0779, Dice: 0.9286, Acc: 0.9917
+  Val   - Loss: 0.2773, Dice: 0.8927, Acc: 0.9888
+Epoch 41/50 (20.8s)
+  Train - Loss: 0.0759, Dice: 0.9301, Acc: 0.9919
+  Val   - Loss: 0.2828, Dice: 0.8949, Acc: 0.9891
+Epoch 42/50 (20.9s)
+  Train - Loss: 0.0742, Dice: 0.9315, Acc: 0.9920
+  Val   - Loss: 0.2776, Dice: 0.8929, Acc: 0.9888
+Epoch 43/50 (20.8s)
+  Train - Loss: 0.0739, Dice: 0.9323, Acc: 0.9921
+  Val   - Loss: 0.2779, Dice: 0.8920, Acc: 0.9886
+Epoch 44/50 (20.6s)
+  Train - Loss: 0.0731, Dice: 0.9328, Acc: 0.9922
+  Val   - Loss: 0.2924, Dice: 0.8919, Acc: 0.9888
+Epoch 45/50 (21.5s)
+  Train - Loss: 0.0710, Dice: 0.9336, Acc: 0.9923
+  Val   - Loss: 0.2900, Dice: 0.8935, Acc: 0.9890
+Epoch 46/50 (20.9s)
+  Train - Loss: 0.0707, Dice: 0.9344, Acc: 0.9924
+  Val   - Loss: 0.2906, Dice: 0.8923, Acc: 0.9888
+Epoch 47/50 (21.0s)
+  Train - Loss: 0.0701, Dice: 0.9345, Acc: 0.9924
+  Val   - Loss: 0.2904, Dice: 0.8928, Acc: 0.9888
+Epoch 48/50 (20.9s)
+  Train - Loss: 0.0696, Dice: 0.9346, Acc: 0.9924
+  Val   - Loss: 0.2918, Dice: 0.8931, Acc: 0.9889
+Epoch 49/50 (21.6s)
+  Train - Loss: 0.0700, Dice: 0.9350, Acc: 0.9924
+  Val   - Loss: 0.2910, Dice: 0.8924, Acc: 0.9888
+Epoch 50/50 (21.5s)
+  Train - Loss: 0.0691, Dice: 0.9352, Acc: 0.9925
+  Val   - Loss: 0.2881, Dice: 0.8930, Acc: 0.9888
+================================================================================
+Training complete! Total time: 17.5 minutes
+Best validation Dice: 0.8951
+
+Evaluating on test set...
+Test Results:
+  Dice:        0.8867
+  Accuracy:    0.9872
+  Sensitivity: 0.8836
+  Specificity: 0.9934
+  Precision:   0.8899
+
+✅ Results saved to checkpoints/pos_weight_search/pw_10/fold_0/results.json
+================================================================================
+
+✅ Fold training complete!

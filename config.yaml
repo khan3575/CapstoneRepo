@@ -36,7 +36,7 @@ paths:
   # Model Checkpoints (relative to project_root)
   checkpoints:
     root: "checkpoints"
-    binary_training: "checkpoints/binary_v2"  # Updated Phase 2: retrained on cv_pool only
+    binary_training: "checkpoints/binary_v3"  # PRODUCTION: BCE only, ensemble=91.41% on 251 held-out (best result)
     multiclass_training: "checkpoints/multiclass_training"
     baseline_models: "checkpoints/baseline_models"
 
@@ -45,15 +45,12 @@ paths:
     root: "research_results"
     ensemble: "research_results/ensemble_v2"  # Updated Phase 4: clean held-out evaluation
     ablation: "research_results/ablation_study_accuracy"
-    baseline_comparison: "research_results/baseline_comparison"
-    speed_benchmark: "research_results/speed_benchmark"
-    qualitative_examples: "research_results/qualitative_examples"
+    timing_benchmark: "research_results/timing_benchmark"  # CURRENT: two_scenario_results.json
+    failure_cases: "research_results/failure_cases"  # CURRENT: worst-case qualitative
 
-  # Visualizations (relative to project_root)
-  visualizations:
-    root: "visualizations"
-    qualitative: "visualizations/qualitative"
-    training_curves: "visualizations/training_curves"
+  # Figures (relative to project_root)
+  figures:
+    root: "research_results/figures"  # CURRENT: fig_A through fig_G (paper figures)
 
   # Logs (relative to project_root)
   logs:
@@ -74,11 +71,13 @@ model:
     architecture: "graphsage"  # Options: graphsage, gat
 
   # Training Hyperparameters
+  # NOTE: binary_v3 (production) used batch_size=24, accumulation_steps=2 (from config), ~18min/fold
+  # weight_decay=0.01 was hardcoded in train_cv_fold.py (now fixed to read from config — FIX-2)
   training:
-    batch_size: 64           # up from 32 — RTX 2060 6GB handles 439K-param model fine
-    accumulation_steps: 2    # down from 4 — effective batch = 128 (same as before)
+    batch_size: 24           # PRODUCTION VALUE used in binary_v3
+    accumulation_steps: 2    # effective batch = batch_size * accum = 48
     learning_rate: 0.001
-    weight_decay: 0.00001
+    weight_decay: 0.01       # FIX-1 (2026-03-14): corrected from 0.00001 — actual value used in all binary_v3 training
     max_epochs: 50
     early_stopping_patience: 10
     num_workers: 4           # parallel DataLoader workers (was 0)
