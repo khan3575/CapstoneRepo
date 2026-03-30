@@ -241,4 +241,28 @@ Invoke any skill with `/skill-name` in Claude Code.
 
 ---
 
+## 13. `/perfect-segment`
+**Purpose**: Engineer a specific thesis section with high-rigor CSE logic, zero-hallucination grounding, and human-like academic flow through a brutal self-correction loop.
+
+**Prompt used**:
+> Write or rewrite a thesis segment using a 4-phase pipeline: (1) Component Mapping — identify what the segment MUST contain, scan ref.bib and research_results/ for grounding data; (2) High-Rigor Drafting — bottom-up logic, CSE vocabulary, anti-AI voice control; (3) Brutal Self-Assessment — fluff check, grounding check, citation check, flow check, scored 0-100; (4) Iterative Refinement — rewrite weak parts until score >= 90%.
+
+**How to use**:
+```
+/perfect-segment Problem Statement
+
+/perfect-segment Section 3.6 Graph Construction
+
+/perfect-segment Research Gap
+[paste existing draft or notes]
+```
+
+**What makes it different from `/polish-writing`**:
+- `/polish-writing` edits existing text for clarity and tone
+- `/perfect-segment` engineers a section from scratch (or rewrites from a draft), grounds every number against project JSON files, and runs a scored self-assessment loop
+
+> Use `/polish-writing` to sharpen a good paragraph. Use `/perfect-segment` to build a section that does not exist yet or to rebuild one that failed review.
+
+---
+
 *Skills live in `.claude/skills/` — project-scoped, only active in this repo.*

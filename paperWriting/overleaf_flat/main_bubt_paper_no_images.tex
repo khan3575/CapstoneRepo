@@ -154,9 +154,9 @@ Dhaka, Bangladesh
 \nopagebreak
 \textbf{Chairman} \null\hfill \\
 \nopagebreak
-Md.\ Saifur Rahman \\
+Prof.\ Dr.\ Md.\ Ahsan Habib \\
 \nopagebreak
-Assistant Professor \& Chairman \\
+Chairman \\
 \nopagebreak
 Department of Computer Science \& Engineering \\
 \nopagebreak
@@ -190,7 +190,7 @@ We would like to express our sincere gratitude to Mr.\ Shamim Ahmed, Assistant
 Professor, Department of Computer Science and Engineering, BUBT. His guidance on
 the research area, problem selection, and academic resources was invaluable. He was
 patient and responsible; whenever we had questions he always found time to discuss
-them with us. We also thank Md.\ Saifur Rahman, Assistant Professor \& Chairman,
+them with us. We also thank Prof.\ Dr.\ Md.\ Ahsan Habib, Chairman,
 Department of Computer Science and Engineering, and all our teachers for providing
 the solid academic foundation that made this work possible.
 
@@ -327,6 +327,141 @@ voxels produced by SLIC \cite{achanta2012slic}. This collapses the spatial
 representation by orders of magnitude while preserving the multi-modal intensity
 patterns that discriminate tumour from healthy tissue.
 
+\subsection{Problem Statement}
+\label{sec:problem}
+
+Accurate brain tumour segmentation from MRI is required before any treatment
+decision can proceed --- surgical planning, radiation targeting, and response
+monitoring all depend on knowing where the tumour boundary lies. A trained
+radiologist needs 90 to 120 minutes to trace this boundary manually across
+multiple MRI sequences \cite{menze2015multimodal}. At a centre handling 40 cases
+per week, that is 60 to 80 hours of radiologist time spent on contouring alone.
+Automating this task frees that time for diagnosis and patient care.
+
+The best automated methods --- nnU-Net \cite{isensee2021nnunet}, Swin-UNETR
+\cite{hatamizadeh2022swin} --- use 3D convolutions that process the entire MRI
+volume as a dense grid. Every voxel in a $240 \times 240 \times 155$ volume
+receives the same computation, whether it belongs to the tumour or to healthy
+tissue. Gliomas, however, typically make up only 5--10\% of the brain volume.
+The remaining 90\% or more is healthy tissue that the model must process anyway,
+because convolution treats every voxel the same. The computational cost therefore
+scales with the full volume, not with the tumour. In practice, this means models with 31--62 million parameters
+\cite{isensee2021nnunet, hatamizadeh2022swin} that require multiple gigabytes
+of GPU memory and per-patient processing times measured in seconds to minutes
+on high-end hardware. Most hospitals do not have that hardware.
+
+Graph neural networks offer a way around this. Instead of processing every voxel,
+a GNN operates on superpixels --- groups of similar neighbouring pixels produced
+by algorithms like SLIC \cite{achanta2012slic}. A typical BraTS slice reduces
+from $240 \times 240 = 57{,}600$ voxels to roughly 46 superpixel nodes. The graph
+captures which regions are next to each other, and each node carries a feature
+vector summarising the intensity and spatial properties of its region. This
+representation is far smaller than the original volume, but it keeps the
+information the model needs to tell tumour from non-tumour tissue apart. Yet
+existing GNN work in brain tumour segmentation has not been tested at scale:
+studies use small patient sets, operate on individual 2D slices without
+cross-slice connectivity, and do not report controlled efficiency comparisons
+against CNN baselines on the same hardware \cite{kipf2017gcn, hamilton2017graphsage}.
+No published work evaluates a GNN ensemble on the full BraTS 2021 dataset under a
+sealed held-out protocol with end-to-end timing benchmarks.
+
+This work asks a direct question: can a superpixel-based graph neural network
+segment brain tumours from multi-modal 3D MRI with accuracy competitive to
+volumetric CNNs, while using a fraction of the parameters, memory, and inference
+time? Answering this requires training a competitive model, then validating it
+through patient-level cross-validation, sealed held-out evaluation, and controlled
+benchmarking --- none of which has been done for graph-based brain tumour
+segmentation before.
+
+\subsection{Objectives}
+\label{sec:objectives}
+
+This research targets four measurable objectives, each verifiable against
+the experimental results in Chapter~\ref{sec:results}:
+
+\begin{enumerate}
+    \item \textbf{Graph construction pipeline.} Build a preprocessing
+    pipeline that converts each 4-modality BraTS 2021 MRI volume into a
+    set of superpixel graphs using SLIC \cite{achanta2012slic}, with
+    15-dimensional node features encoding intensity statistics, spatial
+    position, and region shape. The pipeline must produce zero
+    ground-truth label leakage, confirmed by 15 automated integrity
+    checks.
+
+    \item \textbf{Competitive GNN segmentation.} Train a GraphSAGE-based
+    \cite{hamilton2017graphsage} binary node classifier with fewer than
+    500\,K trainable parameters to achieve mean Dice $\geq 90\%$ on a
+    sealed 251-patient held-out test set under 5-fold patient-level
+    cross-validation across 1,000 training patients. A soft-voting
+    ensemble of the five fold-best models should target Dice above 91\%,
+    within reach of leading volumetric CNNs on the same benchmark.
+
+    \item \textbf{Efficiency benchmarking.} Measure end-to-end
+    per-patient inference time, peak GPU memory, parameter count, and
+    model size on disk for both the proposed GNN and a 3D U-Net baseline
+    \cite{cicek20163d} trained on the same data, using identical
+    hardware. The GNN must demonstrate at least a $5\times$ speedup over
+    the baseline in end-to-end inference.
+
+    \item \textbf{Cross-edition generalisation.} Evaluate the trained
+    ensemble on all 1,245 BraTS 2023 patients without any retraining or
+    threshold adjustment, and measure the Dice gap relative to BraTS 2021
+    held-out performance. A gap under 5 percentage points confirms that
+    the model generalises across dataset editions.
+\end{enumerate}
+
+\subsection{Research Gap}
+\label{sec:gap}
+
+GNN-based brain tumour segmentation has not been evaluated at the scale
+or rigour that the BraTS benchmark demands. Three specific gaps separate
+existing GNN work from a credible comparison with volumetric CNNs.
+
+\textbf{No ensemble evaluation.} Soft-voting ensembles are standard
+practice in volumetric CNN pipelines. nnU-Net \cite{isensee2021nnunet}
+trains five folds and averages their predictions; the resulting ensemble
+typically improves Dice by 1--3 percentage points over any single fold.
+BraTS leaderboard rankings reflect ensemble results, not single-model
+results, so any method claiming competitive accuracy must be evaluated
+the same way. No published work trains a multi-fold GNN on BraTS and
+reports ensemble Dice on a sealed held-out set. Without this, comparing
+a single-fold GNN to an ensemble CNN is not a fair comparison.
+
+\textbf{No controlled efficiency measurement.} The practical argument
+for graph-based segmentation is efficiency: fewer parameters, less
+memory, faster inference. But this argument requires measurement, not
+assumption. Saueressig et al.\ \cite{saueressig2021exploring} apply
+GCN, GraphSAGE, and GAT to BraTS~2019 supervoxel graphs and claim
+``5 to 15 times faster'' training than CNNs, yet report no inference
+time, no GPU memory usage, and no parameter count. Patel et
+al.\ \cite{patel2023multiclass} train a GAT on BraTS~2021 with 10.2M
+parameters and measure 1.7\,s average inference --- but on a Tesla K80,
+with no CNN baseline tested on the same device. Neither study runs a
+controlled comparison where both a GNN and a CNN are benchmarked on
+identical hardware under identical conditions. Without such a
+comparison, the efficiency advantage of GNNs over CNNs for brain tumour
+segmentation remains a hypothesis, not a result.
+
+\textbf{No cross-edition generalisation test.} BraTS releases a new
+dataset edition each year with different patients, institutions, and
+sometimes different annotation protocols \cite{menze2015multimodal,
+bakas2021brats}. Standard CNN pipelines retrain per edition
+\cite{isensee2021nnunet}. Whether a superpixel-based GNN trained on one
+edition can segment patients from a different edition --- without
+retraining or threshold adjustment --- has not been tested. This is a
+direct test of whether the graph representation captures features that
+transfer across acquisition differences, or whether it overfits to the
+training data.
+
+This work addresses all three gaps: a 5-fold soft-voting ensemble
+evaluated on a sealed 251-patient held-out set; controlled benchmarking
+of inference time, memory, parameters, and model size against a 3D U-Net
+\cite{cicek20163d} baseline on identical hardware; and zero-shot
+evaluation on 1,245 BraTS 2023 patients with no retraining.
+
+\subsection{Contributions}
+\label{sec:contributions}
+
 This paper presents a complete system built on this principle. We make five
 contributions:
 
@@ -445,28 +580,337 @@ data-integrity protocol run prior to each training fold.
 \label{sec:method}
 % ============================================================
 
+\subsection{Proposed Model and Framework}
+\label{sec:framework}
+
+The proposed system is a four-stage pipeline that maps a 3D multi-modal MRI volume
+to a binary whole-tumour mask via an intermediate graph representation. Formally,
+the pipeline implements the transformation:
+\[
+    \hat{M} = \Phi\!\left(\mathcal{G}(V)\right),
+    \quad V \in \mathbb{R}^{4 \times 240 \times 240 \times 155},
+    \quad \hat{M} \in \{0,1\}^{240 \times 240 \times 155}
+\]
+where $V$ is the four-modality (T1, T1CE, T2, FLAIR) MRI volume, $\mathcal{G}(\cdot)$
+is the graph construction operator, and $\Phi(\cdot)$ is the trained GraphSAGE
+classifier. The four stages are:
+
+\begin{enumerate}
+    \item \textbf{Volumetric preprocessing.} Per-modality Z-score normalisation
+    within the skull-stripped brain mask; active axial slice selection by brain-fraction
+    threshold; grouping into 2-slice graph units.
+
+    \item \textbf{Superpixel graph construction.} SLIC superpixel segmentation on
+    each 2-slice unit; 15-dimensional node feature extraction from all four MRI
+    modalities; intra-slice and inter-slice edge construction via Region Adjacency
+    Graph (RAG) and $k$-nearest-neighbour matching.
+
+    \item \textbf{GraphSAGE node classification.} A 5-layer GraphSAGE network with
+    256-dimensional hidden representations performs binary node classification
+    (tumour / non-tumour) on each graph independently.
+
+    \item \textbf{Ensemble inference.} Five fold-best checkpoints are aggregated by
+    soft-voting to produce the final per-node prediction; predicted tumour nodes are
+    back-projected to voxel space to reconstruct the binary mask $\hat{M}$.
+\end{enumerate}
+
+The complete pipeline achieves a spatial compression ratio of ${\approx}2{,}284\times$
+relative to full voxel resolution (Section~\ref{sec:graphconst}), enabling
+end-to-end inference in 1,732\,ms and GNN-only inference in 75.4\,ms on an
+NVIDIA RTX 2060 with 11\,MB peak GPU memory.
+
+\subsection{Mathematical Description of the Pipeline}
+\label{sec:mathpipeline}
+
+\textbf{Step 1 --- Per-modality Z-score normalisation.}
+Let $V_m \in \mathbb{R}^{240 \times 240 \times 155}$ denote the volume for modality
+$m \in \{\text{T1}, \text{T1CE}, \text{T2}, \text{FLAIR}\}$ and let
+$\mathcal{B} \subset \{1,\dots,240\}^2 \times \{1,\dots,155\}$ be the set of voxel
+indices within the skull-stripped brain mask. The normalised volume is:
+\[
+    \tilde{V}_m(i) = \frac{V_m(i) - \mu_m}{\sigma_m},
+    \quad i \in \mathcal{B}
+\]
+where $\mu_m = \frac{1}{|\mathcal{B}|}\sum_{i \in \mathcal{B}} V_m(i)$ and
+$\sigma_m = \sqrt{\frac{1}{|\mathcal{B}|}\sum_{i \in \mathcal{B}}(V_m(i)-\mu_m)^2}$
+are the intra-patient, within-mask mean and standard deviation for modality $m$.
+No inter-patient normalisation is applied.
+
+\textbf{Step 2 --- Active slice selection.}
+A slice $z \in \{1,\dots,155\}$ is classified as active if the fraction of
+non-zero brain-mask voxels in that slice exceeds a threshold $\tau = 0.05$:
+\[
+    z \text{ is active} \iff
+    \frac{|\{(x,y) : (x,y,z) \in \mathcal{B}\}|}{240 \times 240} \geq \tau
+\]
+Consecutive active slices are grouped into non-overlapping 2-slice units
+$\mathcal{S}_j = \{z_{2j-1},\, z_{2j}\}$. The empirically measured mean is
+$137.5 \pm 6.9$ active slices per patient, yielding $\approx$68--69 graph
+units per patient.
+
+\textbf{Step 3 --- SLIC superpixel segmentation.}
+For each 2-slice unit $\mathcal{S}_j$, SLIC \cite{achanta2012slic} is applied to the
+T1CE channel. SLIC minimises a weighted distance in the 3-dimensional feature space
+$(I, x, y)$, where $I$ is normalised intensity and $(x,y)$ are spatial coordinates.
+The per-cluster assignment minimises:
+\[
+    D_s(p,\,c_k) = \sqrt{d_I^2 + \left(\frac{d_{xy}}{S}\right)^2 m^2}
+\]
+where $d_I = |I_p - I_{c_k}|$ is the intensity distance, $d_{xy}$ is the
+Euclidean spatial distance, $S = \sqrt{N / K}$ is the grid interval for $K$
+target segments in an $N$-pixel image, and $m = 0.1$ is the compactness parameter
+controlling the regularity--boundary adherence trade-off. The algorithm
+runs until cluster assignments converge or a maximum iteration count is reached.
+Parameters used: \texttt{n\_segments}=200, \texttt{compactness}=0.1,
+\texttt{sigma}=0.3. The mean realised segment count is $\approx$46 per slice.
+
+\textbf{Step 4 --- Node feature extraction.}
+Each superpixel $s_i$ is represented by a 15-dimensional feature vector
+$\mathbf{x}_i \in \mathbb{R}^{15}$:
+\[
+    \mathbf{x}_i =
+    \bigl[\,
+        \underbrace{\mu_{i,m},\; \sigma_{i,m}}_{\text{intensity stats},\; m \in \{
+        \text{T1},\text{T1CE},\text{T2},\text{FLAIR}\}},\;
+        \underbrace{|s_i|,\; \tilde{a}_i,\; \tilde{y}_i,\; \tilde{x}_i}_{\text{spatial}},\;
+        \underbrace{P_i,\; C_i,\; R_i}_{\text{morphological}}
+    \,\bigr]^\top
+\]
+where $\mu_{i,m}$ and $\sigma_{i,m}$ are the per-modality within-superpixel mean
+and standard deviation (8 features); $|s_i|$ is superpixel area, $\tilde{a}_i$
+is area normalised by slice area, $\tilde{y}_i$ and $\tilde{x}_i$ are centroid
+coordinates normalised to $[0,1]$ (4 features); and $P_i$, $C_i = 4\pi|s_i|/P_i^2$,
+$R_i = \max_{m}(\mu_{i,m}) - \min_m(\mu_{i,m})$ are perimeter, compactness, and
+intensity range respectively (3 features). No ground-truth label is included in
+$\mathbf{x}_i$.
+
+\subsection{Mathematical Description of Segmentation}
+\label{sec:mathseg}
+
+\textbf{Node label assignment.}
+The binary node label $y_i \in \{0,1\}$ is assigned based on voxel-level overlap
+between superpixel $s_i$ and the Whole Tumour ground-truth mask $M_{\text{GT}}$:
+\[
+    y_i = \mathbf{1}\!\left[
+        \frac{|s_i \cap M_{\text{GT}}|}{|s_i|} > 0.5
+    \right]
+\]
+A majority-vote threshold of 50\% is applied: a node is positive if more than half
+of its constituent voxels lie within the Whole Tumour annotation.
+
+\textbf{GraphSAGE message passing.}
+The GraphSAGE operator \cite{hamilton2017graphsage} at layer $l$ computes node
+embedding $\mathbf{h}_v^{(l)}$ by aggregating mean-pooled neighbourhood representations
+concatenated with the node's own embedding:
+\[
+    \mathbf{h}_v^{(l)} = \sigma\!\left(
+        \mathbf{W}^{(l)} \cdot \mathrm{CONCAT}\!\left(
+            \mathbf{h}_v^{(l-1)},\;
+            \frac{1}{|\mathcal{N}(v)|}
+            \sum_{u \in \mathcal{N}(v)} \mathbf{h}_u^{(l-1)}
+        \right)
+    \right)
+\]
+where $\mathbf{W}^{(l)} \in \mathbb{R}^{d_l \times 2d_{l-1}}$ is the learnable
+weight matrix at layer $l$, $\mathcal{N}(v)$ is the one-hop neighbour set of node
+$v$, and $\sigma$ is the ReLU non-linearity. Each layer applies BatchNorm before
+ReLU and Dropout (rate 0.1) after. The input dimension is $d_0 = 15$; all
+five hidden layers use $d_l = 256$.
+
+\textbf{Binary classification and loss.}
+The final layer maps the node embedding to a scalar logit
+$z_v = \mathbf{w}^\top \mathbf{h}_v^{(5)} + b$, $\mathbf{w} \in \mathbb{R}^{256}$.
+Training minimises BCEWithLogitsLoss with positive class weight $w^+ = 9.0$:
+\[
+    \mathcal{L} = -\frac{1}{|\mathcal{V}|} \sum_{v \in \mathcal{V}} \left[
+        w^+ \cdot y_v \log \sigma(z_v) + (1 - y_v) \log(1 - \sigma(z_v))
+    \right]
+\]
+where $\sigma(z) = (1 + e^{-z})^{-1}$ is the sigmoid function. The weight $w^+ = 9.0$
+compensates for a $\approx$19:1 background-to-tumour class imbalance at the
+superpixel level. At inference, the decision threshold is $\tau_d = 0.5$:
+$\hat{y}_v = \mathbf{1}[\sigma(z_v) \geq 0.5]$.
+
+\textbf{Dice coefficient.}
+The evaluation metric is the Sørensen-Dice coefficient computed at patient level
+by aggregating node predictions to voxel masks:
+\[
+    \mathrm{Dice}(M_{\text{pred}},\, M_{\text{GT}}) =
+    \frac{2\,|M_{\text{pred}} \cap M_{\text{GT}}|}
+         {|M_{\text{pred}}| + |M_{\text{GT}}|}
+\]
+
+\subsection{Proposed Algorithm}
+\label{sec:algorithm}
+
+Algorithm~\ref{alg:pipeline} summarises the complete inference procedure for a
+single patient volume.
+
+\begin{algorithm}[H]
+\caption{Superpixel-GNN Inference Pipeline}
+\label{alg:pipeline}
+\KwIn{MRI volume $V \in \mathbb{R}^{4 \times 240 \times 240 \times 155}$,
+      brain mask $\mathcal{B}$,
+      trained ensemble $\{\Phi_k\}_{k=1}^{5}$}
+\KwOut{Binary whole-tumour mask $\hat{M} \in \{0,1\}^{240 \times 240 \times 155}$}
+\BlankLine
+\tcp{Stage 1: Preprocessing}
+\For{each modality $m \in \{\mathrm{T1}, \mathrm{T1CE}, \mathrm{T2}, \mathrm{FLAIR}\}$}{
+    Compute $\mu_m$, $\sigma_m$ over $\mathcal{B}$\;
+    $\tilde{V}_m \leftarrow (V_m - \mu_m) / \sigma_m$ on $\mathcal{B}$\;
+}
+$\mathcal{A} \leftarrow$ active slices with brain-fraction $\geq 0.05$\;
+$\{\mathcal{S}_j\} \leftarrow$ partition $\mathcal{A}$ into consecutive 2-slice units\;
+\BlankLine
+\tcp{Stage 2: Graph construction}
+\ForEach{2-slice unit $\mathcal{S}_j$}{
+    $\{s_i\} \leftarrow \mathrm{SLIC}(\tilde{V}_{\mathrm{T1CE}}[\mathcal{S}_j],\;
+    K{=}200,\; m{=}0.1)$\;
+    \ForEach{superpixel $s_i$}{
+        $\mathbf{x}_i \leftarrow$ extract 15-dimensional feature vector\;
+    }
+    $\mathcal{E}_{\mathrm{intra}} \leftarrow$ RAG edges from SLIC adjacency\;
+    $\mathcal{E}_{\mathrm{inter}} \leftarrow$ $k$NN edges across slices ($k{=}3$,
+    IoU $> 0.1$, dist $< 10\,\mathrm{mm}$)\;
+    $\mathcal{G}_j \leftarrow (\{s_i\},\; \mathcal{E}_{\mathrm{intra}} \cup
+    \mathcal{E}_{\mathrm{inter}},\; \{\mathbf{x}_i\})$\;
+}
+\BlankLine
+\tcp{Stage 3: Ensemble node classification}
+\ForEach{graph $\mathcal{G}_j$}{
+    \For{$k = 1$ \KwTo $5$}{
+        $\mathbf{z}^{(k)} \leftarrow \Phi_k(\mathcal{G}_j)$ \tcp*{scalar logits per node}
+    }
+    $P_{\mathrm{ens}}(v) \leftarrow \frac{1}{5}\sum_{k=1}^{5} \sigma(z_v^{(k)})$
+    \ForEach{node $v$}{
+        $\hat{y}_v \leftarrow \mathbf{1}[P_{\mathrm{ens}}(v) \geq 0.5]$\;
+    }
+}
+\BlankLine
+\tcp{Stage 4: Voxel mask reconstruction}
+$\hat{M} \leftarrow \mathbf{0}$\;
+\ForEach{superpixel $s_i$ with $\hat{y}_{s_i} = 1$}{
+    $\hat{M}[\text{voxels}(s_i)] \leftarrow 1$\;
+}
+\Return{$\hat{M}$}
+\end{algorithm}
+
 \subsection{Dataset and Splits}
+\label{sec:dataset}
+
+Table~\ref{tab:dataset} provides a complete description of both datasets used in
+this work.
+
+\begin{table}[htbp]
+\caption{Dataset Characteristics}
+\label{tab:dataset}
+\begin{center}
+\begin{tabularx}{\textwidth}{|l|X|X|}
+\hline
+\textbf{Property} & \textbf{BraTS 2021} \cite{menze2015multimodal, bakas2021brats, bakas2017advancing} & \textbf{BraTS 2023} \cite{bakas2021brats} \\
+\hline
+Total patients & 1,251 & 1,251 (1,245 usable; 6 excluded) \\
+\hline
+Tumour type & Adult glioma & Adult glioma \\
+\hline
+MRI modalities & T1, T1CE, T2, FLAIR & T1, T1CE, T2, FLAIR \\
+\hline
+Skull stripping & Yes (pre-applied) & Yes (pre-applied) \\
+\hline
+Co-registration & Yes (to SRI24 atlas) & Yes \\
+\hline
+Resolution & $1\times1\times1$\,mm$^3$ isotropic & $1\times1\times1$\,mm$^3$ isotropic \\
+\hline
+Volume dimensions & $240\times240\times155$ & $240\times240\times155$ \\
+\hline
+Total voxels/patient & $8{,}928{,}000$ & $8{,}928{,}000$ \\
+\hline
+Segmentation target & Whole Tumour (WT): all abnormal tissue vs.\ background & Whole Tumour (WT) \\
+\hline
+Annotation & Expert radiologist consensus & Expert radiologist consensus \\
+\hline
+Role in this work & Training, cross-validation, held-out evaluation & Zero-shot generalisation only \\
+\hline
+\end{tabularx}
+\end{center}
+\end{table}
 
 \textbf{BraTS 2021} \cite{menze2015multimodal, bakas2021brats, bakas2017advancing}:
 1,251 adult glioma patients with T1, T1CE, T2, and FLAIR MRI sequences
-(skull-stripped, co-registered; 1$\times$1$\times$1\,mm$^3$ isotropic; matrix
-240$\times$240$\times$155). Binary segmentation target: Whole Tumour (all abnormal
+(skull-stripped, co-registered; $1\times1\times1$\,mm$^3$ isotropic; matrix
+$240\times240\times155$). Binary segmentation target: Whole Tumour (all abnormal
 tissue voxels vs.\ background).
 
 \textbf{Patient splits:}
 \begin{itemize}
     \item Cross-validation pool: 1,000 patients $\rightarrow$ 5-fold patient-level
     stratified split: \textbf{720 train / 80 validation / 200 test} per fold
-    
+
     \item Sealed held-out set: 251 patients --- withheld from all training, fold
     selection, and hyperparameter decisions
-    \item BraTS 2023 generalisation set: 1,245 patients (6 excluded )
+
+    \item BraTS 2023 generalisation set: 1,245 patients (6 excluded due to
+    corrupted or missing modality files)
 \end{itemize}
 
 Zero patient overlap between all splits was verified by integrity checks 1, 7,
 and 15 (Section~\ref{sec:integrity}).
 
 \subsection{Graph Construction}
+\label{sec:graphconst}
+
+\textbf{Formal graph definition.}
+Each 2-slice MRI unit $\mathcal{S}_j$ is represented as an undirected attributed
+graph $\mathcal{G}_j = (\mathcal{V}_j,\, \mathcal{E}_j,\, \mathbf{X}_j)$, where:
+\begin{itemize}
+    \item $\mathcal{V}_j = \{v_1, \dots, v_{n_j}\}$ is the node set; each node
+    corresponds to one SLIC superpixel, $n_j \approx 92$ (2 slices
+    $\times$ $\approx$46 superpixels per slice on average);
+    \item $\mathcal{E}_j \subseteq \mathcal{V}_j \times \mathcal{V}_j$ is the
+    edge set, partitioned as
+    $\mathcal{E}_j = \mathcal{E}_j^{\text{intra}} \cup \mathcal{E}_j^{\text{inter}}$
+    (intra-slice adjacency and inter-slice proximity edges);
+    \item $\mathbf{X}_j \in \mathbb{R}^{n_j \times 15}$ is the node feature matrix,
+    with row $\mathbf{x}_i \in \mathbb{R}^{15}$ as defined in
+    Section~\ref{sec:mathpipeline}.
+\end{itemize}
+
+\textbf{Intra-slice edge set.}
+Two nodes $v_i$ and $v_j$ within the same slice $z$ are connected by an intra-slice
+edge if their corresponding superpixels are spatially adjacent in the SLIC
+segmentation map, i.e., they share at least one pixel boundary:
+\[
+    (v_i, v_j) \in \mathcal{E}^{\text{intra}} \iff
+    \exists\, p \in s_i,\, q \in s_j :
+    \|p - q\|_1 = 1, \quad z(p) = z(q)
+\]
+This is equivalent to extracting the Region Adjacency Graph (RAG) from the SLIC
+label map using 4-connectivity. For a slice with $K \approx 46$ superpixels,
+the resulting RAG has $O(K)$ edges.
+
+\textbf{Inter-slice edge set.}
+Two nodes $v_i$ (in slice $z$) and $v_j$ (in slice $z+1$) are connected by an
+inter-slice edge if their superpixels satisfy all three proximity criteria
+simultaneously:
+\[
+    (v_i, v_j) \in \mathcal{E}^{\text{inter}} \iff
+    \mathrm{IoU}(s_i, s_j) > 0.1 \;\wedge\;
+    \|\mathbf{c}_i - \mathbf{c}_j\|_2 < 10\,\text{mm} \;\wedge\;
+    j \in \mathrm{kNN}_k(i),\; k = 3
+\]
+where $\mathrm{IoU}(s_i, s_j) = |s_i \cap s_j| / |s_i \cup s_j|$ is the
+Intersection-over-Union of the projected pixel sets, $\mathbf{c}_i$ and
+$\mathbf{c}_j$ are the centroid coordinates in mm, and $\mathrm{kNN}_k(i)$
+denotes the $k$-nearest neighbours of $v_i$ by centroid Euclidean distance.
+These three conditions jointly ensure inter-slice connections are spatially
+coherent and topologically meaningful.
+
+\textbf{Example.} For a representative patient with 137 active slices, the graph
+construction produces $\approx$68 graph units. Each unit contains on average
+$n_j \approx 92$ nodes and $|\mathcal{E}_j| \approx 180$ edges (130 intra-slice
++ 50 inter-slice), yielding a mean node degree of $\approx$3.9. The full patient
+graph representation contains $\approx$3,909 nodes compared to 8,928,000 raw
+voxels --- a compression ratio of $\approx$2,284$\times$.
 
 \textbf{Preprocessing.} Each MRI volume undergoes Z-score normalisation per
 modality within the skull-stripped brain mask (zero-mean, unit-variance). No
@@ -562,18 +1006,58 @@ defined in the codebase but was \textbf{never activated} in production training.
 All five fold models use BCEWithLogitsLoss exclusively.
 
 \subsection{Ensemble Inference}
+\label{sec:ensemble}
 
-Five fold-best-checkpoint models are combined by soft-voting on the sealed held-out
-set:
+Two complementary inference modes are defined for this system: \textbf{single-fold
+inference} and \textbf{5-fold soft-voting ensemble inference}. Both use identical
+model architecture and hyperparameters; they differ in the number of checkpoints
+combined and how probability estimates are aggregated.
+
+\subsubsection{Model 1: Single-Fold Inference}
+
+In single-fold inference, a single fold-best-checkpoint model $\Phi_k$ is applied
+independently to each graph $\mathcal{G}_j$. The per-node prediction is:
+\[
+    z_v^{(k)} = \mathbf{w}_k^\top \mathbf{h}_v^{(5)} + b_k,
+    \quad
+    P_k(v) = \sigma(z_v^{(k)}),
+    \quad
+    \hat{y}_k(v) = \mathbf{1}\!\left[P_k(v) \geq 0.5\right]
+\]
+where $\mathbf{h}_v^{(5)} \in \mathbb{R}^{256}$ is the node embedding at the fifth
+GraphSAGE layer, $\mathbf{w}_k \in \mathbb{R}^{256}$ and $b_k \in \mathbb{R}$ are
+the classification head parameters of fold $k$, and $\sigma$ is the sigmoid
+function. Each of the five fold models $\Phi_1, \dots, \Phi_5$ is independently
+trained on its respective 720-patient training partition; the fold-best checkpoint
+is selected by maximum validation Dice. Single-fold mean cross-validation Dice:
+\textbf{90.02\%\,$\pm$\,0.66\%}.
+
+\subsubsection{Model 2: 5-Fold Soft-Voting Ensemble Inference}
+
+In ensemble inference, all five fold-best checkpoints $\{\Phi_k\}_{k=1}^{5}$ are
+applied to every graph $\mathcal{G}_j$. Each model produces an independent set of
+per-node logits. The ensemble probability is the arithmetic mean of the five
+sigmoid-transformed logits (soft voting):
 \begin{equation}
     P_{\mathrm{ens}}(v) = \frac{1}{5}\sum_{k=1}^{5}
-    \sigma\!\left(\mathrm{logit}_k(v)\right),\quad
-    \hat{y}(v) = \mathbf{1}\!\left[P_{\mathrm{ens}}(v) \geq 0.5\right]
+    \sigma\!\left(z_v^{(k)}\right),
+    \quad
+    \hat{y}_{\mathrm{ens}}(v) = \mathbf{1}\!\left[P_{\mathrm{ens}}(v) \geq 0.5\right]
+    \label{eq:ensemble}
 \end{equation}
 
-All five models share the same architecture and hyperparameters; ensemble diversity
-arises from the different patient subsets in each training fold rather than from
-architectural differences.
+Soft voting operates on calibrated probability estimates rather than hard binary
+predictions, preserving uncertainty information from each fold. The averaging is
+equivalent to Bayesian model averaging under a uniform prior over the five models.
+Ensemble diversity arises from the different 720-patient training partitions in
+each fold rather than from architectural or hyperparameter differences.
+
+The patient-level Dice is computed by aggregating all per-graph node predictions
+across the patient's $\approx$68 graph units, projecting predicted tumour nodes
+to voxel space, and computing the Sørensen-Dice coefficient between the
+reconstructed binary mask and the ground-truth annotation. Ensemble held-out Dice:
+\textbf{91.41\%} --- a $+1.39$\,pp lift over single-fold inference
+($p = 0.014$, one-sample $t$-test against the fold mean of 90.02\%).
 
 \subsection{Data Integrity Validation}
 \label{sec:integrity}
@@ -596,6 +1080,107 @@ Fifteen automated checks are run before each training fold is initialised:
     \item Node feature leakage audit (no ground-truth-derived columns)
     \item Cross-fold patient disjointness verification
 \end{enumerate}
+
+% ============================================================
+\section{Experimental Setup and Hyperparameter Settings}
+\label{sec:expsetup}
+% ============================================================
+
+All experiments are conducted on a single NVIDIA RTX 2060 GPU (6\,GB VRAM) running
+PyTorch 2.x with PyTorch Geometric \cite{fey2019pyg} and CUDA 11.x. No distributed
+training is used. Tables~\ref{tab:hyperparams} and \ref{tab:training} summarise all
+fixed hyperparameters and training configuration values.
+
+\begin{table}[htbp]
+\caption{Model Architecture Hyperparameters}
+\label{tab:hyperparams}
+\begin{center}
+\begin{tabularx}{0.85\textwidth}{|l|X|l|}
+\hline
+\textbf{Hyperparameter} & \textbf{Description} & \textbf{Value} \\
+\hline
+GNN architecture & Graph convolution operator & GraphSAGE \cite{hamilton2017graphsage} \\
+\hline
+Number of layers & Depth of the message-passing stack & 5 \\
+\hline
+Hidden dimension & Channels per hidden layer & 256 \\
+\hline
+Aggregation & Neighbourhood aggregation function & Mean pooling \\
+\hline
+Input features & Node feature vector dimension & 15 \\
+\hline
+Output dimension & Binary logit (1 scalar per node) & 1 \\
+\hline
+Normalisation & Applied after each conv layer & BatchNorm \\
+\hline
+Activation & Non-linearity at each layer & ReLU \\
+\hline
+Dropout rate & Applied after each ReLU & 0.1 \\
+\hline
+Total parameters & Trainable weights and biases & 439,041 \\
+\hline
+Model file size & Compiled weights only & 1.7\,MB \\
+\hline
+\end{tabularx}
+\end{center}
+\end{table}
+
+\begin{table}[htbp]
+\caption{Training Configuration and Optimisation Hyperparameters}
+\label{tab:training}
+\begin{center}
+\begin{tabularx}{0.85\textwidth}{|l|X|l|}
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Value} \\
+\hline
+Loss function & Weighted binary cross-entropy & BCEWithLogitsLoss \\
+\hline
+Positive class weight & Compensates 19:1 class imbalance & 9.0 \\
+\hline
+Optimiser & Decoupled weight decay SGD variant & AdamW \cite{loshchilov2019adamw} \\
+\hline
+Learning rate & Initial and maximum LR & $1 \times 10^{-3}$ \\
+\hline
+Weight decay & L2 regularisation coefficient & 0.01 \\
+\hline
+LR scheduler & One-cycle cosine annealing & OneCycleLR \\
+\hline
+\texttt{pct\_start} & Warm-up fraction of total steps & 0.3 \\
+\hline
+Batch size & Graphs per gradient step & 24 \\
+\hline
+Gradient accumulation & Steps before optimiser update & 2 \\
+\hline
+Effective batch size & Graphs per parameter update & 48 \\
+\hline
+Mixed precision & Automatic mixed precision training & AMP (FP16) \\
+\hline
+Early stopping & Patience on validation Dice & 10 epochs \\
+\hline
+Max epochs & Upper limit per fold & 50 \\
+\hline
+Cross-validation & Patient-level stratified folds & 5-fold \\
+\hline
+Train/Val/Test split & Patients per fold partition & 720 / 80 / 200 \\
+\hline
+Random seed & Applied to data splits only & 42 \\
+\hline
+CUDA determinism & \texttt{cudnn.deterministic} & False \\
+\hline
+Hardware & GPU model and VRAM & RTX 2060, 6\,GB \\
+\hline
+\end{tabularx}
+\end{center}
+\end{table}
+
+The positive class weight of 9.0 is derived empirically from the
+$\approx$19:1 background-to-tumour superpixel ratio observed in the training data:
+setting $w^+ \approx \sqrt{19} \approx 4.4$ to $w^+ = 9.0$ provides stronger
+supervision signal for the minority tumour class without inducing false-positive
+flooding. The OneCycleLR scheduler linearly warms the learning rate from
+$\sim$$10^{-5}$ to $10^{-3}$ over the first 30\% of steps, then applies cosine
+annealing to near-zero, which empirically accelerates early convergence and
+reduces the need for extended training beyond 50 epochs.
 
 % ============================================================
 \section{Experimental Results}

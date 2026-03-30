@@ -332,6 +332,91 @@ Each graph node (superpixel) is represented by a 15-dimensional feature vector:
 
 ---
 
+## 📖 Published Model Specifications (Verified from Papers)
+
+> **Purpose**: Ground-truth parameter counts and FLOPs extracted directly from the original published papers. Use these when writing the thesis — no need to search the internet again.
+
+### Parameter Counts (from published papers)
+
+| Model | Parameters | FLOPs | Source Paper | Where in Paper |
+|-------|-----------|-------|-------------|----------------|
+| **Swin UNETR** | **61.98M** | 394.84G | Hatamizadeh et al. 2022 (BrainLes/MICCAI) | Table 1 |
+| **UNETR** | **92.58M** | 41.19G | Hatamizadeh et al. 2022 (WACV) | Table 5 |
+| **nnU-Net (BraTS config)** | **~31.2M** | 412.65G | Isensee et al. 2021 (Nature Methods) + GitHub confirmed 31,195,594 | GitHub Discussion #1002 |
+| **nnU-Net (BTCV config)** | **19.07M** | 412.65G | Hatamizadeh et al. 2022 (WACV) UNETR paper Table 5 | Note: nnU-Net auto-configures per dataset |
+| **TransBTS** | **~32M** | — | Wang et al. 2021 (MICCAI) | Estimated from architecture |
+| **3D U-Net (our impl.)** | **68.0M** | — | Our implementation | Measured directly |
+| **GNN (ours)** | **0.44M** (439,041) | — | Our implementation | Measured directly |
+
+### GPU Memory & Inference (what's published vs what's ours)
+
+| Model | GPU Memory (Inference) | Inference Time | Source | Verified? |
+|-------|----------------------|----------------|--------|-----------|
+| **3D U-Net (ours)** | ~2.5 GB | 10.16 s | Our benchmark on RTX 2060 | ✅ Measured |
+| **GNN Single (ours)** | 11 MB | 74 ms (pre-built) / 1.47 s (e2e) | Our benchmark on RTX 2060 | ✅ Measured |
+| **nnU-Net** | ~9.0 GB (est.) | ~95 s (est.) | NOT from paper — estimated | ❌ Estimated |
+| **Swin UNETR** | Not reported | Not reported | Paper trained on DGX-1 (8× V100), no inference memory reported | ❌ Not available |
+| **UNETR** | Not reported | 12.08 s | UNETR paper Table 5 (BTCV dataset, not BraTS) | ⚠️ Different dataset |
+| **TransBTS** | ~11 GB (est.) | ~150 s (est.) | NOT from paper — estimated | ❌ Estimated |
+
+### Important Notes
+
+1. **nnU-Net auto-configures** its architecture per dataset, so parameter count varies. ~31M is for BraTS; 19M is for BTCV.
+2. **Published papers rarely report inference GPU memory.** They report training hardware (e.g., DGX-1, A100). Only our own models have measured inference memory.
+3. **When writing the paper**: clearly distinguish "our measured baseline" from "published reported numbers." For efficiency claims, compare against **our 3D U-Net baseline** (68M params, 2.5 GB, 10.16s) since those are the only numbers we measured on the same hardware.
+4. **The "31–62M" range** in the Problem Statement covers nnU-Net (~31M) to Swin UNETR (~62M) — both paper-verified.
+5. **Swin UNETR BraTS 2021 WT Dice**: 0.926 (validation), 0.927 (testing) — from Tables 3 and 4 in the paper.
+
+---
+
+## 📖 Prior GNN Brain Tumor Segmentation Papers (Found via Literature Search)
+
+> **Purpose**: Document what existing GNN-based brain tumor segmentation papers report and — critically — what they DON'T report. Supports Research Gap 2 (no controlled efficiency measurement).
+
+### Paper 1: Saueressig et al. (2020/2021)
+
+| Field | Details |
+|-------|---------|
+| **Title** | Exploring Graph-Based Neural Networks for Automatic Brain Tumor Segmentation |
+| **Published** | DataMod 2020 / Springer LNCS 2021 |
+| **Dataset** | BraTS 2019, 335 patients (76 LGG + 259 HGG) |
+| **Method** | SLIC supervoxels → graph → GCN/GraphSAGE/GAT node classification |
+| **Key Claim** | "5 to 15 times faster" training than CNNs |
+| **What's Reported** | Dice scores, training speed claim |
+| **What's NOT Reported** | Inference time, GPU memory, parameter count, model size |
+| **Efficiency Benchmark?** | ❌ No controlled comparison — speed claim is anecdotal, not measured on same hardware as CNN |
+| **Ensemble?** | ❌ No |
+| **Cross-edition test?** | ❌ No |
+
+### Paper 2: Patel et al. (2023)
+
+| Field | Details |
+|-------|---------|
+| **Title** | Multi-class Brain Tumor Segmentation using Graph Attention Network |
+| **Published** | arXiv 2302.05598 |
+| **Dataset** | BraTS 2021, 1,251 training + 216 validation |
+| **Method** | SLIC supervoxels → RAG → GAT (10,208,524 parameters / ~10.2M) |
+| **Dice (WT/TC/ET)** | 0.91 / 0.86 / 0.79 |
+| **Inference** | 1.7s average on Tesla K80 |
+| **What's Reported** | Dice scores, parameter count, inference time |
+| **What's NOT Reported** | GPU memory, no CNN baseline on same hardware |
+| **Efficiency Benchmark?** | ❌ No controlled comparison — reports 1.7s inference but on different GPU (Tesla K80) with no CNN tested on same device |
+| **Ensemble?** | ❌ No |
+| **Cross-edition test?** | ❌ No |
+
+### Why This Matters for Our Paper
+
+Both papers confirm that:
+1. GNN-based brain tumor segmentation exists and achieves reasonable accuracy
+2. **Neither paper runs a controlled efficiency benchmark** — Saueressig claims speed without measurement, Patel reports inference on a different GPU with no CNN comparison
+3. Our work fills this gap with same-hardware benchmarking (RTX 2060: GNN vs 3D U-Net)
+
+### Citation Keys (added to ref.bib)
+- `saueressig2021exploring` — Saueressig et al. (DataMod 2020/LNCS 2021)
+- `patel2023multiclass` — Patel et al. (arXiv 2023)
+
+---
+
 ## 📈 Table 4: Ensemble Performance Detail
 
 ### Ensemble Results on Held-Out 251-Patient Test Set

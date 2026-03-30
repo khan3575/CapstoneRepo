@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{39}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -35,25 +35,65 @@ Radhakrishna Achanta, Appu Shaji, Kevin Smith, Aurelien Lucchi, Pascal Fua, and 
 \newblock Slic superpixels compared to state-of-the-art superpixel methods.
 \newblock \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, 34\penalty0 (11):\penalty0 2274--2282, 2012.
 
-\bibitem[Loshchilov and Hutter(2019)]{loshchilov2019adamw}
-Ilya Loshchilov and Frank Hutter.
-\newblock Decoupled weight decay regularization.
-\newblock In \emph{International Conference on Learning Representations}, 2019.
-
-\bibitem[Ronneberger et~al.(2015)Ronneberger, Fischer, and Brox]{ronneberger2015unet}
-Olaf Ronneberger, Philipp Fischer, and Thomas Brox.
-\newblock U-net: Convolutional networks for biomedical image segmentation.
-\newblock In \emph{International Conference on Medical Image Computing and Computer-Assisted Intervention}, pages 234--241. Springer, 2015.
+\bibitem[Kipf and Welling(2017)]{kipf2017gcn}
+Thomas~N Kipf and Max Welling.
+\newblock Semi-supervised classification with graph convolutional networks.
+\newblock In \emph{International Conference on Learning Representations}, 2017.
 
 \bibitem[{\c{C}}i{\c{c}}ek et~al.(2016){\c{C}}i{\c{c}}ek, Abdulkadir, Lienkamp, Brox, and Ronneberger]{cicek20163d}
 {\"O}zg{\"u}n {\c{C}}i{\c{c}}ek, Ahmed Abdulkadir, Soeren~S Lienkamp, Thomas Brox, and Olaf Ronneberger.
 \newblock 3d u-net: Learning dense volumetric segmentation from sparse annotation.
 \newblock In \emph{International Conference on Medical Image Computing and Computer-Assisted Intervention}, pages 424--432. Springer, 2016.
 
+\bibitem[Saueressig et~al.(2021)Saueressig, Berkley, Munoz, and Kamil]{saueressig2021exploring}
+Camillo Saueressig, Adam Berkley, Elliot Munoz, and Reshma Kamil.
+\newblock Exploring graph-based neural networks for automatic brain tumor segmentation.
+\newblock In \emph{From Data to Models and Back (DataMod 2020)}, volume 12611 of \emph{Lecture Notes in Computer Science}, pages 18--32. Springer, 2021.
+
+\bibitem[Patel et~al.(2023)Patel, Patel, and Nguyen]{patel2023multiclass}
+Urvashi Patel, Saurabh Patel, and Trung Nguyen.
+\newblock Multi-class brain tumor segmentation using graph attention network.
+\newblock \emph{arXiv preprint arXiv:2302.05598}, 2023.
+
+\bibitem[Litjens et~al.(2017)Litjens, Kooi, Bejnordi, Setio, Ciompi, Ghafoorian, van~der Laak, van Ginneken, and S{\'a}nchez]{litjens2017survey}
+Geert Litjens, Thijs Kooi, Babak~Ehteshami Bejnordi, Arnaud Arindra~Adiyoso Setio, Francesco Ciompi, Mohsen Ghafoorian, Jeroen~AWM van~der Laak, Bram van Ginneken, and Clara~I S{\'a}nchez.
+\newblock A survey on deep learning in medical image analysis.
+\newblock \emph{Medical Image Analysis}, 42:\penalty0 60--88, 2017.
+
+\bibitem[Pereira et~al.(2016)Pereira, Pinto, Alves, and Silva]{pereira2016brain}
+S{\'e}rgio Pereira, Adriano Pinto, Victor Alves, and Carlos~A Silva.
+\newblock Brain tumor segmentation using convolutional neural networks in {MRI} images.
+\newblock \emph{IEEE Transactions on Medical Imaging}, 35\penalty0 (5):\penalty0 1240--1251, 2016.
+
+\bibitem[Ronneberger et~al.(2015)Ronneberger, Fischer, and Brox]{ronneberger2015unet}
+Olaf Ronneberger, Philipp Fischer, and Thomas Brox.
+\newblock U-net: Convolutional networks for biomedical image segmentation.
+\newblock In \emph{International Conference on Medical Image Computing and Computer-Assisted Intervention}, pages 234--241. Springer, 2015.
+
+\bibitem[Milletari et~al.(2016)Milletari, Navab, and Ahmadi]{milletari2016vnet}
+Fausto Milletari, Nassir Navab, and Seyed-Ahmad Ahmadi.
+\newblock {V-Net}: Fully convolutional neural networks for volumetric medical image segmentation.
+\newblock In \emph{International Conference on 3D Vision}, pages 565--571. IEEE, 2016.
+
 \bibitem[Oktay et~al.(2018)Oktay, Schlemper, Folgoc, Lee, Heinrich, Misawa, Mori, McDonagh, Hammerla, Kainz, et~al.]{oktay2018attention}
 Ozan Oktay, Jo~Schlemper, Loic~Le Folgoc, Matthew Lee, Mattias Heinrich, Kazunari Misawa, Kensaku Mori, Steven McDonagh, Nils Hammerla, Bernhard Kainz, et~al.
 \newblock Attention {U-Net}: Learning where to look for the pancreas.
 \newblock In \emph{Medical Imaging with Deep Learning}, 2018.
+
+\bibitem[Zhou et~al.(2018)Zhou, Rahman~Siddiquee, Tajbakhsh, and Liang]{zhou2018unetpp}
+Zongwei Zhou, Md~Mahfuzur Rahman~Siddiquee, Nima Tajbakhsh, and Jianming Liang.
+\newblock {UNet++}: A nested {U-Net} architecture for medical image segmentation.
+\newblock In \emph{Deep Learning in Medical Image Analysis and Multimodal Learning for Clinical Decision Support}, pages 3--11. Springer, 2018.
+
+\bibitem[Kamnitsas et~al.(2017)Kamnitsas, Ledig, Newcombe, Simpson, Kane, Menon, Rueckert, and Glocker]{kamnitsas2017efficient}
+Konstantinos Kamnitsas, Christian Ledig, Virginia~FJ Newcombe, Joanna~P Simpson, Andrew~D Kane, David~K Menon, Daniel Rueckert, and Ben Glocker.
+\newblock Efficient multi-scale {3D CNN} with fully connected {CRF} for accurate brain lesion segmentation.
+\newblock \emph{Medical Image Analysis}, 36:\penalty0 61--78, 2017.
+
+\bibitem[Dosovitskiy et~al.(2021)Dosovitskiy, Beyer, Kolesnikov, Weissenborn, Zhai, Unterthiner, Dehghani, Minderer, Heigold, Gelly, Uszkoreit, and Houlsby]{dosovitskiy2021image}
+Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, Jakob Uszkoreit, and Neil Houlsby.
+\newblock An image is worth 16x16 words: Transformers for image recognition at scale.
+\newblock In \emph{International Conference on Learning Representations}, 2021.
 
 \bibitem[Wang et~al.(2021)Wang, Chen, Ding, Yu, Zha, and Li]{wang2021transbts}
 Wenxuan Wang, Chen Chen, Meng Ding, Hong Yu, Sen Zha, and Jiangyun Li.
@@ -65,30 +105,95 @@ Ze~Liu, Yutong Lin, Yue Cao, Han Hu, Yixiang Wei, Zheng Zhang, Stephen Lin, and 
 \newblock Swin transformer: Hierarchical vision transformer using shifted windows.
 \newblock In \emph{IEEE/CVF International Conference on Computer Vision}, pages 10012--10022, 2021.
 
-\bibitem[Kipf and Welling(2017)]{kipf2017gcn}
-Thomas~N Kipf and Max Welling.
-\newblock Semi-supervised classification with graph convolutional networks.
-\newblock In \emph{International Conference on Learning Representations}, 2017.
+\bibitem[Myronenko(2019)]{myronenko2019brats}
+Andriy Myronenko.
+\newblock {3D MRI} brain tumor segmentation using autoencoder regularization.
+\newblock In \emph{International MICCAI Brainlesion Workshop}, pages 311--320. Springer, 2019.
+
+\bibitem[Scarselli et~al.(2009)Scarselli, Gori, Tsoi, Hagenbuchner, and Monfardini]{scarselli2009graph}
+Franco Scarselli, Marco Gori, Ah~Chung Tsoi, Markus Hagenbuchner, and Gabriele Monfardini.
+\newblock The graph neural network model.
+\newblock \emph{IEEE Transactions on Neural Networks}, 20\penalty0 (1):\penalty0 61--80, 2009.
+
+\bibitem[Defferrard et~al.(2016)Defferrard, Bresson, and Vandergheynst]{defferrard2016convolutional}
+Micha{\"e}l Defferrard, Xavier Bresson, and Pierre Vandergheynst.
+\newblock Convolutional neural networks on graphs with fast localized spectral filtering.
+\newblock In \emph{Advances in Neural Information Processing Systems}, volume~29, 2016.
 
 \bibitem[Veli{\v{c}}kovi{\'c} et~al.(2018)Veli{\v{c}}kovi{\'c}, Cucurull, Casanova, Romero, Li{\`o}, and Bengio]{velickovic2018gat}
 Petar Veli{\v{c}}kovi{\'c}, Guillem Cucurull, Arantxa Casanova, Adriana Romero, Pietro Li{\`o}, and Yoshua Bengio.
 \newblock Graph attention networks.
 \newblock In \emph{International Conference on Learning Representations}, 2018.
 
-\bibitem[Milletari et~al.(2016)Milletari, Navab, and Ahmadi]{milletari2016vnet}
-Fausto Milletari, Nassir Navab, and Seyed-Ahmad Ahmadi.
-\newblock {V-Net}: Fully convolutional neural networks for volumetric medical image segmentation.
-\newblock In \emph{International Conference on 3D Vision}, pages 565--571. IEEE, 2016.
+\bibitem[Gilmer et~al.(2017)Gilmer, Schoenholz, Riley, Vinyals, and Dahl]{gilmer2017neural}
+Justin Gilmer, Samuel~S Schoenholz, Patrick~F Riley, Oriol Vinyals, and George~E Dahl.
+\newblock Neural message passing for quantum chemistry.
+\newblock In \emph{International Conference on Machine Learning}, pages 1263--1272, 2017.
+
+\bibitem[Wu et~al.(2021)Wu, Pan, Chen, Long, Zhang, and Yu]{wu2021comprehensive}
+Zonghan Wu, Shirui Pan, Fengwen Chen, Guodong Long, Chengqi Zhang, and Philip~S Yu.
+\newblock A comprehensive survey on graph neural networks.
+\newblock \emph{IEEE Transactions on Neural Networks and Learning Systems}, 32\penalty0 (1):\penalty0 4--24, 2021.
 
 \bibitem[Qi et~al.(2017)Qi, Su, Mo, and Guibas]{qi2017pointnet}
 Charles~R Qi, Hao Su, Kaichun Mo, and Leonidas~J Guibas.
 \newblock {PointNet}: Deep learning on point sets for {3D} classification and segmentation.
 \newblock In \emph{IEEE Conference on Computer Vision and Pattern Recognition}, pages 652--660, 2017.
 
+\bibitem[Parisot et~al.(2017)Parisot, Ktena, Ferrante, Lee, Guerrero, Glocker, and Rueckert]{parisot2017spectral}
+Sarah Parisot, Sofia~Ira Ktena, Enzo Ferrante, Matthew Lee, Ricardo Guerrero, Ben Glocker, and Daniel Rueckert.
+\newblock Spectral graph convolutions for population-based disease prediction.
+\newblock In \emph{International Conference on Medical Image Computing and Computer-Assisted Intervention}, pages 177--185. Springer, 2017.
+
+\bibitem[Lu et~al.(2021)Lu, Toss, Daber-Barros, Vuillaume, Nir, Tektonidis, Ganeshan, Rakha, and Rajpoot]{jha2021instance}
+Wenqi Lu, Michael Toss, Flavia Daber-Barros, Marie-Lisa Vuillaume, Alon Nir, Marco Tektonidis, Balaji Ganeshan, Emad Rakha, and Nasir Rajpoot.
+\newblock Instance segmentation of whole slide images using graph neural networks.
+\newblock \emph{Medical Image Analysis}, 71:\penalty0 102042, 2021.
+
+\bibitem[Bessadok et~al.(2022)Bessadok, Mahjoub, and Rekik]{bessadok2022graph}
+Alaa Bessadok, Mohamed~Ali Mahjoub, and Islem Rekik.
+\newblock Graph neural networks in network neuroscience.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, 45\penalty0 (5):\penalty0 5833--5848, 2022.
+
+\bibitem[Shi and Malik(2000)]{shi2000normalized}
+Jianbo Shi and Jitendra Malik.
+\newblock Normalized cuts and image segmentation.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, 22\penalty0 (8):\penalty0 888--905, 2000.
+
+\bibitem[Felzenszwalb and Huttenlocher(2004)]{felzenszwalb2004efficient}
+Pedro~F Felzenszwalb and Daniel~P Huttenlocher.
+\newblock Efficient graph-based image segmentation.
+\newblock \emph{International Journal of Computer Vision}, 59\penalty0 (2):\penalty0 167--181, 2004.
+
+\bibitem[Stutz et~al.(2018)Stutz, Hermans, and Leibe]{stutz2018superpixels}
+David Stutz, Alexander Hermans, and Bastian Leibe.
+\newblock Superpixels: An evaluation of the state of the art.
+\newblock \emph{Computer Vision and Image Understanding}, 166:\penalty0 1--27, 2018.
+
+\bibitem[Orlando et~al.(2017)Orlando, Prokofyeva, and Blaschko]{orlando2017retinal}
+Jos{\'e}~Ignacio Orlando, Elena Prokofyeva, and Matthew~B Blaschko.
+\newblock A discriminatively trained fully connected conditional random field model for blood vessel segmentation in fundus images.
+\newblock \emph{IEEE Transactions on Biomedical Engineering}, 64\penalty0 (1):\penalty0 16--27, 2017.
+
+\bibitem[Bai et~al.(2018)Bai, Chen, Tarroni, Duan, Guitton, Petersen, Guo, Matthews, and Rueckert]{bai2019superpixel}
+Wenjia Bai, Chen Chen, Giacomo Tarroni, Jinming Duan, Florian Guitton, Steffen~E Petersen, Yike Guo, Paul~M Matthews, and Daniel Rueckert.
+\newblock Recurrent neural networks for aortic image sequence segmentation with sparse annotations.
+\newblock In \emph{International Conference on Medical Image Computing and Computer-Assisted Intervention}, pages 586--594. Springer, 2018.
+
+\bibitem[Louis et~al.(2016)Louis, Perry, Reifenberger, von Deimling, Figarella-Branger, Cavenee, Ohgaki, Wiestler, Kleihues, and Ellison]{louis2016glioma}
+David~N Louis, Arie Perry, Guido Reifenberger, Andreas von Deimling, Dominique Figarella-Branger, Webster~K Cavenee, Hiroko Ohgaki, Otmar~D Wiestler, Paul Kleihues, and David~W Ellison.
+\newblock The 2016 {World Health Organization} classification of tumors of the central nervous system: A summary.
+\newblock \emph{Acta Neuropathologica}, 131\penalty0 (6):\penalty0 803--820, 2016.
+
 \bibitem[Bakas et~al.(2017)Bakas, Akbari, Sotiras, Bilello, Rozycki, Kirby, Freymann, Farahani, and Davatzikos]{bakas2017advancing}
 Spyridon Bakas, Hamed Akbari, Aristeidis Sotiras, Michel Bilello, Martin Rozycki, Justin~S Kirby, John~B Freymann, Keyvan Farahani, and Christos Davatzikos.
 \newblock Advancing the cancer genome atlas glioma {MRI} collections with expert segmentation labels and radiomic features.
 \newblock \emph{Scientific Data}, 4:\penalty0 170117, 2017.
+
+\bibitem[Loshchilov and Hutter(2019)]{loshchilov2019adamw}
+Ilya Loshchilov and Frank Hutter.
+\newblock Decoupled weight decay regularization.
+\newblock In \emph{International Conference on Learning Representations}, 2019.
 
 \bibitem[Fey and Lenssen(2019)]{fey2019pyg}
 Matthias Fey and Jan~Eric Lenssen.
