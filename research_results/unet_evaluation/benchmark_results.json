@@ -1,0 +1,34 @@
+{
+  "task": "speed_memory_benchmark",
+  "model": {
+    "name": "UNet3D",
+    "base_channels": 56,
+    "num_levels": 4,
+    "parameters": 69146113,
+    "model_size_mb": 263.8
+  },
+  "test_volume": {
+    "patient_id": "BraTS2021_00008",
+    "shape": [
+      4,
+      240,
+      240,
+      155
+    ]
+  },
+  "single_model": {
+    "mean_inference_seconds": 5.930098590599664,
+    "std_inference_seconds": 0.00972445664698184,
+    "min_inference_seconds": 5.916877106996253,
+    "peak_gpu_memory_mb": 1444.3,
+    "num_runs": 5
+  },
+  "ensemble_5_models": {
+    "mean_inference_seconds": 29.35577719533224,
+    "std_inference_seconds": 0.06275976201783981,
+    "peak_gpu_memory_mb": 2836.9,
+    "num_runs": 3
+  },
+  "device": "cuda",
+  "gpu_name": "NVIDIA GeForce RTX 2060"
+}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.24)  4 APR 2026 01:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.24)  4 APR 2026 06:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -942,99 +942,94 @@ Overfull \hbox (9.01772pt too wide) in paragraph at lines 1134--1138
 []\OT1/cmr/m/n/12 Let $\OML/cmm/m/it/12 V[] \OMS/cmsy/m/n/12 2 \U/msb/m/n/12 R[]$ \OT1/cmr/m/n/12 de-note the vol-ume for modal-ity $\OML/cmm/m/it/12 m \OMS/cmsy/m/n/12 2 f[]\OML/cmm/m/it/12 ; []; []; []\OMS/cmsy/m/n/12 g$
  []
 
-[19] [20] [21] [22] [23] [24]
-Overfull \hbox (3.35023pt too wide) in paragraph at lines 1378--1381
-[]\OT1/cmr/m/n/12 Training min-imises BCE-With-Log-it-sLoss (Bi-nary Cross-Entropy with Log-its Loss),
- []
-
-[25] [26]
+[19] [20] [21] [22] [23] [24] [25] [26] [27]
 Overfull \vbox (13.97887pt too high) has occurred while \output is active []
 
- [27]
-Underfull \hbox (badness 2253) in paragraph at lines 1512--1512
+ [28]
+Underfull \hbox (badness 2253) in paragraph at lines 1523--1523
 []|\OT1/cmr/m/n/10 Training, cross-validation, held-
  []
 
-[28{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [29] [30] [31] [32] [33] [34]
-Underfull \hbox (badness 10000) in paragraph at lines 1865--1865
+[29{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [30] [31] [32] [33] [34] [35]
+Underfull \hbox (badness 10000) in paragraph at lines 1876--1876
 []|\OT1/cmr/m/n/10 Neighbourhood ag-gre-ga-tion
  []
 
-[35]
-Overfull \hbox (2.17448pt too wide) in paragraph at lines 1963--1963
+[36]
+Overfull \hbox (2.17448pt too wide) in paragraph at lines 1974--1974
  []|\OT1/cmr/bx/n/10 Mean$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 SD| 
  []
 
 
-Overfull \hbox (5.43837pt too wide) in paragraph at lines 1963--1963
+Overfull \hbox (5.43837pt too wide) in paragraph at lines 1974--1974
  []|\OT1/cmr/bx/n/10 90.02$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 0.66| 
  []
 
-[36]
-Overfull \hbox (50.38109pt too wide) in paragraph at lines 1972--1977
+[37]
+Overfull \hbox (50.38109pt too wide) in paragraph at lines 1983--1988
 \OT1/cmr/m/n/12 (88.72%) re-flects the stochas-tic train-ing pro-cess un-der the non-deterministic \OT1/cmtt/m/n/12 cudnn.benchmark
  []
 
-<fig_A_cv_performance.jpg, id=655, 636.4578pt x 390.7398pt>
+<fig_A_cv_performance.jpg, id=657, 636.4578pt x 390.7398pt>
 File: fig_A_cv_performance.jpg Graphic file (type jpg)
 <use fig_A_cv_performance.jpg>
-Package pdftex.def Info: fig_A_cv_performance.jpg  used on input line 1980.
+Package pdftex.def Info: fig_A_cv_performance.jpg  used on input line 1991.
 (pdftex.def)             Requested size: 392.64725pt x 241.06374pt.
-[37 <./fig_A_cv_performance.jpg>]
-Overfull \hbox (13.97646pt too wide) in paragraph at lines 2020--2027
+[38 <./fig_A_cv_performance.jpg>]
+Overfull \hbox (13.97646pt too wide) in paragraph at lines 2031--2038
 []\OT1/cmr/m/n/12 Precision (95.52%) sub-stan-tially ex-ceeds Sen-si-tiv-ity (87.77%), in-di-cat-ing a precision-
  []
 
-[38]
-<fig_B_efficiency_bubble.jpg, id=667, 643.4439pt x 426.8748pt>
+[39]
+<fig_B_efficiency_bubble.jpg, id=670, 643.4439pt x 426.8748pt>
 File: fig_B_efficiency_bubble.jpg Graphic file (type jpg)
 <use fig_B_efficiency_bubble.jpg>
-Package pdftex.def Info: fig_B_efficiency_bubble.jpg  used on input line 2083.
+Package pdftex.def Info: fig_B_efficiency_bubble.jpg  used on input line 2094.
 (pdftex.def)             Requested size: 375.57846pt x 249.16383pt.
-<fig_D_speed_memory.jpg, id=668, 923.1288pt x 362.5545pt>
+<fig_D_speed_memory.jpg, id=671, 923.1288pt x 362.5545pt>
 File: fig_D_speed_memory.jpg Graphic file (type jpg)
 <use fig_D_speed_memory.jpg>
-Package pdftex.def Info: fig_D_speed_memory.jpg  used on input line 2094.
+Package pdftex.def Info: fig_D_speed_memory.jpg  used on input line 2105.
 (pdftex.def)             Requested size: 426.79135pt x 167.61798pt.
-<fig_F_ablation.jpg, id=669, 715.9548pt x 392.667pt>
+<fig_F_ablation.jpg, id=672, 715.9548pt x 392.667pt>
 File: fig_F_ablation.jpg Graphic file (type jpg)
 <use fig_F_ablation.jpg>
-Package pdftex.def Info: fig_F_ablation.jpg  used on input line 2145.
+Package pdftex.def Info: fig_F_ablation.jpg  used on input line 2156.
 (pdftex.def)             Requested size: 375.57846pt x 205.9855pt.
- [39] [40 <./fig_B_efficiency_bubble.jpg> <./fig_D_speed_memory.jpg>] [41 <./fig_F_ablation.jpg>]
-Overfull \hbox (3.38364pt too wide) in paragraph at lines 2170--2174
+ [40] [41 <./fig_B_efficiency_bubble.jpg> <./fig_D_speed_memory.jpg>] [42 <./fig_F_ablation.jpg>]
+Overfull \hbox (3.38364pt too wide) in paragraph at lines 2181--2185
 \OT1/cmr/m/n/12 neigh-bour-hood sam-pling ag-gre-ga-tion pro-vides a bet-ter accuracy-efficiency trade-
  []
 
-<fig_C_generalisation.jpg, id=690, 893.739pt x 350.0277pt>
+<fig_C_generalisation.jpg, id=692, 893.739pt x 350.0277pt>
 File: fig_C_generalisation.jpg Graphic file (type jpg)
 <use fig_C_generalisation.jpg>
-Package pdftex.def Info: fig_C_generalisation.jpg  used on input line 2210.
+Package pdftex.def Info: fig_C_generalisation.jpg  used on input line 2221.
 (pdftex.def)             Requested size: 426.79135pt x 167.15147pt.
-[42] [43 <./fig_C_generalisation.jpg>]
-<fig_H_qualitative_results.jpg, id=704, 984.3174pt x 846.64305pt>
+[43] [44 <./fig_C_generalisation.jpg>]
+<fig_H_qualitative_results.jpg, id=706, 984.3174pt x 846.64305pt>
 File: fig_H_qualitative_results.jpg Graphic file (type jpg)
 <use fig_H_qualitative_results.jpg>
-Package pdftex.def Info: fig_H_qualitative_results.jpg  used on input line 2271.
+Package pdftex.def Info: fig_H_qualitative_results.jpg  used on input line 2282.
 (pdftex.def)             Requested size: 490.80743pt x 422.1578pt.
 
-Overfull \hbox (64.01608pt too wide) in paragraph at lines 2271--2279
+Overfull \hbox (64.01608pt too wide) in paragraph at lines 2282--2290
  [][] 
  []
 
-<fig_G_dice_distribution.png, id=705, 903.8568pt x 358.941pt>
+<fig_G_dice_distribution.png, id=707, 903.8568pt x 358.941pt>
 File: fig_G_dice_distribution.png Graphic file (type png)
 <use fig_G_dice_distribution.png>
-Package pdftex.def Info: fig_G_dice_distribution.png  used on input line 2285.
+Package pdftex.def Info: fig_G_dice_distribution.png  used on input line 2296.
 (pdftex.def)             Requested size: 426.79135pt x 169.48549pt.
-<fig_E_ensemble_vs_individual.jpg, id=706, 715.7139pt x 391.4625pt>
+<fig_E_ensemble_vs_individual.jpg, id=708, 715.7139pt x 391.4625pt>
 File: fig_E_ensemble_vs_individual.jpg Graphic file (type jpg)
 <use fig_E_ensemble_vs_individual.jpg>
-Package pdftex.def Info: fig_E_ensemble_vs_individual.jpg  used on input line 2296.
+Package pdftex.def Info: fig_E_ensemble_vs_individual.jpg  used on input line 2307.
 (pdftex.def)             Requested size: 426.79135pt x 233.43976pt.
-[44] [45 <./fig_H_qualitative_results.jpg>] [46 <./fig_G_dice_distribution.png> <./fig_E_ensemble_vs_individual.jpg>] [47] [48] [49] [50] [51] [52] [53] [54] [55] [56] (./main_bubt_paper.bbl [57
+[45] [46 <./fig_H_qualitative_results.jpg>] [47 <./fig_G_dice_distribution.png> <./fig_E_ensemble_vs_individual.jpg>] [48] [49] [50] [51] [52] [53] [54] [55] [56] [57] (./main_bubt_paper.bbl [58
 
-] [58] [59] [60]) [61] (./main_bubt_paper.aux)
+] [59] [60] [61]) [62] (./main_bubt_paper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -1051,18 +1046,18 @@ Package rerunfilecheck Info: File `main_bubt_paper.out' has not changed.
 (rerunfilecheck)             Checksum: C246C415EB61D15E35E0C80F9F4F485F;7620.
  ) 
 Here is how much of TeX's memory you used:
- 24190 strings out of 474222
- 440563 string characters out of 5748732
+ 24191 strings out of 474222
+ 440570 string characters out of 5748732
  1951975 words of memory out of 5000000
  45812 multiletter control sequences out of 15000+600000
  570568 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,15n,87p,1023b,895s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main_bubt_paper.pdf (71 pages, 2842421 bytes).
+Output written on main_bubt_paper.pdf (72 pages, 2843737 bytes).
 PDF statistics:
- 1012 PDF objects out of 1200 (max. 8388607)
- 827 compressed objects within 9 object streams
- 220 named destinations out of 1000 (max. 500000)
+ 1014 PDF objects out of 1200 (max. 8388607)
+ 828 compressed objects within 9 object streams
+ 221 named destinations out of 1000 (max. 500000)
  394 words of extra memory for PDF output out of 10000 (max. 10000000)
 

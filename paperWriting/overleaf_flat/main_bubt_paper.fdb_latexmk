@@ -1,15 +1,15 @@
 # Fdb version 4
-["bibtex main_bubt_paper"] 1775243784.19069 "main_bubt_paper.aux" "main_bubt_paper.bbl" "main_bubt_paper" 1775243785.86821 0
+["bibtex main_bubt_paper"] 1775261876.74332 "main_bubt_paper.aux" "main_bubt_paper.bbl" "main_bubt_paper" 1775261911.94801 0
   "./ref.bib" 1775217845.19562 13547 cdb5c23f1d5201f5711183e0badb6e65 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/natbib/unsrtnat.bst" 1233624470 24550 a41a6405f4de768c43e871d9fbce2bc8 ""
-  "main_bubt_paper.aux" 1775243785.58585 28351 42beeec5cc20c256e5944772d3706232 "pdflatex"
+  "main_bubt_paper.aux" 1775261911.64371 28300 57866260a0d33eb6c966346baed3daf4 "pdflatex"
   (generated)
   "main_bubt_paper.bbl"
   "main_bubt_paper.blg"
   (rewritten before read)
-["pdflatex"] 1775243784.28438 "/mnt/bigdata/capstone/brats_gnn_segmentation/paperWriting/overleaf_flat/main_bubt_paper.tex" "main_bubt_paper.pdf" "main_bubt_paper" 1775243785.86838 0
+["pdflatex"] 1775261910.24431 "/mnt/bigdata/capstone/brats_gnn_segmentation/paperWriting/overleaf_flat/main_bubt_paper.tex" "main_bubt_paper.pdf" "main_bubt_paper" 1775261911.94818 0
   "/etc/texmf/web2c/texmf.cnf" 1763937064.13544 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/mnt/bigdata/capstone/brats_gnn_segmentation/paperWriting/overleaf_flat/main_bubt_paper.tex" 1775243782.34999 142457 7935f48f283a3dee452cbbfdb5f1e2d1 ""
+  "/mnt/bigdata/capstone/brats_gnn_segmentation/paperWriting/overleaf_flat/main_bubt_paper.tex" 1775261910.05247 143487 21a085eb173c26db89553fc7651cc784 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1136768653 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -231,11 +231,11 @@
   "fig_F_ablation.jpg" 1775064140.93785 285097 331fd4d6f516f65e599637c711a1c829 ""
   "fig_G_dice_distribution.png" 1775064173.72405 323231 252d1cb7154a279e7aae1d1cf203af9a ""
   "fig_H_qualitative_results.jpg" 1774840033.97237 345102 46b5d074d4eca85f65c1cab4044cf847 ""
-  "main_bubt_paper.aux" 1775243785.58585 28351 42beeec5cc20c256e5944772d3706232 "pdflatex"
-  "main_bubt_paper.bbl" 1775243784.28012 14285 19a4ac9d24c77c464c42d7cf5c973dc9 "bibtex main_bubt_paper"
-  "main_bubt_paper.out" 1775243785.58685 7620 c246c415eb61d15e35e0c80f9f4f485f "pdflatex"
-  "main_bubt_paper.tex" 1775243782.34999 142457 7935f48f283a3dee452cbbfdb5f1e2d1 ""
-  "main_bubt_paper.toc" 1775243785.58685 3641 992bb3ae75a6171f8996011fc4ed47ed "pdflatex"
+  "main_bubt_paper.aux" 1775261911.64371 28300 57866260a0d33eb6c966346baed3daf4 "pdflatex"
+  "main_bubt_paper.bbl" 1775261876.84804 14285 19a4ac9d24c77c464c42d7cf5c973dc9 "bibtex main_bubt_paper"
+  "main_bubt_paper.out" 1775261911.64571 7620 c246c415eb61d15e35e0c80f9f4f485f "pdflatex"
+  "main_bubt_paper.tex" 1775261910.05247 143487 21a085eb173c26db89553fc7651cc784 ""
+  "main_bubt_paper.toc" 1775261911.64571 3641 a1de411cb2554a18e496b3a52c2ec1d8 "pdflatex"
   (generated)
   "main_bubt_paper.aux"
   "main_bubt_paper.log"

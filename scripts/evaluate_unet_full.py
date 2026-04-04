@@ -578,13 +578,13 @@ def run_wilcoxon_test():
         'two_sided': {
             'statistic': float(stat),
             'p_value': float(p_value),
-            'significant_005': p_value < 0.05,
-            'significant_001': p_value < 0.01,
+            'significant_005': bool(p_value < 0.05),
+            'significant_001': bool(p_value < 0.01),
         },
         'one_sided_gnn_greater': {
             'statistic': float(stat_greater),
             'p_value': float(p_greater),
-            'significant_005': p_greater < 0.05,
+            'significant_005': bool(p_greater < 0.05),
         },
         'per_patient': {p: {'gnn': float(gnn_dices[i]), 'unet': float(unet_dices[i])}
                         for i, p in enumerate(common_patients)},

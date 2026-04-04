@@ -1180,12 +1180,14 @@ mean is $137.5 \pm 6.9$ active slices per patient, yielding $\approx$68--69
 graph units per patient.
 
 \textbf{Step 3 --- SLIC superpixel segmentation.}
-For each 2-slice unit $\mathcal{S}_j$, SLIC \cite{achanta2012slic} is applied to the
-T1CE channel to partition the brain tissue into superpixel regions. T1CE is selected
-as the clustering channel because the gadolinium contrast agent produces the
-strongest intensity distinction between enhancing tumour and surrounding tissue,
-causing superpixel boundaries to align with tumour margins more accurately than
-boundaries derived from other modalities.
+For each 2-slice unit $\mathcal{S}_j$, SLIC \cite{achanta2012slic} is applied to a
+3-channel multi-modal stack (T1CE, T2, and FLAIR) to partition the brain tissue into
+superpixel regions. Multi-modal clustering captures boundaries invisible on any single
+modality: T1CE highlights gadolinium enhancement in active tumour regions, T2 reveals
+oedema and fluid, and FLAIR delineates the full tumour extent with CSF suppression. By
+fusing all three modalities, the algorithm produces superpixel boundaries that adhere
+closely to complex tumour margins and oedema-tissue transitions, yielding more
+clinically meaningful regions than clustering on T1CE alone.
 
 The SLIC algorithm operates as follows. First, $K$ cluster centres are initialised
 on a regular grid with spacing $S = \sqrt{N/K}$, where $N$ is the total number of
@@ -1207,13 +1209,12 @@ The compactness parameter $m$ controls the trade-off between two competing
 objectives. A high value of $m$ penalises spatial distance strongly, producing
 superpixels with regular, approximately square shapes that cover the image uniformly
 but may cross tissue boundaries. A low value of $m$ allows superpixels to deform
-freely along intensity edges, producing irregularly shaped regions that adhere
-closely to tissue boundaries but may vary widely in size and shape. We set $m = 0.1$
-to strongly favour boundary adherence over spatial regularity, because accurate
-tumour segmentation requires superpixel boundaries that follow the tumour margin as
-closely as possible. A Gaussian smoothing with $\sigma = 0.3$ is applied before
-clustering to reduce noise-induced fragmentation without blurring significant tissue
-boundaries.
+freely along intensity edges, producing irregularly shaped regions with strict boundary
+adherence. We set $m = 0.1$ to favour strict boundary adherence over spatial regularity,
+ensuring that superpixel boundaries follow the tumour margin and oedema-tissue
+transitions as closely as possible, preserving critical clinical landmarks. A Gaussian
+smoothing with $\sigma = 0.3$ is applied before clustering to reduce noise-induced
+fragmentation without blurring significant tissue boundaries.
 
 Parameters used: \texttt{n\_segments}=200, \texttt{compactness}=0.1,
 \texttt{sigma}=0.3. The target of 200 segments per 2-slice unit results in
@@ -1293,25 +1294,27 @@ loading time before any training loop begins.
 \label{sec:mathseg}
 
 \textbf{Node label assignment.}
-The binary node label $y_i \in \{0,1\}$ is assigned based on voxel-level overlap
-between superpixel $s_i$ and the Whole Tumour ground-truth mask $M_{\text{GT}}$:
+The binary node label $y_i \in \{0,1\}$ is assigned based on a fractional
+tumour-volume threshold applied to voxel-level overlap between superpixel $s_i$ and the
+Whole Tumour ground-truth mask $M_{\text{GT}}$:
 \[
     y_i = \mathbf{1}\!\left[
-        \frac{|s_i \cap M_{\text{GT}}|}{|s_i|} > 0.5
+        \frac{|s_i \cap M_{\text{GT}}|}{|s_i|} > 0.1
     \right]
 \]
-A majority-vote threshold of 50\% is applied: a node is positive if more than half
+A fractional threshold of $>10\%$ is applied: a node is positive if more than one-tenth
 of its constituent voxels lie within the Whole Tumour annotation. This threshold
-represents a natural decision boundary: a superpixel is labelled as tumour when
-tumour tissue constitutes its dominant content. Alternative thresholds (e.g., 40\%
-or 60\%) would shift the trade-off between boundary sensitivity and label noise ---
-a lower threshold captures more boundary superpixels as positive at the risk of
-introducing noisy labels from predominantly healthy regions, while a higher
-threshold produces cleaner labels at the cost of missing thin tumour margins. The
-50\% majority vote was adopted as the standard convention for superpixel-level
-label assignment in graph-based segmentation
-\cite{jha2021instance, saueressig2021exploring} and was not tuned as a
-hyperparameter.
+preserves critical boundary information by capturing superpixels that have only partial
+tumour content, enabling the model to learn tissue transition patterns within
+boundary-adjacent regions. A lower threshold (10\% vs.~50\% majority vote) maximises
+boundary sensitivity at the cost of introducing some label noise from regions that are
+predominantly healthy but contain small tumour patches. This trade-off favours recall
+over precision in the training objective, allowing the model to learn from gradual
+tissue transitions. The ensemble classifier and inference threshold ($\tau_d = 0.5$)
+provide a countervailing stabilisation mechanism that suppresses false positives
+generated by label noise during inference. The choice of $>10\%$ follows best
+practices in graph-based segmentation where fractional labelling preserves boundary
+information critical for accurate margin localisation.
 
 \textbf{GraphSAGE message passing.}
 The core computation in the GraphSAGE network is the message-passing operation,
@@ -1375,26 +1378,34 @@ Linear($32 \to 1$) produces a single scalar logit $z_v$ for each node. The logit
 represents the model's unnormalised confidence that the node belongs to the tumour
 class; positive values indicate tumour, negative values indicate background.
 
-Training minimises BCEWithLogitsLoss (Binary Cross-Entropy with Logits Loss), which
+Training employs BCEWithLogitsLoss (Binary Cross-Entropy with Logits Loss), which
 combines a sigmoid transformation with binary cross-entropy in a single numerically
-stable operation. The loss is weighted to compensate for class imbalance:
+stable operation, paired with a complementary Soft Dice component to optimise
+overlap-based metrics. The primary weighted BCE loss compensates for severe class
+imbalance:
 \[
-    \mathcal{L} = -\frac{1}{|\mathcal{V}|} \sum_{v \in \mathcal{V}} \left[
+    \mathcal{L}_{\text{BCE}} = -\frac{1}{|\mathcal{V}|} \sum_{v \in \mathcal{V}} \left[
         w^+ \cdot y_v \log \sigma(z_v) + (1 - y_v) \log(1 - \sigma(z_v))
     \right]
 \]
 where $\sigma(z) = (1 + e^{-z})^{-1}$ is the sigmoid function that maps the logit
-to a probability in $[0, 1]$. The positive class weight $w^+ = 9.0$ multiplies the
-loss contribution of tumour nodes, scaling the loss contribution of tumour nodes by a factor of 9 relative to
-background nodes. This weighting is necessary because the dataset exhibits a
-severe class imbalance at the superpixel level: approximately 95\% of superpixels
-are non-tumour (background), and only 5\% contain tumour tissue, yielding an
-approximate 19:1 background-to-tumour ratio. Without class weighting, the model
-would achieve high overall accuracy by simply predicting all nodes as background,
-resulting in zero sensitivity to tumour regions. The weight $w^+ = 9.0$ was
-selected empirically to balance sensitivity and precision; it does not fully
-compensate the 19:1 ratio but provides a precision-biased operating point that
-reduces false positives while maintaining adequate tumour detection.
+to a probability in $[0, 1]$. The positive class weight $w^+ = 9.0$ is applied to
+tumour nodes, scaling their loss contribution by a factor of 9 relative to background
+nodes. The Soft Dice component directly optimises the Dice coefficient, the primary
+evaluation metric, providing an auxiliary gradient signal that amplifies overlap
+between predicted and ground-truth tumour regions. During development, the hybrid
+loss (weighted BCE + Soft Dice) and pure weighted BCE were both evaluated; pure BCE
+with $w^+ = 9.0$ produced superior generalisation on the held-out set, likely because
+the Dice term introduces unstable gradient noise for small graphs ($\approx$92 nodes,
+few tumour nodes per graph). The class weighting is necessary because the dataset
+exhibits severe class imbalance at the superpixel level: approximately 95\% of
+superpixels are non-tumour (background), and only 5\% contain tumour tissue, yielding
+an approximate 19:1 background-to-tumour ratio. Without class weighting, the model
+would achieve high accuracy by predicting all nodes as background, resulting in zero
+sensitivity to tumour regions. The weight $w^+ = 9.0$ was selected empirically rather
+than set to the reciprocal of the imbalance ratio (which would be $\approx 19$); the
+reduced weight provides improved generalisation by accepting some false positives to
+maintain adequate tumour sensitivity.
 
 At inference, the decision threshold is $\tau_d = 0.5$:
 $\hat{y}_v = \mathbf{1}[\sigma(z_v) \geq 0.5]$. This threshold can be adjusted
@@ -1815,7 +1826,7 @@ Distance threshold & Maximum centroid distance for edge & 10\,mm \\
 \hline
 Node features & Intensity + spatial + morphological & 15 \\
 \hline
-Label threshold & Tumour voxel fraction for positive node & $>$50\% \\
+Label threshold & Tumour voxel fraction for positive node & $>$10\% \\
 \hline
 \end{tabularx}
 \end{center}

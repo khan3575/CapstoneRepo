@@ -18,25 +18,25 @@
 \contentsline {subsection}{\numberline {3.2}Proposed Model and Framework}{17}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Mathematical Description of the Pipeline}{19}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}Mathematical Description of Segmentation}{23}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Proposed Algorithm}{26}{subsection.3.5}%
-\contentsline {subsection}{\numberline {3.6}Dataset and Splits}{28}{subsection.3.6}%
-\contentsline {subsection}{\numberline {3.7}Graph Construction}{29}{subsection.3.7}%
-\contentsline {subsection}{\numberline {3.8}Training Protocol}{31}{subsection.3.8}%
-\contentsline {subsection}{\numberline {3.9}Ensemble Inference}{33}{subsection.3.9}%
-\contentsline {subsubsection}{\numberline {3.9.1}Single-Fold Inference}{33}{subsubsection.3.9.1}%
-\contentsline {subsubsection}{\numberline {3.9.2}5-Fold Soft-Voting Ensemble Inference}{34}{subsubsection.3.9.2}%
-\contentsline {section}{\numberline {4}Experimental Setup and Hyperparameter Settings}{34}{section.4}%
-\contentsline {section}{\numberline {5}Experimental Results}{37}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Cross-Validation Performance}{37}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Held-Out Ensemble Performance}{38}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Efficiency Benchmarking}{38}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Ablation Studies}{39}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Cross-Dataset Generalisation: BraTS 2023}{42}{subsection.5.5}%
-\contentsline {subsection}{\numberline {5.6}Qualitative Analysis and Per-Patient Distribution}{43}{subsection.5.6}%
-\contentsline {section}{\numberline {6}Discussion}{44}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Efficiency as a Structural Property}{44}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}The Complete-Miss Failure Mode}{47}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Comparison with State-of-the-Art}{49}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Cross-Dataset Generalisation Analysis}{52}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}Deployment Implications}{52}{subsection.6.5}%
-\contentsline {section}{\numberline {7}Conclusion}{53}{section.7}%
+\contentsline {subsection}{\numberline {3.5}Proposed Algorithm}{27}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Dataset and Splits}{29}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Graph Construction}{30}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Training Protocol}{32}{subsection.3.8}%
+\contentsline {subsection}{\numberline {3.9}Ensemble Inference}{34}{subsection.3.9}%
+\contentsline {subsubsection}{\numberline {3.9.1}Single-Fold Inference}{34}{subsubsection.3.9.1}%
+\contentsline {subsubsection}{\numberline {3.9.2}5-Fold Soft-Voting Ensemble Inference}{35}{subsubsection.3.9.2}%
+\contentsline {section}{\numberline {4}Experimental Setup and Hyperparameter Settings}{35}{section.4}%
+\contentsline {section}{\numberline {5}Experimental Results}{38}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Cross-Validation Performance}{38}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Held-Out Ensemble Performance}{39}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Efficiency Benchmarking}{39}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Ablation Studies}{40}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Cross-Dataset Generalisation: BraTS 2023}{43}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Qualitative Analysis and Per-Patient Distribution}{44}{subsection.5.6}%
+\contentsline {section}{\numberline {6}Discussion}{45}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Efficiency as a Structural Property}{45}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}The Complete-Miss Failure Mode}{48}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Comparison with State-of-the-Art}{50}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Cross-Dataset Generalisation Analysis}{53}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Deployment Implications}{53}{subsection.6.5}%
+\contentsline {section}{\numberline {7}Conclusion}{54}{section.7}%
