@@ -94,7 +94,7 @@ def fig_A_cv_performance():
     ax.tick_params(axis="both", labelsize=10)
 
     fig.tight_layout()
-    path = os.path.join(OUT_DIR, "fig_A_cv_performance.png")
+    path = os.path.join(OUT_DIR, "fig_A_cv_performance.jpg")
     fig.savefig(path, dpi=DPI, bbox_inches="tight")
     plt.close(fig)
     print(f"  Saved: {path}")
@@ -112,7 +112,7 @@ def fig_B_efficiency_bubble():
         ("GNN Single\n(CV mean, 439K params)",  1.73,  90.02, 439_041,   GNN_BLUE),
         ("GNN Ensemble\n(held-out, 2.2M params)", 1.73, 91.41, 2_195_205, "#0D47A1"),
         # U-Net baseline — same hardware, same binary task
-        ("3D U-Net\n(binary baseline, 68M params)", 10.16, 87.50, 68_000_000, UNET_RED),
+        ("3D U-Net\n(binary baseline, 69.1M params)", 10.16, 87.84, 69_146_113, UNET_RED),
     ]
     # ───────────────────────────────────────────────────────────────────────
 
@@ -149,7 +149,7 @@ def fig_B_efficiency_bubble():
     # legend for bubble sizes
     for label_txt, params in [("439K\n(GNN single)", 439_041),
                                ("2.2M\n(GNN ensemble)", 2_195_205),
-                               ("68M\n(U-Net)", 68_000_000)]:
+                               ("69.1M\n(U-Net)", 69_146_113)]:
         size = (params / max_params) ** 0.5 * bubble_scale
         ax.scatter([], [], s=size, c="gray", alpha=0.5,
                    label=f"{label_txt} params", edgecolors="white")
@@ -173,7 +173,7 @@ def fig_B_efficiency_bubble():
 
     ax.tick_params(axis="both", labelsize=10)
     fig.tight_layout()
-    path = os.path.join(OUT_DIR, "fig_B_efficiency_bubble.png")
+    path = os.path.join(OUT_DIR, "fig_B_efficiency_bubble.jpg")
     fig.savefig(path, dpi=DPI, bbox_inches="tight")
     plt.close(fig)
     print(f"  Saved: {path}")
@@ -256,7 +256,7 @@ def fig_C_generalisation():
              bbox=dict(boxstyle="round,pad=0.4", fc="#FFF8E1", ec="#FFC107", alpha=0.9))
 
     fig.tight_layout(pad=3.0)
-    path = os.path.join(OUT_DIR, "fig_C_generalisation.png")
+    path = os.path.join(OUT_DIR, "fig_C_generalisation.jpg")
     fig.savefig(path, dpi=DPI, bbox_inches="tight")
     plt.close(fig)
     print(f"  Saved: {path}")
@@ -278,8 +278,8 @@ def fig_D_speed_memory():
     mem_reduction  = 227     # 2500 / 11
 
     gnn_params_k   = 439     # thousands
-    unet_params_m  = 68      # millions
-    param_reduction = 155    # 68M / 439K
+    unet_params_m  = 69.1    # millions (69,146,113)
+    param_reduction = 157    # 69.1M / 439K
     # ───────────────────────────────────────────────────────────────────────
 
     fig, axes = plt.subplots(1, 3, figsize=(13, 5))
@@ -325,15 +325,15 @@ def fig_D_speed_memory():
 
     # Panel 3 — parameters (log scale)
     ax = axes[2]
-    param_vals  = [gnn_params_k * 1_000, unet_params_m * 1_000_000]
-    param_lbls  = [f"GNN\n439K", f"3D U-Net\n68M"]
+    param_vals  = [gnn_params_k * 1_000, 69_146_113]
+    param_lbls  = [f"GNN\n439K", f"3D U-Net\n69.1M"]
     bars3 = ax.bar(param_lbls, param_vals,
                    color=[GNN_BLUE, UNET_RED],
                    edgecolor="white", linewidth=0.8, width=0.5)
     ax.set_yscale("log")
     ax.set_ylabel("Model Parameters (log scale)", fontsize=10)
     ax.set_title("Model Parameters", fontsize=11, fontweight="bold")
-    ax.bar_label(bars3, labels=["439K", "68M"],
+    ax.bar_label(bars3, labels=["439K", "69.1M"],
                  padding=3, fontsize=10, fontweight="bold")
     ax.text(0.5, 0.55, f"{param_reduction}× fewer\nparameters",
             transform=ax.transAxes, ha="center", va="center",
@@ -346,7 +346,7 @@ def fig_D_speed_memory():
         fontsize=11, fontweight="bold", y=1.01
     )
     fig.tight_layout(pad=1.5)
-    path = os.path.join(OUT_DIR, "fig_D_speed_memory.png")
+    path = os.path.join(OUT_DIR, "fig_D_speed_memory.jpg")
     fig.savefig(path, dpi=DPI, bbox_inches="tight")
     plt.close(fig)
     print(f"  Saved: {path}")
@@ -404,7 +404,7 @@ def fig_E_ensemble_vs_individual():
             bbox=dict(boxstyle="round,pad=0.3", fc="#FFF9C4", ec="#FBC02D", alpha=0.9))
 
     fig.tight_layout()
-    path = os.path.join(OUT_DIR, "fig_E_ensemble_vs_individual.png")
+    path = os.path.join(OUT_DIR, "fig_E_ensemble_vs_individual.jpg")
     fig.savefig(path, dpi=DPI, bbox_inches="tight")
     plt.close(fig)
     print(f"  Saved: {path}")
@@ -463,7 +463,7 @@ def fig_F_ablation():
                  arrowprops=dict(arrowstyle="-|>", color=GNN_BLUE, lw=1.3))
 
     fig.tight_layout()
-    path = os.path.join(OUT_DIR, "fig_F_ablation.png")
+    path = os.path.join(OUT_DIR, "fig_F_ablation.jpg")
     fig.savefig(path, dpi=DPI, bbox_inches="tight")
     plt.close(fig)
     print(f"  Saved: {path}")

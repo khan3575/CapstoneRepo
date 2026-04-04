@@ -1,0 +1,5097 @@
+nohup: ignoring input
+Rc files read:
+  /etc/LatexMk
+  .latexmkrc
+Latexmk: This is Latexmk, John Collins, 31 Jan. 2024. Version 4.83.
+======= Need to update make_preview_continuous for target files
+Viewing pdf
+Latexmk: applying rule 'bibtex main_bubt_paper'...
+Rule 'bibtex main_bubt_paper':  Reasons for rerun
+Changed files or newly in use/created:
+  main_bubt_paper.aux
+
+------------
+Run number 1 of rule 'bibtex main_bubt_paper'
+------------
+------------
+Running 'bibtex  "main_bubt_paper.aux"'
+------------
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+The top-level auxiliary file: main_bubt_paper.aux
+The style file: unsrtnat.bst
+Database file #1: ref.bib
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  main_bubt_paper.aux
+  main_bubt_paper.bbl
+  main_bubt_paper.out
+  main_bubt_paper.toc
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -recorder  "main_bubt_paper.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./main_bubt_paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/acronym/acronym.sty
+(/usr/share/texlive/texmf-dist/tex/latex/bigfoot/suffix.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/sectsty/sectsty.sty
+
+LaTeX Warning: Command \underbar  has changed.
+               Check if current package is valid.
+
+
+LaTeX Warning: Command \underline  has changed.
+               Check if current package is valid.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered
+.code.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex))
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarypositioning.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.
+code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarycalc.code.tex) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./main_bubt_paper.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(./main_bubt_paper.out) (./main_bubt_paper.out)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map} <./BUBT-Logo.png>]
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <16> not available
+(Font)              size <17.28> substituted on input line 88.
+
+[2] [3] [4] [5]
+Overfull \hbox (6.97937pt too wide) in paragraph at lines 236--239
+\OT1/cmr/m/n/12 BraTS 2021, BraTS 2023, Com-pu-ta-tional Ef-fi-ciency, Su-per-p
+ixel Graph, Cross-Dataset
+[6]
+
+LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 24
+7.
+
+
+LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 24
+7.
+
+
+LaTeX Warning: Hyper reference `acro:AMP' on page vii undefined on input line 2
+48.
+
+
+LaTeX Warning: Hyper reference `acro:AMP' on page vii undefined on input line 2
+48.
+
+
+LaTeX Warning: Hyper reference `acro:BCE' on page vii undefined on input line 2
+49.
+
+
+LaTeX Warning: Hyper reference `acro:BCE' on page vii undefined on input line 2
+49.
+
+
+LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
+ 250.
+
+
+LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
+ 250.
+
+
+LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 2
+51.
+
+
+LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 2
+51.
+
+
+LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 25
+2.
+
+
+LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 25
+2.
+
+
+LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
+253.
+
+
+LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
+253.
+
+
+LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 25
+4.
+
+
+LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 25
+4.
+
+
+LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
+ 255.
+
+
+LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
+ 255.
+
+
+LaTeX Warning: Hyper reference `acro:ET' on page vii undefined on input line 25
+6.
+
+
+LaTeX Warning: Hyper reference `acro:ET' on page vii undefined on input line 25
+6.
+
+
+LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 2
+57.
+
+
+LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 2
+57.
+
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
+ 258.
+
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
+ 258.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 2
+59.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 2
+59.
+
+
+LaTeX Warning: Hyper reference `acro:GCN' on page vii undefined on input line 2
+60.
+
+
+LaTeX Warning: Hyper reference `acro:GCN' on page vii undefined on input line 2
+60.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
+61.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
+61.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+62.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+62.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
+line 263.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
+line 263.
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page vii undefined on input line 2
+64.
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page vii undefined on input line 2
+64.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page vii undefined on input line
+ 265.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page vii undefined on input line
+ 265.
+
+
+LaTeX Warning: Hyper reference `acro:RAG' on page vii undefined on input line 2
+66.
+
+
+LaTeX Warning: Hyper reference `acro:RAG' on page vii undefined on input line 2
+66.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page vii undefined on input line 
+267.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page vii undefined on input line 
+267.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page vii undefined on input line 
+268.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page vii undefined on input line 
+268.
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page vii undefined on input line 26
+9.
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page vii undefined on input line 26
+9.
+
+[7]
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
+ 270.
+
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
+ 270.
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 2
+71.
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 2
+71.
+
+
+LaTeX Warning: Hyper reference `acro:TC' on page viii undefined on input line 2
+72.
+
+
+LaTeX Warning: Hyper reference `acro:TC' on page viii undefined on input line 2
+72.
+
+
+LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
+e 273.
+
+
+LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
+e 273.
+
+
+LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
+ 274.
+
+
+LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
+ 274.
+
+
+LaTeX Warning: Hyper reference `acro:WT' on page viii undefined on input line 2
+75.
+
+
+LaTeX Warning: Hyper reference `acro:WT' on page viii undefined on input line 2
+75.
+
+[8] (./main_bubt_paper.toc [9]) [10]
+
+Package natbib Warning: Citation `menze2015multimodal' on page 1 undefined on i
+nput line 301.
+
+
+Package natbib Warning: Citation `menze2015multimodal' on page 1 undefined on i
+nput line 306.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 1 undefined on input 
+line 306.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 1 undefined on inp
+ut line 312.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 1 undefined on i
+nput line 313.
+
+
+Overfull \hbox (9.22496pt too wide) in paragraph at lines 306--315
+\OT1/cmr/m/n/12 glioma cases---covering T1-weighted (T1), contrast-enhanced T1 
+(T1CE), T2-weighted
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 1 undefined on
+ input line 327.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 1 undefined on input
+ line 329.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.332 
+       [1]
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 2 undefined on inp
+ut line 337.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 2 undefined on i
+nput line 338.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 2 undefined on inp
+ut line 345.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 2 undefined on i
+nput line 345.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 2 undefined on input
+ line 351.
+
+
+Package natbib Warning: Citation `kipf2017gcn' on page 2 undefined on input lin
+e 360.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 2 undefined on
+ input line 360.
+
+[2]
+
+Package natbib Warning: Citation `achanta2012slic' on page 3 undefined on input
+ line 381.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 3 undefined on
+ input line 388.
+
+
+Package natbib Warning: Citation `cicek20163d' on page 3 undefined on input lin
+e 398.
+
+[3]
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 4 undefined on inp
+ut line 417.
+
+
+Package natbib Warning: Citation `saueressig2021exploring' on page 4 undefined 
+on input line 429.
+
+
+Package natbib Warning: Citation `patel2023multiclass' on page 4 undefined on i
+nput line 433.
+
+
+Package natbib Warning: Citation `menze2015multimodal' on page 4 undefined on i
+nput line 444.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 4 undefined on input 
+line 444.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 4 undefined on inp
+ut line 445.
+
+[4]
+
+Package natbib Warning: Citation `cicek20163d' on page 5 undefined on input lin
+e 455.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 5 undefined on input
+ line 467.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 5 undefined on
+ input line 474.
+
+
+Overfull \hbox (1.41458pt too wide) in paragraph at lines 484--488
+[]\OT1/cmr/bx/n/12 Zero-shot cross-edition eval-u-a-tion. \OT1/cmr/m/n/12 Di-re
+ct eval-u-a-tion on BraTS 2023 (1,245
+
+Package natbib Warning: Citation `cicek20163d' on page 5 undefined on input lin
+e 494.
+
+
+Overfull \hbox (7.2522pt too wide) in paragraph at lines 489--496
+\OT1/cmr/m/n/12 ory per pa-tient. End-to-end in-clud-ing on-the-fly graph con-s
+truc-tion: \OT1/cmr/bx/n/12 1,732ms\OT1/cmr/m/n/12 ---
+[5]
+
+Package natbib Warning: Citation `litjens2017survey' on page 6 undefined on inp
+ut line 513.
+
+
+Package natbib Warning: Citation `pereira2016brain' on page 6 undefined on inpu
+t line 515.
+
+
+Package natbib Warning: Citation `ronneberger2015unet' on page 6 undefined on i
+nput line 521.
+
+[6]
+
+Package natbib Warning: Citation `cicek20163d' on page 7 undefined on input lin
+e 533.
+
+
+Package natbib Warning: Citation `milletari2016vnet' on page 7 undefined on inp
+ut line 546.
+
+
+Package natbib Warning: Citation `oktay2018attention' on page 7 undefined on in
+put line 557.
+
+[7]
+
+Package natbib Warning: Citation `zhou2018unetpp' on page 8 undefined on input 
+line 568.
+
+
+Package natbib Warning: Citation `kamnitsas2017efficient' on page 8 undefined o
+n input line 577.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 8 undefined on inp
+ut line 586.
+
+
+Package natbib Warning: Citation `dosovitskiy2021image' on page 8 undefined on 
+input line 599.
+
+
+Package natbib Warning: Citation `wang2021transbts' on page 8 undefined on inpu
+t line 601.
+
+[8]
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 9 undefined on i
+nput line 611.
+
+
+Package natbib Warning: Citation `liu2021swin' on page 9 undefined on input lin
+e 613.
+
+
+Package natbib Warning: Citation `myronenko2019brats' on page 9 undefined on in
+put line 621.
+
+[9]
+
+Package natbib Warning: Citation `scarselli2009graph' on page 10 undefined on i
+nput line 644.
+
+
+Package natbib Warning: Citation `defferrard2016convolutional' on page 10 undef
+ined on input line 650.
+
+
+Package natbib Warning: Citation `kipf2017gcn' on page 10 undefined on input li
+ne 654.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 10 undefined o
+n input line 665.
+
+[10]
+
+Package natbib Warning: Citation `velickovic2018gat' on page 11 undefined on in
+put line 679.
+
+
+Package natbib Warning: Citation `gilmer2017neural' on page 11 undefined on inp
+ut line 693.
+
+
+Package natbib Warning: Citation `wu2021comprehensive' on page 11 undefined on 
+input line 700.
+
+
+Package natbib Warning: Citation `qi2017pointnet' on page 11 undefined on input
+ line 705.
+
+[11]
+
+Package natbib Warning: Citation `parisot2017spectral' on page 12 undefined on 
+input line 714.
+
+
+Package natbib Warning: Citation `jha2021instance' on page 12 undefined on inpu
+t line 723.
+
+
+Package natbib Warning: Citation `bessadok2022graph' on page 12 undefined on in
+put line 725.
+
+
+Package natbib Warning: Citation `saueressig2021exploring' on page 12 undefined
+ on input line 728.
+
+
+Package natbib Warning: Citation `patel2023multiclass' on page 12 undefined on 
+input line 735.
+
+[12]
+
+Package natbib Warning: Citation `shi2000normalized' on page 13 undefined on in
+put line 762.
+
+
+Package natbib Warning: Citation `felzenszwalb2004efficient' on page 13 undefin
+ed on input line 769.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 13 undefined on inpu
+t line 775.
+
+[13]
+
+Package natbib Warning: Citation `stutz2018superpixels' on page 14 undefined on
+ input line 789.
+
+
+Package natbib Warning: Citation `orlando2017retinal' on page 14 undefined on i
+nput line 804.
+
+
+Package natbib Warning: Citation `jha2021instance' on page 14 undefined on inpu
+t line 808.
+
+
+Package natbib Warning: Citation `bai2019superpixel' on page 14 undefined on in
+put line 811.
+
+[14] [15]
+
+Package natbib Warning: Citation `menze2015multimodal' on page 16 undefined on 
+input line 891.
+
+
+Package natbib Warning: Citation `louis2016glioma' on page 16 undefined on inpu
+t line 891.
+
+[16]
+
+Package natbib Warning: Citation `achanta2012slic' on page 17 undefined on inpu
+t line 922.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 17 undefined o
+n input line 929.
+
+[17]
+Overfull \hbox (0.6281pt too wide) in paragraph at lines 939--946
+[]\OT1/cmr/m/n/12 The graph rep-re-sen-ta-tion com-presses each pa-tient from 8
+,928,000 vox-els to $\OMS/cmsy/m/n/12 ^^Y$\OT1/cmr/m/n/12 3,909
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+[18]
+Overfull \hbox (9.01772pt too wide) in paragraph at lines 1129--1133
+[]\OT1/cmr/m/n/12 Let $\OML/cmm/m/it/12 V[] \OMS/cmsy/m/n/12 2 \U/msb/m/n/12 R[
+]$ \OT1/cmr/m/n/12 de-note the vol-ume for modal-ity $\OML/cmm/m/it/12 m \OMS/c
+msy/m/n/12 2 f[]\OML/cmm/m/it/12 ; []; []; []\OMS/cmsy/m/n/12 g$
+[19]
+
+Package natbib Warning: Citation `achanta2012slic' on page 20 undefined on inpu
+t line 1178.
+
+[20] [21] [22]
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 23 undefined o
+n input line 1308.
+
+[23] [24]
+Overfull \hbox (3.35023pt too wide) in paragraph at lines 1354--1357
+[]\OT1/cmr/m/n/12 Training min-imises BCE-With-Log-it-sLoss (Bi-nary Cross-Entr
+opy with Log-its Loss),
+[25] [26]
+Overfull \vbox (13.97887pt too high) has occurred while \output is active
+[27]
+
+Package natbib Warning: Citation `menze2015multimodal' on page 28 undefined on 
+input line 1483.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 28 undefined on input
+ line 1483.
+
+
+Package natbib Warning: Citation `bakas2017advancing' on page 28 undefined on i
+nput line 1483.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 28 undefined on input
+ line 1483.
+
+
+Underfull \hbox (badness 2253) in paragraph at lines 1483--1483
+[]|\OT1/cmr/m/n/10 Training, cross-validation, held-
+
+Package natbib Warning: Citation `menze2015multimodal' on page 28 undefined on 
+input line 1487.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 28 undefined on input
+ line 1487.
+
+
+Package natbib Warning: Citation `bakas2017advancing' on page 28 undefined on i
+nput line 1487.
+
+[28{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [29] [30]
+[31]
+
+Package natbib Warning: Citation `loshchilov2019adamw' on page 32 undefined on 
+input line 1640.
+
+[32] [33]
+
+Package natbib Warning: Citation `fey2019pyg' on page 34 undefined on input lin
+e 1752.
+
+[34]
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 35 undefined o
+n input line 1836.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1836--1836
+[]|\OT1/cmr/m/n/10 Neighbourhood ag-gre-ga-tion
+[35]
+
+Package natbib Warning: Citation `loshchilov2019adamw' on page 36 undefined on 
+input line 1892.
+
+
+Overfull \hbox (2.17448pt too wide) in paragraph at lines 1934--1934
+ []|\OT1/cmr/bx/n/10 Mean$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 SD| 
+
+Overfull \hbox (5.43837pt too wide) in paragraph at lines 1934--1934
+ []|\OT1/cmr/bx/n/10 90.02$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 0.66| 
+[36]
+Overfull \hbox (50.38109pt too wide) in paragraph at lines 1943--1948
+\OT1/cmr/m/n/12 (88.72%) re-flects the stochas-tic train-ing pro-cess un-der th
+e non-deterministic \OT1/cmtt/m/n/12 cudnn.benchmark
+[37 <./fig_A_cv_performance.jpg>]
+Overfull \hbox (13.97646pt too wide) in paragraph at lines 1991--1998
+[]\OT1/cmr/m/n/12 Precision (95.52%) sub-stan-tially ex-ceeds Sen-si-tiv-ity (8
+7.77%), in-di-cat-ing a precision-
+[38] [39 <./fig_B_efficiency_bubble.jpg>] [40 <./fig_D_speed_memory.jpg>]
+Overfull \hbox (3.38364pt too wide) in paragraph at lines 2128--2132
+\OT1/cmr/m/n/12 neigh-bour-hood sam-pling ag-gre-ga-tion pro-vides a bet-ter ac
+curacy-efficiency trade-
+[41 <./fig_F_ablation.jpg>] [42 <./fig_C_generalisation.jpg>]
+
+LaTeX Warning: File `fig_G_dice_distribution.jpg' not found on input line 2233.
+
+
+
+! Package pdftex.def Error: File `fig_G_dice_distribution.jpg' not found: using
+ draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2233 ...\textwidth]{fig_G_dice_distribution.jpg}
+                                                  
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.2233 ...\textwidth]{fig_G_dice_distribution.jpg}
+                                                  
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on main_bubt_paper.log.
+Latexmk: Missing input file 'fig_G_dice_distribution.jpg' (or dependence on it) from following:
+  LaTeX Warning: File `fig_G_dice_distribution.jpg' not found on input line 2233.
+Latexmk: Missing input file 'fig_G_dice_distribution.jpg' (or dependence on it) from following:
+  LaTeX Warning: File `fig_G_dice_distribution.jpg' not found on input line 2233.
+Latexmk: ====Undefined refs and citations with line #s in .tex file:
+  Citation `menze2015multimodal' on page 1 undefined on input line 301
+  Citation `menze2015multimodal' on page 1 undefined on input line 306
+  Citation `bakas2021brats' on page 1 undefined on input line 306
+  Citation `isensee2021nnunet' on page 1 undefined on input line 312
+  Citation `hatamizadeh2022swin' on page 1 undefined on input line 313
+  Citation `hamilton2017graphsage' on page 1 undefined on input line 327
+  Citation `achanta2012slic' on page 1 undefined on input line 329
+ And 71 more --- see log file 'main_bubt_paper.log'
+Latexmk: Failure to make the files correctly
+    ==> You will need to change a source file before I do another run <==
+Latexmk: Getting log file 'main_bubt_paper.log'
+Latexmk: Examining 'main_bubt_paper.fls'
+Latexmk: Examining 'main_bubt_paper.log'
+Latexmk: Summary of warnings from last run of *latex:
+  Latex failed to resolve 78 citation(s)
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to 'main_bubt_paper.log' and/or above output for details
+
+=== Watching for updated files. Use ctrl/C to stop ...
+
+Latexmk: Need to remake files.
+ Reasons for rerun
+Changed files or newly in use/created:
+  main_bubt_paper.tex
+Category 'changed_user':
+  main_bubt_paper.tex
+Category 'rules_to_apply':
+  pdflatex
+
+
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  main_bubt_paper.tex
+Category 'changed_user':
+  main_bubt_paper.tex
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -recorder  "main_bubt_paper.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./main_bubt_paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/acronym/acronym.sty
+(/usr/share/texlive/texmf-dist/tex/latex/bigfoot/suffix.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/sectsty/sectsty.sty
+
+LaTeX Warning: Command \underbar  has changed.
+               Check if current package is valid.
+
+
+LaTeX Warning: Command \underline  has changed.
+               Check if current package is valid.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered
+.code.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex))
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarypositioning.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.
+code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarycalc.code.tex) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./main_bubt_paper.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(./main_bubt_paper.out) (./main_bubt_paper.out)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map} <./BUBT-Logo.png>]
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <16> not available
+(Font)              size <17.28> substituted on input line 88.
+
+[2] [3] [4] [5]
+Overfull \hbox (6.97937pt too wide) in paragraph at lines 236--239
+\OT1/cmr/m/n/12 BraTS 2021, BraTS 2023, Com-pu-ta-tional Ef-fi-ciency, Su-per-p
+ixel Graph, Cross-Dataset
+[6]
+
+LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 24
+7.
+
+
+LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 24
+7.
+
+
+LaTeX Warning: Hyper reference `acro:AMP' on page vii undefined on input line 2
+48.
+
+
+LaTeX Warning: Hyper reference `acro:AMP' on page vii undefined on input line 2
+48.
+
+
+LaTeX Warning: Hyper reference `acro:BCE' on page vii undefined on input line 2
+49.
+
+
+LaTeX Warning: Hyper reference `acro:BCE' on page vii undefined on input line 2
+49.
+
+
+LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
+ 250.
+
+
+LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
+ 250.
+
+
+LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 2
+51.
+
+
+LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 2
+51.
+
+
+LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 25
+2.
+
+
+LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 25
+2.
+
+
+LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
+253.
+
+
+LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
+253.
+
+
+LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 25
+4.
+
+
+LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 25
+4.
+
+
+LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
+ 255.
+
+
+LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
+ 255.
+
+
+LaTeX Warning: Hyper reference `acro:ET' on page vii undefined on input line 25
+6.
+
+
+LaTeX Warning: Hyper reference `acro:ET' on page vii undefined on input line 25
+6.
+
+
+LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 2
+57.
+
+
+LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 2
+57.
+
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
+ 258.
+
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
+ 258.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 2
+59.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 2
+59.
+
+
+LaTeX Warning: Hyper reference `acro:GCN' on page vii undefined on input line 2
+60.
+
+
+LaTeX Warning: Hyper reference `acro:GCN' on page vii undefined on input line 2
+60.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
+61.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
+61.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+62.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+62.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
+line 263.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
+line 263.
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page vii undefined on input line 2
+64.
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page vii undefined on input line 2
+64.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page vii undefined on input line
+ 265.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page vii undefined on input line
+ 265.
+
+
+LaTeX Warning: Hyper reference `acro:RAG' on page vii undefined on input line 2
+66.
+
+
+LaTeX Warning: Hyper reference `acro:RAG' on page vii undefined on input line 2
+66.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page vii undefined on input line 
+267.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page vii undefined on input line 
+267.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page vii undefined on input line 
+268.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page vii undefined on input line 
+268.
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page vii undefined on input line 26
+9.
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page vii undefined on input line 26
+9.
+
+[7]
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
+ 270.
+
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
+ 270.
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 2
+71.
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 2
+71.
+
+
+LaTeX Warning: Hyper reference `acro:TC' on page viii undefined on input line 2
+72.
+
+
+LaTeX Warning: Hyper reference `acro:TC' on page viii undefined on input line 2
+72.
+
+
+LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
+e 273.
+
+
+LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
+e 273.
+
+
+LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
+ 274.
+
+
+LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
+ 274.
+
+
+LaTeX Warning: Hyper reference `acro:WT' on page viii undefined on input line 2
+75.
+
+
+LaTeX Warning: Hyper reference `acro:WT' on page viii undefined on input line 2
+75.
+
+[8] (./main_bubt_paper.toc) [9]
+
+Package natbib Warning: Citation `menze2015multimodal' on page 1 undefined on i
+nput line 301.
+
+
+Package natbib Warning: Citation `menze2015multimodal' on page 1 undefined on i
+nput line 306.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 1 undefined on input 
+line 306.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 1 undefined on inp
+ut line 312.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 1 undefined on i
+nput line 313.
+
+
+Overfull \hbox (9.22496pt too wide) in paragraph at lines 306--315
+\OT1/cmr/m/n/12 glioma cases---covering T1-weighted (T1), contrast-enhanced T1 
+(T1CE), T2-weighted
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 1 undefined on
+ input line 327.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 1 undefined on input
+ line 329.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.332 
+       [1]
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 2 undefined on inp
+ut line 337.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 2 undefined on i
+nput line 338.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 2 undefined on inp
+ut line 345.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 2 undefined on i
+nput line 345.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 2 undefined on input
+ line 351.
+
+
+Package natbib Warning: Citation `kipf2017gcn' on page 2 undefined on input lin
+e 360.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 2 undefined on
+ input line 360.
+
+[2]
+
+Package natbib Warning: Citation `achanta2012slic' on page 3 undefined on input
+ line 381.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 3 undefined on
+ input line 388.
+
+
+Package natbib Warning: Citation `cicek20163d' on page 3 undefined on input lin
+e 398.
+
+[3]
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 4 undefined on inp
+ut line 417.
+
+
+Package natbib Warning: Citation `saueressig2021exploring' on page 4 undefined 
+on input line 429.
+
+
+Package natbib Warning: Citation `patel2023multiclass' on page 4 undefined on i
+nput line 433.
+
+
+Package natbib Warning: Citation `menze2015multimodal' on page 4 undefined on i
+nput line 444.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 4 undefined on input 
+line 444.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 4 undefined on inp
+ut line 445.
+
+[4]
+
+Package natbib Warning: Citation `cicek20163d' on page 5 undefined on input lin
+e 455.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 5 undefined on input
+ line 467.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 5 undefined on
+ input line 474.
+
+
+Overfull \hbox (1.41458pt too wide) in paragraph at lines 484--488
+[]\OT1/cmr/bx/n/12 Zero-shot cross-edition eval-u-a-tion. \OT1/cmr/m/n/12 Di-re
+ct eval-u-a-tion on BraTS 2023 (1,245
+
+Package natbib Warning: Citation `cicek20163d' on page 5 undefined on input lin
+e 494.
+
+
+Overfull \hbox (7.2522pt too wide) in paragraph at lines 489--496
+\OT1/cmr/m/n/12 ory per pa-tient. End-to-end in-clud-ing on-the-fly graph con-s
+truc-tion: \OT1/cmr/bx/n/12 1,732ms\OT1/cmr/m/n/12 ---
+[5]
+
+LaTeX Warning: Reference `sec:discussion' on page 6 undefined on input line 501
+.
+
+
+LaTeX Warning: Reference `sec:conclusion' on page 6 undefined on input line 502
+.
+
+
+Package natbib Warning: Citation `litjens2017survey' on page 6 undefined on inp
+ut line 513.
+
+
+Package natbib Warning: Citation `pereira2016brain' on page 6 undefined on inpu
+t line 515.
+
+
+Package natbib Warning: Citation `ronneberger2015unet' on page 6 undefined on i
+nput line 521.
+
+[6]
+
+Package natbib Warning: Citation `cicek20163d' on page 7 undefined on input lin
+e 533.
+
+
+Package natbib Warning: Citation `milletari2016vnet' on page 7 undefined on inp
+ut line 546.
+
+
+Package natbib Warning: Citation `oktay2018attention' on page 7 undefined on in
+put line 557.
+
+[7]
+
+Package natbib Warning: Citation `zhou2018unetpp' on page 8 undefined on input 
+line 568.
+
+
+Package natbib Warning: Citation `kamnitsas2017efficient' on page 8 undefined o
+n input line 577.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 8 undefined on inp
+ut line 586.
+
+
+Package natbib Warning: Citation `dosovitskiy2021image' on page 8 undefined on 
+input line 599.
+
+
+Package natbib Warning: Citation `wang2021transbts' on page 8 undefined on inpu
+t line 601.
+
+[8]
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 9 undefined on i
+nput line 611.
+
+
+Package natbib Warning: Citation `liu2021swin' on page 9 undefined on input lin
+e 613.
+
+
+Package natbib Warning: Citation `myronenko2019brats' on page 9 undefined on in
+put line 621.
+
+[9]
+
+Package natbib Warning: Citation `scarselli2009graph' on page 10 undefined on i
+nput line 644.
+
+
+Package natbib Warning: Citation `defferrard2016convolutional' on page 10 undef
+ined on input line 650.
+
+
+Package natbib Warning: Citation `kipf2017gcn' on page 10 undefined on input li
+ne 654.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 10 undefined o
+n input line 665.
+
+[10]
+
+Package natbib Warning: Citation `velickovic2018gat' on page 11 undefined on in
+put line 679.
+
+
+Package natbib Warning: Citation `gilmer2017neural' on page 11 undefined on inp
+ut line 693.
+
+
+Package natbib Warning: Citation `wu2021comprehensive' on page 11 undefined on 
+input line 700.
+
+
+Package natbib Warning: Citation `qi2017pointnet' on page 11 undefined on input
+ line 705.
+
+[11]
+
+Package natbib Warning: Citation `parisot2017spectral' on page 12 undefined on 
+input line 714.
+
+
+Package natbib Warning: Citation `jha2021instance' on page 12 undefined on inpu
+t line 723.
+
+
+Package natbib Warning: Citation `bessadok2022graph' on page 12 undefined on in
+put line 725.
+
+
+Package natbib Warning: Citation `saueressig2021exploring' on page 12 undefined
+ on input line 728.
+
+
+Package natbib Warning: Citation `patel2023multiclass' on page 12 undefined on 
+input line 735.
+
+[12]
+
+Package natbib Warning: Citation `shi2000normalized' on page 13 undefined on in
+put line 762.
+
+
+Package natbib Warning: Citation `felzenszwalb2004efficient' on page 13 undefin
+ed on input line 769.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 13 undefined on inpu
+t line 775.
+
+[13]
+
+Package natbib Warning: Citation `stutz2018superpixels' on page 14 undefined on
+ input line 789.
+
+
+Package natbib Warning: Citation `orlando2017retinal' on page 14 undefined on i
+nput line 804.
+
+
+Package natbib Warning: Citation `jha2021instance' on page 14 undefined on inpu
+t line 808.
+
+
+Package natbib Warning: Citation `bai2019superpixel' on page 14 undefined on in
+put line 811.
+
+[14] [15]
+
+Package natbib Warning: Citation `menze2015multimodal' on page 16 undefined on 
+input line 891.
+
+
+Package natbib Warning: Citation `louis2016glioma' on page 16 undefined on inpu
+t line 891.
+
+[16]
+
+Package natbib Warning: Citation `achanta2012slic' on page 17 undefined on inpu
+t line 922.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 17 undefined o
+n input line 929.
+
+[17]
+Overfull \hbox (0.6281pt too wide) in paragraph at lines 939--946
+[]\OT1/cmr/m/n/12 The graph rep-re-sen-ta-tion com-presses each pa-tient from 8
+,928,000 vox-els to $\OMS/cmsy/m/n/12 ^^Y$\OT1/cmr/m/n/12 3,909
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+[18]
+Overfull \hbox (9.01772pt too wide) in paragraph at lines 1129--1133
+[]\OT1/cmr/m/n/12 Let $\OML/cmm/m/it/12 V[] \OMS/cmsy/m/n/12 2 \U/msb/m/n/12 R[
+]$ \OT1/cmr/m/n/12 de-note the vol-ume for modal-ity $\OML/cmm/m/it/12 m \OMS/c
+msy/m/n/12 2 f[]\OML/cmm/m/it/12 ; []; []; []\OMS/cmsy/m/n/12 g$
+[19]
+
+Package natbib Warning: Citation `achanta2012slic' on page 20 undefined on inpu
+t line 1178.
+
+[20] [21] [22]
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 23 undefined o
+n input line 1308.
+
+[23] [24]
+Overfull \hbox (3.35023pt too wide) in paragraph at lines 1354--1357
+[]\OT1/cmr/m/n/12 Training min-imises BCE-With-Log-it-sLoss (Bi-nary Cross-Entr
+opy with Log-its Loss),
+[25] [26]
+Overfull \vbox (13.97887pt too high) has occurred while \output is active
+[27]
+
+Package natbib Warning: Citation `menze2015multimodal' on page 28 undefined on 
+input line 1483.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 28 undefined on input
+ line 1483.
+
+
+Package natbib Warning: Citation `bakas2017advancing' on page 28 undefined on i
+nput line 1483.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 28 undefined on input
+ line 1483.
+
+
+Underfull \hbox (badness 2253) in paragraph at lines 1483--1483
+[]|\OT1/cmr/m/n/10 Training, cross-validation, held-
+
+Package natbib Warning: Citation `menze2015multimodal' on page 28 undefined on 
+input line 1487.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 28 undefined on input
+ line 1487.
+
+
+Package natbib Warning: Citation `bakas2017advancing' on page 28 undefined on i
+nput line 1487.
+
+[28{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [29] [30]
+[31]
+
+Package natbib Warning: Citation `loshchilov2019adamw' on page 32 undefined on 
+input line 1640.
+
+[32] [33]
+
+Package natbib Warning: Citation `fey2019pyg' on page 34 undefined on input lin
+e 1752.
+
+[34]
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 35 undefined o
+n input line 1836.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1836--1836
+[]|\OT1/cmr/m/n/10 Neighbourhood ag-gre-ga-tion
+[35]
+
+Package natbib Warning: Citation `loshchilov2019adamw' on page 36 undefined on 
+input line 1892.
+
+
+Overfull \hbox (2.17448pt too wide) in paragraph at lines 1934--1934
+ []|\OT1/cmr/bx/n/10 Mean$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 SD| 
+
+Overfull \hbox (5.43837pt too wide) in paragraph at lines 1934--1934
+ []|\OT1/cmr/bx/n/10 90.02$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 0.66| 
+[36]
+Overfull \hbox (50.38109pt too wide) in paragraph at lines 1943--1948
+\OT1/cmr/m/n/12 (88.72%) re-flects the stochas-tic train-ing pro-cess un-der th
+e non-deterministic \OT1/cmtt/m/n/12 cudnn.benchmark
+[37 <./fig_A_cv_performance.jpg>]
+Overfull \hbox (13.97646pt too wide) in paragraph at lines 1991--1998
+[]\OT1/cmr/m/n/12 Precision (95.52%) sub-stan-tially ex-ceeds Sen-si-tiv-ity (8
+7.77%), in-di-cat-ing a precision-
+[38] [39 <./fig_B_efficiency_bubble.jpg>] [40 <./fig_D_speed_memory.jpg>]
+Overfull \hbox (3.38364pt too wide) in paragraph at lines 2128--2132
+\OT1/cmr/m/n/12 neigh-bour-hood sam-pling ag-gre-ga-tion pro-vides a bet-ter ac
+curacy-efficiency trade-
+[41 <./fig_F_ablation.jpg>]
+
+LaTeX Warning: Reference `fig:qualitative' on page 42 undefined on input line 2
+190.
+
+[42 <./fig_C_generalisation.jpg>]
+
+LaTeX Warning: Reference `sec:discussion' on page 43 undefined on input line 22
+13.
+
+
+LaTeX Warning: File `fig_G_dice_distribution.jpg' not found on input line 2233.
+
+
+
+! Package pdftex.def Error: File `fig_G_dice_distribution.jpg' not found: using
+ draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2233 ...\textwidth]{fig_G_dice_distribution.jpg}
+                                                  
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.2233 ...\textwidth]{fig_G_dice_distribution.jpg}
+                                                  
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on main_bubt_paper.log.
+Invalid \0 character in pathname for ftis: /usr/share/texlive/texmf-dist/tex/latex/rerun\0 at /usr/bin/latexmk line 6286.
+Latexmk: Missing input file 'fig_G_dice_distribution.jpg' (or dependence on it) from following:
+  LaTeX Warning: File `fig_G_dice_distribution.jpg' not found on input line 2233.
+Latexmk: Missing input file 'fig_G_dice_distribution.jpg' (or dependence on it) from following:
+  LaTeX Warning: File `fig_G_dice_distribution.jpg' not found on input line 2233.
+Latexmk: ====Undefined refs and citations with line #s in .tex file:
+  Citation `menze2015multimodal' on page 1 undefined on input line 301
+  Citation `menze2015multimodal' on page 1 undefined on input line 306
+  Citation `bakas2021brats' on page 1 undefined on input line 306
+  Citation `isensee2021nnunet' on page 1 undefined on input line 312
+  Citation `hatamizadeh2022swin' on page 1 undefined on input line 313
+  Citation `hamilton2017graphsage' on page 1 undefined on input line 327
+  Citation `achanta2012slic' on page 1 undefined on input line 329
+ And 75 more --- see log file 'main_bubt_paper.log'
+Latexmk: Failure to make the files correctly
+    ==> You will need to change a source file before I do another run <==
+Latexmk: Getting log file 'main_bubt_paper.log'
+Latexmk: Examining 'main_bubt_paper.fls'
+Latexmk: Examining 'main_bubt_paper.log'
+Latexmk: Summary of warnings from last run of *latex:
+  Latex failed to resolve 4 reference(s)
+  Latex failed to resolve 78 citation(s)
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to 'main_bubt_paper.log' and/or above output for details
+
+=== Watching for updated files. Use ctrl/C to stop ...
+
+Latexmk: Need to remake files.
+ Reasons for rerun
+Changed files or newly in use/created:
+  main_bubt_paper.tex
+Category 'changed_user':
+  main_bubt_paper.tex
+Category 'rules_to_apply':
+  pdflatex
+
+
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  main_bubt_paper.tex
+Category 'changed_user':
+  main_bubt_paper.tex
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -recorder  "main_bubt_paper.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./main_bubt_paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/acronym/acronym.sty
+(/usr/share/texlive/texmf-dist/tex/latex/bigfoot/suffix.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/sectsty/sectsty.sty
+
+LaTeX Warning: Command \underbar  has changed.
+               Check if current package is valid.
+
+
+LaTeX Warning: Command \underline  has changed.
+               Check if current package is valid.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered
+.code.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex))
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarypositioning.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.
+code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarycalc.code.tex) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./main_bubt_paper.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(./main_bubt_paper.out) (./main_bubt_paper.out)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map} <./BUBT-Logo.png>]
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <16> not available
+(Font)              size <17.28> substituted on input line 88.
+
+[2] [3] [4] [5]
+Overfull \hbox (6.97937pt too wide) in paragraph at lines 236--239
+\OT1/cmr/m/n/12 BraTS 2021, BraTS 2023, Com-pu-ta-tional Ef-fi-ciency, Su-per-p
+ixel Graph, Cross-Dataset
+[6]
+
+LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 24
+7.
+
+
+LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 24
+7.
+
+
+LaTeX Warning: Hyper reference `acro:AMP' on page vii undefined on input line 2
+48.
+
+
+LaTeX Warning: Hyper reference `acro:AMP' on page vii undefined on input line 2
+48.
+
+
+LaTeX Warning: Hyper reference `acro:BCE' on page vii undefined on input line 2
+49.
+
+
+LaTeX Warning: Hyper reference `acro:BCE' on page vii undefined on input line 2
+49.
+
+
+LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
+ 250.
+
+
+LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
+ 250.
+
+
+LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 2
+51.
+
+
+LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 2
+51.
+
+
+LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 25
+2.
+
+
+LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 25
+2.
+
+
+LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
+253.
+
+
+LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
+253.
+
+
+LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 25
+4.
+
+
+LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 25
+4.
+
+
+LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
+ 255.
+
+
+LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
+ 255.
+
+
+LaTeX Warning: Hyper reference `acro:ET' on page vii undefined on input line 25
+6.
+
+
+LaTeX Warning: Hyper reference `acro:ET' on page vii undefined on input line 25
+6.
+
+
+LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 2
+57.
+
+
+LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 2
+57.
+
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
+ 258.
+
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
+ 258.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 2
+59.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 2
+59.
+
+
+LaTeX Warning: Hyper reference `acro:GCN' on page vii undefined on input line 2
+60.
+
+
+LaTeX Warning: Hyper reference `acro:GCN' on page vii undefined on input line 2
+60.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
+61.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
+61.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+62.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+62.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
+line 263.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
+line 263.
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page vii undefined on input line 2
+64.
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page vii undefined on input line 2
+64.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page vii undefined on input line
+ 265.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page vii undefined on input line
+ 265.
+
+
+LaTeX Warning: Hyper reference `acro:RAG' on page vii undefined on input line 2
+66.
+
+
+LaTeX Warning: Hyper reference `acro:RAG' on page vii undefined on input line 2
+66.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page vii undefined on input line 
+267.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page vii undefined on input line 
+267.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page vii undefined on input line 
+268.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page vii undefined on input line 
+268.
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page vii undefined on input line 26
+9.
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page vii undefined on input line 26
+9.
+
+[7]
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
+ 270.
+
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
+ 270.
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 2
+71.
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 2
+71.
+
+
+LaTeX Warning: Hyper reference `acro:TC' on page viii undefined on input line 2
+72.
+
+
+LaTeX Warning: Hyper reference `acro:TC' on page viii undefined on input line 2
+72.
+
+
+LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
+e 273.
+
+
+LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
+e 273.
+
+
+LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
+ 274.
+
+
+LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
+ 274.
+
+
+LaTeX Warning: Hyper reference `acro:WT' on page viii undefined on input line 2
+75.
+
+
+LaTeX Warning: Hyper reference `acro:WT' on page viii undefined on input line 2
+75.
+
+[8] (./main_bubt_paper.toc) [9]
+
+Package natbib Warning: Citation `menze2015multimodal' on page 1 undefined on i
+nput line 301.
+
+
+Package natbib Warning: Citation `menze2015multimodal' on page 1 undefined on i
+nput line 306.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 1 undefined on input 
+line 306.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 1 undefined on inp
+ut line 312.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 1 undefined on i
+nput line 313.
+
+
+Overfull \hbox (9.22496pt too wide) in paragraph at lines 306--315
+\OT1/cmr/m/n/12 glioma cases---covering T1-weighted (T1), contrast-enhanced T1 
+(T1CE), T2-weighted
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 1 undefined on
+ input line 327.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 1 undefined on input
+ line 329.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.332 
+       [1]
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 2 undefined on inp
+ut line 337.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 2 undefined on i
+nput line 338.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 2 undefined on inp
+ut line 345.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 2 undefined on i
+nput line 345.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 2 undefined on input
+ line 351.
+
+
+Package natbib Warning: Citation `kipf2017gcn' on page 2 undefined on input lin
+e 360.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 2 undefined on
+ input line 360.
+
+[2]
+
+Package natbib Warning: Citation `achanta2012slic' on page 3 undefined on input
+ line 381.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 3 undefined on
+ input line 388.
+
+
+Package natbib Warning: Citation `cicek20163d' on page 3 undefined on input lin
+e 398.
+
+[3]
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 4 undefined on inp
+ut line 417.
+
+
+Package natbib Warning: Citation `saueressig2021exploring' on page 4 undefined 
+on input line 429.
+
+
+Package natbib Warning: Citation `patel2023multiclass' on page 4 undefined on i
+nput line 433.
+
+
+Package natbib Warning: Citation `menze2015multimodal' on page 4 undefined on i
+nput line 444.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 4 undefined on input 
+line 444.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 4 undefined on inp
+ut line 445.
+
+[4]
+
+Package natbib Warning: Citation `cicek20163d' on page 5 undefined on input lin
+e 455.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 5 undefined on input
+ line 467.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 5 undefined on
+ input line 474.
+
+
+Overfull \hbox (1.41458pt too wide) in paragraph at lines 484--488
+[]\OT1/cmr/bx/n/12 Zero-shot cross-edition eval-u-a-tion. \OT1/cmr/m/n/12 Di-re
+ct eval-u-a-tion on BraTS 2023 (1,245
+
+Package natbib Warning: Citation `cicek20163d' on page 5 undefined on input lin
+e 494.
+
+
+Overfull \hbox (7.2522pt too wide) in paragraph at lines 489--496
+\OT1/cmr/m/n/12 ory per pa-tient. End-to-end in-clud-ing on-the-fly graph con-s
+truc-tion: \OT1/cmr/bx/n/12 1,732ms\OT1/cmr/m/n/12 ---
+[5]
+
+LaTeX Warning: Reference `sec:discussion' on page 6 undefined on input line 501
+.
+
+
+LaTeX Warning: Reference `sec:conclusion' on page 6 undefined on input line 502
+.
+
+
+Package natbib Warning: Citation `litjens2017survey' on page 6 undefined on inp
+ut line 513.
+
+
+Package natbib Warning: Citation `pereira2016brain' on page 6 undefined on inpu
+t line 515.
+
+
+Package natbib Warning: Citation `ronneberger2015unet' on page 6 undefined on i
+nput line 521.
+
+[6]
+
+Package natbib Warning: Citation `cicek20163d' on page 7 undefined on input lin
+e 533.
+
+
+Package natbib Warning: Citation `milletari2016vnet' on page 7 undefined on inp
+ut line 546.
+
+
+Package natbib Warning: Citation `oktay2018attention' on page 7 undefined on in
+put line 557.
+
+[7]
+
+Package natbib Warning: Citation `zhou2018unetpp' on page 8 undefined on input 
+line 568.
+
+
+Package natbib Warning: Citation `kamnitsas2017efficient' on page 8 undefined o
+n input line 577.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 8 undefined on inp
+ut line 586.
+
+
+Package natbib Warning: Citation `dosovitskiy2021image' on page 8 undefined on 
+input line 599.
+
+
+Package natbib Warning: Citation `wang2021transbts' on page 8 undefined on inpu
+t line 601.
+
+[8]
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 9 undefined on i
+nput line 611.
+
+
+Package natbib Warning: Citation `liu2021swin' on page 9 undefined on input lin
+e 613.
+
+
+Package natbib Warning: Citation `myronenko2019brats' on page 9 undefined on in
+put line 621.
+
+[9]
+
+Package natbib Warning: Citation `scarselli2009graph' on page 10 undefined on i
+nput line 644.
+
+
+Package natbib Warning: Citation `defferrard2016convolutional' on page 10 undef
+ined on input line 650.
+
+
+Package natbib Warning: Citation `kipf2017gcn' on page 10 undefined on input li
+ne 654.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 10 undefined o
+n input line 665.
+
+[10]
+
+Package natbib Warning: Citation `velickovic2018gat' on page 11 undefined on in
+put line 679.
+
+
+Package natbib Warning: Citation `gilmer2017neural' on page 11 undefined on inp
+ut line 693.
+
+
+Package natbib Warning: Citation `wu2021comprehensive' on page 11 undefined on 
+input line 700.
+
+
+Package natbib Warning: Citation `qi2017pointnet' on page 11 undefined on input
+ line 705.
+
+[11]
+
+Package natbib Warning: Citation `parisot2017spectral' on page 12 undefined on 
+input line 714.
+
+
+Package natbib Warning: Citation `jha2021instance' on page 12 undefined on inpu
+t line 723.
+
+
+Package natbib Warning: Citation `bessadok2022graph' on page 12 undefined on in
+put line 725.
+
+
+Package natbib Warning: Citation `saueressig2021exploring' on page 12 undefined
+ on input line 728.
+
+
+Package natbib Warning: Citation `patel2023multiclass' on page 12 undefined on 
+input line 735.
+
+[12]
+
+Package natbib Warning: Citation `shi2000normalized' on page 13 undefined on in
+put line 762.
+
+
+Package natbib Warning: Citation `felzenszwalb2004efficient' on page 13 undefin
+ed on input line 769.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 13 undefined on inpu
+t line 775.
+
+[13]
+
+Package natbib Warning: Citation `stutz2018superpixels' on page 14 undefined on
+ input line 789.
+
+
+Package natbib Warning: Citation `orlando2017retinal' on page 14 undefined on i
+nput line 804.
+
+
+Package natbib Warning: Citation `jha2021instance' on page 14 undefined on inpu
+t line 808.
+
+
+Package natbib Warning: Citation `bai2019superpixel' on page 14 undefined on in
+put line 811.
+
+[14] [15]
+
+Package natbib Warning: Citation `menze2015multimodal' on page 16 undefined on 
+input line 891.
+
+
+Package natbib Warning: Citation `louis2016glioma' on page 16 undefined on inpu
+t line 891.
+
+[16]
+
+Package natbib Warning: Citation `achanta2012slic' on page 17 undefined on inpu
+t line 922.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 17 undefined o
+n input line 929.
+
+[17]
+Overfull \hbox (0.6281pt too wide) in paragraph at lines 939--946
+[]\OT1/cmr/m/n/12 The graph rep-re-sen-ta-tion com-presses each pa-tient from 8
+,928,000 vox-els to $\OMS/cmsy/m/n/12 ^^Y$\OT1/cmr/m/n/12 3,909
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+[18]
+Overfull \hbox (9.01772pt too wide) in paragraph at lines 1129--1133
+[]\OT1/cmr/m/n/12 Let $\OML/cmm/m/it/12 V[] \OMS/cmsy/m/n/12 2 \U/msb/m/n/12 R[
+]$ \OT1/cmr/m/n/12 de-note the vol-ume for modal-ity $\OML/cmm/m/it/12 m \OMS/c
+msy/m/n/12 2 f[]\OML/cmm/m/it/12 ; []; []; []\OMS/cmsy/m/n/12 g$
+[19]
+
+Package natbib Warning: Citation `achanta2012slic' on page 20 undefined on inpu
+t line 1178.
+
+[20] [21] [22]
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 23 undefined o
+n input line 1308.
+
+[23] [24]
+Overfull \hbox (3.35023pt too wide) in paragraph at lines 1354--1357
+[]\OT1/cmr/m/n/12 Training min-imises BCE-With-Log-it-sLoss (Bi-nary Cross-Entr
+opy with Log-its Loss),
+[25] [26]
+Overfull \vbox (13.97887pt too high) has occurred while \output is active
+[27]
+
+Package natbib Warning: Citation `menze2015multimodal' on page 28 undefined on 
+input line 1483.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 28 undefined on input
+ line 1483.
+
+
+Package natbib Warning: Citation `bakas2017advancing' on page 28 undefined on i
+nput line 1483.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 28 undefined on input
+ line 1483.
+
+
+Underfull \hbox (badness 2253) in paragraph at lines 1483--1483
+[]|\OT1/cmr/m/n/10 Training, cross-validation, held-
+
+Package natbib Warning: Citation `menze2015multimodal' on page 28 undefined on 
+input line 1487.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 28 undefined on input
+ line 1487.
+
+
+Package natbib Warning: Citation `bakas2017advancing' on page 28 undefined on i
+nput line 1487.
+
+[28{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [29] [30]
+[31]
+
+Package natbib Warning: Citation `loshchilov2019adamw' on page 32 undefined on 
+input line 1640.
+
+[32] [33]
+
+Package natbib Warning: Citation `fey2019pyg' on page 34 undefined on input lin
+e 1752.
+
+[34]
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 35 undefined o
+n input line 1836.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1836--1836
+[]|\OT1/cmr/m/n/10 Neighbourhood ag-gre-ga-tion
+[35]
+
+Package natbib Warning: Citation `loshchilov2019adamw' on page 36 undefined on 
+input line 1892.
+
+
+Overfull \hbox (2.17448pt too wide) in paragraph at lines 1934--1934
+ []|\OT1/cmr/bx/n/10 Mean$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 SD| 
+
+Overfull \hbox (5.43837pt too wide) in paragraph at lines 1934--1934
+ []|\OT1/cmr/bx/n/10 90.02$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 0.66| 
+[36]
+Overfull \hbox (50.38109pt too wide) in paragraph at lines 1943--1948
+\OT1/cmr/m/n/12 (88.72%) re-flects the stochas-tic train-ing pro-cess un-der th
+e non-deterministic \OT1/cmtt/m/n/12 cudnn.benchmark
+[37 <./fig_A_cv_performance.jpg>]
+Overfull \hbox (13.97646pt too wide) in paragraph at lines 1991--1998
+[]\OT1/cmr/m/n/12 Precision (95.52%) sub-stan-tially ex-ceeds Sen-si-tiv-ity (8
+7.77%), in-di-cat-ing a precision-
+[38] [39 <./fig_B_efficiency_bubble.jpg>] [40 <./fig_D_speed_memory.jpg>]
+Overfull \hbox (3.38364pt too wide) in paragraph at lines 2128--2132
+\OT1/cmr/m/n/12 neigh-bour-hood sam-pling ag-gre-ga-tion pro-vides a bet-ter ac
+curacy-efficiency trade-
+[41 <./fig_F_ablation.jpg>]
+
+LaTeX Warning: Reference `fig:qualitative' on page 42 undefined on input line 2
+190.
+
+[42 <./fig_C_generalisation.jpg>]
+
+LaTeX Warning: Reference `sec:discussion' on page 43 undefined on input line 22
+13.
+
+
+LaTeX Warning: File `fig_G_dice_distribution.jpg' not found on input line 2233.
+
+
+
+! Package pdftex.def Error: File `fig_G_dice_distribution.jpg' not found: using
+ draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2233 ...\textwidth]{fig_G_dice_distribution.jpg}
+                                                  
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.2233 ...\textwidth]{fig_G_dice_distribution.jpg}
+                                                  
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on main_bubt_paper.log.
+Latexmk: Missing input file 'fig_G_dice_distribution.jpg' (or dependence on it) from following:
+  LaTeX Warning: File `fig_G_dice_distribution.jpg' not found on input line 2233.
+Latexmk: Missing input file 'fig_G_dice_distribution.jpg' (or dependence on it) from following:
+  LaTeX Warning: File `fig_G_dice_distribution.jpg' not found on input line 2233.
+Latexmk: ====Undefined refs and citations with line #s in .tex file:
+  Citation `menze2015multimodal' on page 1 undefined on input line 301
+  Citation `menze2015multimodal' on page 1 undefined on input line 306
+  Citation `bakas2021brats' on page 1 undefined on input line 306
+  Citation `isensee2021nnunet' on page 1 undefined on input line 312
+  Citation `hatamizadeh2022swin' on page 1 undefined on input line 313
+  Citation `hamilton2017graphsage' on page 1 undefined on input line 327
+  Citation `achanta2012slic' on page 1 undefined on input line 329
+ And 75 more --- see log file 'main_bubt_paper.log'
+Latexmk: Failure to make the files correctly
+    ==> You will need to change a source file before I do another run <==
+Latexmk: Getting log file 'main_bubt_paper.log'
+Latexmk: Examining 'main_bubt_paper.fls'
+Latexmk: Examining 'main_bubt_paper.log'
+Latexmk: Summary of warnings from last run of *latex:
+  Latex failed to resolve 4 reference(s)
+  Latex failed to resolve 78 citation(s)
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to 'main_bubt_paper.log' and/or above output for details
+
+=== Watching for updated files. Use ctrl/C to stop ...
+
+Latexmk: Need to remake files.
+ Reasons for rerun
+Changed files or newly in use/created:
+  main_bubt_paper.tex
+Category 'changed_user':
+  main_bubt_paper.tex
+Category 'rules_to_apply':
+  pdflatex
+
+
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  main_bubt_paper.tex
+Category 'changed_user':
+  main_bubt_paper.tex
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -recorder  "main_bubt_paper.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./main_bubt_paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/acronym/acronym.sty
+(/usr/share/texlive/texmf-dist/tex/latex/bigfoot/suffix.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/sectsty/sectsty.sty
+
+LaTeX Warning: Command \underbar  has changed.
+               Check if current package is valid.
+
+
+LaTeX Warning: Command \underline  has changed.
+               Check if current package is valid.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered
+.code.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex))
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarypositioning.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.
+code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarycalc.code.tex) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./main_bubt_paper.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(./main_bubt_paper.out) (./main_bubt_paper.out)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map} <./BUBT-Logo.png>]
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <16> not available
+(Font)              size <17.28> substituted on input line 88.
+
+[2] [3] [4] [5]
+Overfull \hbox (6.97937pt too wide) in paragraph at lines 236--239
+\OT1/cmr/m/n/12 BraTS 2021, BraTS 2023, Com-pu-ta-tional Ef-fi-ciency, Su-per-p
+ixel Graph, Cross-Dataset
+[6]
+
+LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 24
+7.
+
+
+LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 24
+7.
+
+
+LaTeX Warning: Hyper reference `acro:AMP' on page vii undefined on input line 2
+48.
+
+
+LaTeX Warning: Hyper reference `acro:AMP' on page vii undefined on input line 2
+48.
+
+
+LaTeX Warning: Hyper reference `acro:BCE' on page vii undefined on input line 2
+49.
+
+
+LaTeX Warning: Hyper reference `acro:BCE' on page vii undefined on input line 2
+49.
+
+
+LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
+ 250.
+
+
+LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
+ 250.
+
+
+LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 2
+51.
+
+
+LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 2
+51.
+
+
+LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 25
+2.
+
+
+LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 25
+2.
+
+
+LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
+253.
+
+
+LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
+253.
+
+
+LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 25
+4.
+
+
+LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 25
+4.
+
+
+LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
+ 255.
+
+
+LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
+ 255.
+
+
+LaTeX Warning: Hyper reference `acro:ET' on page vii undefined on input line 25
+6.
+
+
+LaTeX Warning: Hyper reference `acro:ET' on page vii undefined on input line 25
+6.
+
+
+LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 2
+57.
+
+
+LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 2
+57.
+
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
+ 258.
+
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
+ 258.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 2
+59.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 2
+59.
+
+
+LaTeX Warning: Hyper reference `acro:GCN' on page vii undefined on input line 2
+60.
+
+
+LaTeX Warning: Hyper reference `acro:GCN' on page vii undefined on input line 2
+60.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
+61.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
+61.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+62.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+62.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
+line 263.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
+line 263.
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page vii undefined on input line 2
+64.
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page vii undefined on input line 2
+64.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page vii undefined on input line
+ 265.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page vii undefined on input line
+ 265.
+
+
+LaTeX Warning: Hyper reference `acro:RAG' on page vii undefined on input line 2
+66.
+
+
+LaTeX Warning: Hyper reference `acro:RAG' on page vii undefined on input line 2
+66.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page vii undefined on input line 
+267.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page vii undefined on input line 
+267.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page vii undefined on input line 
+268.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page vii undefined on input line 
+268.
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page vii undefined on input line 26
+9.
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page vii undefined on input line 26
+9.
+
+[7]
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
+ 270.
+
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
+ 270.
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 2
+71.
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 2
+71.
+
+
+LaTeX Warning: Hyper reference `acro:TC' on page viii undefined on input line 2
+72.
+
+
+LaTeX Warning: Hyper reference `acro:TC' on page viii undefined on input line 2
+72.
+
+
+LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
+e 273.
+
+
+LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
+e 273.
+
+
+LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
+ 274.
+
+
+LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
+ 274.
+
+
+LaTeX Warning: Hyper reference `acro:WT' on page viii undefined on input line 2
+75.
+
+
+LaTeX Warning: Hyper reference `acro:WT' on page viii undefined on input line 2
+75.
+
+[8] (./main_bubt_paper.toc) [9]
+
+Package natbib Warning: Citation `menze2015multimodal' on page 1 undefined on i
+nput line 301.
+
+
+Package natbib Warning: Citation `menze2015multimodal' on page 1 undefined on i
+nput line 306.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 1 undefined on input 
+line 306.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 1 undefined on inp
+ut line 312.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 1 undefined on i
+nput line 313.
+
+
+Overfull \hbox (9.22496pt too wide) in paragraph at lines 306--315
+\OT1/cmr/m/n/12 glioma cases---covering T1-weighted (T1), contrast-enhanced T1 
+(T1CE), T2-weighted
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 1 undefined on
+ input line 327.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 1 undefined on input
+ line 329.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.332 
+       [1]
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 2 undefined on inp
+ut line 337.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 2 undefined on i
+nput line 338.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 2 undefined on inp
+ut line 345.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 2 undefined on i
+nput line 345.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 2 undefined on input
+ line 351.
+
+
+Package natbib Warning: Citation `kipf2017gcn' on page 2 undefined on input lin
+e 360.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 2 undefined on
+ input line 360.
+
+[2]
+
+Package natbib Warning: Citation `achanta2012slic' on page 3 undefined on input
+ line 381.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 3 undefined on
+ input line 388.
+
+
+Package natbib Warning: Citation `cicek20163d' on page 3 undefined on input lin
+e 398.
+
+[3]
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 4 undefined on inp
+ut line 417.
+
+
+Package natbib Warning: Citation `saueressig2021exploring' on page 4 undefined 
+on input line 429.
+
+
+Package natbib Warning: Citation `patel2023multiclass' on page 4 undefined on i
+nput line 433.
+
+
+Package natbib Warning: Citation `menze2015multimodal' on page 4 undefined on i
+nput line 444.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 4 undefined on input 
+line 444.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 4 undefined on inp
+ut line 445.
+
+[4]
+
+Package natbib Warning: Citation `cicek20163d' on page 5 undefined on input lin
+e 455.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 5 undefined on input
+ line 467.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 5 undefined on
+ input line 474.
+
+
+Overfull \hbox (1.41458pt too wide) in paragraph at lines 484--488
+[]\OT1/cmr/bx/n/12 Zero-shot cross-edition eval-u-a-tion. \OT1/cmr/m/n/12 Di-re
+ct eval-u-a-tion on BraTS 2023 (1,245
+
+Package natbib Warning: Citation `cicek20163d' on page 5 undefined on input lin
+e 494.
+
+
+Overfull \hbox (7.2522pt too wide) in paragraph at lines 489--496
+\OT1/cmr/m/n/12 ory per pa-tient. End-to-end in-clud-ing on-the-fly graph con-s
+truc-tion: \OT1/cmr/bx/n/12 1,732ms\OT1/cmr/m/n/12 ---
+[5]
+
+LaTeX Warning: Reference `sec:discussion' on page 6 undefined on input line 501
+.
+
+
+LaTeX Warning: Reference `sec:conclusion' on page 6 undefined on input line 502
+.
+
+
+Package natbib Warning: Citation `litjens2017survey' on page 6 undefined on inp
+ut line 513.
+
+
+Package natbib Warning: Citation `pereira2016brain' on page 6 undefined on inpu
+t line 515.
+
+
+Package natbib Warning: Citation `ronneberger2015unet' on page 6 undefined on i
+nput line 521.
+
+[6]
+
+Package natbib Warning: Citation `cicek20163d' on page 7 undefined on input lin
+e 533.
+
+
+Package natbib Warning: Citation `milletari2016vnet' on page 7 undefined on inp
+ut line 546.
+
+
+Package natbib Warning: Citation `oktay2018attention' on page 7 undefined on in
+put line 557.
+
+[7]
+
+Package natbib Warning: Citation `zhou2018unetpp' on page 8 undefined on input 
+line 568.
+
+
+Package natbib Warning: Citation `kamnitsas2017efficient' on page 8 undefined o
+n input line 577.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 8 undefined on inp
+ut line 586.
+
+
+Package natbib Warning: Citation `dosovitskiy2021image' on page 8 undefined on 
+input line 599.
+
+
+Package natbib Warning: Citation `wang2021transbts' on page 8 undefined on inpu
+t line 601.
+
+[8]
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 9 undefined on i
+nput line 611.
+
+
+Package natbib Warning: Citation `liu2021swin' on page 9 undefined on input lin
+e 613.
+
+
+Package natbib Warning: Citation `myronenko2019brats' on page 9 undefined on in
+put line 621.
+
+[9]
+
+Package natbib Warning: Citation `scarselli2009graph' on page 10 undefined on i
+nput line 644.
+
+
+Package natbib Warning: Citation `defferrard2016convolutional' on page 10 undef
+ined on input line 650.
+
+
+Package natbib Warning: Citation `kipf2017gcn' on page 10 undefined on input li
+ne 654.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 10 undefined o
+n input line 665.
+
+[10]
+
+Package natbib Warning: Citation `velickovic2018gat' on page 11 undefined on in
+put line 679.
+
+
+Package natbib Warning: Citation `gilmer2017neural' on page 11 undefined on inp
+ut line 693.
+
+
+Package natbib Warning: Citation `wu2021comprehensive' on page 11 undefined on 
+input line 700.
+
+
+Package natbib Warning: Citation `qi2017pointnet' on page 11 undefined on input
+ line 705.
+
+[11]
+
+Package natbib Warning: Citation `parisot2017spectral' on page 12 undefined on 
+input line 714.
+
+
+Package natbib Warning: Citation `jha2021instance' on page 12 undefined on inpu
+t line 723.
+
+
+Package natbib Warning: Citation `bessadok2022graph' on page 12 undefined on in
+put line 725.
+
+
+Package natbib Warning: Citation `saueressig2021exploring' on page 12 undefined
+ on input line 728.
+
+
+Package natbib Warning: Citation `patel2023multiclass' on page 12 undefined on 
+input line 735.
+
+[12]
+
+Package natbib Warning: Citation `shi2000normalized' on page 13 undefined on in
+put line 762.
+
+
+Package natbib Warning: Citation `felzenszwalb2004efficient' on page 13 undefin
+ed on input line 769.
+
+
+Package natbib Warning: Citation `achanta2012slic' on page 13 undefined on inpu
+t line 775.
+
+[13]
+
+Package natbib Warning: Citation `stutz2018superpixels' on page 14 undefined on
+ input line 789.
+
+
+Package natbib Warning: Citation `orlando2017retinal' on page 14 undefined on i
+nput line 804.
+
+
+Package natbib Warning: Citation `jha2021instance' on page 14 undefined on inpu
+t line 808.
+
+
+Package natbib Warning: Citation `bai2019superpixel' on page 14 undefined on in
+put line 811.
+
+[14] [15]
+
+Package natbib Warning: Citation `menze2015multimodal' on page 16 undefined on 
+input line 891.
+
+
+Package natbib Warning: Citation `louis2016glioma' on page 16 undefined on inpu
+t line 891.
+
+[16]
+
+Package natbib Warning: Citation `achanta2012slic' on page 17 undefined on inpu
+t line 922.
+
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 17 undefined o
+n input line 929.
+
+[17]
+Overfull \hbox (0.6281pt too wide) in paragraph at lines 939--946
+[]\OT1/cmr/m/n/12 The graph rep-re-sen-ta-tion com-presses each pa-tient from 8
+,928,000 vox-els to $\OMS/cmsy/m/n/12 ^^Y$\OT1/cmr/m/n/12 3,909
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+[18]
+Overfull \hbox (9.01772pt too wide) in paragraph at lines 1129--1133
+[]\OT1/cmr/m/n/12 Let $\OML/cmm/m/it/12 V[] \OMS/cmsy/m/n/12 2 \U/msb/m/n/12 R[
+]$ \OT1/cmr/m/n/12 de-note the vol-ume for modal-ity $\OML/cmm/m/it/12 m \OMS/c
+msy/m/n/12 2 f[]\OML/cmm/m/it/12 ; []; []; []\OMS/cmsy/m/n/12 g$
+[19]
+
+Package natbib Warning: Citation `achanta2012slic' on page 20 undefined on inpu
+t line 1178.
+
+[20] [21] [22]
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 23 undefined o
+n input line 1308.
+
+[23] [24]
+Overfull \hbox (3.35023pt too wide) in paragraph at lines 1354--1357
+[]\OT1/cmr/m/n/12 Training min-imises BCE-With-Log-it-sLoss (Bi-nary Cross-Entr
+opy with Log-its Loss),
+[25] [26]
+Overfull \vbox (13.97887pt too high) has occurred while \output is active
+[27]
+
+Package natbib Warning: Citation `menze2015multimodal' on page 28 undefined on 
+input line 1483.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 28 undefined on input
+ line 1483.
+
+
+Package natbib Warning: Citation `bakas2017advancing' on page 28 undefined on i
+nput line 1483.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 28 undefined on input
+ line 1483.
+
+
+Underfull \hbox (badness 2253) in paragraph at lines 1483--1483
+[]|\OT1/cmr/m/n/10 Training, cross-validation, held-
+
+Package natbib Warning: Citation `menze2015multimodal' on page 28 undefined on 
+input line 1487.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 28 undefined on input
+ line 1487.
+
+
+Package natbib Warning: Citation `bakas2017advancing' on page 28 undefined on i
+nput line 1487.
+
+[28{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [29] [30]
+[31]
+
+Package natbib Warning: Citation `loshchilov2019adamw' on page 32 undefined on 
+input line 1640.
+
+[32] [33]
+
+Package natbib Warning: Citation `fey2019pyg' on page 34 undefined on input lin
+e 1752.
+
+[34]
+
+Package natbib Warning: Citation `hamilton2017graphsage' on page 35 undefined o
+n input line 1836.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1836--1836
+[]|\OT1/cmr/m/n/10 Neighbourhood ag-gre-ga-tion
+[35]
+
+Package natbib Warning: Citation `loshchilov2019adamw' on page 36 undefined on 
+input line 1892.
+
+
+Overfull \hbox (2.17448pt too wide) in paragraph at lines 1934--1934
+ []|\OT1/cmr/bx/n/10 Mean$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 SD| 
+
+Overfull \hbox (5.43837pt too wide) in paragraph at lines 1934--1934
+ []|\OT1/cmr/bx/n/10 90.02$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 0.66| 
+[36]
+Overfull \hbox (50.38109pt too wide) in paragraph at lines 1943--1948
+\OT1/cmr/m/n/12 (88.72%) re-flects the stochas-tic train-ing pro-cess un-der th
+e non-deterministic \OT1/cmtt/m/n/12 cudnn.benchmark
+[37 <./fig_A_cv_performance.jpg>]
+Overfull \hbox (13.97646pt too wide) in paragraph at lines 1991--1998
+[]\OT1/cmr/m/n/12 Precision (95.52%) sub-stan-tially ex-ceeds Sen-si-tiv-ity (8
+7.77%), in-di-cat-ing a precision-
+[38] [39 <./fig_B_efficiency_bubble.jpg>] [40 <./fig_D_speed_memory.jpg>]
+Overfull \hbox (3.38364pt too wide) in paragraph at lines 2128--2132
+\OT1/cmr/m/n/12 neigh-bour-hood sam-pling ag-gre-ga-tion pro-vides a bet-ter ac
+curacy-efficiency trade-
+[41 <./fig_F_ablation.jpg>]
+
+LaTeX Warning: Reference `fig:qualitative' on page 42 undefined on input line 2
+190.
+
+[42 <./fig_C_generalisation.jpg>]
+
+LaTeX Warning: Reference `sec:discussion' on page 43 undefined on input line 22
+13.
+
+[43] [44 <./fig_H_qualitative_results.jpg> <./fig_G_dice_distribution.png>]
+[45 <./fig_E_ensemble_vs_individual.jpg>] [46]
+
+Package natbib Warning: Citation `louis2016glioma' on page 47 undefined on inpu
+t line 2334.
+
+[47]
+
+LaTeX Warning: Reference `tab:sota' on page 48 undefined on input line 2362.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 48 undefined on in
+put line 2378.
+
+[48]
+
+Package natbib Warning: Citation `cicek20163d' on page 49 undefined on input li
+ne 2412.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 49 undefined on in
+put line 2412.
+
+
+Package natbib Warning: Citation `wang2021transbts' on page 49 undefined on inp
+ut line 2412.
+
+
+Package natbib Warning: Citation `hatamizadeh2022swin' on page 49 undefined on 
+input line 2412.
+
+
+Package natbib Warning: Citation `saueressig2021exploring' on page 49 undefined
+ on input line 2412.
+
+
+Package natbib Warning: Citation `patel2023multiclass' on page 49 undefined on 
+input line 2412.
+
+
+LaTeX Warning: Reference `tab:cost' on page 49 undefined on input line 2426.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 49 undefined on in
+put line 2459.
+
+[49]
+
+Package natbib Warning: Citation `saueressig2021exploring' on page 50 undefined
+ on input line 2492.
+
+
+Package natbib Warning: Citation `patel2023multiclass' on page 50 undefined on 
+input line 2495.
+
+[50]
+
+Package natbib Warning: Citation `menze2015multimodal' on page 51 undefined on 
+input line 2508.
+
+
+Package natbib Warning: Citation `bakas2021brats' on page 51 undefined on input
+ line 2508.
+
+
+Package natbib Warning: Citation `isensee2021nnunet' on page 51 undefined on in
+put line 2510.
+
+[51] [52] [53] [54] [55] (./main_bubt_paper.bbl [56] [57] [58] [59] [60])
+
+Package natbib Warning: There were undefined citations.
+
+[61] (./main_bubt_paper.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.28pt have occurred.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `main_bubt_paper.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra
+/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/ms
+bm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
+m7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on main_bubt_paper.pdf (70 pages, 2808997 bytes).
+Transcript written on main_bubt_paper.log.
+Latexmk: Getting log file 'main_bubt_paper.log'
+Latexmk: Examining 'main_bubt_paper.fls'
+Latexmk: Examining 'main_bubt_paper.log'
+Latexmk: Found input bbl file 'main_bubt_paper.bbl'
+Latexmk: References changed.
+Latexmk: References changed.
+Latexmk: References changed.
+Latexmk: Log file says output to 'main_bubt_paper.pdf'
+Latexmk: Found bibliography file(s):
+  ./ref.bib
+Latexmk: applying rule 'bibtex main_bubt_paper'...
+Rule 'bibtex main_bubt_paper':  Reasons for rerun
+Changed files or newly in use/created:
+  main_bubt_paper.aux
+
+------------
+Run number 1 of rule 'bibtex main_bubt_paper'
+------------
+------------
+Running 'bibtex  "main_bubt_paper.aux"'
+------------
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+The top-level auxiliary file: main_bubt_paper.aux
+The style file: unsrtnat.bst
+Database file #1: ref.bib
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  main_bubt_paper.aux
+  main_bubt_paper.out
+  main_bubt_paper.toc
+
+------------
+Run number 2 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -recorder  "main_bubt_paper.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./main_bubt_paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/acronym/acronym.sty
+(/usr/share/texlive/texmf-dist/tex/latex/bigfoot/suffix.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/sectsty/sectsty.sty
+
+LaTeX Warning: Command \underbar  has changed.
+               Check if current package is valid.
+
+
+LaTeX Warning: Command \underline  has changed.
+               Check if current package is valid.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered
+.code.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex))
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarypositioning.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.
+code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarycalc.code.tex) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./main_bubt_paper.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(./main_bubt_paper.out) (./main_bubt_paper.out)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map} <./BUBT-Logo.png>]
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <16> not available
+(Font)              size <17.28> substituted on input line 88.
+
+[2] [3] [4] [5]
+Overfull \hbox (6.97937pt too wide) in paragraph at lines 236--239
+\OT1/cmr/m/n/12 BraTS 2021, BraTS 2023, Com-pu-ta-tional Ef-fi-ciency, Su-per-p
+ixel Graph, Cross-Dataset
+[6]
+
+LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 24
+7.
+
+
+LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 24
+7.
+
+
+LaTeX Warning: Hyper reference `acro:AMP' on page vii undefined on input line 2
+48.
+
+
+LaTeX Warning: Hyper reference `acro:AMP' on page vii undefined on input line 2
+48.
+
+
+LaTeX Warning: Hyper reference `acro:BCE' on page vii undefined on input line 2
+49.
+
+
+LaTeX Warning: Hyper reference `acro:BCE' on page vii undefined on input line 2
+49.
+
+
+LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
+ 250.
+
+
+LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
+ 250.
+
+
+LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 2
+51.
+
+
+LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 2
+51.
+
+
+LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 25
+2.
+
+
+LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 25
+2.
+
+
+LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
+253.
+
+
+LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
+253.
+
+
+LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 25
+4.
+
+
+LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 25
+4.
+
+
+LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
+ 255.
+
+
+LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
+ 255.
+
+
+LaTeX Warning: Hyper reference `acro:ET' on page vii undefined on input line 25
+6.
+
+
+LaTeX Warning: Hyper reference `acro:ET' on page vii undefined on input line 25
+6.
+
+
+LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 2
+57.
+
+
+LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 2
+57.
+
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
+ 258.
+
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
+ 258.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 2
+59.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 2
+59.
+
+
+LaTeX Warning: Hyper reference `acro:GCN' on page vii undefined on input line 2
+60.
+
+
+LaTeX Warning: Hyper reference `acro:GCN' on page vii undefined on input line 2
+60.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
+61.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
+61.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+62.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+62.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
+line 263.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
+line 263.
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page vii undefined on input line 2
+64.
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page vii undefined on input line 2
+64.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page vii undefined on input line
+ 265.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page vii undefined on input line
+ 265.
+
+
+LaTeX Warning: Hyper reference `acro:RAG' on page vii undefined on input line 2
+66.
+
+
+LaTeX Warning: Hyper reference `acro:RAG' on page vii undefined on input line 2
+66.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page vii undefined on input line 
+267.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page vii undefined on input line 
+267.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page vii undefined on input line 
+268.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page vii undefined on input line 
+268.
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page vii undefined on input line 26
+9.
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page vii undefined on input line 26
+9.
+
+[7]
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
+ 270.
+
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
+ 270.
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 2
+71.
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 2
+71.
+
+
+LaTeX Warning: Hyper reference `acro:TC' on page viii undefined on input line 2
+72.
+
+
+LaTeX Warning: Hyper reference `acro:TC' on page viii undefined on input line 2
+72.
+
+
+LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
+e 273.
+
+
+LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
+e 273.
+
+
+LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
+ 274.
+
+
+LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
+ 274.
+
+
+LaTeX Warning: Hyper reference `acro:WT' on page viii undefined on input line 2
+75.
+
+
+LaTeX Warning: Hyper reference `acro:WT' on page viii undefined on input line 2
+75.
+
+[8] (./main_bubt_paper.toc [9]) [10]
+Overfull \hbox (9.22496pt too wide) in paragraph at lines 306--315
+\OT1/cmr/m/n/12 glioma cases---covering T1-weighted (T1), contrast-enhanced T1 
+(T1CE), T2-weighted
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.332 
+       [1] [2] [3] [4]
+Overfull \hbox (1.41458pt too wide) in paragraph at lines 484--488
+[]\OT1/cmr/bx/n/12 Zero-shot cross-edition eval-u-a-tion. \OT1/cmr/m/n/12 Di-re
+ct eval-u-a-tion on BraTS 2023 (1,245
+
+Overfull \hbox (7.2522pt too wide) in paragraph at lines 489--496
+\OT1/cmr/m/n/12 ory per pa-tient. End-to-end in-clud-ing on-the-fly graph con-s
+truc-tion: \OT1/cmr/bx/n/12 1,732ms\OT1/cmr/m/n/12 ---
+[5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16]
+Overfull \hbox (0.6281pt too wide) in paragraph at lines 939--946
+[]\OT1/cmr/m/n/12 The graph rep-re-sen-ta-tion com-presses each pa-tient from 8
+,928,000 vox-els to $\OMS/cmsy/m/n/12 ^^Y$\OT1/cmr/m/n/12 3,909
+[17]
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+[18]
+Overfull \hbox (9.01772pt too wide) in paragraph at lines 1129--1133
+[]\OT1/cmr/m/n/12 Let $\OML/cmm/m/it/12 V[] \OMS/cmsy/m/n/12 2 \U/msb/m/n/12 R[
+]$ \OT1/cmr/m/n/12 de-note the vol-ume for modal-ity $\OML/cmm/m/it/12 m \OMS/c
+msy/m/n/12 2 f[]\OML/cmm/m/it/12 ; []; []; []\OMS/cmsy/m/n/12 g$
+[19] [20] [21] [22] [23] [24]
+Overfull \hbox (3.35023pt too wide) in paragraph at lines 1354--1357
+[]\OT1/cmr/m/n/12 Training min-imises BCE-With-Log-it-sLoss (Bi-nary Cross-Entr
+opy with Log-its Loss),
+[25] [26]
+Overfull \vbox (13.97887pt too high) has occurred while \output is active
+[27]
+Underfull \hbox (badness 2253) in paragraph at lines 1483--1483
+[]|\OT1/cmr/m/n/10 Training, cross-validation, held-
+[28{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [29] [30]
+[31] [32] [33] [34]
+Underfull \hbox (badness 10000) in paragraph at lines 1836--1836
+[]|\OT1/cmr/m/n/10 Neighbourhood ag-gre-ga-tion
+[35]
+Overfull \hbox (2.17448pt too wide) in paragraph at lines 1934--1934
+ []|\OT1/cmr/bx/n/10 Mean$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 SD| 
+
+Overfull \hbox (5.43837pt too wide) in paragraph at lines 1934--1934
+ []|\OT1/cmr/bx/n/10 90.02$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 0.66| 
+[36]
+Overfull \hbox (50.38109pt too wide) in paragraph at lines 1943--1948
+\OT1/cmr/m/n/12 (88.72%) re-flects the stochas-tic train-ing pro-cess un-der th
+e non-deterministic \OT1/cmtt/m/n/12 cudnn.benchmark
+[37 <./fig_A_cv_performance.jpg>]
+Overfull \hbox (13.97646pt too wide) in paragraph at lines 1991--1998
+[]\OT1/cmr/m/n/12 Precision (95.52%) sub-stan-tially ex-ceeds Sen-si-tiv-ity (8
+7.77%), in-di-cat-ing a precision-
+[38] [39 <./fig_B_efficiency_bubble.jpg>] [40 <./fig_D_speed_memory.jpg>]
+Overfull \hbox (3.38364pt too wide) in paragraph at lines 2128--2132
+\OT1/cmr/m/n/12 neigh-bour-hood sam-pling ag-gre-ga-tion pro-vides a bet-ter ac
+curacy-efficiency trade-
+[41 <./fig_F_ablation.jpg>] [42 <./fig_C_generalisation.jpg>] [43] [44 <./fig_H
+_qualitative_results.jpg> <./fig_G_dice_distribution.png>] [45 <./fig_E_ensembl
+e_vs_individual.jpg>] [46] [47] [48] [49] [50] [51] [52] [53] [54] [55]
+(./main_bubt_paper.bbl [56] [57] [58] [59] [60]) [61] (./main_bubt_paper.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.28pt have occurred.
+
+
+LaTeX Warning: There were undefined references.
+
+ )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra
+/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/ms
+bm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
+m7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on main_bubt_paper.pdf (71 pages, 2815597 bytes).
+Transcript written on main_bubt_paper.log.
+Latexmk: Getting log file 'main_bubt_paper.log'
+Latexmk: Examining 'main_bubt_paper.fls'
+Latexmk: Examining 'main_bubt_paper.log'
+Latexmk: Found input bbl file 'main_bubt_paper.bbl'
+Latexmk: Log file says output to 'main_bubt_paper.pdf'
+Latexmk: Found bibliography file(s):
+  ./ref.bib
+Latexmk: applying rule 'bibtex main_bubt_paper'...
+Rule 'bibtex main_bubt_paper':  Reasons for rerun
+Changed files or newly in use/created:
+  main_bubt_paper.aux
+
+------------
+Run number 2 of rule 'bibtex main_bubt_paper'
+------------
+------------
+Running 'bibtex  "main_bubt_paper.aux"'
+------------
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+The top-level auxiliary file: main_bubt_paper.aux
+The style file: unsrtnat.bst
+Database file #1: ref.bib
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  main_bubt_paper.aux
+
+------------
+Run number 3 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -recorder  "main_bubt_paper.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./main_bubt_paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/acronym/acronym.sty
+(/usr/share/texlive/texmf-dist/tex/latex/bigfoot/suffix.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/sectsty/sectsty.sty
+
+LaTeX Warning: Command \underbar  has changed.
+               Check if current package is valid.
+
+
+LaTeX Warning: Command \underline  has changed.
+               Check if current package is valid.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered
+.code.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex))
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarypositioning.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.
+code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarycalc.code.tex) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./main_bubt_paper.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(./main_bubt_paper.out) (./main_bubt_paper.out)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map} <./BUBT-Logo.png>]
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <16> not available
+(Font)              size <17.28> substituted on input line 88.
+
+[2] [3] [4] [5]
+Overfull \hbox (6.97937pt too wide) in paragraph at lines 236--239
+\OT1/cmr/m/n/12 BraTS 2021, BraTS 2023, Com-pu-ta-tional Ef-fi-ciency, Su-per-p
+ixel Graph, Cross-Dataset
+[6]
+
+LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 24
+7.
+
+
+LaTeX Warning: Hyper reference `acro:3D' on page vii undefined on input line 24
+7.
+
+
+LaTeX Warning: Hyper reference `acro:AMP' on page vii undefined on input line 2
+48.
+
+
+LaTeX Warning: Hyper reference `acro:AMP' on page vii undefined on input line 2
+48.
+
+
+LaTeX Warning: Hyper reference `acro:BCE' on page vii undefined on input line 2
+49.
+
+
+LaTeX Warning: Hyper reference `acro:BCE' on page vii undefined on input line 2
+49.
+
+
+LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
+ 250.
+
+
+LaTeX Warning: Hyper reference `acro:BraTS' on page vii undefined on input line
+ 250.
+
+
+LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 2
+51.
+
+
+LaTeX Warning: Hyper reference `acro:CNN' on page vii undefined on input line 2
+51.
+
+
+LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 25
+2.
+
+
+LaTeX Warning: Hyper reference `acro:CT' on page vii undefined on input line 25
+2.
+
+
+LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
+253.
+
+
+LaTeX Warning: Hyper reference `acro:CUDA' on page vii undefined on input line 
+253.
+
+
+LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 25
+4.
+
+
+LaTeX Warning: Hyper reference `acro:CV' on page vii undefined on input line 25
+4.
+
+
+LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
+ 255.
+
+
+LaTeX Warning: Hyper reference `acro:DICOM' on page vii undefined on input line
+ 255.
+
+
+LaTeX Warning: Hyper reference `acro:ET' on page vii undefined on input line 25
+6.
+
+
+LaTeX Warning: Hyper reference `acro:ET' on page vii undefined on input line 25
+6.
+
+
+LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 2
+57.
+
+
+LaTeX Warning: Hyper reference `acro:FDA' on page vii undefined on input line 2
+57.
+
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
+ 258.
+
+
+LaTeX Warning: Hyper reference `acro:FLAIR' on page vii undefined on input line
+ 258.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 2
+59.
+
+
+LaTeX Warning: Hyper reference `acro:GAT' on page vii undefined on input line 2
+59.
+
+
+LaTeX Warning: Hyper reference `acro:GCN' on page vii undefined on input line 2
+60.
+
+
+LaTeX Warning: Hyper reference `acro:GCN' on page vii undefined on input line 2
+60.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
+61.
+
+
+LaTeX Warning: Hyper reference `acro:GNN' on page vii undefined on input line 2
+61.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+62.
+
+
+LaTeX Warning: Hyper reference `acro:GPU' on page vii undefined on input line 2
+62.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
+line 263.
+
+
+LaTeX Warning: Hyper reference `acro:GraphSAGE' on page vii undefined on input 
+line 263.
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page vii undefined on input line 2
+64.
+
+
+LaTeX Warning: Hyper reference `acro:MRI' on page vii undefined on input line 2
+64.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page vii undefined on input line
+ 265.
+
+
+LaTeX Warning: Hyper reference `acro:NIfTI' on page vii undefined on input line
+ 265.
+
+
+LaTeX Warning: Hyper reference `acro:RAG' on page vii undefined on input line 2
+66.
+
+
+LaTeX Warning: Hyper reference `acro:RAG' on page vii undefined on input line 2
+66.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page vii undefined on input line 
+267.
+
+
+LaTeX Warning: Hyper reference `acro:ReLU' on page vii undefined on input line 
+267.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page vii undefined on input line 
+268.
+
+
+LaTeX Warning: Hyper reference `acro:SLIC' on page vii undefined on input line 
+268.
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page vii undefined on input line 26
+9.
+
+
+LaTeX Warning: Hyper reference `acro:T1' on page vii undefined on input line 26
+9.
+
+[7]
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
+ 270.
+
+
+LaTeX Warning: Hyper reference `acro:T1ce' on page viii undefined on input line
+ 270.
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 2
+71.
+
+
+LaTeX Warning: Hyper reference `acro:T2' on page viii undefined on input line 2
+71.
+
+
+LaTeX Warning: Hyper reference `acro:TC' on page viii undefined on input line 2
+72.
+
+
+LaTeX Warning: Hyper reference `acro:TC' on page viii undefined on input line 2
+72.
+
+
+LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
+e 273.
+
+
+LaTeX Warning: Hyper reference `acro:U-Net' on page viii undefined on input lin
+e 273.
+
+
+LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
+ 274.
+
+
+LaTeX Warning: Hyper reference `acro:VRAM' on page viii undefined on input line
+ 274.
+
+
+LaTeX Warning: Hyper reference `acro:WT' on page viii undefined on input line 2
+75.
+
+
+LaTeX Warning: Hyper reference `acro:WT' on page viii undefined on input line 2
+75.
+
+[8] (./main_bubt_paper.toc [9]) [10]
+Overfull \hbox (9.22496pt too wide) in paragraph at lines 306--315
+\OT1/cmr/m/n/12 glioma cases---covering T1-weighted (T1), contrast-enhanced T1 
+(T1CE), T2-weighted
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.332 
+       [1] [2] [3] [4]
+Overfull \hbox (1.41458pt too wide) in paragraph at lines 484--488
+[]\OT1/cmr/bx/n/12 Zero-shot cross-edition eval-u-a-tion. \OT1/cmr/m/n/12 Di-re
+ct eval-u-a-tion on BraTS 2023 (1,245
+
+Overfull \hbox (7.2522pt too wide) in paragraph at lines 489--496
+\OT1/cmr/m/n/12 ory per pa-tient. End-to-end in-clud-ing on-the-fly graph con-s
+truc-tion: \OT1/cmr/bx/n/12 1,732ms\OT1/cmr/m/n/12 ---
+[5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16]
+Overfull \hbox (0.6281pt too wide) in paragraph at lines 939--946
+[]\OT1/cmr/m/n/12 The graph rep-re-sen-ta-tion com-presses each pa-tient from 8
+,928,000 vox-els to $\OMS/cmsy/m/n/12 ^^Y$\OT1/cmr/m/n/12 3,909
+[17]
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+
+Overfull \hbox (1.35268pt too wide) in paragraph at lines 1098--1098
+ [][]\OT1/cmr/m/n/7 SAGEConv 
+
+Overfull \hbox (1.63046pt too wide) in paragraph at lines 1098--1098
+ []\OT1/cmr/m/n/7 BatchNorm 
+[18]
+Overfull \hbox (9.01772pt too wide) in paragraph at lines 1129--1133
+[]\OT1/cmr/m/n/12 Let $\OML/cmm/m/it/12 V[] \OMS/cmsy/m/n/12 2 \U/msb/m/n/12 R[
+]$ \OT1/cmr/m/n/12 de-note the vol-ume for modal-ity $\OML/cmm/m/it/12 m \OMS/c
+msy/m/n/12 2 f[]\OML/cmm/m/it/12 ; []; []; []\OMS/cmsy/m/n/12 g$
+[19] [20] [21] [22] [23] [24]
+Overfull \hbox (3.35023pt too wide) in paragraph at lines 1354--1357
+[]\OT1/cmr/m/n/12 Training min-imises BCE-With-Log-it-sLoss (Bi-nary Cross-Entr
+opy with Log-its Loss),
+[25] [26]
+Overfull \vbox (13.97887pt too high) has occurred while \output is active
+[27]
+Underfull \hbox (badness 2253) in paragraph at lines 1483--1483
+[]|\OT1/cmr/m/n/10 Training, cross-validation, held-
+[28{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [29] [30]
+[31] [32] [33] [34]
+Underfull \hbox (badness 10000) in paragraph at lines 1836--1836
+[]|\OT1/cmr/m/n/10 Neighbourhood ag-gre-ga-tion
+[35]
+Overfull \hbox (2.17448pt too wide) in paragraph at lines 1934--1934
+ []|\OT1/cmr/bx/n/10 Mean$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 SD| 
+
+Overfull \hbox (5.43837pt too wide) in paragraph at lines 1934--1934
+ []|\OT1/cmr/bx/n/10 90.02$\OMS/cmsy/m/n/10 ^^F$\OT1/cmr/bx/n/10 0.66| 
+[36]
+Overfull \hbox (50.38109pt too wide) in paragraph at lines 1943--1948
+\OT1/cmr/m/n/12 (88.72%) re-flects the stochas-tic train-ing pro-cess un-der th
+e non-deterministic \OT1/cmtt/m/n/12 cudnn.benchmark
+[37 <./fig_A_cv_performance.jpg>]
+Overfull \hbox (13.97646pt too wide) in paragraph at lines 1991--1998
+[]\OT1/cmr/m/n/12 Precision (95.52%) sub-stan-tially ex-ceeds Sen-si-tiv-ity (8
+7.77%), in-di-cat-ing a precision-
+[38] [39 <./fig_B_efficiency_bubble.jpg>] [40 <./fig_D_speed_memory.jpg>]
+Overfull \hbox (3.38364pt too wide) in paragraph at lines 2128--2132
+\OT1/cmr/m/n/12 neigh-bour-hood sam-pling ag-gre-ga-tion pro-vides a bet-ter ac
+curacy-efficiency trade-
+[41 <./fig_F_ablation.jpg>] [42 <./fig_C_generalisation.jpg>] [43] [44 <./fig_H
+_qualitative_results.jpg> <./fig_G_dice_distribution.png>] [45 <./fig_E_ensembl
+e_vs_individual.jpg>] [46] [47] [48] [49] [50] [51] [52] [53] [54] [55]
+(./main_bubt_paper.bbl [56] [57] [58] [59] [60]) [61] (./main_bubt_paper.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.28pt have occurred.
+
+
+LaTeX Warning: There were undefined references.
+
+ )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra
+/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/ms
+bm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
+m7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on main_bubt_paper.pdf (71 pages, 2815597 bytes).
+Transcript written on main_bubt_paper.log.
+Latexmk: Getting log file 'main_bubt_paper.log'
+Latexmk: Examining 'main_bubt_paper.fls'
+Latexmk: Examining 'main_bubt_paper.log'
+Latexmk: Found input bbl file 'main_bubt_paper.bbl'
+Latexmk: Log file says output to 'main_bubt_paper.pdf'
+Latexmk: Found bibliography file(s):
+  ./ref.bib
+Latexmk: All targets (main_bubt_paper.pdf) are up-to-date
+Latexmk: I have not found a previewer that is already running. 
+   So I will start it for 'main_bubt_paper.pdf'
+------------
+------------
+Running 'start echo PDF generated: "main_bubt_paper.pdf"'
+------------
+PDF generated: main_bubt_paper.pdf

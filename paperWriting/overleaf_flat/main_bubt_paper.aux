@@ -75,10 +75,10 @@
 \citation{litjens2017survey}
 \citation{pereira2016brain}
 \citation{ronneberger2015unet}
-\citation{cicek20163d}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{6}{section.2}\protected@file@percent }
 \newlabel{sec:related}{{2}{6}{Related Work}{section.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Volumetric CNN Methods for Brain Tumour Segmentation}{6}{subsection.2.1}\protected@file@percent }
+\citation{cicek20163d}
 \citation{milletari2016vnet}
 \citation{oktay2018attention}
 \citation{zhou2018unetpp}
@@ -110,7 +110,7 @@
 \citation{stutz2018superpixels}
 \citation{orlando2017retinal}
 \citation{jha2021instance}
-\citation{bai2019superpixel}
+\citation{bai2018aortic}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{15}{section.3}\protected@file@percent }
 \newlabel{sec:method}{{3}{15}{Methodology}{section.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}MRI Modalities and Their Clinical Significance}{15}{subsection.3.1}\protected@file@percent }
@@ -125,9 +125,11 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Mathematical Description of the Pipeline}{19}{subsection.3.3}\protected@file@percent }
 \newlabel{sec:mathpipeline}{{3.3}{19}{Mathematical Description of the Pipeline}{subsection.3.3}{}}
 \citation{achanta2012slic}
-\citation{hamilton2017graphsage}
+\citation{jha2021instance,saueressig2021exploring}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Mathematical Description of Segmentation}{23}{subsection.3.4}\protected@file@percent }
 \newlabel{sec:mathseg}{{3.4}{23}{Mathematical Description of Segmentation}{subsection.3.4}{}}
+\citation{hamilton2017graphsage}
+\citation{hamilton2017graphsage}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Proposed Algorithm}{26}{subsection.3.5}\protected@file@percent }
 \newlabel{sec:algorithm}{{3.5}{26}{Proposed Algorithm}{subsection.3.5}{}}
 \@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Superpixel-GNN Inference Pipeline}}{27}{algocf.1}\protected@file@percent }
@@ -174,49 +176,53 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Efficiency Benchmarking}{38}{subsection.5.3}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Efficiency Comparison: GNN vs.\ 3D U-Net Baseline (RTX 2060, 6\,GB VRAM)}}{39}{table.7}\protected@file@percent }
 \newlabel{tab:efficiency}{{7}{39}{Efficiency Comparison: GNN vs.\ 3D U-Net Baseline (RTX 2060, 6\,GB VRAM)}{table.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {Accuracy vs.\ Efficiency Trade-off.} Bubble area $\propto \sqrt  {\text  {parameters}}$. GNN single model (439K, 1.73\,s, 90.02\%) and ensemble (2.2M, 1.73\,s, 91.41\%) both occupy the upper-left region (accurate and fast); 3D U-Net (68M, 10.16\,s, 87.5\%) occupies the lower-right. Dashed line: 90\% Dice clinical target.}}{39}{figure.3}\protected@file@percent }
-\newlabel{fig:bubble}{{3}{39}{\textbf {Accuracy vs.\ Efficiency Trade-off.} Bubble area $\propto \sqrt {\text {parameters}}$. GNN single model (439K, 1.73\,s, 90.02\%) and ensemble (2.2M, 1.73\,s, 91.41\%) both occupy the upper-left region (accurate and fast); 3D U-Net (68M, 10.16\,s, 87.5\%) occupies the lower-right. Dashed line: 90\% Dice clinical target}{figure.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \textbf  {Computational Efficiency: GNN vs.\ 3D U-Net.} \textit  {Left}: End-to-end inference time; GNN (1.73\,s) is 5.9$\times $ faster than U-Net (10.16\,s). GNN forward pass with pre-built graph: 75.4\,ms. \textit  {Centre}: Peak GPU memory (log scale); 11\,MB vs.\ 2,500\,MB --- 227$\times $ reduction. \textit  {Right}: Parameters (log scale); 439K vs.\ 68M --- 155$\times $ fewer. All measurements on RTX 2060, 6\,GB VRAM.}}{40}{figure.4}\protected@file@percent }
-\newlabel{fig:efficiency}{{4}{40}{\textbf {Computational Efficiency: GNN vs.\ 3D U-Net.} \textit {Left}: End-to-end inference time; GNN (1.73\,s) is 5.9$\times $ faster than U-Net (10.16\,s). GNN forward pass with pre-built graph: 75.4\,ms. \textit {Centre}: Peak GPU memory (log scale); 11\,MB vs.\ 2,500\,MB --- 227$\times $ reduction. \textit {Right}: Parameters (log scale); 439K vs.\ 68M --- 155$\times $ fewer. All measurements on RTX 2060, 6\,GB VRAM}{figure.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Ablation Studies}{40}{subsection.5.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Ablation Study: Architecture Variants (Fold 0, Single-Fold Protocol)}}{40}{table.8}\protected@file@percent }
-\newlabel{tab:ablation}{{8}{40}{Ablation Study: Architecture Variants (Fold 0, Single-Fold Protocol)}{table.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \textbf  {Ablation Study (Fold 0 Protocol).} Solid bars: Test Dice (\%); hatched bars: parameter count (K). $^\star $~indicates 30-epoch training (vs.\ 50 for baseline/6L variants). All values are below the 5-fold CV results --- only relative rankings apply. Deeper (6L): $-$0.03\,pp with 30\% more parameters. Wider (512-dim): $+$4.75\,pp at 3.9$\times $ cost but outside the 6\,GB VRAM constraint. GAT: $+$1.00\,pp at 2.7$\times $ cost. The 256-dim baseline is the most parameter-efficient competitive configuration.}}{41}{figure.5}\protected@file@percent }
-\newlabel{fig:ablation}{{5}{41}{\textbf {Ablation Study (Fold 0 Protocol).} Solid bars: Test Dice (\%); hatched bars: parameter count (K). $^\star $~indicates 30-epoch training (vs.\ 50 for baseline/6L variants). All values are below the 5-fold CV results --- only relative rankings apply. Deeper (6L): $-$0.03\,pp with 30\% more parameters. Wider (512-dim): $+$4.75\,pp at 3.9$\times $ cost but outside the 6\,GB VRAM constraint. GAT: $+$1.00\,pp at 2.7$\times $ cost. The 256-dim baseline is the most parameter-efficient competitive configuration}{figure.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Cross-Dataset Generalisation: BraTS 2023}{41}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Ablation Studies}{39}{subsection.5.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {Accuracy vs.\ Efficiency Trade-off.} Bubble area $\propto \sqrt  {\text  {parameters}}$. GNN single model (439K, 1.73\,s, 90.02\%) and ensemble (2.2M, 1.73\,s, 91.41\%) both occupy the upper-left region (accurate and fast); 3D U-Net (69.1M, 10.16\,s, 87.84\%) occupies the lower-right. Dashed line: 90\% Dice clinical target.}}{40}{figure.3}\protected@file@percent }
+\newlabel{fig:bubble}{{3}{40}{\textbf {Accuracy vs.\ Efficiency Trade-off.} Bubble area $\propto \sqrt {\text {parameters}}$. GNN single model (439K, 1.73\,s, 90.02\%) and ensemble (2.2M, 1.73\,s, 91.41\%) both occupy the upper-left region (accurate and fast); 3D U-Net (69.1M, 10.16\,s, 87.84\%) occupies the lower-right. Dashed line: 90\% Dice clinical target}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \textbf  {Computational Efficiency: GNN vs.\ 3D U-Net.} \textit  {Left}: End-to-end inference time; GNN (1.73\,s) is 5.9$\times $ faster than U-Net (10.16\,s). GNN forward pass with pre-built graph: 75.4\,ms. \textit  {Centre}: Peak GPU memory (log scale); 11\,MB vs.\ 2,500\,MB --- 227$\times $ reduction. \textit  {Right}: Parameters (log scale); 439K vs.\ 69.1M --- 157$\times $ fewer. All measurements on RTX 2060, 6\,GB VRAM.}}{40}{figure.4}\protected@file@percent }
+\newlabel{fig:efficiency}{{4}{40}{\textbf {Computational Efficiency: GNN vs.\ 3D U-Net.} \textit {Left}: End-to-end inference time; GNN (1.73\,s) is 5.9$\times $ faster than U-Net (10.16\,s). GNN forward pass with pre-built graph: 75.4\,ms. \textit {Centre}: Peak GPU memory (log scale); 11\,MB vs.\ 2,500\,MB --- 227$\times $ reduction. \textit {Right}: Parameters (log scale); 439K vs.\ 69.1M --- 157$\times $ fewer. All measurements on RTX 2060, 6\,GB VRAM}{figure.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Ablation Study: Architecture Variants (Fold 0, Single-Fold Protocol)}}{41}{table.8}\protected@file@percent }
+\newlabel{tab:ablation}{{8}{41}{Ablation Study: Architecture Variants (Fold 0, Single-Fold Protocol)}{table.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \textbf  {Ablation Study (Fold 0 Protocol).} Solid bars: Test Dice (\%); hatched bars: parameter count (K). $^\star $~indicates 30-epoch training (vs.\ 50 for baseline/6L variants). All values are below the 5-fold CV results --- only relative rankings apply. Deeper (6L): $-$0.03\,pp with 30\% more parameters. Wider (512-dim): $+$4.75\,pp at 3.9$\times $ cost; promising but trained with fewer epochs (further investigation deferred to future work). GAT: $+$1.00\,pp at 2.7$\times $ cost. The 256-dim baseline is selected for maximum parameter efficiency.}}{41}{figure.5}\protected@file@percent }
+\newlabel{fig:ablation}{{5}{41}{\textbf {Ablation Study (Fold 0 Protocol).} Solid bars: Test Dice (\%); hatched bars: parameter count (K). $^\star $~indicates 30-epoch training (vs.\ 50 for baseline/6L variants). All values are below the 5-fold CV results --- only relative rankings apply. Deeper (6L): $-$0.03\,pp with 30\% more parameters. Wider (512-dim): $+$4.75\,pp at 3.9$\times $ cost; promising but trained with fewer epochs (further investigation deferred to future work). GAT: $+$1.00\,pp at 2.7$\times $ cost. The 256-dim baseline is selected for maximum parameter efficiency}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Cross-Dataset Generalisation: BraTS 2023}{42}{subsection.5.5}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-Edition Generalisation: BraTS 2021 Held-Out vs.\ BraTS 2023}}{42}{table.9}\protected@file@percent }
 \newlabel{tab:brats2023}{{9}{42}{Cross-Edition Generalisation: BraTS 2021 Held-Out vs.\ BraTS 2023}{table.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \textbf  {Cross-Edition Generalisation: BraTS 2021 vs.\ BraTS 2023.} \textit  {Left}: Grouped bar chart for all five metrics. \textit  {Right}: Per-metric gap (BraTS 2021 $-$ BraTS 2023). Dice drops by 2.01\,pp; sensitivity \textit  {improves} by $+$2.92\,pp, indicating tumour recall is preserved. Precision drops 3.06\,pp, consistent with a slightly higher false-positive rate on BraTS 2023 scanner diversity.}}{42}{figure.6}\protected@file@percent }
-\newlabel{fig:generalisation}{{6}{42}{\textbf {Cross-Edition Generalisation: BraTS 2021 vs.\ BraTS 2023.} \textit {Left}: Grouped bar chart for all five metrics. \textit {Right}: Per-metric gap (BraTS 2021 $-$ BraTS 2023). Dice drops by 2.01\,pp; sensitivity \textit {improves} by $+$2.92\,pp, indicating tumour recall is preserved. Precision drops 3.06\,pp, consistent with a slightly higher false-positive rate on BraTS 2023 scanner diversity}{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \textbf  {Cross-Edition Generalisation: BraTS 2021 vs.\ BraTS 2023.} \textit  {Left}: Grouped bar chart for all five metrics. \textit  {Right}: Per-metric gap (BraTS 2021 $-$ BraTS 2023). Dice drops by 2.01\,pp; sensitivity \textit  {improves} by $+$2.92\,pp, indicating tumour recall is preserved. Precision drops 3.06\,pp, consistent with a slightly higher false-positive rate on BraTS 2023 scanner diversity.}}{43}{figure.6}\protected@file@percent }
+\newlabel{fig:generalisation}{{6}{43}{\textbf {Cross-Edition Generalisation: BraTS 2021 vs.\ BraTS 2023.} \textit {Left}: Grouped bar chart for all five metrics. \textit {Right}: Per-metric gap (BraTS 2021 $-$ BraTS 2023). Dice drops by 2.01\,pp; sensitivity \textit {improves} by $+$2.92\,pp, indicating tumour recall is preserved. Precision drops 3.06\,pp, consistent with a slightly higher false-positive rate on BraTS 2023 scanner diversity}{figure.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Qualitative Analysis and Per-Patient Distribution}{43}{subsection.5.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces \textbf  {Qualitative Segmentation Results.} Representative examples spanning the full performance range. Each row shows (left to right): T1CE MRI input, ground truth overlay (red), GNN ensemble prediction (blue), and comparison (red~=~GT only, blue~=~prediction only, purple~=~overlap). \textbf  {(a)}~Best case: Dice~=~100\%, perfect agreement. \textbf  {(b)}~Median case: Dice~=~92.3\%, minor boundary disagreement. \textbf  {(c,\,d)}~Worst cases: Dice~$\approx $~0\%, complete-miss failures on patients with absent T1CE enhancement.}}{44}{figure.7}\protected@file@percent }
-\newlabel{fig:qualitative}{{7}{44}{\textbf {Qualitative Segmentation Results.} Representative examples spanning the full performance range. Each row shows (left to right): T1CE MRI input, ground truth overlay (red), GNN ensemble prediction (blue), and comparison (red~=~GT only, blue~=~prediction only, purple~=~overlap). \textbf {(a)}~Best case: Dice~=~100\%, perfect agreement. \textbf {(b)}~Median case: Dice~=~92.3\%, minor boundary disagreement. \textbf {(c,\,d)}~Worst cases: Dice~$\approx $~0\%, complete-miss failures on patients with absent T1CE enhancement}{figure.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces \textbf  {Per-Graph Dice Distribution --- BraTS 2021 Held-Out (251 patients).} \textit  {Left}: Per-graph Dice histogram; red bins (Dice $<$ 0.10) are complete-miss slices (5.0\% of graphs); dominant high-quality peak (Dice $\geq $ 0.90: 81.2\%). Dashed line: per-slice mean (83.2\%); dash-dot line: patient-level ensemble Dice (91.41\%). \textit  {Right}: Quality tier breakdown pie chart.}}{45}{figure.8}\protected@file@percent }
-\newlabel{fig:dice_hist}{{8}{45}{\textbf {Per-Graph Dice Distribution --- BraTS 2021 Held-Out (251 patients).} \textit {Left}: Per-graph Dice histogram; red bins (Dice $<$ 0.10) are complete-miss slices (5.0\% of graphs); dominant high-quality peak (Dice $\geq $ 0.90: 81.2\%). Dashed line: per-slice mean (83.2\%); dash-dot line: patient-level ensemble Dice (91.41\%). \textit {Right}: Quality tier breakdown pie chart}{figure.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces \textbf  {Ensemble vs.\ Individual Fold Models.} Per-fold Dice on the sealed held-out set alongside the ensemble result (91.41\%). The $+1.39$\,pp lift demonstrates the benefit of soft-voting aggregation over any single model.}}{45}{figure.9}\protected@file@percent }
-\newlabel{fig:ensemble}{{9}{45}{\textbf {Ensemble vs.\ Individual Fold Models.} Per-fold Dice on the sealed held-out set alongside the ensemble result (91.41\%). The $+1.39$\,pp lift demonstrates the benefit of soft-voting aggregation over any single model}{figure.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{46}{section.6}\protected@file@percent }
-\newlabel{sec:discussion}{{6}{46}{Discussion}{section.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Efficiency as a Structural Property}{46}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{44}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{44}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Efficiency as a Structural Property}{44}{subsection.6.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces \textbf  {Qualitative Segmentation Results.} Representative examples spanning the full performance range. Each row shows (left to right): T1CE MRI input, ground truth overlay (red), GNN ensemble prediction (blue), and comparison (red~=~GT only, blue~=~prediction only, purple~=~overlap). \textbf  {(a)}~Best case: Dice~=~100\%, perfect agreement. \textbf  {(b)}~Median case: Dice~=~92.3\%, minor boundary disagreement. \textbf  {(c,\,d)}~Worst cases: Dice~$\approx $~0\%, complete-miss failures on patients with absent T1CE enhancement.}}{45}{figure.7}\protected@file@percent }
+\newlabel{fig:qualitative}{{7}{45}{\textbf {Qualitative Segmentation Results.} Representative examples spanning the full performance range. Each row shows (left to right): T1CE MRI input, ground truth overlay (red), GNN ensemble prediction (blue), and comparison (red~=~GT only, blue~=~prediction only, purple~=~overlap). \textbf {(a)}~Best case: Dice~=~100\%, perfect agreement. \textbf {(b)}~Median case: Dice~=~92.3\%, minor boundary disagreement. \textbf {(c,\,d)}~Worst cases: Dice~$\approx $~0\%, complete-miss failures on patients with absent T1CE enhancement}{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces \textbf  {Per-Graph Dice Distribution --- BraTS 2021 Held-Out (251 patients).} \textit  {Left}: Per-graph Dice histogram; red bins (Dice $<$ 0.10) are complete-miss slices (5.0\% of graphs); dominant high-quality peak (Dice $\geq $ 0.90: 81.2\%). Dashed line: per-slice mean (83.2\%); dash-dot line: patient-level ensemble Dice (91.41\%). \textit  {Right}: Quality tier breakdown pie chart.}}{46}{figure.8}\protected@file@percent }
+\newlabel{fig:dice_hist}{{8}{46}{\textbf {Per-Graph Dice Distribution --- BraTS 2021 Held-Out (251 patients).} \textit {Left}: Per-graph Dice histogram; red bins (Dice $<$ 0.10) are complete-miss slices (5.0\% of graphs); dominant high-quality peak (Dice $\geq $ 0.90: 81.2\%). Dashed line: per-slice mean (83.2\%); dash-dot line: patient-level ensemble Dice (91.41\%). \textit {Right}: Quality tier breakdown pie chart}{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces \textbf  {Ensemble vs.\ Individual Fold Models.} Per-fold Dice on the sealed held-out set alongside the ensemble result (91.41\%). The $+1.39$\,pp lift demonstrates the benefit of soft-voting aggregation over any single model.}}{46}{figure.9}\protected@file@percent }
+\newlabel{fig:ensemble}{{9}{46}{\textbf {Ensemble vs.\ Individual Fold Models.} Per-fold Dice on the sealed held-out set alongside the ensemble result (91.41\%). The $+1.39$\,pp lift demonstrates the benefit of soft-voting aggregation over any single model}{figure.9}{}}
 \citation{louis2016glioma}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.2}The Complete-Miss Failure Mode}{47}{subsection.6.2}\protected@file@percent }
-\citation{saueressig2021exploring}
-\citation{patel2023multiclass}
+\citation{isensee2021nnunet}
 \citation{cicek20163d}
 \citation{isensee2021nnunet}
 \citation{wang2021transbts}
 \citation{hatamizadeh2022swin}
 \citation{saueressig2021exploring}
 \citation{patel2023multiclass}
-\citation{menze2015multimodal,bakas2021brats}
 \citation{isensee2021nnunet}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Comparison with State-of-the-Art}{49}{subsection.6.3}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Context vs.\ Published Methods on BraTS 2021 WT Dice}}{50}{table.10}\protected@file@percent }
 \newlabel{tab:sota}{{10}{50}{Context vs.\ Published Methods on BraTS 2021 WT Dice}{table.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Cross-Dataset Generalisation Analysis}{50}{subsection.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Deployment Implications}{51}{subsection.6.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{52}{section.7}\protected@file@percent }
-\newlabel{sec:conclusion}{{7}{52}{Conclusion}{section.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Resource Cost of Accuracy: Measured vs.\ Published Configurations}}{50}{table.11}\protected@file@percent }
+\newlabel{tab:cost}{{11}{50}{Resource Cost of Accuracy: Measured vs.\ Published Configurations}{table.11}{}}
+\citation{saueressig2021exploring}
+\citation{patel2023multiclass}
+\citation{menze2015multimodal,bakas2021brats}
+\citation{isensee2021nnunet}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Cross-Dataset Generalisation Analysis}{52}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Deployment Implications}{52}{subsection.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{53}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{53}{Conclusion}{section.7}{}}
 \bibstyle{unsrtnat}
 \bibdata{ref.bib}
 \bibcite{menze2015multimodal}{{1}{2015}{{Menze et~al.}}{{Menze, Jakab, Bauer, et~al.}}}
@@ -227,8 +233,8 @@
 \bibcite{achanta2012slic}{{6}{2012}{{Achanta et~al.}}{{Achanta, Shaji, Smith, Lucchi, Fua, and S{\"u}sstrunk}}}
 \bibcite{kipf2017gcn}{{7}{2017}{{Kipf and Welling}}{{}}}
 \bibcite{cicek20163d}{{8}{2016}{{{\c {C}}i{\c {c}}ek et~al.}}{{{\c {C}}i{\c {c}}ek, Abdulkadir, Lienkamp, Brox, and Ronneberger}}}
-\bibcite{saueressig2021exploring}{{9}{2021}{{Saueressig et~al.}}{{Saueressig, Berkley, Munoz, and Kamil}}}
-\bibcite{patel2023multiclass}{{10}{2023}{{Patel et~al.}}{{Patel, Patel, and Nguyen}}}
+\bibcite{saueressig2021exploring}{{9}{2021}{{Saueressig et~al.}}{{Saueressig, Berkley, Kang, Munbodh, and Singh}}}
+\bibcite{patel2023multiclass}{{10}{2023}{{Patel et~al.}}{{Patel, Patel, Saxena, and Akilan}}}
 \bibcite{litjens2017survey}{{11}{2017}{{Litjens et~al.}}{{Litjens, Kooi, Bejnordi, Setio, Ciompi, Ghafoorian, van~der Laak, van Ginneken, and S{\'a}nchez}}}
 \bibcite{pereira2016brain}{{12}{2016}{{Pereira et~al.}}{{Pereira, Pinto, Alves, and Silva}}}
 \bibcite{ronneberger2015unet}{{13}{2015}{{Ronneberger et~al.}}{{Ronneberger, Fischer, and Brox}}}
@@ -247,15 +253,15 @@
 \bibcite{wu2021comprehensive}{{26}{2021}{{Wu et~al.}}{{Wu, Pan, Chen, Long, Zhang, and Yu}}}
 \bibcite{qi2017pointnet}{{27}{2017}{{Qi et~al.}}{{Qi, Su, Mo, and Guibas}}}
 \bibcite{parisot2017spectral}{{28}{2017}{{Parisot et~al.}}{{Parisot, Ktena, Ferrante, Lee, Guerrero, Glocker, and Rueckert}}}
-\bibcite{jha2021instance}{{29}{2021}{{Lu et~al.}}{{Lu, Toss, Daber-Barros, Vuillaume, Nir, Tektonidis, Ganeshan, Rakha, and Rajpoot}}}
+\bibcite{jha2021instance}{{29}{2022}{{Lu et~al.}}{{Lu, Toss, Dawood, Rakha, Rajpoot, and Minhas}}}
 \bibcite{bessadok2022graph}{{30}{2022}{{Bessadok et~al.}}{{Bessadok, Mahjoub, and Rekik}}}
 \bibcite{shi2000normalized}{{31}{2000}{{Shi and Malik}}{{}}}
 \bibcite{felzenszwalb2004efficient}{{32}{2004}{{Felzenszwalb and Huttenlocher}}{{}}}
 \bibcite{stutz2018superpixels}{{33}{2018}{{Stutz et~al.}}{{Stutz, Hermans, and Leibe}}}
 \bibcite{orlando2017retinal}{{34}{2017}{{Orlando et~al.}}{{Orlando, Prokofyeva, and Blaschko}}}
-\bibcite{bai2019superpixel}{{35}{2018}{{Bai et~al.}}{{Bai, Chen, Tarroni, Duan, Guitton, Petersen, Guo, Matthews, and Rueckert}}}
+\bibcite{bai2018aortic}{{35}{2018}{{Bai et~al.}}{{Bai, Suzuki, Qin, Tarroni, Oktay, Matthews, and Rueckert}}}
 \bibcite{louis2016glioma}{{36}{2016}{{Louis et~al.}}{{Louis, Perry, Reifenberger, von Deimling, Figarella-Branger, Cavenee, Ohgaki, Wiestler, Kleihues, and Ellison}}}
 \bibcite{bakas2017advancing}{{37}{2017}{{Bakas et~al.}}{{Bakas, Akbari, Sotiras, Bilello, Rozycki, Kirby, Freymann, Farahani, and Davatzikos}}}
 \bibcite{loshchilov2019adamw}{{38}{2019}{{Loshchilov and Hutter}}{{}}}
 \bibcite{fey2019pyg}{{39}{2019}{{Fey and Lenssen}}{{}}}
-\gdef \@abspage@last{70}
+\gdef \@abspage@last{71}

@@ -45,13 +45,13 @@ Thomas~N Kipf and Max Welling.
 \newblock 3d u-net: Learning dense volumetric segmentation from sparse annotation.
 \newblock In \emph{International Conference on Medical Image Computing and Computer-Assisted Intervention}, pages 424--432. Springer, 2016.
 
-\bibitem[Saueressig et~al.(2021)Saueressig, Berkley, Munoz, and Kamil]{saueressig2021exploring}
-Camillo Saueressig, Adam Berkley, Elliot Munoz, and Reshma Kamil.
+\bibitem[Saueressig et~al.(2021)Saueressig, Berkley, Kang, Munbodh, and Singh]{saueressig2021exploring}
+Camillo Saueressig, Adam Berkley, Elliot Kang, Reshma Munbodh, and Ritambhara Singh.
 \newblock Exploring graph-based neural networks for automatic brain tumor segmentation.
-\newblock In \emph{From Data to Models and Back (DataMod 2020)}, volume 12611 of \emph{Lecture Notes in Computer Science}, pages 18--32. Springer, 2021.
+\newblock In \emph{From Data to Models and Back (DataMod 2020)}, volume 12611 of \emph{Lecture Notes in Computer Science}, pages 18--37. Springer, 2021.
 
-\bibitem[Patel et~al.(2023)Patel, Patel, and Nguyen]{patel2023multiclass}
-Urvashi Patel, Saurabh Patel, and Trung Nguyen.
+\bibitem[Patel et~al.(2023)Patel, Patel, Saxena, and Akilan]{patel2023multiclass}
+Dhrumil Patel, Dhruv Patel, Rudra Saxena, and Thangarajah Akilan.
 \newblock Multi-class brain tumor segmentation using graph attention network.
 \newblock \emph{arXiv preprint arXiv:2302.05598}, 2023.
 
@@ -101,7 +101,7 @@ Wenxuan Wang, Chen Chen, Meng Ding, Hong Yu, Sen Zha, and Jiangyun Li.
 \newblock In \emph{International Conference on Medical Image Computing and Computer-Assisted Intervention}, pages 109--119. Springer, 2021.
 
 \bibitem[Liu et~al.(2021)Liu, Lin, Cao, Hu, Wei, Zhang, Lin, and Guo]{liu2021swin}
-Ze~Liu, Yutong Lin, Yue Cao, Han Hu, Yixiang Wei, Zheng Zhang, Stephen Lin, and Baining Guo.
+Ze~Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng Zhang, Stephen Lin, and Baining Guo.
 \newblock Swin transformer: Hierarchical vision transformer using shifted windows.
 \newblock In \emph{IEEE/CVF International Conference on Computer Vision}, pages 10012--10022, 2021.
 
@@ -145,10 +145,10 @@ Sarah Parisot, Sofia~Ira Ktena, Enzo Ferrante, Matthew Lee, Ricardo Guerrero, Be
 \newblock Spectral graph convolutions for population-based disease prediction.
 \newblock In \emph{International Conference on Medical Image Computing and Computer-Assisted Intervention}, pages 177--185. Springer, 2017.
 
-\bibitem[Lu et~al.(2021)Lu, Toss, Daber-Barros, Vuillaume, Nir, Tektonidis, Ganeshan, Rakha, and Rajpoot]{jha2021instance}
-Wenqi Lu, Michael Toss, Flavia Daber-Barros, Marie-Lisa Vuillaume, Alon Nir, Marco Tektonidis, Balaji Ganeshan, Emad Rakha, and Nasir Rajpoot.
-\newblock Instance segmentation of whole slide images using graph neural networks.
-\newblock \emph{Medical Image Analysis}, 71:\penalty0 102042, 2021.
+\bibitem[Lu et~al.(2022)Lu, Toss, Dawood, Rakha, Rajpoot, and Minhas]{jha2021instance}
+Wenqi Lu, Michael Toss, Muhammad Dawood, Emad Rakha, Nasir Rajpoot, and Fayyaz Minhas.
+\newblock {SlideGraph+}: Whole slide image level graphs to predict {HER2} status in breast cancer.
+\newblock \emph{Medical Image Analysis}, 80:\penalty0 102486, 2022.
 
 \bibitem[Bessadok et~al.(2022)Bessadok, Mahjoub, and Rekik]{bessadok2022graph}
 Alaa Bessadok, Mohamed~Ali Mahjoub, and Islem Rekik.
@@ -175,8 +175,8 @@ Jos{\'e}~Ignacio Orlando, Elena Prokofyeva, and Matthew~B Blaschko.
 \newblock A discriminatively trained fully connected conditional random field model for blood vessel segmentation in fundus images.
 \newblock \emph{IEEE Transactions on Biomedical Engineering}, 64\penalty0 (1):\penalty0 16--27, 2017.
 
-\bibitem[Bai et~al.(2018)Bai, Chen, Tarroni, Duan, Guitton, Petersen, Guo, Matthews, and Rueckert]{bai2019superpixel}
-Wenjia Bai, Chen Chen, Giacomo Tarroni, Jinming Duan, Florian Guitton, Steffen~E Petersen, Yike Guo, Paul~M Matthews, and Daniel Rueckert.
+\bibitem[Bai et~al.(2018)Bai, Suzuki, Qin, Tarroni, Oktay, Matthews, and Rueckert]{bai2018aortic}
+Wenjia Bai, Hideaki Suzuki, Chen Qin, Giacomo Tarroni, Ozan Oktay, Paul~M Matthews, and Daniel Rueckert.
 \newblock Recurrent neural networks for aortic image sequence segmentation with sparse annotations.
 \newblock In \emph{International Conference on Medical Image Computing and Computer-Assisted Intervention}, pages 586--594. Springer, 2018.
 

@@ -44,7 +44,7 @@ Graph Neural Networks offer a fundamentally different approach: instead of proce
 2. **Rigorous Evaluation**: Patient-level stratified 5-fold CV with sealed held-out set and 15 automated integrity checks ensuring zero data leakage
 3. **Ablation Study**: Systematic comparison of depth (5 vs. 6 layers), width (256 vs. 512 dims), and architecture (GraphSAGE vs. GAT) confirming the 5-layer 256-dim configuration as optimal
 4. **Cross-Edition Generalisation**: Zero-shot evaluation on BraTS 2023 yielding 89.40% Dice (2.01 pp gap)
-5. **Efficiency Analysis**: 5.9× end-to-end speedup, 155× parameter reduction, 227× memory reduction vs. 3D U-Net
+5. **Efficiency Analysis**: 5.9× end-to-end speedup, 157× parameter reduction, 227× memory reduction vs. 3D U-Net
 
 ---
 
@@ -205,14 +205,14 @@ Precision > Sensitivity (95.52% vs 87.77%) indicates a precision-biased operatin
 |--------|---------|----------|-------------------|
 | End-to-End Time (incl. SLIC) | **1.73 s** | 10.16 s | **5.9× faster** |
 | Inference only (pre-built graph) | **75.4 ms** | 10.16 s | **>135× faster** |
-| Parameters | **439,041** | 68M | **155× fewer** |
+| Parameters | **439,041** | 69.1M | **157× fewer** |
 | Peak GPU Memory | **11 MB** | 2,500 MB | **227× less** |
-| Model Size (disk) | **1.7 MB** | 264 MB | **155× smaller** |
-| Dice (CV mean) | 90.02% | 87.5% | +2.52 pp |
+| Model Size (disk) | **1.7 MB** | 264 MB | **157× smaller** |
+| Dice (CV mean) | 90.02% | 87.84% | +2.18 pp |
 
 The valid apples-to-apples comparison is the **5.9× end-to-end figure** (both include full processing). The >135× figure compares the GNN's most favourable mode (graphs pre-cached) against U-Net's only mode.
 
-**Note on U-Net accuracy**: The 87.5% reflects binary-only training under the same RTX 2060 / 50-epoch budget. Published U-Net on multi-class BraTS achieves 91–92%, benefiting from auxiliary ET/TC gradient signal unavailable in our binary formulation.
+**Note on U-Net accuracy**: The 87.84% reflects binary-only training under the same RTX 2060 hardware constraint with 69.1M parameters (base\_channels=56, num\_levels=4). Published U-Net on multi-class BraTS achieves 91–92%, benefiting from auxiliary ET/TC gradient signal unavailable in our binary formulation.
 
 ### 4.5 Ablation Studies
 
@@ -271,7 +271,7 @@ Applied without retraining or threshold adjustment to 1,245 BraTS 2023 patients:
 
 **Data Standards**: NIfTI format compliance, DICOM compatibility through conversion libraries (dcm2niix). HIPAA/GDPR compliance through de-identified BraTS data.
 
-**Environmental Sustainability**: 5.9× speedup and 155× parameter reduction translate directly to reduced energy consumption. Consumer-grade GPU training (RTX 2060, ~175W) vs. research hardware (A100, ~400W) at 5× longer training duration for volumetric methods.
+**Environmental Sustainability**: 5.9× speedup and 157× parameter reduction translate directly to reduced energy consumption. Consumer-grade GPU training (RTX 2060, ~175W) vs. research hardware (A100, ~400W) at 5× longer training duration for volumetric methods.
 
 ### 5.2 Societal Impact
 
@@ -322,7 +322,7 @@ Applied without retraining or threshold adjustment to 1,245 BraTS 2023 patients:
 - Sep 15, 2025: Graph construction pipeline with all 15 integrity checks passing
 - Oct 28, 2025: 5-fold CV complete — 90.02% ± 0.74% Dice
 - Nov 10, 2025: Ensemble confirmed 91.41% on sealed held-out; BraTS 2023 = 89.40% (gap: 2.01 pp)
-- Nov 25, 2025: Efficiency benchmarking final — 5.9× speedup, 155× parameter reduction
+- Nov 25, 2025: Efficiency benchmarking final — 5.9× speedup, 157× parameter reduction
 - Dec 22, 2025: Thesis submission
 
 ---

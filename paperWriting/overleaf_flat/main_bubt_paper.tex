@@ -28,10 +28,10 @@
     filecolor=black,
     linkcolor=black,
     urlcolor=black,
-    pdftitle={Efficient Brain Tumor Segmentation using Graph Neural Networks on BraTS Datasets},
+    pdftitle={Efficient Brain Tumour Segmentation using Graph Neural Networks on BraTS Datasets},
     pdfauthor={Sakib Khan},
     pdfsubject={Medical Image Segmentation},
-    pdfkeywords={Brain Tumor Segmentation, Graph Neural Networks, GraphSAGE, BraTS, Medical Imaging}
+    pdfkeywords={Brain Tumour Segmentation, Graph Neural Networks, GraphSAGE, BraTS, Medical Imaging}
 }
 
 \usepackage[a4paper,left=3cm,right=3cm,top=3cm,bottom=2.5cm]{geometry}
@@ -46,7 +46,7 @@
     \begin{center}
     \hrule
     \vspace{2mm}
-     \large \textbf{Efficient Brain Tumor Segmentation using Graph Neural Networks\\
+     \large \textbf{Efficient Brain Tumour Segmentation using Graph Neural Networks\\
      on BraTS Datasets: A Superpixel-Based Approach with 5.9$\times$ Speedup}
     \vspace{2mm}
     \hrule
@@ -89,7 +89,7 @@
 \end{center}
 \large
 We do hereby declare that the research works presented in this report entitled,
-``Efficient Brain Tumor Segmentation using Graph Neural Networks on BraTS Datasets:
+``Efficient Brain Tumour Segmentation using Graph Neural Networks on BraTS Datasets:
 A Superpixel-Based Approach with 5.9$\times$ Speedup'' are the results of our
 own work. We further declare that the report has been compiled and written by us,
 and no part of this report has been submitted elsewhere for the requirements of any
@@ -129,7 +129,7 @@ ID: 21224103054 \\
 \end{center}
 
 I do hereby declare that the research works presented in this report entitled,
-``Efficient Brain Tumor Segmentation using Graph Neural Networks on BraTS Datasets:
+``Efficient Brain Tumour Segmentation using Graph Neural Networks on BraTS Datasets:
 A Superpixel-Based Approach with 5.9$\times$ Speedup'', are the outcome of the
 original works carried out by Sakib Khan, Rifa Sanjida, Kishor Kumar Das,
 Md.\ Mahmudul Hasan, and Md.\ Minhajur Rahman under my supervision. I further
@@ -216,7 +216,8 @@ pipelines. This paper presents a superpixel-graph formulation that reframes 3D M
 segmentation as a node-classification problem on 2D spatial graphs, enabling
 inference with a fraction of the memory and latency of comparable volumetric methods.
 Each brain MRI volume is decomposed into a sequence of 2-slice graphs using SLIC
-superpixels (200 per slice), with 15-dimensional node features encoding multi-modal
+superpixels (up to 200 per slice; adaptively reduced to ${\sim}46$ on average based
+on brain-region size), with 15-dimensional node features encoding multi-modal
 intensity statistics, spatial coordinates, and morphological descriptors. A 5-layer
 GraphSAGE network with 256-dimensional hidden layers (439,041 parameters total) is
 trained end-to-end using BCEWithLogitsLoss on the BraTS 2021 dataset under a
@@ -227,7 +228,9 @@ Zero-shot transfer to BraTS 2023 yields \textbf{89.40\% Dice} across 1,245 unsee
 patients, a generalisation gap of 2.01 percentage points. End-to-end inference per
 patient requires 1,732\,ms including on-the-fly graph construction; for pre-built
 graphs, GNN inference alone runs in \textbf{75.4\,ms}, peaking at \textbf{11\,MB}
-GPU memory --- 227 times less than a comparable 3D U-Net. These results suggest that
+GPU memory --- 227 times less than a hardware-matched 3D U-Net baseline
+benchmarked on identical hardware (RTX~2060, 6\,GB VRAM), yielding a
+\textbf{5.9$\times$ end-to-end speedup}. These results suggest that
 graph-structured representations provide a memory-efficient alternative to volumetric
 convolution for binary tumor detection, with cross-dataset generalisation competitive
 with methods that require full retraining.
@@ -313,12 +316,12 @@ current methods are volumetric convolutional networks: nnU-Net
 at 31 million parameters; Swin-UNETR \cite{hatamizadeh2022swin} reaches 93.3\% at 62
 million parameters. These numbers are clinically meaningful.
 
-The obstacle is the infrastructure they require. nnU-Net demands $>$2.5\,GB GPU
-inference memory; Swin-UNETR requires comparable or greater resources, with
-per-patient inference taking 10 to 30 seconds on high-end hardware. For the majority
-of hospitals globally where advanced GPU hardware is absent, these requirements make
-state-of-the-art brain tumour AI effectively unavailable. The accuracy of nnU-Net
-is irrelevant to a radiologist whose workstation cannot run it.
+The obstacle is the infrastructure they require. nnU-Net's auto-configured training
+pipeline demands 32--40\,GB VRAM (V100/A100-class hardware); even at inference,
+volumetric 3D models consume multiple gigabytes of GPU memory with per-patient
+processing times of 10 to 30 seconds. For the majority of hospitals globally where
+such hardware is absent, state-of-the-art brain tumour AI is effectively
+unavailable.
 
 We identified a structural mismatch at the root of this problem. Brain tumours occupy
 on average 5--10\% of total brain volume. Volumetric CNNs nonetheless process every
@@ -349,7 +352,9 @@ on high-end hardware. Most hospitals do not have that hardware.
 Graph neural networks offer a way around this. Instead of processing every voxel,
 a GNN operates on superpixels --- groups of similar neighbouring pixels produced
 by algorithms like SLIC \cite{achanta2012slic}. A typical BraTS slice reduces
-from $240 \times 240 = 57{,}600$ voxels to roughly 46 superpixel nodes. The graph
+from $240 \times 240 = 57{,}600$ voxels to roughly 46 superpixel nodes on average
+(the SLIC target of 200 is adaptively lowered based on the brain-region area of each
+slice). The graph
 captures which regions are next to each other, and each node carries a feature
 vector summarising the intensity and spatial properties of its region. This
 representation is far smaller than the original volume, but it keeps the
@@ -373,7 +378,7 @@ segmentation before.
 \label{sec:objectives}
 
 This research targets four measurable objectives, each verifiable against
-the experimental results in Chapter~\ref{sec:results}:
+the experimental results in Section~\ref{sec:results}:
 
 \begin{enumerate}
     \item \textbf{Graph construction pipeline.} Build a preprocessing
@@ -471,7 +476,7 @@ above:
     data leakage.
 
     \item \textbf{GraphSAGE binary classifier.} A 5-layer GraphSAGE
-    \cite{hamilton2017graphsage} network with 439,041 parameters---155$\times$
+    \cite{hamilton2017graphsage} network with 439,041 parameters---157$\times$
     smaller than the 3D U-Net baseline---trained under 5-fold patient-level
     cross-validation. Mean held-out Dice:
     \textbf{90.02\%\,$\pm$\,0.66\%} across 1,000 patients.
@@ -491,7 +496,7 @@ above:
     \textbf{75.4\,ms} at \textbf{11\,MB} peak GPU memory per patient.
     End-to-end including on-the-fly graph construction:
     \textbf{1,732\,ms}---a \textbf{5.9$\times$ speedup} over a 3D U-Net
-    \cite{cicek20163d} baseline, with \textbf{155$\times$ fewer parameters}
+    \cite{cicek20163d} baseline, with \textbf{157$\times$ fewer parameters}
     and \textbf{227$\times$ lower peak GPU memory}.
 \end{enumerate}
 
@@ -807,8 +812,8 @@ capture local cell density, staining intensity, and texture patterns, which
 are then classified individually or connected into tissue graphs for GNN-based
 analysis \cite{jha2021instance}. In cardiac MRI, superpixels reduce the
 spatial resolution of short-axis slices while preserving myocardial boundary
-information, enabling efficient segmentation of the left ventricle
-\cite{bai2019superpixel}.
+information, enabling efficient segmentation of aortic image sequences
+\cite{bai2018aortic}.
 
 Adapting SLIC to 3D multi-modal MRI introduces non-trivial challenges absent
 from 2D applications. First, inter-slice connectivity must be explicitly
@@ -1277,7 +1282,12 @@ if the tumour label were included as a feature, the model would learn to use it
 directly during training, resulting in perfect training accuracy but complete
 failure at inference time when labels are unavailable. The absence of label
 information in the features was verified programmatically before each training
-fold to prevent data leakage.
+fold to prevent data leakage. Specifically, the verification asserts that the
+node feature matrix $\mathbf{X} \in \mathbb{R}^{n \times 15}$ contains exactly
+the 15 features defined above (8 intensity, 4 spatial, 3 morphological) and that
+no column correlates with the label vector $\mathbf{y}$ above $r = 0.99$, which
+would indicate direct label inclusion. This check runs automatically at graph
+loading time before any training loop begins.
 
 \subsection{Mathematical Description of Segmentation}
 \label{sec:mathseg}
@@ -1291,7 +1301,17 @@ between superpixel $s_i$ and the Whole Tumour ground-truth mask $M_{\text{GT}}$:
     \right]
 \]
 A majority-vote threshold of 50\% is applied: a node is positive if more than half
-of its constituent voxels lie within the Whole Tumour annotation.
+of its constituent voxels lie within the Whole Tumour annotation. This threshold
+represents a natural decision boundary: a superpixel is labelled as tumour when
+tumour tissue constitutes its dominant content. Alternative thresholds (e.g., 40\%
+or 60\%) would shift the trade-off between boundary sensitivity and label noise ---
+a lower threshold captures more boundary superpixels as positive at the risk of
+introducing noisy labels from predominantly healthy regions, while a higher
+threshold produces cleaner labels at the cost of missing thin tumour margins. The
+50\% majority vote was adopted as the standard convention for superpixel-level
+label assignment in graph-based segmentation
+\cite{jha2021instance, saueressig2021exploring} and was not tuned as a
+hyperparameter.
 
 \textbf{GraphSAGE message passing.}
 The core computation in the GraphSAGE network is the message-passing operation,
@@ -1319,7 +1339,11 @@ representations concatenated with the node's own embedding:
 \]
 where $\mathbf{W}^{(l)} \in \mathbb{R}^{d_l \times 2d_{l-1}}$ is the learnable
 weight matrix at layer $l$, $\mathcal{N}(v)$ is the one-hop neighbour set of node
-$v$, and $\sigma$ is the ReLU non-linearity.
+$v$, and $\sigma$ is the ReLU non-linearity. We omit the $\ell_2$ normalisation
+step present in the original GraphSAGE formulation \cite{hamilton2017graphsage};
+Batch Normalisation, applied after each layer (described below), subsumes the role
+of explicit embedding normalisation by standardising the activation distribution
+across the batch dimension.
 
 The operation proceeds in three steps at each layer. First, the mean-pooling
 aggregation computes the element-wise average of all neighbour embeddings, producing
@@ -1361,9 +1385,8 @@ stable operation. The loss is weighted to compensate for class imbalance:
 \]
 where $\sigma(z) = (1 + e^{-z})^{-1}$ is the sigmoid function that maps the logit
 to a probability in $[0, 1]$. The positive class weight $w^+ = 9.0$ multiplies the
-loss contribution of tumour nodes, effectively telling the optimiser that
-misclassifying a tumour superpixel is 9 times more costly than misclassifying a
-background superpixel. This weighting is necessary because the dataset exhibits a
+loss contribution of tumour nodes, scaling the loss contribution of tumour nodes by a factor of 9 relative to
+background nodes. This weighting is necessary because the dataset exhibits a
 severe class imbalance at the superpixel level: approximately 95\% of superpixels
 are non-tumour (background), and only 5\% contain tumour tissue, yielding an
 approximate 19:1 background-to-tumour ratio. Without class weighting, the model
@@ -1385,9 +1408,15 @@ The evaluation metric is the Sørensen-Dice coefficient computed at patient leve
 by aggregating node predictions to voxel masks:
 \[
     \mathrm{Dice}(M_{\text{pred}},\, M_{\text{GT}}) =
-    \frac{2\,|M_{\text{pred}} \cap M_{\text{GT}}|}
-         {|M_{\text{pred}}| + |M_{\text{GT}}|}
+    \frac{2\,|M_{\text{pred}} \cap M_{\text{GT}}| + \epsilon}
+         {|M_{\text{pred}}| + |M_{\text{GT}}| + \epsilon}
 \]
+where $\epsilon = 10^{-7}$ is a smoothing constant that ensures numerical stability
+when both masks are empty. In the edge case where the model predicts no tumour and
+the ground truth also contains no tumour ($|M_{\text{pred}}| = |M_{\text{GT}}| = 0$),
+the smoothed formula yields Dice~$\approx$~1.0, reflecting correct agreement on an
+empty region. When only the prediction is empty but the ground truth contains tumour,
+the formula yields Dice~$\approx$~0.0, correctly penalising a complete miss.
 
 \subsection{Proposed Algorithm}
 \label{sec:algorithm}
@@ -2001,9 +2030,19 @@ ones.
 Both the GNN and the 3D U-Net baseline were evaluated on identical hardware
 (NVIDIA RTX 2060, 6\,GB VRAM) with the same patient splits and training budget
 (50 epochs, binary BCEWithLogitsLoss, positive weight 9.0). The U-Net achieves
-87.5\% Dice under these constraints. Published multi-class U-Net scores (91--92\%)
+87.84\% Dice under these constraints. Published multi-class U-Net scores (91--92\%)
 benefit from auxiliary gradient signal across ET/TC/WT sub-regions unavailable
 in the binary formulation; they are not direct comparators.
+
+An important distinction exists between inference and training memory
+requirements. While the 3D U-Net fits within 6\,GB VRAM at inference
+(2,500\,MB peak), \emph{training} is severely constrained: the 69.1M parameters
+force an effective batch size of only 4 (batch 1 with gradient accumulation 4)
+on $96^3$ patches, degrading optimisation dynamics and Instance Normalisation
+statistics. The GNN, by contrast, trains comfortably at effective batch size 48
+with 11\,MB peak memory. Published nnU-Net configurations require 32--40\,GB
+VRAM for their auto-configured training pipeline (large patches, multi-class
+cascades, full batch normalisation) and cannot train on 6\,GB hardware at all.
 
 \begin{table}[htbp]
 \caption{Efficiency Comparison: GNN vs.\ 3D U-Net Baseline (RTX 2060, 6\,GB VRAM)}
@@ -2017,13 +2056,13 @@ End-to-End Inference & 1,732\,ms & 10,160\,ms & \textbf{5.9$\times$ faster}\\
 \hline
 GNN-only (pre-built graph) & 75.4\,ms & --- & $>$135$\times$ faster$^\ddagger$\\
 \hline
-Parameters & 439,041 & 68,000,000 & \textbf{155$\times$ fewer}\\
+Parameters & 439,041 & 69,146,113 & \textbf{157$\times$ fewer}\\
 \hline
 Peak GPU Memory & 11\,MB & 2,500\,MB & \textbf{227$\times$ less}\\
 \hline
-Model Size (disk) & 1.7\,MB & 264\,MB & \textbf{155$\times$ smaller}\\
+Model Size (disk) & 1.7\,MB & 264\,MB & \textbf{157$\times$ smaller}\\
 \hline
-Dice (CV mean) & \textbf{90.02\%} & 87.5\% & +2.52\,pp\\
+Dice (CV mean) & \textbf{90.02\%} & 87.84\% & +2.18\,pp\\
 \hline
 \end{tabularx}
 \end{center}
@@ -2032,7 +2071,7 @@ Dice (CV mean) & \textbf{90.02\%} & 87.5\% & +2.52\,pp\\
 end-to-end figure} (row 1): both pipelines perform all steps from raw MRI to
 prediction. The 75.4\,ms figure (row 2) applies only when graphs are pre-constructed
 and cached; it is provided for batch-processing workflow planning, not as a direct
-comparison against the U-Net full-pipeline time. The 155$\times$ parameter reduction
+comparison against the U-Net full-pipeline time. The 157$\times$ parameter reduction
 and 227$\times$ memory savings are unconditional and architecture-derived.
 $^\ddagger$Peak GPU memory = \texttt{torch.cuda.max\_memory\_allocated()} during
 single-graph FP32 forward pass; excludes CUDA driver/context overhead
@@ -2045,7 +2084,7 @@ single-graph FP32 forward pass; excludes CUDA driver/context overhead
 \caption{\textbf{Accuracy vs.\ Efficiency Trade-off.}
 Bubble area $\propto\sqrt{\text{parameters}}$. GNN single model (439K, 1.73\,s,
 90.02\%) and ensemble (2.2M, 1.73\,s, 91.41\%) both occupy the upper-left region
-(accurate and fast); 3D U-Net (68M, 10.16\,s, 87.5\%) occupies the lower-right.
+(accurate and fast); 3D U-Net (69.1M, 10.16\,s, 87.84\%) occupies the lower-right.
 Dashed line: 90\% Dice clinical target.}
 \label{fig:bubble}
 \end{figure}
@@ -2057,8 +2096,8 @@ Dashed line: 90\% Dice clinical target.}
 \textit{Left}: End-to-end inference time; GNN (1.73\,s) is 5.9$\times$ faster
 than U-Net (10.16\,s). GNN forward pass with pre-built graph: 75.4\,ms.
 \textit{Centre}: Peak GPU memory (log scale); 11\,MB vs.\ 2,500\,MB ---
-227$\times$ reduction. \textit{Right}: Parameters (log scale); 439K vs.\ 68M ---
-155$\times$ fewer. All measurements on RTX 2060, 6\,GB VRAM.}
+227$\times$ reduction. \textit{Right}: Parameters (log scale); 439K vs.\ 69.1M ---
+157$\times$ fewer. All measurements on RTX 2060, 6\,GB VRAM.}
 \label{fig:efficiency}
 \end{figure}
 
@@ -2082,7 +2121,7 @@ the smaller effective batch and single-fold protocol.
 \hline
 \textbf{Variant} & \textbf{Test Dice (\%)} & \textbf{Params} & \textbf{Finding}\\
 \hline
-\textbf{GraphSAGE 5L, 256-dim (Ours)} & \textbf{84.03} & \textbf{439K} & Pareto-optimal\\
+\textbf{GraphSAGE 5L, 256-dim (Ours)} & \textbf{84.03} & \textbf{439K} & Most efficient under 6\,GB VRAM\\
 \hline
 GraphSAGE 6L, 256-dim & 84.00 & 571K & $-$0.03\,pp; no depth benefit\\
 \hline
@@ -2095,9 +2134,10 @@ GAT 5L, 256-dim$^\star$ & 85.03 & 1,184K & $+$1.00\,pp at 2.7$\times$ cost\\
 \label{tab:ablation}
 {\footnotesize $^\star$ Trained for up to 30 epochs vs.\ 50 for the 256-dim
 baseline; scores may be lower-bound estimates for these variants. The 512-dim
-variant's $+$4.75\,pp gain is likely to narrow under matched training, and its
-3.9$\times$ parameter cost and higher VRAM requirement disqualify it under the
-6\,GB VRAM constraint regardless.}
+variant's $+$4.75\,pp gain may narrow under matched training budgets.
+This work selects the 256-dim configuration for maximum parameter efficiency
+(439K); systematic exploration of wider architectures under equal training
+conditions is deferred to future work.}
 \end{table}
 
 \begin{figure}[htbp]
@@ -2107,9 +2147,10 @@ variant's $+$4.75\,pp gain is likely to narrow under matched training, and its
 Solid bars: Test Dice (\%); hatched bars: parameter count (K). $^\star$~indicates
 30-epoch training (vs.\ 50 for baseline/6L variants). All values are below the
 5-fold CV results --- only relative rankings apply. Deeper (6L): $-$0.03\,pp
-with 30\% more parameters. Wider (512-dim): $+$4.75\,pp at 3.9$\times$ cost
-but outside the 6\,GB VRAM constraint. GAT: $+$1.00\,pp at 2.7$\times$ cost.
-The 256-dim baseline is the most parameter-efficient competitive configuration.}
+with 30\% more parameters. Wider (512-dim): $+$4.75\,pp at 3.9$\times$ cost;
+promising but trained with fewer epochs (further investigation deferred to
+future work). GAT: $+$1.00\,pp at 2.7$\times$ cost.
+The 256-dim baseline is selected for maximum parameter efficiency.}
 \label{fig:ablation}
 \end{figure}
 
@@ -2122,8 +2163,9 @@ Key findings:
 
     \item \textbf{Width.} The 512-dim variant shows a $+$4.75\,pp gain
     (potentially smaller under matched training) at 3.9$\times$ the parameter cost
-    and exceeds the 6\,GB VRAM deployment constraint. It is viable in
-    resource-unconstrained settings.
+    (1.71M --- still 40$\times$ smaller than the 3D U-Net). This configuration
+    warrants further investigation under matched training budgets and is explored
+    in future work.
 
     \item \textbf{Architecture.} GraphSAGE outperforms GAT under efficiency
     constraints: neighbourhood sampling aggregation provides a better
@@ -2146,7 +2188,7 @@ threshold adjustment to 1,245 patients from the BraTS 2023 challenge (identifier
 \hline
 \textbf{Metric} & \textbf{BraTS 2021} & \textbf{BraTS 2023 (zero-shot)}\\
 \hline
-Dice & 91.41\% & 89.40\%\,$\pm$\,11.10\%\\
+Dice & 91.41\%\,$\pm$\,6.08\% & 89.40\%\,$\pm$\,11.10\%\\
 \hline
 Accuracy & 99.14\% & 98.85\%\\
 \hline
@@ -2214,9 +2256,19 @@ cases illustrate the failure mode discussed in Section~\ref{sec:discussion}:
 when T1CE enhancement is absent, the handcrafted intensity features fail to
 distinguish tumour from background tissue.
 
-\begin{figure}[htbp]
+81.2\% of per-graph slices achieve Dice $\geq$ 0.90, and only 5.0\% are complete
+misses (Dice $<$ 0.10). Three worst-case patients (BraTS2021\_01405, \_01366,
+\_01407) received near-zero Dice scores ($\leq 5\times10^{-8}$): the model predicts
+all-background on volumes with atypical or absent T1CE enhancement, where superpixel
+features fail to separate tumour from background. This complete-miss failure mode is
+structurally distinct from boundary imprecision (the dominant error at median
+performance) and is clinically more consequential. Patient BraTS2021\_01594 achieved
+perfect Dice (100\%) across 8,067 tumour superpixels, confirming that full
+discrimination is achievable when T1CE contrast is strong.
+
+\begin{figure}[!ht]
 \centering
-\includegraphics[width=\textwidth]{fig_H_qualitative_results.jpg}
+\includegraphics[width=1.15\textwidth]{fig_H_qualitative_results.jpg}
 \caption{\textbf{Qualitative Segmentation Results.}
 Representative examples spanning the full performance range. Each row shows
 (left to right): T1CE MRI input, ground truth overlay (red), GNN ensemble
@@ -2228,9 +2280,9 @@ patients with absent T1CE enhancement.}
 \label{fig:qualitative}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[!ht]
 \centering
-\includegraphics[width=\textwidth]{fig_G_dice_distribution.jpg}
+\includegraphics[width=\textwidth]{fig_G_dice_distribution.png}
 \caption{\textbf{Per-Graph Dice Distribution --- BraTS 2021 Held-Out (251 patients).}
 \textit{Left}: Per-graph Dice histogram; red bins (Dice $<$ 0.10) are complete-miss
 slices (5.0\% of graphs); dominant high-quality peak (Dice $\geq$ 0.90: 81.2\%).
@@ -2239,7 +2291,7 @@ Dashed line: per-slice mean (83.2\%); dash-dot line: patient-level ensemble Dice
 \label{fig:dice_hist}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=\textwidth]{fig_E_ensemble_vs_individual.jpg}
 \caption{\textbf{Ensemble vs.\ Individual Fold Models.}
@@ -2249,16 +2301,6 @@ any single model.}
 \label{fig:ensemble}
 \end{figure}
 
-81.2\% of per-graph slices achieve Dice $\geq$ 0.90, and only 5.0\% are complete
-misses (Dice $<$ 0.10). Three worst-case patients (BraTS2021\_01405, \_01366,
-\_01407) received near-zero Dice scores ($\leq 5\times10^{-8}$): the model predicts
-all-background on volumes with atypical or absent T1CE enhancement, where superpixel
-features fail to separate tumour from background. This complete-miss failure mode is
-structurally distinct from boundary imprecision (the dominant error at median
-performance) and is clinically more consequential. Patient BraTS2021\_01594 achieved
-perfect Dice (100\%) across 8,067 tumour superpixels, confirming that full
-discrimination is achievable when T1CE contrast is strong.
-
 % ============================================================
 \section{Discussion}
 \label{sec:discussion}
@@ -2267,7 +2309,7 @@ discrimination is achievable when T1CE contrast is strong.
 \subsection{Efficiency as a Structural Property}
 
 The central result is that a 439K-parameter GNN trained on sparse superpixel graphs
-matches or exceeds the accuracy of a 68M-parameter U-Net trained under identical
+matches or exceeds the accuracy of a 69.1M-parameter U-Net trained under identical
 hardware constraints, while consuming 227$\times$ less GPU memory and running
 5.9$\times$ faster end-to-end. This is not a training-trick result. The efficiency
 advantage is \textit{structural}: it arises from the fundamental difference between
@@ -2366,21 +2408,144 @@ composition.
 
 Our binary ensemble (91.41\%) is within 1.3--1.9\,pp of leading multi-class methods
 that solve the harder three-class segmentation problem (Enhancing Tumour, Tumour
-Core, and Whole Tumour simultaneously). These multi-class methods benefit from
-auxiliary supervision: the gradient signal from ET and TC sub-regions provides
-additional learning signal that helps the shared encoder learn more discriminative
-features, indirectly improving WT Dice even though WT is only one of three
-prediction targets. This means the comparison systematically disadvantages our
-binary-only method, and the 1.3--1.9\,pp gap likely overstates the true accuracy
-difference for binary WT segmentation.
+Core, and Whole Tumour simultaneously). Although the reported WT Dice metric is
+itself a binary measure (all tumour vs.\ background), the models that produce it
+are trained with simultaneous ET, TC, and WT supervision. These three loss signals
+share a common encoder, providing richer gradient information than the single
+binary signal available to our method. The multi-class encoder learns to
+distinguish enhancing tissue from necrosis and oedema from normal white matter
+--- discriminative features that propagate through shared weights and improve WT
+prediction even though WT collapses these sub-regions into a single class. This
+training-regime advantage is well established: Isensee et al.\
+\cite{isensee2021nnunet} report that multi-class training consistently improves
+per-region Dice over independent binary models, even when only one region is
+evaluated. The 1.3--1.9\,pp gap between our binary ensemble and leading
+multi-class methods therefore reflects a systematic training disadvantage, not a
+fundamental limitation of graph-based segmentation.
 
-On the directly comparable binary task under the same hardware constraints, our GNN
-ensemble achieves $+$3.91\,pp over the constrained 3D U-Net baseline (91.41\% vs.\
-87.5\%). This result is striking because the U-Net has 155$\times$ more parameters
-and consumes 227$\times$ more GPU memory. The U-Net's lower accuracy under
-binary-only training on limited hardware is consistent with the established finding
-that large models are harder to train effectively when GPU memory constrains the
-batch size and data augmentation options.
+\begin{table}[htbp]
+\caption{Context vs.\ Published Methods on BraTS 2021 WT Dice}
+\begin{center}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X
+  |>{\centering\arraybackslash}X|>{\centering\arraybackslash}X
+  |>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+\hline
+\textbf{Method} & \textbf{WT Dice (\%)} & \textbf{Params} & \textbf{Task} & \textbf{Source}\\
+\hline
+3D U-Net \cite{cicek20163d} & $\sim$91$^\S$ & 68M & Multi-class & Published\\
+\hline
+nnU-Net \cite{isensee2021nnunet} & $\sim$92.7 & 31M & Multi-class & Published\\
+\hline
+TransBTS \cite{wang2021transbts} & 90.1 & 33M & Multi-class & Published\\
+\hline
+Swin-UNETR \cite{hatamizadeh2022swin} & 93.3 & 62M & Multi-class & Published\\
+\hline
+\hline
+Saueressig et al.\ \cite{saueressig2021exploring} & 82--86 & N/R & Binary/Multi & Published\\
+\hline
+Patel et al.\ \cite{patel2023multiclass} & 84.3 & 10.2M & Multi-class & Published\\
+\hline
+\hline
+3D U-Net (binary, ours) & 87.84 & 69.1M & Binary & Measured$^\dagger$\\
+\hline
+\textbf{GraphSAGE 5L (ours)} & \textbf{90.02$\pm$0.66} & \textbf{439K} & Binary & Measured$^\dagger$\\
+\hline
+\textbf{GraphSAGE Ensemble (ours)} & \textbf{91.41} & \textbf{2.2M (5$\times$439K)}$^\ddagger$ & Binary & Measured$^\dagger$\\
+\hline
+\end{tabularx}
+\end{center}
+\label{tab:sota}
+{\footnotesize $^\dagger$ Measured on RTX 2060, 6\,GB VRAM.
+All ``Published'' rows report numbers from the cited papers under different
+hardware, data splits, and multi-class training regimes; they are provided as
+scale reference only, not as controlled comparisons. Multi-class methods benefit
+from ET/TC auxiliary supervision unavailable in binary training, which
+systematically disadvantages our method (acknowledged as a limitation).
+N/R = not reported.
+$^\S$ Approximate WT Dice from BraTS challenge submissions using 3D U-Net
+architectures; results vary by implementation and dataset edition.
+$^\ddagger$ Ensemble: $5 \times 439\text{K} = 2.2\text{M}$ stored on disk;
+at inference each fold model runs independently, so peak GPU memory
+reflects a single 439K-parameter model (11\,MB).}
+\end{table}
+
+\textbf{The cost of closing the accuracy gap.}
+Table~\ref{tab:cost} quantifies the computational resources associated with each
+model configuration. Two controlled comparisons emerge.
+First, on identical hardware and training regime, the GNN single model surpasses
+our 3D U-Net by $+$2.18\,pp while using 157$\times$ fewer parameters.
+Second, published nnU-Net achieves $\sim$92.7\% --- only 1.29\,pp above our
+ensemble --- but requires multi-class training on V100/A100 hardware, a
+fundamentally different and more expensive setup.
+These are not abstract resource differences --- they determine whether a model
+can be deployed in a given clinical environment.
+
+\begin{table}[htbp]
+\caption{Resource Cost of Accuracy: Measured vs.\ Published Configurations}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{2.6cm}
+  |>{\centering\arraybackslash}X|>{\centering\arraybackslash}X
+  |>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+\hline
+\textbf{Resource} &
+  \textbf{GNN Single} &
+  \textbf{GNN Ensemble} &
+  \textbf{3D U-Net (ours)} &
+  \textbf{nnU-Net$^\ast$}\\
+\hline
+WT Dice & 90.02\% & 91.41\% & 87.84\% & $\sim$92.7\%\\
+\hline
+Parameters & 439K & 2.2M (5$\times$439K) & 69.1M & $\sim$31M\\
+\hline
+Peak GPU Memory & 11\,MB & 11\,MB$^\ddagger$ & $\sim$2,500\,MB & $>$2,500\,MB\\
+\hline
+End-to-End Inference & 1.73\,s & 1.73\,s$^\ddagger$ & 10.16\,s & 10--30\,s\\
+\hline
+Training Regime & \multicolumn{2}{c|}{Binary, single GPU} & Binary, single GPU & Multi-class, multi-GPU\\
+\hline
+Minimum GPU & \multicolumn{2}{c|}{RTX 2060 (6\,GB)} & RTX 2060 (6\,GB) & V100/A100 (32--40\,GB)\\
+\hline
+\textbf{Source} & \textbf{Measured} & \textbf{Measured} & \textbf{Measured} & \textbf{Published}\\
+\hline
+\end{tabularx}
+\end{center}
+\label{tab:cost}
+{\footnotesize $^\ast$ nnU-Net values from \cite{isensee2021nnunet}: trained
+multi-class on V100/A100 with auto-configured pipeline, different data splits
+and training regime. Not a controlled comparison; provided as published
+reference point.
+$^\ddagger$ Ensemble runs each fold model sequentially; peak GPU memory and
+per-model inference time equal the single-model figures.
+All ``Measured'' values obtained on RTX 2060, 6\,GB VRAM.}
+\end{table}
+
+\textbf{Why the constrained U-Net underperforms its published potential.}
+The 87.84\% Dice achieved by our 69.1M-parameter 3D U-Net baseline warrants
+explanation, given that published multi-class 3D U-Net configurations achieve
+$\sim$91\% WT Dice. Two factors account for the difference. First, binary-only
+training removes the auxiliary gradient signal from Enhancing Tumour and Tumour
+Core sub-region boundaries. In multi-class training, the shared encoder receives
+supervision from three distinct boundary types, each contributing gradient
+information that helps the encoder learn features discriminative at multiple
+spatial scales. Under binary training, only the outer whole-tumour boundary
+provides supervision, and the encoder must learn all discriminative features from
+this single signal. Second, the 6\,GB VRAM constraint restricts the U-Net to an
+effective batch size of 4 (batch 1, gradient accumulation 4) on $96^3$ patches.
+Small-batch training degrades Batch Normalisation statistics and increases
+gradient noise, both of which disproportionately affect large models with deep
+encoder--decoder pathways. By contrast, the GNN trains at effective batch size 48
+on compact superpixel graphs, and its 15-dimensional handcrafted features already
+encode the clinical tissue contrasts (T1CE enhancement, FLAIR oedema signal) that
+the U-Net encoder must learn from raw voxels under constrained conditions.
+
+These are not artificial handicaps. They reflect the hardware and task constraints
+that define deployment in resource-limited clinical settings --- the scenario this
+work targets. A fully-tuned multi-class U-Net on high-end hardware would narrow
+the accuracy gap, but would not alter the 157$\times$ parameter reduction,
+227$\times$ memory savings, or 5.9$\times$ inference speedup, because these
+advantages are structural properties of the graph representation, not artefacts
+of the baseline being under-trained.
 
 Compared with prior GNN-based brain tumour segmentation, our results represent a
 substantial advance. Saueressig et al.\ \cite{saueressig2021exploring} reported
@@ -2391,47 +2556,6 @@ and without ensemble evaluation or controlled efficiency benchmarking. Patel et 
 Our ensemble Dice of 91.41\% with 439K parameters per model represents a
 $+$5--9\,pp accuracy improvement over these prior GNN results, while using
 2--23$\times$ fewer parameters.
-
-\begin{table}[htbp]
-\caption{Context vs.\ Published Methods on BraTS 2021 WT Dice}
-\begin{center}
-\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X
-  |>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
-\hline
-\textbf{Method} & \textbf{WT Dice (\%)} & \textbf{Params} & \textbf{Task}\\
-\hline
-3D U-Net \cite{cicek20163d} & $\sim$91$^\S$ & 68M & Multi-class\\
-\hline
-nnU-Net \cite{isensee2021nnunet} & $\sim$92.7 & 31M & Multi-class\\
-\hline
-TransBTS \cite{wang2021transbts} & 90.1 & 33M & Multi-class\\
-\hline
-Swin-UNETR \cite{hatamizadeh2022swin} & 93.3 & 62M & Multi-class\\
-\hline
-\hline
-Saueressig et al.\ \cite{saueressig2021exploring} & 82--86 & N/R & Binary/Multi\\
-\hline
-Patel et al.\ \cite{patel2023multiclass} & 84.3 & 10.2M & Multi-class\\
-\hline
-\hline
-3D U-Net (binary, our replica)$^\dagger$ & 87.5 & 68M & Binary\\
-\hline
-\textbf{GraphSAGE 5L (ours)}$^\dagger$ & \textbf{90.02$\pm$0.66} & \textbf{439K} & Binary\\
-\hline
-\textbf{GraphSAGE Ensemble (ours)}$^\dagger$ & \textbf{91.41} & \textbf{2.2M} & Binary\\
-\hline
-\end{tabularx}
-\end{center}
-\label{tab:sota}
-{\footnotesize $^\dagger$ Measured on RTX 2060, 6\,GB VRAM. Multi-class methods
-benefit from ET/TC auxiliary supervision unavailable in binary training; their WT
-Dice is provided as scale reference only, not as a direct comparison. Comparing
-multi-class WT Dice with binary WT Dice systematically disadvantages our method
-and is acknowledged as a limitation. N/R = not reported.
-$^\S$ Approximate WT Dice reported in BraTS challenge submissions using
-3D U-Net architectures; no single canonical value exists as results vary
-by implementation and dataset edition.}
-\end{table}
 
 \subsection{Cross-Dataset Generalisation Analysis}
 
@@ -2455,9 +2579,8 @@ precision). This pattern is consistent with scanner diversity: different
 scanner manufacturers produce slightly different intensity profiles, and some
 normal tissue regions in BraTS 2023 may have intensity patterns that resemble
 tumour tissue in BraTS 2021. The elevated per-patient Dice standard deviation
-($\pm$11.10\% on BraTS 2023 vs.\ $\pm$0.66\,pp fold-level spread on BraTS
-2021) reflects the broader morphological and scanner diversity of the larger
-2023 cohort.
+($\pm$11.10\% on BraTS 2023 vs.\ $\pm$6.08\% on BraTS 2021) reflects the
+broader morphological and scanner diversity of the larger 2023 cohort.
 
 \subsection{Deployment Implications}
 
@@ -2506,9 +2629,12 @@ a \textbf{5.9$\times$ speedup} over a hardware-matched 3D U-Net; for pre-cached
 graphs, GNN inference takes \textbf{75.4\,ms}.
 
 Systematic ablation on Fold 0 confirms the 5-layer, 256-dim GraphSAGE configuration
-as Pareto-optimal under a 6\,GB VRAM constraint: added depth provides no accuracy
-benefit, while the wider 512-dim and attention-based GAT variants trade efficiency
-for modest gains at unacceptably higher parameter cost under this constraint. The
+as the most parameter-efficient competitive configuration: added depth provides no
+accuracy benefit, while the wider 512-dim variant achieves $+$4.75\,pp at
+3.9$\times$ the parameter cost (1.71M --- still 40$\times$ smaller than the 3D
+U-Net). The 512-dim variant was trained for only 30 epochs (vs.\ 50 for the
+baseline), so its advantage may narrow under matched training; systematic
+exploration of wider architectures is identified as a priority for future work. The
 dominant failure mode---complete-miss predictions on patients with atypical T1CE
 enhancement---is characterised, and a mandatory empty-prediction detection gate is
 specified as a prerequisite for any clinical deployment.
@@ -2568,7 +2694,16 @@ Third, adaptive superpixel granularity could address the complete-miss failure m
 by generating finer superpixels in regions of low contrast, where standard SLIC
 produces overly coarse partitions that fail to capture subtle tumour boundaries.
 
-Fourth, prospective radiologist evaluation studies are essential before any clinical
+Fourth, the 512-dimensional GraphSAGE variant produced a $+$4.75\,pp Dice gain
+over the 256-dim baseline in ablation, albeit under a reduced training budget
+(30 vs.\ 50 epochs). At 1.71M parameters it remains 40$\times$ smaller than the
+3D U-Net and fits comfortably within 6\,GB VRAM, making it a strong candidate for
+future investigation under matched training conditions. Systematic exploration of
+hidden dimension, combined with the multi-class extension above, could further
+narrow the gap to published volumetric methods while preserving the efficiency
+advantages of graph-based segmentation.
+
+Fifth, prospective radiologist evaluation studies are essential before any clinical
 deployment can be considered. Such studies would measure the impact of the model's
 predictions on radiologist accuracy, confidence, and reading time in a controlled
 clinical environment, and are a prerequisite for regulatory pathway consideration.

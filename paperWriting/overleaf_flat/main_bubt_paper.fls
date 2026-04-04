@@ -362,11 +362,11 @@ INPUT ./fig_H_qualitative_results.jpg
 INPUT ./fig_H_qualitative_results.jpg
 INPUT ./fig_H_qualitative_results.jpg
 INPUT ./fig_H_qualitative_results.jpg
-INPUT ./fig_G_dice_distribution.jpg
-INPUT ./fig_G_dice_distribution.jpg
-INPUT ./fig_G_dice_distribution.jpg
-INPUT ./fig_G_dice_distribution.jpg
-INPUT ./fig_G_dice_distribution.jpg
+INPUT ./fig_G_dice_distribution.png
+INPUT ./fig_G_dice_distribution.png
+INPUT ./fig_G_dice_distribution.png
+INPUT ./fig_G_dice_distribution.png
+INPUT ./fig_G_dice_distribution.png
 INPUT ./fig_E_ensemble_vs_individual.jpg
 INPUT ./fig_E_ensemble_vs_individual.jpg
 INPUT ./fig_E_ensemble_vs_individual.jpg
@@ -403,6 +403,7 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb

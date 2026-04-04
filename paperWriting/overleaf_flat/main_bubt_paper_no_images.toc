@@ -5,27 +5,38 @@
 \contentsline {section}{Abstract}{vi}{section*.5}%
 \contentsline {section}{List of Abbreviations and Acronyms}{viii}{section*.6}%
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
-\contentsline {section}{\numberline {2}Related Work}{3}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Volumetric CNN Methods for Brain Tumour Segmentation}{3}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Graph Neural Networks in Medical Imaging}{3}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Superpixel-Based Representations}{4}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Methodology}{5}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Dataset and Splits}{5}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Graph Construction}{5}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Model Architecture}{7}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Training Protocol}{7}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Ensemble Inference}{8}{subsection.3.5}%
-\contentsline {subsection}{\numberline {3.6}Data Integrity Validation}{8}{subsection.3.6}%
-\contentsline {section}{\numberline {4}Experimental Results}{9}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Cross-Validation Performance}{9}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Held-Out Ensemble Performance}{9}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Efficiency Benchmarking}{11}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Ablation Studies}{11}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Cross-Dataset Generalisation: BraTS 2023}{14}{subsection.4.5}%
-\contentsline {subsection}{\numberline {4.6}Qualitative Analysis and Per-Patient Distribution}{15}{subsection.4.6}%
-\contentsline {section}{\numberline {5}Discussion}{16}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Efficiency as a Structural Property}{16}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}The Complete-Miss Failure Mode}{17}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Comparison with State-of-the-Art}{17}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Deployment Implications}{17}{subsection.5.4}%
-\contentsline {section}{\numberline {6}Conclusion}{18}{section.6}%
+\contentsline {subsection}{\numberline {1.1}Problem Statement}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Objectives}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Research Gap}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Contributions}{5}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Related Work}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Volumetric CNN Methods for Brain Tumour Segmentation}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Graph Neural Networks in Medical Imaging}{10}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Superpixel-Based Representations}{13}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Methodology}{15}{section.3}%
+\contentsline {subsection}{\numberline {3.1}MRI Modalities and Their Clinical Significance}{15}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Proposed Model and Framework}{17}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Mathematical Description of the Pipeline}{18}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Mathematical Description of Segmentation}{22}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Proposed Algorithm}{25}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Dataset and Splits}{27}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Graph Construction}{28}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Training Protocol}{30}{subsection.3.8}%
+\contentsline {subsection}{\numberline {3.9}Ensemble Inference}{32}{subsection.3.9}%
+\contentsline {subsubsection}{\numberline {3.9.1}Single-Fold Inference}{32}{subsubsection.3.9.1}%
+\contentsline {subsubsection}{\numberline {3.9.2}5-Fold Soft-Voting Ensemble Inference}{33}{subsubsection.3.9.2}%
+\contentsline {section}{\numberline {4}Experimental Setup and Hyperparameter Settings}{33}{section.4}%
+\contentsline {section}{\numberline {5}Experimental Results}{36}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Cross-Validation Performance}{36}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Held-Out Ensemble Performance}{36}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Efficiency Benchmarking}{37}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Ablation Studies}{38}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Cross-Dataset Generalisation: BraTS 2023}{39}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Qualitative Analysis and Per-Patient Distribution}{40}{subsection.5.6}%
+\contentsline {section}{\numberline {6}Discussion}{41}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Efficiency as a Structural Property}{41}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}The Complete-Miss Failure Mode}{43}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Comparison with State-of-the-Art}{44}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Cross-Dataset Generalisation Analysis}{46}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Deployment Implications}{46}{subsection.6.5}%
+\contentsline {section}{\numberline {7}Conclusion}{47}{section.7}%

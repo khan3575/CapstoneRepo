@@ -12,7 +12,7 @@ A Graph Neural Network approach for brain tumor segmentation on BraTS 2021 datas
 - **90.02% ± 0.66% CV Dice** - Consistent 5-fold cross-validation results
 - **5.9× faster than U-Net end-to-end** - 1.73s vs 10.16s per patient
 - **>135× faster (pre-built graph)** - 75.4ms GNN inference only
-- **155× smaller model** - 439K vs 68M parameters (memory efficient)
+- **157× smaller model** - 439K vs 69.1M parameters (memory efficient)
 - **227× less GPU memory** - 11MB vs 2,500MB peak inference memory
 
 ## 🔬 Key Features
@@ -193,13 +193,13 @@ See `requirements.txt` for complete list.
 
 | Metric | 5-Fold CV | Ensemble (held-out) | U-Net Baseline |
 |--------|-----------|---------------------|----------------|
-| Dice Score | 90.02% ± 0.66% | **91.41%** | ~87.5% |
+| Dice Score | 90.02% ± 0.66% | **91.41%** | 87.84% ± 2.38% |
 | Accuracy | — | 99.14% | — |
 | Sensitivity | — | 87.77% | — |
 | Specificity | — | 99.76% | — |
 | Inference Time (end-to-end) | 1.73s | 1.73s | 10.16s |
 | Inference Time (GNN only) | 75.4ms | 75.4ms | — |
-| Parameters | 439K | 439K × 5 | 68M |
+| Parameters | 439K | 439K × 5 | 69.1M |
 | Peak GPU Memory | 11 MB | 11 MB | ~2,500 MB |
 | BraTS 2023 zero-shot Dice | — | 89.40% (gap: 2.01pp) | — |
 
@@ -269,7 +269,7 @@ If you use this work in your research, please cite:
   journal={[Target Journal/Conference]},
   year={2025},
   note={Achieving 91.41\% ensemble Dice on BraTS 2021 with
-        155× parameter reduction vs 3D U-Net}
+        157× parameter reduction vs 3D U-Net}
 }
 ```
 

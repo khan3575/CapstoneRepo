@@ -56,7 +56,7 @@ Supervisor feedback implemented in three rounds:
 - **New condensed version** highlights:
   - Key challenges (accuracy vs efficiency, class imbalance, data leakage)
   - Resource integration (RTX 2060 6GB consumer GPU)
-  - Novel contributions (91.41% ensemble Dice with 6.9× end-to-end speedup)
+  - Novel contributions (91.41% ensemble Dice with 5.9× end-to-end speedup)
   - Societal impact (resource-constrained deployment, sustainability)
 - **Created:** Appendix A with full P1-P7, A1-A5 details (7 pages)
 - **Added reference:** "For detailed engineering standards compliance (ABET/BAETE), see Appendix A"
@@ -146,7 +146,7 @@ Supervisor feedback implemented in three rounds:
 - Fig 3.3: GraphSAGE architecture (5 layers, message passing diagram)
 
 ### 2. Final Proofreading
-- Verify all numbers in Abstract match Chapter 4 tables (correct values: 91.41%, 6.9×, 155×, 89.21% BraTS2023)
+- Verify all numbers in Abstract match Chapter 4 tables (correct values: 91.41%, 5.9×, 157×, 89.21% BraTS2023)
 - Check team member names spelling in front matter
 - Confirm date on title page (currently "January 2026")
 
@@ -194,7 +194,7 @@ Supervisor feedback implemented in three rounds:
 
 **Technical Core:** Distinction-level (Chapters 3, 4, 6)
 - 90.02% CV ± 0.74%, 91.41% ensemble validated (held-out 251 patients)
-- 6.9× speedup (end-to-end), 155× parameter reduction quantified
+- 5.9× speedup (end-to-end), 157× parameter reduction quantified
 - Comprehensive ablation studies (5L vs 6L, SAGE vs GAT, width)
 
 **Academic Wrapping:** Now professional-grade
@@ -388,13 +388,13 @@ This section documents all experimental work completed since December 2025 that 
 | Scenario | Description | GNN Time | U-Net Time | Speedup |
 |----------|-------------|----------|-----------|---------|
 | **A — Pre-built graphs** | Graphs pre-computed; only GNN inference at runtime | **74ms** | 10.16s | **137×** |
-| **B — End-to-end** | Full pipeline including graph construction | **1.47s** | 10.16s | **6.9×** |
+| **B — End-to-end** | Full pipeline including graph construction | **1.47s** | 10.16s | **5.9×** |
 
 **Additional metrics (all verified from JSON):**
 - Peak GPU memory (GNN): **11MB** vs U-Net ~2.5GB → **226× reduction**
 - Single model size: **5.07MB** vs U-Net ~272MB → **53× reduction**
-- Parameters: **439K** vs 68M → **155× reduction**
-- GNN Dice 90.02% vs U-Net Dice 87.5% — **GNN is more accurate AND more efficient**
+- Parameters: **439K** vs 69.1M (69,146,113) → **157× reduction**
+- GNN Dice 90.02% vs U-Net Dice 87.84% — **GNN is more accurate AND more efficient**
 
 ---
 
@@ -457,11 +457,11 @@ Use `SUPERVISOR_PRESENTATION_TABLES.md` as the single source of truth.
 |----------|------------|---------|
 | Abstract, Ch1, Ch4, Ch6 | 92.92% ensemble Dice | **91.41%** |
 | Abstract, Ch4 | 90.39% ± 0.69% CV mean | **90.02% ± 0.74%** |
-| Ch4, Ch5 | 156× fewer parameters | **155×** |
+| Ch4, Ch5 | 156× fewer parameters | **157×** |
 | Ch4, Ch5 | 12.7ms inference | **74ms (pre-built) / 1.47s (end-to-end)** |
 | Ch4, Ch5 | 2.1GB GPU memory | **11MB peak (GNN inference)** |
 | Ch4, Ch5 | 1.7MB model size | **5.07MB per model** |
-| Ch4 | U-Net 87.8ms, 89.2% | **U-Net 10.16s, 87.5% (3D U-Net)** |
+| Ch4 | U-Net 87.8ms, 89.2% | **U-Net 10.16s, 87.84% (3D U-Net)** |
 | Ch1 section 1.7 | 92.92% | **91.41%** |
 
 ---
@@ -521,7 +521,7 @@ Use `SUPERVISOR_PRESENTATION_TABLES.md` as the single source of truth.
 - PDF compiles successfully: 75 pages, 2.8 MB
 - All references process correctly with biber
 - Technical accuracy fully preserved
-- All numbers remain identical (92.92%, 6.9×, 156×)
+- All numbers remain identical (92.92%, 5.9×, 157×)
 
 ### Estimated AI Detection Improvement
 
@@ -555,7 +555,7 @@ Use `SUPERVISOR_PRESENTATION_TABLES.md` as the single source of truth.
 
 **Technical Core:** Distinction-level ⭐⭐⭐⭐⭐
 - 90.02% CV ± 0.74%, 91.41% ensemble (held-out 251 patients)
-- 6.9× speedup (end-to-end), 155× parameter reduction quantified
+- 5.9× speedup (end-to-end), 157× parameter reduction quantified
 - 89.21% zero-shot on BraTS 2023 (1,245 patients, gap: 2.20%)
 - Comprehensive ablation studies (GAT vs SAGE, depth, width)
 

@@ -94,17 +94,17 @@ Go through each chapter and fix every numerical claim against the ground truth. 
 | Ensemble Sensitivity | 87.77% |
 | Ensemble Specificity | 99.76% |
 | Ensemble Precision | 95.52% |
-| GNN inference (pre-built graphs) | 74ms |
-| GNN end-to-end | 1.47s |
-| U-Net inference | 10.16s |
-| Speedup (end-to-end) | 6.9× |
+| GNN inference (pre-built graphs) | 75.4ms |
+| GNN end-to-end | 1,732ms (1.73s) |
+| U-Net inference | 10,160ms (10.16s) |
+| Speedup (end-to-end) | 5.9× |
 | GNN GPU memory | 11MB (peak) |
 | U-Net GPU memory | ~2.5GB |
-| GNN parameters | 439K (0.44M) |
-| U-Net parameters | 68M |
-| Model size (single) | 5.07MB |
-| BraTS 2023 Dice (zero-shot) | 89.21% |
-| Generalisation gap | 2.20% |
+| GNN parameters | 439,041 (439K) |
+| U-Net parameters | 69.1M (69,146,113) |
+| Model size (single) | 5.1MB |
+| BraTS 2023 Dice (zero-shot) | 89.40% |
+| Generalisation gap | 2.01pp |
 | GAT ablation Dice | 85.03% |
 | Wider network (512D) ablation | 88.78% |
 | 6-layer ablation | 84.00% |
