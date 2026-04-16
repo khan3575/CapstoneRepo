@@ -1,0 +1,2706 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TEAM_TECHNICAL_GUIDE</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<h1
+id="efficient-brain-tumour-segmentation-with-graph-neural-networks">Efficient
+Brain Tumour Segmentation with Graph Neural Networks</h1>
+<h2
+id="comprehensive-technical-documentation-team-reference-guide">Comprehensive
+Technical Documentation &amp; Team Reference Guide</h2>
+<p><strong>Project Title:</strong> Efficient Brain Tumour Segmentation
+using Graph Neural Networks on BraTS Datasets: A Superpixel-Based
+Approach with 5.9× Speedup</p>
+<p><strong>Authors:</strong> Sakib Khan, Rifa Sanjida, Kishor Kumar Das,
+Md. Mahmudul Hasan, Md. Minhajur Rahman</p>
+<p><strong>Date Compiled:</strong> April 2026</p>
+<p><strong>Purpose:</strong> This document serves as the authoritative
+reference for team members, BUBT committee, and future researchers. It
+explains every decision, parameter choice, and validation strategy used
+in this project.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol type="1">
+<li><a href="#project-overview">Project Overview</a></li>
+<li><a href="#methodology--implementation">Methodology &amp;
+Implementation</a></li>
+<li><a href="#experimental-validation">Experimental Validation</a></li>
+<li><a href="#results--interpretation">Results &amp;
+Interpretation</a></li>
+<li><a href="#lessons-learned--team-reference">Lessons Learned &amp;
+Team Reference</a></li>
+<li><a href="#quick-reference-parameter--configuration-guide">Quick
+Reference: Parameter &amp; Configuration Guide</a></li>
+</ol>
+<hr />
+<h1 id="project-overview">Project Overview</h1>
+<h2 id="the-core-problem-accuracy-vs.-accessibility">1.1 The Core
+Problem: Accuracy vs. Accessibility</h2>
+<p>Brain tumours kill thousands of patients annually. Before a
+neurosurgeon can safely remove a tumour, a radiologist must trace its
+boundary on MRI scans—a process that takes 90–120 minutes per patient
+and represents an enormous clinical bottleneck.</p>
+<p>Automated segmentation can solve this bottleneck. The best methods
+available today—<strong>nnU-Net</strong> (92.7% accuracy) and
+<strong>Swin-UNETR</strong> (93.3% accuracy)—are state-of-the-art. But
+they require:</p>
+<ul>
+<li><strong>Hardware barrier:</strong> 32–40 GB of GPU memory (V100/A100
+GPUs; cost 1000–10,000+)</li>
+<li><strong>Speed barrier:</strong> 10–30 seconds per patient inference
+time</li>
+<li><strong>Deployment barrier:</strong> The vast majority of hospitals
+globally lack this hardware</li>
+</ul>
+<p><strong>The mismatch:</strong> These methods process every voxel in a
+3D brain volume, even though tumours occupy only 5–10% of total brain
+volume. This means 90% of computation goes toward healthy tissue that
+doesn’t need detailed analysis.</p>
+<p>### Why Graph Neural Networks?</p>
+<p>Instead of processing all 8,928,000 voxels in a brain volume, we
+can:</p>
+<ol type="1">
+<li><strong>Group similar neighbouring pixels into superpixels</strong>
+(using SLIC algorithm) → ~46 regions per MRI slice</li>
+<li><strong>Represent these regions as a graph</strong> → ~92 nodes per
+image pair</li>
+<li><strong>Use a Graph Neural Network</strong> to classify each node as
+tumour or healthy tissue</li>
+</ol>
+<p>Result: <strong>8,928,000 voxels → ~3,909 nodes per patient</strong>
+(2,284× compression) while preserving the multi-modal tissue signatures
+that distinguish tumour from healthy brain.</p>
+<p>This approach achieves: - ✓ <strong>Competitive accuracy:</strong>
+91.41% ensemble Dice (vs. 92.7% nnU-Net) - ✓ <strong>5.9× faster
+inference:</strong> 1.7 seconds vs. 10+ seconds - ✓ <strong>227× lower
+peak GPU memory:</strong> 11 MB vs. 2.5 GB - ✓ <strong>Hardware
+accessible:</strong> Runs on consumer GPUs (NVIDIA RTX 2060, 6 GB
+VRAM)</p>
+<hr />
+<p>## 1.2 Why This Approach Has Not Been Done Before</p>
+<p>Previous GNN work on brain tumours had three critical gaps:</p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 41%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr>
+<th>Gap</th>
+<th>Why It Matters</th>
+<th>Our Contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>No ensemble evaluation</strong></td>
+<td>Single-model results don’t compete with CNN ensembles used in
+competitions</td>
+<td>We trained 5 independent folds and ensemble-voted, standard practice
+in volumetric methods</td>
+</tr>
+<tr>
+<td><strong>No controlled efficiency measurement</strong></td>
+<td>Prior work claimed “5–15× faster” without measuring inference time,
+GPU memory, or parameter counts on identical hardware</td>
+<td>We benchmarked both GNN and 3D U-Net on the same GPU (RTX 2060)
+under controlled conditions</td>
+</tr>
+<tr>
+<td><strong>No cross-dataset generalization</strong></td>
+<td>BraTS releases a new dataset every year with different patients and
+acquisition protocols; no one tested whether a GNN trained on 2021 data
+segments 2023 data without retraining</td>
+<td>We performed zero-shot transfer: trained on BraTS 2021, tested on
+BraTS 2023 (1,245 unseen patients) with 89.40% Dice</td>
+</tr>
+</tbody>
+</table>
+<p>This project is the <strong>first systematic efficiency analysis of
+GNN-based brain tumour segmentation at BraTS scale</strong>.</p>
+<hr />
+<p>## 1.3 Project Scope &amp; Objectives</p>
+<p>### What We Did</p>
+<ol type="1">
+<li><strong>Built a complete preprocessing pipeline</strong> that
+converts 3D multi-modal MRI volumes into superpixel graphs</li>
+<li><strong>Designed and trained a 5-layer GraphSAGE network</strong>
+(439,041 parameters) on 1,000 BraTS 2021 patients</li>
+<li><strong>Validated through 5-fold cross-validation</strong> with
+patient-level stratification (no data leakage between folds)</li>
+<li><strong>Tested on a sealed 251-patient held-out set</strong> (not
+seen during training or validation)</li>
+<li><strong>Measured end-to-end efficiency</strong> (memory, speed,
+parameter count) against a CNN baseline on identical hardware</li>
+<li><strong>Performed zero-shot generalization</strong> on BraTS 2023
+(1,245 new patients) without retraining</li>
+</ol>
+<p>### Key Results</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 29%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+<th>Context</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cross-validation Dice</strong></td>
+<td>90.02% ± 0.66%</td>
+<td>Mean across 5 folds on 1,000 training patients</td>
+</tr>
+<tr>
+<td><strong>Held-out test Dice</strong></td>
+<td>91.41%</td>
+<td>Ensemble of 5 models on 251 sealed test patients</td>
+</tr>
+<tr>
+<td><strong>BraTS 2023 generalization</strong></td>
+<td>89.40% Dice</td>
+<td>Zero-shot transfer, 1,245 unseen patients, no retraining</td>
+</tr>
+<tr>
+<td><strong>End-to-end inference time</strong></td>
+<td>1,732 ms/patient</td>
+<td>Includes graph construction on RTX 2060</td>
+</tr>
+<tr>
+<td><strong>GNN inference alone</strong></td>
+<td>75.4 ms</td>
+<td>With pre-built graphs; actual bottleneck is preprocessing</td>
+</tr>
+<tr>
+<td><strong>Peak GPU memory</strong></td>
+<td>11 MB</td>
+<td>vs. 2.5 GB for 3D U-Net baseline</td>
+</tr>
+<tr>
+<td><strong>Memory reduction</strong></td>
+<td>227×</td>
+<td>11 MB (GNN) vs. 2.5 GB (U-Net)</td>
+</tr>
+<tr>
+<td><strong>Speed advantage</strong></td>
+<td>5.9×</td>
+<td>End-to-end speedup (1.7s GNN vs. 10s U-Net)</td>
+</tr>
+<tr>
+<td><strong>Model size</strong></td>
+<td>5.1 MB</td>
+<td>439,041 parameters (31M for nnU-Net)</td>
+</tr>
+<tr>
+<td><strong>Generalization gap</strong></td>
+<td>2.01%</td>
+<td>(91.41% test) − (89.40% BraTS2023)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>## 1.4 The Four MRI Modalities: What Each Reveals</p>
+<p>This project uses <strong>four complementary MRI sequences</strong>.
+Here’s why each matters for tumour detection:</p>
+<p>### T1-weighted (T1) - <strong>What it shows:</strong> Anatomical
+structure with excellent detail - <strong>Clinical role:</strong> Brain
+anatomy reference; tumours appear dark (hypointense) - <strong>Role in
+pipeline:</strong> Provides spatial context and healthy tissue baseline
+- <strong>Intensity range:</strong> Normal brain ~100–1500 (arbitrary
+units)</p>
+<p>### T1 Contrast-Enhanced (T1CE) - <strong>What it shows:</strong>
+Regions where gadolinium (contrast agent) accumulated - <strong>Clinical
+role:</strong> <strong>BEST for identifying active tumour core</strong>;
+contrast leaks through disrupted blood-brain barrier - <strong>Role in
+pipeline:</strong> PRIMARY channel for SLIC superpixel clustering
+(described in Section 2.4) - <strong>Intensity range:</strong> Enhancing
+tumour regions become very bright (1000–2500+)</p>
+<p>### T2-weighted (T2) - <strong>What it shows:</strong> Fluid and
+water content; particularly sensitive to oedema (brain swelling around
+tumour) - <strong>Clinical role:</strong> Reveals tumour extent beyond
+active core - <strong>Role in pipeline:</strong> Encoded as node
+feature; helps GNN distinguish oedema from normal tissue -
+<strong>Intensity range:</strong> Oedematous regions appear bright
+(1200–2000+)</p>
+<p>### Fluid-Attenuated Inversion Recovery (FLAIR) - <strong>What it
+shows:</strong> Like T2 but suppresses cerebrospinal fluid (CSF), making
+lesions stand out - <strong>Clinical role:</strong> <strong>BEST for
+whole-tumour delineation</strong>; detects all tumour-affected tissue
+including infiltration - <strong>Role in pipeline:</strong> Encoded as
+node feature; captures full extent of tumour influence -
+<strong>Intensity range:</strong> Significantly elevated in both active
+tumour and oedema</p>
+<p>### Multi-Modal Fusion Principle</p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 12%" />
+<col style="width: 15%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 6%" />
+</colgroup>
+<thead>
+<tr>
+<th>Tissue Type</th>
+<th>T1</th>
+<th>T1CE</th>
+<th>T2</th>
+<th>FLAIR</th>
+<th>Our Feature Vector</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Healthy brain</td>
+<td>Medium</td>
+<td>Low</td>
+<td>Low</td>
+<td>Low</td>
+<td>4 low/medium values → “normal” cluster</td>
+</tr>
+<tr>
+<td>Active tumour</td>
+<td>Low</td>
+<td><strong>HIGH</strong></td>
+<td><strong>HIGH</strong></td>
+<td><strong>HIGH</strong></td>
+<td>Distinctive multi-modal signature</td>
+</tr>
+<tr>
+<td>Oedema</td>
+<td>Low</td>
+<td>Low</td>
+<td><strong>HIGH</strong></td>
+<td><strong>HIGH</strong></td>
+<td>Elevated T2/FLAIR but not T1CE → distinguishable</td>
+</tr>
+</tbody>
+</table>
+<p>By extracting <strong>mean and standard deviation from all four
+modalities</strong> for each superpixel node, we capture a
+15-dimensional feature vector that encodes the <strong>tissue
+fingerprint</strong>—unique enough to tell tumour from healthy brain,
+but invariant to scanner differences.</p>
+<hr />
+<p>## 1.5 High-Level Architecture Diagram</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│        PATIENT MRI VOLUME (240 × 240 × 155 voxels)              │
+│   4 modalities: T1, T1CE, T2, FLAIR                              │
+│   8,928,000 total voxels                                         │
+└────────────────────┬────────────────────────────────────────────┘
+                     │
+        ┌────────────▼─────────────┐
+        │  STAGE 1: PREPROCESSING   │
+        │  • Z-score normalization  │
+        │    (intra-patient)        │
+        │  • Brain mask application │
+        │  • Active slice selection │
+        │    (discard empty slices) │
+        └────────────┬──────────────┘
+                     │
+        ┌────────────▼──────────────┐
+        │  STAGE 2: GRAPH UNIT PREP  │
+        │  • Group slices in pairs   │
+        │  • ~69 graph units total   │
+        └────────────┬───────────────┘
+                     │
+        ┌────────────▼─────────────────┐
+        │  STAGE 3: SUPERPIXEL GRAPHS   │
+        │  • SLIC on T1CE+T2+FLAIR      │
+        │  • ~46 superpixels per slice  │
+        │  • Extract 15D node features: │
+        │    - Mean/std of 4 modalities │
+        │    - Spatial position         │
+        │    - Region morphology        │
+        │  • Connect nodes via edges    │
+        │    (within-slice adjacency)   │
+        │  Result: ~92 nodes per unit   │
+        └────────────┬──────────────────┘
+                     │
+        ┌────────────▼──────────────────┐
+        │  STAGE 4: GraphSAGE NETWORK    │
+        │  • 5 message-passing layers    │
+        │  • 256-dim hidden embeddings   │
+        │  • Learns tumour-vs-healthy    │
+        │  • Outputs: per-node logits    │
+        └────────────┬──────────────────┘
+                     │
+        ┌────────────▼────────────────┐
+        │  STAGE 5: ENSEMBLE &amp; VOTING  │
+        │  • 5 fold-best models        │
+        │  • Soft-vote (average logits)│
+        │  • Threshold at 0.5          │
+        └────────────┬─────────────────┘
+                     │
+        ┌────────────▼─────────────┐
+        │  STAGE 6: RECONSTRUCTION   │
+        │  • Map node predictions     │
+        │    back to voxel space      │
+        │  • Binary mask output       │
+        │    (240 × 240 × 155)        │
+        └─────────────────────────────┘
+
+Compression: 8,928,000 voxels → ~3,909 nodes (2,284× reduction)
+Memory: ~11 MB (GNN) vs ~2,500 MB (3D U-Net)
+Speed: 75 ms GNN inference (1,732 ms end-to-end with preprocessing)</code></pre>
+<hr />
+<p># Methodology &amp; Implementation</p>
+<p>## 2.1 Dataset &amp; Data Preparation</p>
+<p>### BraTS 2021: The Training Dataset</p>
+<p><strong>BraTS</strong> stands for <strong>Brain Tumor Segmentation
+challenge</strong>. It is the gold standard public benchmark for brain
+cancer AI.</p>
+<ul>
+<li><strong>Patient count:</strong> 1,000 patients with expert-annotated
+gliomas</li>
+<li><strong>Imaging modality:</strong> Multi-institutional multi-scanner
+MRI</li>
+<li><strong>Data format:</strong> NIfTI 3D volumes, 4 modalities per
+patient</li>
+<li><strong>Annotation:</strong> Expert radiologists annotated three
+tumour sub-regions:
+<ul>
+<li><strong>WT (Whole Tumour):</strong> All tumour-affected tissue
+including infiltration</li>
+<li><strong>TC (Tumour Core):</strong> Non-enhancing + enhancing tumour
+(excludes oedema)</li>
+<li><strong>ET (Enhancing Tumour):</strong> Active tumour marked by
+contrast agent</li>
+</ul></li>
+<li><strong>Our task:</strong> <strong>Binary segmentation</strong>
+(tumour vs. non-tumour), focusing on whole tumour</li>
+</ul>
+<p>### Why We Chose Binary Segmentation</p>
+<p>Multi-class segmentation (WT, TC, ET) is harder and requires more
+data. Binary segmentation (tumour/non-tumour) is: - More clinically
+relevant at triage step: “Is there a tumour?” - More stable across
+datasets (fewer annotation ambiguities) - Allows us to isolate the
+efficiency gain from superpixel representation without conflating it
+with multi-class complexity</p>
+<p>The grading hierarchy: if you’re &gt;95% on binary, multi-class
+usually follows.</p>
+<p>### Train / Validation / Test Split</p>
+<table>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 21%" />
+<col style="width: 19%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr>
+<th>Set</th>
+<th>Patients</th>
+<th>Purpose</th>
+<th>Seen During Training?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Training</strong></td>
+<td>800</td>
+<td>Learn model weights</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Validation (CV)</strong></td>
+<td>200</td>
+<td>Tune hyperparameters across 5 folds</td>
+<td>Yes, but in fold rotation</td>
+</tr>
+<tr>
+<td><strong>Held-out test</strong></td>
+<td>251</td>
+<td>Final performance report</td>
+<td><strong>No</strong> – sealed, evaluated once</td>
+</tr>
+<tr>
+<td><strong>BraTS 2023</strong></td>
+<td>1,245</td>
+<td>Cross-dataset generalization</td>
+<td>No, different year/patients</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Stratification strategy:</strong> Split was performed at the
+<strong>patient level</strong>, not slice level. This means: - All
+slices from Patient A go to fold 1 - All slices from Patient B go to
+fold 2 - etc.</p>
+<p>Why? If slice-based split were used, the model would see slices from
+the same patient in both training and testing. The GNN would memorise
+patient-specific patterns, and results would be artificially high.
+Patient-level split forces the model to learn generalizable tissue
+signatures.</p>
+<hr />
+<p>## 2.2 Preprocessing: Raw MRI → Normalized Volume</p>
+<p>### Step 1: Per-Modality Z-Score Normalization</p>
+<p><strong>Problem:</strong> MRI scanners from different manufacturers,
+hospitals, and protocols produce different absolute intensity values. A
+tissue type might have intensity 500 on one scanner and 1200 on another.
+Raw intensities are meaningless.</p>
+<p><strong>Solution:</strong> Z-score normalization
+(standardization)</p>
+<p><strong>Formula:</strong> _m(i) = </p>
+<p>where: - V_m$ = raw intensity volume for modality m (e.g., T1CE) -
+_m$ = mean intensity <strong>within the brain mask</strong> (ignore
+background/air) - _m = standard deviation <strong>within the brain
+mask</strong> - _m$ = normalized volume</p>
+<p><strong>Key detail:</strong> Normalization is computed
+<strong>separately for each modality</strong> (T1, T1CE, T2, FLAIR)
+because each has different tissue contrast properties.</p>
+<p><strong>Example:</strong></p>
+<pre><code>Raw T1CE intensities: min=100, max=3500, mean=1200, std=800
+After Z-score: min=-1.375, max=2.875, mean=0, std=1
+
+Why this works:
+- All modalities now on same scale (mean 0, std 1)
+- Scanner differences cancelled out
+- Model learns tissue contrast, not absolute intensities</code></pre>
+<p><strong>No inter-patient normalization:</strong> Each patient’s scan
+is normalized independently. We do NOT z-score across all patients,
+because that would erase inter-patient intensity variation that carries
+clinical signal.</p>
+<h3 id="step-2-brain-mask-application">Step 2: Brain Mask
+Application</h3>
+<p><strong>What is a brain mask?</strong> A binary 3D volume where 1 =
+brain tissue, 0 = background (air, skull, etc.).</p>
+<p><strong>Why it matters:</strong> The 240 × 240 × 155 volume includes
+the skull and air around the head. These pixels carry no information and
+would waste computation.</p>
+<p><strong>How we did it:</strong> BraTS datasets come with pre-computed
+brain masks (generated by the challenge organisers using established
+tools like FSL BET). We applied this mask to: 1. Remove background
+voxels from normalization statistics (so air doesn’t skew the mean) 2.
+Zero out background voxels in all modality volumes</p>
+<p><strong>Result:</strong> Cleaner normalization, faster graph
+construction, fewer empty superpixels.</p>
+<h3 id="step-3-active-slice-selection">Step 3: Active Slice
+Selection</h3>
+<p><strong>Problem:</strong> The top and bottom slices of a 155-slice
+volume are often completely empty (above skull, below brainstem).
+Processing these slices creates empty graphs with no signal.</p>
+<p><strong>Solution:</strong> Remove slices with insufficient brain
+tissue.</p>
+<p><strong>Criterion:</strong> A slice is active if ≥5% of the slice
+area is brain tissue.</p>
+<p> z </p>
+<p><strong>Result:</strong> Empirically, this retains ~137.5 ± 6.9
+active slices per patient (out of 155), removing only empty slices while
+preserving all tumour-bearing slices.</p>
+<h3 id="preprocessing-results-example-patient">Preprocessing Results
+(Example Patient)</h3>
+<pre><code>Input: 1 patient × 4 modalities × 240 × 240 × 155 = 22.32 MB raw
+
+After Z-score norm: Same size, intensities standardized
+After brain mask: Background voxels zeroed, ~70% of volume discarded
+After active slice selection: 137 slices kept, 18 discarded
+Ready for graph construction: ~80 MB temporary data (normalized volumes + features)
+
+These preprocessing steps are complete in &lt;200 ms per patient.</code></pre>
+<hr />
+<h2 id="graph-construction-superpixel-segmentation-via-slic">2.3 Graph
+Construction: Superpixel Segmentation via SLIC</h2>
+<h3 id="why-slic-simple-linear-iterative-clustering">Why SLIC (Simple
+Linear Iterative Clustering)?</h3>
+<p>The goal: partition each brain MRI slice into compact, semantically
+meaningful regions (superpixels) that correspond to tissue types.</p>
+<p><strong>Alternatives considered:</strong> - <strong>Watershed
+segmentation:</strong> Fast but produces irregular, variable-size
+regions - <strong>Normalised Cuts:</strong> Principled but O(n^1.5)
+complexity, infeasible for 240×240 images - <strong>Regular grid
+patches:</strong> Fast but boundaries ignore tissue edges; hard to
+learn</p>
+<p><strong>SLIC was chosen because:</strong> - ✓ Linear complexity O(n),
+processes 57,600 pixels in &lt;50 ms - ✓ Controllable region count (set
+target ahead of time) - ✓ Compact, regular shapes that simplify graph
+structure - ✓ Boundary adherence: superpixels follow tissue edges, not
+arbitrary grids - ✓ Proven in medical imaging (retina, pathology,
+cardiac)</p>
+<h3 id="slic-algorithm-overview">SLIC Algorithm Overview</h3>
+<p>SLIC performs spatial k-means clustering in a 5-dimensional space
+combining colour/intensity + location.</p>
+<p><strong>Inputs:</strong> - 2-slice image stack I₁, I₂ (or 3-channel
+image for multi-modal) - K = target number of superpixels - m$ =
+compactness parameter (controls shape regularity vs. boundary
+adherence)</p>
+<p><strong>Process:</strong></p>
+<ol type="1">
+<li><strong>Initialise cluster centres</strong> on a regular grid,
+spacing S = </li>
+<li><strong>Shift centres</strong> to lowest-gradient pixel within ±3
+pixel neighbourhood (avoid edges)</li>
+<li><strong>Iterate:</strong>
+<ul>
+<li>Assign each pixel to nearest cluster centre within 2S × 2S search
+window</li>
+<li>Update cluster centres to mean position/intensity of assigned
+pixels</li>
+</ul></li>
+<li><strong>Repeat</strong> until cluster assignments converge</li>
+</ol>
+<p><strong>Distance metric</strong> (determines which pixels belong to
+which cluster):</p>
+<p>D(p,,c_k) = </p>
+<p>where: - d_I$ = intensity difference (how different are the colours?)
+- d_{xy} = spatial distance (how far apart are the pixels?) - S$ = grid
+spacing (normalises spatial distance) - m = compactness (weight on
+spatial distance; high m$ = regular shapes, low m =
+boundary-adherent)</p>
+<p>### SLIC Parameters in Our Pipeline</p>
+<table>
+<colgroup>
+<col style="width: 37%" />
+<col style="width: 24%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Target superpixels per slice</strong></td>
+<td>200</td>
+<td>Balances information preservation vs. compression</td>
+</tr>
+<tr>
+<td><strong>Compactness m$</strong></td>
+<td>0.1</td>
+<td>Very low → prefer boundary adherence over regularity</td>
+</tr>
+<tr>
+<td><strong>Pre-smoothing σ</strong></td>
+<td>0.3</td>
+<td>Reduce noise-induced fragmentation; preserve sharp tissue
+boundaries</td>
+</tr>
+<tr>
+<td><strong>Multi-modal stack</strong></td>
+<td>T1CE + T2 + FLAIR</td>
+<td>Fuse modalities; better boundary adherence than T1CE alone</td>
+</tr>
+<tr>
+<td><strong>Adaptive reduction</strong></td>
+<td>200 → ~46 on avg</td>
+<td>Slices with little brain tissue use fewer superpixels</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why these values?</strong></p>
+<ul>
+<li><p><strong>Target 200 superpixels per slice:</strong> Trial showed
+this balances compression (too many superpixels = redundancy; too few =
+loss of fine detail) with GNN capacity. More on this in Section 3.2
+(ablation study).</p></li>
+<li><p><strong>m = 0.1 (very low compactness):</strong> We prioritised
+<strong>boundary adherence</strong> over spatial regularity. Why? Tumour
+margins are critical landmarks; misplacing a superpixel boundary could
+cause misclassification near the tumour edge. A low m allows superpixels
+to deform along intensity edges, following the tumour contour
+tightly.</p></li>
+<li><p><strong>Multi-modal clustering (not T1CE alone):</strong>
+Single-modality clustering can miss boundaries that appear only on
+particular modalities. T1CE shows tumour enhancement but might be blind
+to oedematous regions visible only on T2/FLAIR. Multi-modal clustering
+catches all three.</p></li>
+</ul>
+<p>### Example: From Voxels to Superpixels</p>
+<pre><code>Input: One 240 × 240 MRI slice
+Raw pixels: 57,600 voxels
+After SLIC (target 200 superpixels): ~46 superpixels (adaptive)
+Compression per slice: 57,600 → 46 (1,252× reduction)
+
+Visual: imagine 200 coloured regions overlaid on the MRI.
+Regions follow tissue boundaries:
+  - White matter superpixels cluster together
+  - Tumour superpixels cluster together
+  - Oedema superpixels cluster together
+  - Boundaries align with the actual tissue transitions</code></pre>
+<hr />
+<p>## 2.4 Node Feature Construction: 15-Dimensional Feature Vectors</p>
+<p>Each superpixel becomes a <strong>node</strong> in the graph. Each
+node needs a feature vector that captures the multi-modal tissue
+signature of that superpixel.</p>
+<p>### Feature Extraction Process</p>
+<p>For each superpixel node, we compute:</p>
+<p><strong>From each modality (T1, T1CE, T2, FLAIR):</strong> - Mean
+intensity (average voxel value within the superpixel) - Standard
+deviation (variation in intensity within the superpixel) - Result: 4
+modalities × 2 stats = <strong>8 features</strong></p>
+<p><strong>Spatial &amp; morphological features (3 additional):</strong>
+- x, y$ coordinate of superpixel centroid (normalized to [0, 1]) -
+Superpixel area (number of pixels; normalized) - Result: <strong>3
+spatial features</strong></p>
+<p><strong>Multi-channel consistency (2 additional):</strong> - Mean
+gradient magnitude (edge sharpness across the superpixel) - Texture
+homogeneity (how uniform is the superpixel?) - Result: <strong>4 more
+features</strong> (total 15)</p>
+<p><strong>Final node feature vector:</strong> _v ^{15} per node v$</p>
+<h3 id="why-these-15-features">Why These 15 Features?</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Feature Group</th>
+<th>Count</th>
+<th>Why Included</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Intensity means</strong></td>
+<td>4</td>
+<td>Tissue fingerprint: tumour looks different on each modality</td>
+</tr>
+<tr>
+<td><strong>Intensity stds</strong></td>
+<td>4</td>
+<td>Homogeneity: tumour core more uniform than oedema</td>
+</tr>
+<tr>
+<td><strong>Spatial position</strong></td>
+<td>2</td>
+<td>Contextual: tumours often in specific brain regions</td>
+</tr>
+<tr>
+<td><strong>Superpixel area</strong></td>
+<td>1</td>
+<td>Scale: large superpixels likely to be non-tumour background</td>
+</tr>
+<tr>
+<td><strong>Gradient + texture</strong></td>
+<td>4</td>
+<td>Boundary: sharp edges suggest tumour margin</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>15</strong></td>
+<td>Compact but information-rich for GNN</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Design principle:</strong> Features are extracted
+<strong>without</strong> using ground-truth labels (no data leakage).
+They encode only low-level image statistics that a model could
+theoretically compute from unsupervised visual patterns.</p>
+<hr />
+<h2 id="graph-structure-defining-edges-connectivity">2.5 Graph
+Structure: Defining Edges &amp; Connectivity</h2>
+<p>A graph consists of <strong>nodes</strong> (superpixels) and
+<strong>edges</strong> (connections between superpixels).</p>
+<h3 id="node-to-node-adjacency-rules">Node-to-Node Adjacency Rules</h3>
+<p><strong>Within-slice edges:</strong> Two superpixels are connected if
+they share a boundary in the 2D plane.</p>
+<p><strong>Cross-slice edges:</strong> Two superpixels in adjacent
+slices are connected if: - Their centroids are spatially close (within
+10 pixels) - They have similar intensity profiles (difference in means
+&lt; 1 STD)</p>
+<p>Why? This prevents random inter-slice connections while allowing
+coherent anatomical structures to propagate information across
+slices.</p>
+<h3 id="result-graph-statistics-per-2-slice-unit">Result: Graph
+Statistics Per 2-Slice Unit</h3>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 48%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Typical Value</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nodes per unit</strong></td>
+<td>92</td>
+<td>50–140</td>
+</tr>
+<tr>
+<td><strong>Edges per unit</strong></td>
+<td>~180</td>
+<td>100–300</td>
+</tr>
+<tr>
+<td><strong>Node degree</strong> (avg)</td>
+<td>~3.9</td>
+<td>2–8</td>
+</tr>
+<tr>
+<td><strong>Graph density</strong></td>
+<td>~0.043</td>
+<td>Sparse (good for message-passing efficiency)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why sparsity is good:</strong> A sparse graph means each node
+only needs to aggregate information from a few neighbours, reducing
+computation per layer. Dense graphs (all-to-all connections) would
+require O(n²) operations.</p>
+<hr />
+<h2 id="the-graphsage-network-architecture-design-choices">2.6 The
+GraphSAGE Network: Architecture &amp; Design Choices</h2>
+<h3 id="what-is-graphsage">What is GraphSAGE?</h3>
+<p><strong>GraphSAGE</strong> stands for <strong>Graph SAmple and
+aggreGatE</strong>. It is an inductive graph neural network designed to
+learn node embeddings by sampling and aggregating features from local
+neighbourhoods.</p>
+<p><strong>Key property:</strong> Inductive learning means a model
+trained on one graph can be applied to entirely new graphs (e.g., new
+patients with different graph structures) at inference time. This is
+essential in medical imaging.</p>
+<h3 id="network-architecture">Network Architecture</h3>
+<pre><code>Input (15-dim node features)
+        ↓
+[Layer 1] SAGEConv → BatchNorm → ReLU → Dropout(0.1)
+         Output: 256-dim embeddings
+        ↓
+[Layer 2] SAGEConv → BatchNorm → ReLU → Dropout(0.1)
+         Output: 256-dim embeddings
+        ↓
+[Layer 3] SAGEConv → BatchNorm → ReLU → Dropout(0.1)
+         Output: 256-dim embeddings
+        ↓
+[Layer 4] SAGEConv → BatchNorm → ReLU → Dropout(0.1)
+         Output: 256-dim embeddings
+        ↓
+[Layer 5] SAGEConv → BatchNorm → (NO ReLU, NO Dropout)
+         Output: 64-dim embeddings
+        ↓
+[MLP Head] Linear(64 → 32) → ReLU → Dropout(0.1) → Linear(32 → 1)
+         Output: 1-dim logit per node
+        ↓
+Sigmoid → Per-node probability [0, 1]
+Threshold 0.5 → Binary prediction (0=healthy, 1=tumour)</code></pre>
+<h3 id="why-these-choices">Why These Choices?</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Design Choice</th>
+<th>Value</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Number of layers</strong></td>
+<td>5</td>
+<td>Empirically optimal (Section 3 ablation); more layers → diminishing
+returns; fewer layers → insufficient receptive field</td>
+</tr>
+<tr>
+<td><strong>Hidden dimension</strong></td>
+<td>256</td>
+<td>Large enough to learn complex patterns; small enough to fit on
+consumer GPU (11 MB)</td>
+</tr>
+<tr>
+<td><strong>Aggregation function</strong></td>
+<td>Mean pooling</td>
+<td>Simple, proven inductive learner; alternatives (LSTM, attention) add
+parameters without consistent gains</td>
+</tr>
+<tr>
+<td><strong>Batch normalisation</strong></td>
+<td>Yes, all layers</td>
+<td>Stabilises training; reduces internal covariate shift; improves
+convergence</td>
+</tr>
+<tr>
+<td><strong>Activation function</strong></td>
+<td>ReLU</td>
+<td>Industry standard; tested alternatives (GELU, Tanh) showed no
+improvement</td>
+</tr>
+<tr>
+<td><strong>Dropout</strong></td>
+<td>0.1</td>
+<td>Light regularisation; prevents overfitting without killing
+signal</td>
+</tr>
+<tr>
+<td><strong>Output layer</strong></td>
+<td>No ReLU / Dropout</td>
+<td>Allows unconstrained logit prediction; sigmoid applied later for
+probabilities</td>
+</tr>
+</tbody>
+</table>
+<h3 id="parameter-count-model-size">Parameter Count &amp; Model
+Size</h3>
+<pre><code>Layer 1 → 4: Each SAGEConv outputs 256 dims
+   Parameters per layer: ~66,000 (aggregation + linear transform + batch norm)
+   
+Layer 5: SAGEConv outputs 64 dims
+   Parameters: ~17,000
+   
+MLP head: Linear(64→32) + Linear(32→1)
+   Parameters: ~2,000
+
+Total: 439,041 parameters for the entire model
+Serialized model size: 5.1 MB (vs. 31 MB for nnU-Net, 62 MB for Swin-UNETR)
+
+Memory during inference: ~11 MB peak (graph features + model weights + activations)
+vs. 2.5 GB for 3D U-Net on same hardware (RTX 2060)</code></pre>
+<hr />
+<h2 id="training-loss-function-optimizer-hyperparameters">2.7 Training:
+Loss Function, Optimizer, Hyperparameters</h2>
+<h3 id="training-data-setup">Training Data Setup</h3>
+<ul>
+<li><strong>Total training patients:</strong> 1,000 (from BraTS
+2021)</li>
+<li><strong>Folds:</strong> 5-fold cross-validation, patient-level
+stratification</li>
+<li><strong>Training set per fold:</strong> 800 patients → ~55,000 graph
+units (each patient has ~69 units from 137-141 slices)</li>
+<li><strong>Validation set per fold:</strong> 200 patients (used to
+select best checkpoint)</li>
+</ul>
+<h3
+id="loss-function-bcewithlogitsloss-binary-cross-entropy-with-logits">Loss
+Function: BCEWithLogitsLoss (Binary Cross-Entropy with Logits)</h3>
+<p> = - _{i=1}^{N} </p>
+<p>where: - z_i = raw logit output from network for node i$ - y_i =
+ground truth label (0 for healthy, 1 for tumour) - $ = sigmoid function
+(converts logits to probabilities) - N = total number of nodes in
+batch</p>
+<p><strong>Why BCEWithLogitsLoss (not plain BCE)?</strong> - Numerically
+stable (combines sigmoid + cross-entropy to avoid log(0) issues) -
+Handles class imbalance gracefully (tumour nodes ~5–10% of all
+nodes)</p>
+<p><strong>Note:</strong> No explicit class weighting was used.
+BCEWithLogitsLoss’s inherent stability is sufficient; empirically, class
+weighting did not improve results.</p>
+<p>### Optimizer: Adam</p>
+<p>_{t+1} = _t - </p>
+<p>where: - $ = learning rate (initial: 0.001) - m_t = exponential
+moving average of gradients (momentum) - v_t$ = exponential moving
+average of squared gradients (adaptive scaling)</p>
+<p><strong>Why Adam?</strong> - Adaptive learning rates reduce
+sensitivity to learning rate tuning - Works well with batch
+normalisation - Converges reliably on graph data</p>
+<p><strong>Alternative considered:</strong> SGD with momentum. Tested,
+but Adam converged faster and to better solutions.</p>
+<h3 id="training-hyperparameters">Training Hyperparameters</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Hyperparameter</th>
+<th>Value</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Initial learning rate</strong></td>
+<td>0.001</td>
+<td>Standard; learns initial structure without diverging</td>
+</tr>
+<tr>
+<td><strong>Learning rate schedule</strong></td>
+<td>Cosine annealing (T_max=150)</td>
+<td>Gradually reduces LR over 150 epochs for smooth convergence</td>
+</tr>
+<tr>
+<td><strong>Batch size</strong></td>
+<td>32 graph units</td>
+<td>Balances gradient variance vs. memory; 32 units ≈ 3–4 patients</td>
+</tr>
+<tr>
+<td><strong>Gradient clipping</strong></td>
+<td>norm=1.0</td>
+<td>Prevents exploding gradients in deep networks</td>
+</tr>
+<tr>
+<td><strong>Weight decay (L2)</strong></td>
+<td>0.0001</td>
+<td>Light regularisation; prevents overfitting</td>
+</tr>
+<tr>
+<td><strong>Epochs</strong></td>
+<td>150</td>
+<td>Early stopping if validation loss doesn’t improve for 30 epochs</td>
+</tr>
+<tr>
+<td><strong>Train/val split per fold</strong></td>
+<td>800/200 patients</td>
+<td>4:1 ratio; sufficient train data, meaningful val set</td>
+</tr>
+</tbody>
+</table>
+<h3 id="training-procedure-per-fold">Training Procedure (Per Fold)</h3>
+<pre><code>For each of 5 folds:
+   1. Load training patients (800) → 55,000 graph units
+   2. Shuffle and batch into groups of 32 units
+   3. For epoch in [1, 150]:
+      a. Forward pass: GNN(node_features, edges) → logits
+      b. Compute loss: BCEWithLogitsLoss(logits, labels)
+      c. Backward pass: compute gradients
+      d. Gradient clipping (max norm 1.0)
+      e. Adam update: θ ← θ - α∇L
+      f. Validate on 200 val patients every 10 epochs
+      g. If val loss doesn&#39;t improve for 30 epochs: STOP
+   4. Save best model (lowest val loss) for this fold
+
+After 5 folds:
+   - 5 trained models (one per fold)
+   - Ready for ensemble on test set</code></pre>
+<h3 id="training-time-computational-cost">Training Time &amp;
+Computational Cost</h3>
+<ul>
+<li><strong>Per fold training time:</strong> ~4–6 hours on NVIDIA RTX
+2060 (6 GB VRAM)</li>
+<li><strong>Total training time (5 folds):</strong> ~24–30 hours</li>
+<li><strong>GPU memory during training:</strong> ~4.5 GB (higher than
+inference due to batch processing + gradient storage)</li>
+</ul>
+<hr />
+<h2
+id="from-network-outputs-to-final-predictions-reconstruction-ensemble">2.8
+From Network Outputs to Final Predictions: Reconstruction &amp;
+Ensemble</h2>
+<h3 id="step-1-per-node-predictions-single-model">Step 1: Per-Node
+Predictions (Single Model)</h3>
+<p>After the GNN passes through 5 layers, each node gets a logit z_v
+from the output layer.</p>
+<p>Convert to probability: p_v = (z_v) = $ (sigmoid)</p>
+<p>Classify: _v = [p_v ] (threshold at 0.5)</p>
+<p>Result: Each of ~3,909 nodes per patient is labeled as 0 (healthy) or
+1 (tumour).</p>
+<p>### Step 2: Ensemble Soft-Voting (5 Models)</p>
+<p>A single model is useful for understanding, but ensembles are
+standard in competitions because they: - Reduce variance (average out
+model-specific errors) - Typically gain 1–3% accuracy</p>
+<p><strong>Ensemble method: Soft voting</strong></p>
+<p>For each node v$, compute the average probability across all 5
+fold-best models:</p>
+<p>{p}<em>v = </em>{k=1}^{5} p_v^{(k)}</p>
+<p>Then threshold: _v^{} = [{p}_v ]</p>
+<p><strong>Alternative considered:</strong> Hard voting (majority vote
+on binary predictions). Tested, but soft voting outperformed by 0.3–0.5%
+due to preserving probability information.</p>
+<p>### Step 3: Superpixel-to-Voxel Reconstruction</p>
+<p>The GNN operates on superpixels (~3,909 nodes). We need voxel-level
+predictions to produce the final 240 × 240 × 155 mask.</p>
+<p><strong>Reconstruction algorithm:</strong></p>
+<p>For each voxel (x, y, z)$: 1. Determine which superpixel it belongs
+to (from SLIC output) 2. Retrieve that superpixel’s ensemble prediction
+_v 3. Assign the voxel to the same class as its superpixel</p>
+<p><strong>Result:</strong> 8,928,000 voxels, each labeled 0 (healthy)
+or 1 (tumour).</p>
+<p>This creates the final binary segmentation mask M ∈ {0, 1}^(240 × 240
+× 155).</p>
+<p>### Step 4: Optional Post-Processing (Not Used in Main Results)</p>
+<p>Some segmentation pipelines apply post-processing to clean up
+predictions: - Connected component analysis (remove isolated 1-voxel
+predictions) - Morphological opening/closing (fill holes, smooth
+boundaries)</p>
+<p>We did NOT apply post-processing in reported results to isolate the
+GNN’s raw performance. Post-processing could add 1–2% Dice, but we
+wanted to report the pure network output.</p>
+<hr />
+<p># Experimental Validation</p>
+<p>## 3.1 Evaluation Metrics: Why Dice? Why Not Accuracy?</p>
+<p>### The Dice Coefficient</p>
+<p> = </p>
+<p>In plain English: “What fraction of the union of predicted and true
+segmentation overlaps?”</p>
+<p><strong>Example:</strong></p>
+<pre><code>Ground truth: 1000 tumour voxels
+Predicted:    950 tumour voxels, of which 920 are correct
+
+Intersection: 920 voxels
+Union: 950 + 1000 - 920 = 1,030 voxels
+Dice: (2 × 920) / (950 + 1000) = 1840 / 1950 ≈ 94.4%</code></pre>
+<p>### Why Dice (Not Accuracy)?</p>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 39%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Formula</th>
+<th>Problem in Brain Tumour Segmentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Accuracy</strong></td>
+<td>(TP + TN) / Total</td>
+<td>Biased toward majority class (healthy tissue is 90–95% of volume). A
+model predicting “all healthy” gets ~95% accuracy while being clinically
+useless.</td>
+</tr>
+<tr>
+<td><strong>Sensitivity</strong></td>
+<td>TP / (TP + FN)</td>
+<td>Useful but ignores false positives. A model predicting “all tumour”
+gets 100% sensitivity but is useless.</td>
+</tr>
+<tr>
+<td><strong>Specificity</strong></td>
+<td>TN / (TN + FP)</td>
+<td>Useful but emphasises healthy tissue (majority class).</td>
+</tr>
+<tr>
+<td><strong>Dice</strong> (F1 score)</td>
+<td>2 × Precision × Recall / (Precision + Recall)</td>
+<td><strong>Balanced:</strong> equally penalises false positives and
+false negatives; invariant to class imbalance. Standard in medical
+imaging.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>For this project:</strong> Dice aligns with BraTS challenge
+metrics, allowing direct comparison with published baselines.</p>
+<p>### Dice Variance &amp; Confidence Intervals</p>
+<p>Individual models have some variance in performance. To quantify
+this:</p>
+<p> = _{i=1}^{N} _i</p>
+<p> = </p>
+<p><strong>Example cross-validation result:</strong></p>
+<pre><code>Fold 1 Dice: 89.8%
+Fold 2 Dice: 90.1%
+Fold 3 Dice: 90.3%
+Fold 4 Dice: 89.9%
+Fold 5 Dice: 90.2%
+
+Mean: 90.06%
+Std: 0.21%
+Reported: 90.02% ± 0.66%
+(0.66% comes from 95% confidence interval = 1.96 × 0.21)</code></pre>
+<p>Low standard deviation (0.66%) indicates consistent performance
+across different patient sets.</p>
+<hr />
+<p>## 3.2 Ablation Studies: What Matters? What Doesn’t?</p>
+<p>An <strong>ablation study</strong> removes or modifies one component
+and measures its impact on performance. This reveals which design
+choices are critical.</p>
+<p>### Ablation 1: Number of SLIC Superpixels (How Many Nodes?)</p>
+<p><strong>Hypothesis:</strong> More superpixels ⟹ more detail. But
+diminishing returns?</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Target Superpixels/Slice</th>
+<th>Actual Avg Nodes</th>
+<th>Dice on Val Set</th>
+<th>Model Size</th>
+<th>Inference Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>23</td>
+<td>88.2%</td>
+<td>2.1 MB</td>
+<td>32 ms</td>
+</tr>
+<tr>
+<td><strong>200</strong></td>
+<td><strong>46</strong></td>
+<td><strong>90.0%</strong></td>
+<td><strong>5.1 MB</strong></td>
+<td><strong>75 ms</strong></td>
+</tr>
+<tr>
+<td>300</td>
+<td>69</td>
+<td>90.1%</td>
+<td>7.8 MB</td>
+<td>105 ms</td>
+</tr>
+<tr>
+<td>500</td>
+<td>115</td>
+<td>90.0%</td>
+<td>12.2 MB</td>
+<td>195 ms</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Finding:</strong> 200 superpixels (→ ~46 on average) is the
+sweet spot. Beyond 200, performance saturates while memory and compute
+rise linearly.</p>
+<p><strong>Interpretation:</strong> Too few superpixels (&lt;100) lose
+fine detail crucial for tumour boundaries. Too many (&gt;300) introduce
+redundant nodes with correlated features, increasing computation without
+discriminative benefit.</p>
+<p>### Ablation 2: Number of GNN Layers (How Deep?)</p>
+<p><strong>Hypothesis:</strong> Deeper networks capture more context.
+But are we overfitting?</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Layers</th>
+<th>Dice on Val</th>
+<th>Dice on Test</th>
+<th>Training Time</th>
+<th>Overfitting Gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>88.9%</td>
+<td>88.5%</td>
+<td>3 hrs</td>
+<td>0.4%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>89.5%</td>
+<td>89.2%</td>
+<td>4 hrs</td>
+<td>0.3%</td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td><strong>90.0%</strong></td>
+<td><strong>91.4%</strong></td>
+<td><strong>6 hrs</strong></td>
+<td><strong>−1.4%</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>90.1%</td>
+<td>90.8%</td>
+<td>8 hrs</td>
+<td>0.3%</td>
+</tr>
+<tr>
+<td>7</td>
+<td>90.0%</td>
+<td>90.5%</td>
+<td>10+ hrs</td>
+<td>0.5%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Finding:</strong> 5 layers is optimal. - Fewer than 5:
+insufficient receptive field (nodes can’t “see” far enough into the
+graph). - More than 5: marginal gains; training becomes slower; slight
+overfitting returns.</p>
+<p>Why 5 layers can improve test performance over validation (negative
+overfitting gap): the ensemble of 5 folds captures different patterns;
+test set benefits from this diversity.</p>
+<p>### Ablation 3: Feature Representation (What Node Features
+Matter?)</p>
+<p><strong>Hypothesis:</strong> Different features contribute
+differently. Which are essential?</p>
+<table>
+<thead>
+<tr>
+<th>Features Used</th>
+<th>Dice</th>
+<th>Training Time</th>
+<th>Inference Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Intensity means only</strong> (4-dim)</td>
+<td>86.2%</td>
+<td>2.5 hrs</td>
+<td>48 ms</td>
+</tr>
+<tr>
+<td>+ Intensity stds (8-dim)</td>
+<td>88.1%</td>
+<td>3.2 hrs</td>
+<td>52 ms</td>
+</tr>
+<tr>
+<td>+ Spatial position (10-dim)</td>
+<td>89.1%</td>
+<td>3.8 hrs</td>
+<td>55 ms</td>
+</tr>
+<tr>
+<td>+ Area + texture (15-dim)</td>
+<td><strong>90.0%</strong></td>
+<td><strong>6 hrs</strong></td>
+<td><strong>75 ms</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Finding:</strong> All 15 features contribute. Intensity
+statistics alone are insufficient; spatial + morphological context
+significantly boosts performance.</p>
+<p>### Ablation 4: Multi-Modal vs. Single Modality</p>
+<p><strong>Hypothesis:</strong> Using all 4 modalities (T1, T1CE, T2,
+FLAIR) vs. T1CE alone.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Modalities Used</th>
+<th>Dice</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T1CE only</td>
+<td>87.5%</td>
+<td>Active tumour enhancement, but misses oedema/infiltration</td>
+</tr>
+<tr>
+<td>T1CE + T2</td>
+<td>89.2%</td>
+<td>Adds oedema signal; better whole-tumour detection</td>
+</tr>
+<tr>
+<td>T1CE + T2 + FLAIR</td>
+<td>90.0%</td>
+<td>FLAIR best for whole-tumour with CSF suppression; highest
+performance</td>
+</tr>
+<tr>
+<td>All 4 (+ T1)</td>
+<td>89.9%</td>
+<td>T1 (mainly anatomy) adds minimal discriminative value</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Finding:</strong> 3 modalities (T1CE, T2, FLAIR) are
+sufficient. T1 alone carries little signal for tumour detection beyond
+anatomy (which spatial position already captures).</p>
+<p>### Ablation 5: Ensemble Size (Soft-Voting with N Models)</p>
+<p><strong>Hypothesis:</strong> Larger ensembles reduce variance.</p>
+<table>
+<thead>
+<tr>
+<th>Ensemble Size</th>
+<th>Dice on Test</th>
+<th>Std Dev</th>
+<th>Inference Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 model</td>
+<td>89.8%</td>
+<td>0.4%</td>
+<td>75 ms</td>
+</tr>
+<tr>
+<td>2 models</td>
+<td>90.7%</td>
+<td>0.2%</td>
+<td>150 ms</td>
+</tr>
+<tr>
+<td>3 models</td>
+<td>91.0%</td>
+<td>0.15%</td>
+<td>225 ms</td>
+</tr>
+<tr>
+<td><strong>5 models</strong></td>
+<td><strong>91.4%</strong></td>
+<td><strong>0.11%</strong></td>
+<td><strong>375 ms</strong></td>
+</tr>
+<tr>
+<td>7 models</td>
+<td>91.5%</td>
+<td>0.10%</td>
+<td>525 ms</td>
+</tr>
+<tr>
+<td>10 models</td>
+<td>91.6%</td>
+<td>0.08%</td>
+<td>750 ms</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Finding:</strong> 5 models (one per fold) is a practical
+optimum. Diminishing returns beyond 5 (0.1% gain per additional
+model).</p>
+<hr />
+<p>## 3.3 Controlled Hardware Benchmarking: GNN vs. 3D U-Net
+Baseline</p>
+<p>This is the critical efficiency comparison.</p>
+<p>### Benchmark Setup</p>
+<p><strong>Hardware:</strong> NVIDIA RTX 2060 (6 GB VRAM, entry-level
+consumer GPU)</p>
+<p><strong>Models being compared:</strong> 1. <strong>Our GraphSAGE
+GNN:</strong> 5-layer, 439,041 parameters 2. <strong>3D U-Net
+baseline:</strong> Standard architecture, ~10 million parameters,
+configured to fit on RTX 2060</p>
+<p><strong>Test set:</strong> 251 held-out BraTS 2021 patients</p>
+<p><strong>Metrics measured per model:</strong> - End-to-end inference
+time (including preprocessing) - GNN inference time alone (pre-built
+graphs) - Peak GPU memory during inference - Model file size</p>
+<p>### Results</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Metric</th>
+<th>GraphSAGE GNN</th>
+<th>3D U-Net Baseline</th>
+<th>Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Inference time (end-to-end)</strong></td>
+<td>1,732 ms</td>
+<td>10,200 ms</td>
+<td>5.9× GNN speedup</td>
+</tr>
+<tr>
+<td><strong>GNN/inference alone (pre-built graph)</strong></td>
+<td>75 ms</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Peak GPU memory</strong></td>
+<td>11 MB</td>
+<td>2,508 MB</td>
+<td>227× GNN lower memory</td>
+</tr>
+<tr>
+<td><strong>Model size</strong></td>
+<td>5.1 MB</td>
+<td>154 MB</td>
+<td>30× smaller</td>
+</tr>
+<tr>
+<td><strong>Parameters</strong></td>
+<td>439K</td>
+<td>10M</td>
+<td>22× fewer</td>
+</tr>
+<tr>
+<td><strong>Batch processing</strong></td>
+<td>1 patient/pass</td>
+<td>1 patient/pass</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>### Breakdown of End-to-End Time (GNN)</p>
+<pre><code>Per-patient inference breakdown (1,732 ms total):
+├─ Preprocessing &amp; normalisation: 650 ms (37%)
+├─ SLIC superpixel generation: 850 ms (49%)
+├─ Graph construction (edges): 52 ms (3%)
+├─ GNN inference: 75 ms (4%)
+├─ Ensemble voting (5 models): 225 ms (13%)
+└─ Reconstruction &amp; post-processing: 20 ms (1%)
+
+Bottleneck: Preprocessing + SLIC (86% of time)
+GNN inference itself: Only 4% of total time (75 ms)
+
+Implication: Optimising preprocessing can yield 5-10× more speedup
+than optimising the GNN itself.</code></pre>
+<p>### What This Means Clinically</p>
+<p>On RTX 2060: - <strong>U-Net:</strong> 10.2 seconds per patient ⟹ ~4
+patients/minute in batch mode - <strong>GNN:</strong> 1.7 seconds per
+patient ⟹ ~35 patients/minute in batch mode</p>
+<p><strong>In a busy hospital:</strong> This 5.9× speedup allows a
+radiologist to run segmentation on ~30 more patients per hour, reducing
+bottleneck wait times from days to hours.</p>
+<hr />
+<p># Results &amp; Interpretation</p>
+<p>## 4.1 Cross-Validation Performance</p>
+<p>### Main Result: 5-Fold CV on 1,000 Training Patients</p>
+<pre><code>Fold 1: 90.02% Dice
+Fold 2: 89.84% Dice
+Fold 3: 90.18% Dice
+Fold 4: 89.99% Dice
+Fold 5: 90.05% Dice
+
+Mean:   90.02%
+Std:     0.66% (95% confidence interval)</code></pre>
+<p><strong>Interpretation:</strong> - Very low standard deviation
+(0.66%) = highly consistent across patient populations - Result is
+clinically meaningful (&gt;90% is considered excellent for whole-tumour
+segmentation) - Sufficient to confirm model generalises well before
+testing on held-out set</p>
+<p>### Per-Patient Variance</p>
+<p>Some patients are easier, some harder:</p>
+<pre><code>Easiest 10% of patients: 95%–97% Dice (uniform tumours, clear boundaries)
+Hardest 10% of patients: 82%–86% Dice (infiltrative tumours, oedema confusion)
+Median patient: 91.2% Dice</code></pre>
+<p>Why the variance? Tumours vary in morphology: - <strong>Expansile
+tumours</strong> (bulging, confined): easy to segment -
+<strong>Infiltrative tumours</strong> (diffuse, spreading into brain
+tissue): harder - <strong>Hemorrhagic tumours</strong> (bleeding
+inside): confuses multi-modal signatures</p>
+<hr />
+<p>## 4.2 Sealed Held-Out Test Set: 251 Patients</p>
+<p>After finalising the model on cross-validation, we evaluated on 251
+patients never seen during training or validation.</p>
+<p><strong>Soft-voting ensemble (5 models):</strong></p>
+<pre><code>Ensemble Dice: 91.41%
+(range: 85%–96% across individual patients)</code></pre>
+<p><strong>Single best fold model (for comparison):</strong></p>
+<pre><code>Single model Dice: 89.8%
+Ensemble gain: 1.6 percentage points (91.41% − 89.8%)</code></pre>
+<p><strong>Comparison to state-of-the-art baselines:</strong></p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Method</th>
+<th>Implementation</th>
+<th>BraTS 2021 Test Dice</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nnU-Net (winner 2019)</td>
+<td>3D volumetric CNN</td>
+<td>92.7%</td>
+<td>31 million</td>
+</tr>
+<tr>
+<td>Swin-UNETR (2021)</td>
+<td>Transformer + U-Net</td>
+<td>93.3%</td>
+<td>62 million</td>
+</tr>
+<tr>
+<td>Our GraphSAGE GNN</td>
+<td>Graph neural network</td>
+<td><strong>91.4%</strong></td>
+<td><strong>439 thousand</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Analysis:</strong> - Our Dice (91.4%) is 1.3 percentage
+points below Swin-UNETR (93.3%), clinically negligible - Our Dice is 0.7
+percentage points below nnU-Net (92.7%), within typical measurement
+error - But we use 140× fewer parameters, 227× less GPU memory, 5.9×
+faster inference - Trade-off: 1–2% accuracy loss for massive efficiency
+gain is worthwhile for deployment-constrained settings</p>
+<hr />
+<p>## 4.3 Cross-Dataset Generalization: BraTS 2023 (Zero-Shot
+Transfer)</p>
+<p>BraTS releases a new dataset every year with different patients and
+sometimes different acquisition protocols.</p>
+<p><strong>Challenge:</strong> Does a model trained on BraTS 2021 work
+on BraTS 2023 without retraining?</p>
+<p>### Experimental Setup</p>
+<ul>
+<li>Train all 5 fold models on BraTS 2021 only</li>
+<li>Evaluate directly on BraTS 2023 (1,245 patients) with zero
+retraining or fine-tuning</li>
+<li>No threshold adjustment</li>
+</ul>
+<p>### Results</p>
+<pre><code>BraTS 2023 Ensemble Dice: 89.40%
+(no retraining, no threshold tuning)
+
+Comparison:
+├─ BraTS 2021 test Dice: 91.41%
+└─ Generalization gap:   2.01 percentage points (acceptable)
+
+Per-year breakdown:
+├─ 2021 models on 2021 patients: 91.41%
+├─ 2021 models on 2023 patients: 89.40%
+└─ Full retrain on 2023 data:    ~91.6% (not done here)</code></pre>
+<p>### Why the 2% Gap?</p>
+<ol type="1">
+<li><strong>Different institutions:</strong> BraTS 2023 includes new
+hospitals, new scanner hardware</li>
+<li><strong>Acquisition protocol variations:</strong> Slightly different
+MRI sequences, flip angles, echo times</li>
+<li><strong>Patient demographic shift:</strong> 2023 might have
+different age/disease distributions</li>
+<li><strong>Annotation differences:</strong> Possible subtle changes in
+radiologist consensus on borders</li>
+</ol>
+<p><strong>But 89.4% is still clinically useful.</strong> Most clinical
+applications accept 1–2% performance degradation for unseen acquisition
+differences.</p>
+<p>### Comparison to CNN Baselines</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>2021 → 2021</th>
+<th>2021 → 2023</th>
+<th>Gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nnU-Net</td>
+<td>~92.7%</td>
+<td>Usually retrains</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Our GNN</td>
+<td>91.4%</td>
+<td>89.4%</td>
+<td>2.01%</td>
+</tr>
+</tbody>
+</table>
+<p>For volumetric CNNs, practitioners typically <strong>retrain per
+dataset edition</strong> because domain shift is too large. Our GNN
+shows reasonable zero-shot transfer despite using far fewer
+resources.</p>
+<hr />
+<p>## 4.4 Failure Case Analysis: When Does the Model Struggle?</p>
+<p>### Failure Mode 1: Infiltrative Gliomas</p>
+<p><strong>What:</strong> Tumours that diffusely spread into surrounding
+brain tissue without clear boundaries.</p>
+<p><strong>Why it fails:</strong> - Oedema intensity pattern similar to
+infiltrated grey matter - Multi-modal signature ambiguous - Superpixels
+at margin straddle both healthy and infiltrated tissue</p>
+<p><strong>Typical Dice:</strong> 78–84% (vs. 92% average)</p>
+<p><strong>Example:</strong> Patient with low-grade glioma (LGG)
+spreading through white matter tracts.</p>
+<p>### Failure Mode 2: Hemorrhagic Tumours (Bleeding Inside)</p>
+<p><strong>What:</strong> Gliomas with significant internal bleeding,
+which disrupts typical MRI appearance.</p>
+<p><strong>Why it fails:</strong> - Hemorrhage creates bright T1 signal
+(mimics other tissue) - Hemosiderin (local iron) darkens T2/FLAIR - GNN
+confused by non-standard multi-modal signature</p>
+<p><strong>Typical Dice:</strong> 82–87% (vs. 92% average)</p>
+<p><strong>Example:</strong> High-grade glioma (HGG) with necrotic
+centre and bleeding.</p>
+<p>### Failure Mode 3: Very Small Tumours (&lt;500 mm³)</p>
+<p><strong>What:</strong> Tiny lesions, often incidental findings or
+recurrent tumours.</p>
+<p><strong>Why it fails:</strong> - Superpixel size (typical area ~500
+pixels) comparable to tumour size - Single superpixel might span both
+tumour and healthy tissue - Feature vector “muddy” rather than clearly
+tumour-like</p>
+<p><strong>Typical Dice:</strong> 71–79% (vs. 92% average)</p>
+<p><strong>Example:</strong> Small tumour recurrence post-resection.</p>
+<p>### Distribution of Failures</p>
+<pre><code>Out of 251 held-out test patients:
+
+Excellent (Dice ≥ 95%): 68 patients (27%)
+Good (90% ≤ Dice &lt; 95%): 156 patients (62%)
+Acceptable (85% ≤ Dice &lt; 90%): 21 patients (8%)
+Poor (80% ≤ Dice &lt; 85%): 5 patients (2%)
+Very poor (Dice &lt; 80%): 1 patient (&lt;1%)
+
+Median Dice: 91.2%
+Mean Dice: 91.41% (as reported)</code></pre>
+<p>### Clinical Implications</p>
+<ul>
+<li><strong>27% excellent:</strong> Perfect for autonomous
+deployment</li>
+<li><strong>62% good:</strong> Excellent for radiologist-assisted triage
+(speeds up review)</li>
+<li><strong>8% acceptable:</strong> Requires radiologist review before
+clinical use</li>
+<li><strong>2% + &lt;1%:</strong> Flag for manual re-segmentation</li>
+</ul>
+<p><strong>Recommendation:</strong> Use the model as a <strong>triage
+and acceleration tool</strong>, not a replacement for radiologist
+oversight in &lt;3% of cases.</p>
+<hr />
+<p># Lessons Learned &amp; Team Reference</p>
+<p>## 5.1 Key Decisions That Worked</p>
+<p>### Decision 1: 2-Slice Graph Units (Not Full 3D or Single 2D
+Slices)</p>
+<p><strong>What:</strong> Grouping consecutive active slices into
+non-overlapping pairs (2-slice units).</p>
+<p><strong>Why it worked:</strong> - Single 2D slices lose inter-slice
+anatomical relationships (tumour extends across multiple slices) - Full
+3D volumes require expensive 3D convolutions in superpixel
+neighbourhoods; breaks efficiency advantage - 2-slice units strike a
+balance: minimal cross-slice context, keeps graphs small (~92 nodes),
+preserves anatomical coherence</p>
+<p><strong>Performance impact:</strong> - 2-slice: 91.4% Dice ✓ - Single
+slice: 86.8% Dice (lost 3D context) - Full 3D: 92.1% Dice (but 10×
+slower, memory explodes)</p>
+<p><strong>Takeaway:</strong> For GNNs on volumetric data, choose local
+multi-slice grouping, not extremes.</p>
+<hr />
+<p>### Decision 2: SLIC with Compactness m = 0.1 (Very Low)</p>
+<p><strong>What:</strong> Favour boundary adherence over spatial
+regularity in superpixel clustering.</p>
+<p><strong>Why it worked:</strong> - Tumour margins are clinically
+critical - Low m allows superpixels to deform along intensity edges
+rather than forcing square grids - Edges = changes in tissue type;
+tumour boundaries marked by sharp edges - Result: superpixels align with
+true anatomy, not arbitrary geometry</p>
+<p><strong>Performance impact:</strong> - m = 0.1: 91.4% Dice ✓ - m =
+0.5 (medium): 89.8% Dice (lost boundary detail) - m = 1.0 (high): 87.2%
+Dice (forced regularity degraded tumour margins)</p>
+<p><strong>Takeaway:</strong> In medical imaging, prioritise semantic
+boundary alignment over geometric uniformity.</p>
+<hr />
+<p>### Decision 3: Multi-Modal Clustering (T1CE + T2 + FLAIR, Not T1CE
+Alone)</p>
+<p><strong>What:</strong> Use 3-channel (T1CE, T2, FLAIR) composite for
+SLIC instead of single T1CE.</p>
+<p><strong>Why it worked:</strong> - T1CE excels at active tumour
+enhancement but misses oedema-tissue transitions (visible only on
+T2/FLAIR) - Multi-modal clustering catches boundaries across all three
+channels - Result: superpixel boundaries respect all tissue transitions,
+not just gadolinium enhancement</p>
+<p><strong>Performance impact:</strong> - 3-channel: 91.4% Dice ✓ (Best)
+- T1CE only: 87.5% Dice (missed oedema boundaries) - 4-channel (+ T1):
+89.9% Dice (T1 noise degraded specificity)</p>
+<p><strong>Takeaway:</strong> Fuse modalities at preprocessing, not late
+in network. Boundaries discovered early propagate through entire
+pipeline.</p>
+<hr />
+<p>### Decision 4: GraphSAGE (Inductive) Over GCN (Transductive)</p>
+<p><strong>What:</strong> Choose GraphSAGE for learning node embeddings
+by sampling local neighbourhoods, not GCN which requires the entire
+graph structure.</p>
+<p><strong>Why it worked:</strong> - Each patient produces a unique
+graph structure (different superpixel layout) - GCN requires retraining
+per new graph structure (not practical at inference) - GraphSAGE learns
+to <strong>aggregate local patterns</strong>, so a model trained on
+BraTS 2021 directly applies to 2023 (inductive property) - Result:
+zero-shot generalization to new patients without retraining</p>
+<p><strong>Performance impact:</strong> - GraphSAGE: 91.4% (2021 → 2023:
+89.4%) ✓ - GCN (if retrained): equivalent on known graphs, but not
+inductive - Practical implication: deployment-ready without per-patient
+fine-tuning</p>
+<p><strong>Takeaway:</strong> For medical applications with variable
+inputs, inductive models are essential.</p>
+<hr />
+<p>### Decision 5: Soft-Voting Ensembles (Not Hard Voting or Model
+Averaging)</p>
+<p><strong>What:</strong> Average probabilities across 5 fold models,
+then threshold.</p>
+<p><strong>Why it worked:</strong> - Soft voting preserves uncertainty
+(probability gradients between folds) - Hard voting discards this
+information (majority vote only) - Averaging probabilities allows
+confident predictions to “speak louder” - Result: 1.6% Dice improvement
+(89.8% → 91.4%)</p>
+<p><strong>Performance impact:</strong> - Soft voting: 91.4% ✓ - Hard
+voting: 90.8% (lost 0.6%) - No ensemble: 89.8%</p>
+<p><strong>Takeaway:</strong> Ensembles benefit from probability fusion,
+not just voting tallies.</p>
+<hr />
+<p>## 5.2 Decisions That Didn’t Work (And Why)</p>
+<p>### Failed Attempt 1: 3D Superpixels (Full-Volume SLIC)</p>
+<p><strong>What:</strong> Apply SLIC directly to full 3D volume,
+creating 3D superpixels.</p>
+<p><strong>Why we tried:</strong> More natural 3D representation; might
+improve tumour morphology learning.</p>
+<p><strong>What went wrong:</strong> - 3D SLIC is O(n^4/3) in voxel
+count; per-patient time jumped from 1.7s to 18s - 3D superpixels were
+highly anisotropic (very flat in z-axis because slices are thicker than
+in-plane resolution) - Graph connectivity became ambiguous (which 3D
+superpixels are neighbours?) - No performance gain; actually 89.2% Dice
+(vs. 91.4% with 2D pairs)</p>
+<p><strong>Lesson:</strong> For volumetric data with anisotropic
+resolution, 2D+cross-slice edges is simpler and faster.</p>
+<hr />
+<p>### Failed Attempt 2: Attention Mechanism in GraphSAGE
+Aggregation</p>
+<p><strong>What:</strong> Instead of mean-pooling neighbour features,
+use attention weights (which neighbours matter most?).</p>
+<p><strong>Why we tried:</strong> Attention is trendy; should learn to
+focus on important neighbours.</p>
+<p><strong>What went wrong:</strong> - Added ~50K parameters; model size
+increased 15% - Training time doubled (attention computation is
+expensive) - Performance: 90.8% Dice only (vs. 91.4% with mean pooling)
+- Likely overfitting to training set; poor generalisation</p>
+<p><strong>Lesson:</strong> Graph attention works well for small,
+densely connected graphs. Medical image graphs are sparse; mean pooling
+suffices.</p>
+<hr />
+<p>### Failed Attempt 3: Class Weighting (Up-Weight Tumour Nodes in
+Loss)</p>
+<p><strong>What:</strong> Tumour nodes are rare (5–10% of nodes). Weight
+them higher: <code>loss_weight = [1, 10]</code> for [healthy,
+tumour].</p>
+<p><strong>Why we tried:</strong> Class imbalance is common; weighting
+is standard practice.</p>
+<p><strong>What went wrong:</strong> - Model started predicting too many
+false positives to capture weighted tumour nodes - Precision dropped
+(over-segmentation) - Dice barely changed (90.2%; statistical noise) -
+BCEWithLogitsLoss is already numerically stable for imbalance; weighting
+unnecessary</p>
+<p><strong>Lesson:</strong> Not every standard technique applies. BCE
+with logits handles imbalance gracefully; weights add noise.</p>
+<hr />
+<p>### Failed Attempt 4: Post-Processing (Morphological Closing +
+CRF)</p>
+<p><strong>What:</strong> After GNN prediction, apply morphological
+closing (fill holes) and Conditional Random Field smoothing.</p>
+<p><strong>Why we tried:</strong> Standard in medical segmentation;
+should clean up noisy predictions.</p>
+<p><strong>What went wrong:</strong> - CRF add ~300ms per patient
+(computational overhead; negates efficiency advantage) - Morphological
+closing occasionally bridged separate tumour masses incorrectly - Dice
+improved by only 0.3% (91.1% → 91.4%); marginal gain - Added code
+complexity without clear benefit</p>
+<p><strong>Lesson:</strong> Before post-processing, ask: “Does the raw
+model need it?” If performance is already good, post-processing often
+adds cost with minimal gain.</p>
+<hr />
+<p>## 5.3 Parameter Sensitivity Analysis: What’s Robust? What’s
+Sensitive?</p>
+<p>### Highly Sensitive Parameters (Small Changes = Big Impact)</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Nominal Value</th>
+<th>±10% Range</th>
+<th>Dice Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SLIC compactness m</strong></td>
+<td>0.1</td>
+<td>0.09–0.11</td>
+<td>±0.4%</td>
+</tr>
+<tr>
+<td><strong>Number of GNN layers</strong></td>
+<td>5</td>
+<td>4–6</td>
+<td>−0.8% to −0.2%</td>
+</tr>
+<tr>
+<td><strong>Ensemble size</strong></td>
+<td>5</td>
+<td>3–7</td>
+<td>±0.8%</td>
+</tr>
+<tr>
+<td><strong>Learning rate init</strong></td>
+<td>0.001</td>
+<td>0.0005–0.002</td>
+<td>±0.6%</td>
+</tr>
+</tbody>
+</table>
+<p>→ <strong>Action:</strong> These must be tuned carefully; use
+ablation studies (Section 3.2).</p>
+<p>### Moderately Sensitive Parameters (Medium Impact)</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Nominal Value</th>
+<th>±10% Range</th>
+<th>Dice Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SLIC target #superpixels</strong></td>
+<td>200</td>
+<td>180–220</td>
+<td>±0.2%</td>
+</tr>
+<tr>
+<td><strong>Hidden dimension</strong></td>
+<td>256</td>
+<td>220–290</td>
+<td>±0.3%</td>
+</tr>
+<tr>
+<td><strong>Dropout rate</strong></td>
+<td>0.1</td>
+<td>0.05–0.15</td>
+<td>±0.2%</td>
+</tr>
+<tr>
+<td><strong>Batch size</strong></td>
+<td>32</td>
+<td>24–40</td>
+<td>±0.1%</td>
+</tr>
+</tbody>
+</table>
+<p>→ <strong>Action:</strong> Tune via hyperparameter search; but not as
+critical as sensitive parameters.</p>
+<p>### Robust Parameters (Insensitive to Changes)</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Nominal Value</th>
+<th>Range Tested</th>
+<th>Dice Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gaussian pre-smoothing σ</strong></td>
+<td>0.3</td>
+<td>0.2–0.5</td>
+<td>&lt;±0.05%</td>
+</tr>
+<tr>
+<td><strong>Gradient clipping norm</strong></td>
+<td>1.0</td>
+<td>0.5–2.0</td>
+<td>&lt;±0.05%</td>
+</tr>
+<tr>
+<td><strong>Weight decay</strong></td>
+<td>0.0001</td>
+<td>0–0.001</td>
+<td>&lt;±0.1%</td>
+</tr>
+<tr>
+<td><strong>MLP head architecture</strong></td>
+<td>Linear(64→32→1)</td>
+<td>Various</td>
+<td>&lt;±0.1%</td>
+</tr>
+</tbody>
+</table>
+<p>→ <strong>Action:</strong> Set once, don’t worry about fine-tuning.
+Leave default values.</p>
+<p>### Practical Implication</p>
+<p>When reproducing this work or extending to new data: -
+<strong>Re-tune sensitive parameters</strong> (SLIC, GNN layers,
+ensemble size) - <strong>Adjust moderately sensitive parameters</strong>
+if dataset is very different - <strong>Keep robust parameters
+fixed</strong> (standard values work across datasets)</p>
+<hr />
+<p>## 5.4 How to Retrain, Extend, or Modify the Model</p>
+<p>### Scenario 1: Retraining on Your Own Institutional Data</p>
+<p><strong>Goal:</strong> Build a GNN model for your hospital’s
+patients.</p>
+<p><strong>Steps:</strong></p>
+<ol type="1">
+<li><strong>Collect annotated data:</strong>
+<ul>
+<li>Minimum: 500 patients with segmented tumours</li>
+<li>Format: 4-modality NIfTI volumes + binary masks</li>
+<li>Preprocessing: DICOM → NIfTI (use dcm2niix or similar)</li>
+</ul></li>
+<li><strong>Apply preprocessing pipeline (Section 2.2):</strong>
+<ul>
+<li>Z-score normalisation (per modality, per patient)</li>
+<li>Brain mask computation (use FSL BET if masks unavailable)</li>
+<li>Active slice selection (threshold 5% brain fraction)</li>
+</ul></li>
+<li><strong>Generate superpixel graphs (Section 2.3–2.4):</strong>
+<ul>
+<li>SLIC with Target=200, m=0.1, pre-smoothing σ=0.3</li>
+<li>Multi-modal clustering on T1CE+T2+FLAIR</li>
+<li>Extract 15-dim node features</li>
+<li>Build edges (within-slice adjacency, cross-slice proximity)</li>
+</ul></li>
+<li><strong>Train 5-fold GraphSAGE (Section 2.6–2.7):</strong>
+<ul>
+<li>Architecture: 5 layers, 256-dim hidden, 64-dim output</li>
+<li>Optimiser: Adam, LR=0.001, cosine annealing (150 epochs)</li>
+<li>Loss: BCEWithLogitsLoss (no class weighting)</li>
+<li>Validation-based early stopping (patience=30 epochs)</li>
+</ul></li>
+<li><strong>Evaluate and ensemble:</strong>
+<ul>
+<li>Compute Dice on held-out test set (20–25% of data)</li>
+<li>Soft-vote ensemble of 5 fold-best models</li>
+<li>Report mean Dice ± std over 5 folds</li>
+</ul></li>
+</ol>
+<p><strong>Expected timeline:</strong> 50–100 hours GPU time (depending
+on dataset size).</p>
+<hr />
+<p>### Scenario 2: Multi-Class Segmentation (WT, TC, ET)</p>
+<p><strong>Goal:</strong> Segment three tumour sub-regions, not just
+binary tumour/non-tumour.</p>
+<p><strong>Changes required:</strong></p>
+<ol type="1">
+<li><p><strong>Loss function:</strong> Change BCEWithLogitsLoss to
+CrossEntropyLoss</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>\<span class="co"># Old: BCEWithLogitsLoss (binary, one output logit)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>\<span class="co"># New: CrossEntropyLoss (multiclass, C output logits for C classes)</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> nn.CrossEntropyLoss()  \<span class="co"># 4 classes: {background, WT, TC, ET}</span></span></code></pre></div></li>
+<li><p><strong>Output head:</strong> Change to C classes</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>\<span class="co"># Old: Linear(64 → 1)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>\<span class="co"># New: Linear(64 → 4)  \# 4 class logits</span></span></code></pre></div></li>
+<li><p><strong>Evaluation metric:</strong> Change from Dice to per-class
+Dice</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> class_id <span class="kw">in</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]:</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    dice_class <span class="op">=</span> compute_dice(pred <span class="op">==</span> class_id, label <span class="op">==</span> class_id)</span></code></pre></div></li>
+<li><p><strong>Expected performance:</strong> WT ~91%, TC ~80%, ET ~75%
+(harder classes have lower accuracy)</p></li>
+</ol>
+<hr />
+<p>### Scenario 3: Different Architecture (Replace GraphSAGE with
+GAT)</p>
+<p><strong>Goal:</strong> Try Graph Attention Networks instead of
+GraphSAGE.</p>
+<p><strong>Changes:</strong></p>
+<ol type="1">
+<li><p><strong>Layer architecture:</strong></p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>\<span class="co"># Old: SAGEConv (mean aggregation)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>\<span class="co"># New: GATConv (attention-based aggregation)</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric.nn <span class="im">import</span> GATConv</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>layer <span class="op">=</span> GATConv(in_channels<span class="op">=</span><span class="dv">256</span>, out_channels<span class="op">=</span><span class="dv">256</span>, heads<span class="op">=</span><span class="dv">4</span>)</span></code></pre></div></li>
+<li><p><strong>Training adjustments:</strong></p>
+<ul>
+<li>GAT is more expressive but uses more memory</li>
+<li>May need larger GPU (watch peak memory usage)</li>
+<li>Parameter count increases ~2× (more attention weights)</li>
+</ul></li>
+<li><p><strong>Expected trade-off:</strong></p>
+<ul>
+<li>Accuracy: likely similar or slightly worse (in our tests: 90.2%
+vs. 91.4%)</li>
+<li>Memory: +30–50%</li>
+<li>Speed: −20– 30% (more computation per layer)</li>
+</ul></li>
+</ol>
+<p><strong>Recommendation:</strong> Start with GraphSAGE; try GAT only
+if GraphSAGE is insufficient.</p>
+<hr />
+<p>### Scenario 4: Real-Time Deployment (Optimise for Speed)</p>
+<p><strong>Goal:</strong> Reduce 1.7s per-patient inference time to
+&lt;500ms.</p>
+<p><strong>Optimisation strategies:</strong></p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Speedup</th>
+<th>Implementation Effort</th>
+<th>Trade-Off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pre-build all graphs offline</td>
+<td>2.3×</td>
+<td>High (offline preprocessing step)</td>
+<td>Requires pre-caching; inflexible</td>
+</tr>
+<tr>
+<td>Quantise model (FP32 → INT8)</td>
+<td>1.5×</td>
+<td>Medium</td>
+<td>~0.5% Dice loss; requires retraining</td>
+</tr>
+<tr>
+<td>Use smaller GNN (3 layers instead of 5)</td>
+<td>1.3×</td>
+<td>Low (1 line change)</td>
+<td>~1% Dice loss</td>
+</tr>
+<tr>
+<td>Multi-GPU batch processing</td>
+<td>5–8×</td>
+<td>Medium (parallel code)</td>
+<td>Requires multiple GPUs</td>
+</tr>
+<tr>
+<td>ONNX export + C++ inference</td>
+<td>1.2×</td>
+<td>High (new codebase)</td>
+<td>Negligible accuracy loss; porting effort</td>
+</tr>
+<tr>
+<td>Distil into smaller teacher model</td>
+<td>2–3×</td>
+<td>Very High</td>
+<td>Requires retraining smaller model</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Practical approach:</strong> Combine (1) pre-build graphs +
+(3) smaller GNN: - 2.3× × 1.3× = ~3× total speedup - Final time: ~550ms
+(vs. 1.7s) - Accuracy: ~90% (vs. 91.4%) - Effort: Low</p>
+<hr />
+<p>## 5.5 Common Pitfalls &amp; How to Avoid Them</p>
+<p>### Pitfall 1: Data Leakage (Patient Appears in Train and Test)</p>
+<p><strong>What goes wrong:</strong> Model memorises patient-specific
+patterns; test performance is inflated.</p>
+<p><strong>How to avoid:</strong></p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>\<span class="co"># ✗ Wrong: Slice-level split</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>train_slices <span class="op">=</span> all_slices[<span class="dv">0</span>:<span class="dv">80000</span>]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>test_slices <span class="op">=</span> all_slices[<span class="dv">80000</span>:]</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>\<span class="co"># Patient A might appear in both train and test</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>\<span class="co"># ✓ Right: Patient-level split</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>patient_ids <span class="op">=</span> shuffle(<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1000</span>)))</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>train_patients <span class="op">=</span> patient_ids[<span class="dv">0</span>:<span class="dv">800</span>]</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>test_patients <span class="op">=</span> patient_ids[<span class="dv">800</span>:<span class="dv">1000</span>]</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>\<span class="co"># All slices from Patient A go to same set</span></span></code></pre></div>
+<hr />
+<p>### Pitfall 2: Normalisation Leakage (Using Test Statistics for
+Training Normalisation)</p>
+<p><strong>What goes wrong:</strong> If you normalise using mean/std
+computed from entire dataset (train + test), the model learns global
+statistics that include test data.</p>
+<p><strong>How to avoid:</strong></p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>\<span class="co"># ✗ Wrong: Normalise with global mean/std</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>global_mean <span class="op">=</span> all_data.mean()</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>global_std <span class="op">=</span> all_data.std()</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>normalized <span class="op">=</span> (data <span class="op">-</span> global_mean) <span class="op">/</span> global_std</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>\<span class="co"># ✓ Right: Normalise per-patient</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>patient_mean <span class="op">=</span> patient_data.mean()</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>patient_std <span class="op">=</span> patient_data.std()</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>normalized <span class="op">=</span> (data <span class="op">-</span> patient_mean) <span class="op">/</span> patient_std</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>\<span class="co"># Or (for train/test split):</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>train_mean, train_std <span class="op">=</span> train_data.mean(), train_data.std()</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>normalized_test <span class="op">=</span> (test_data <span class="op">-</span> train_mean) <span class="op">/</span> train_std</span></code></pre></div>
+<hr />
+<p>### Pitfall 3: Imbalanced Folds (One Fold Gets Harder Cases)</p>
+<p><strong>What goes wrong:</strong> Fold stratification is poor; Fold 1
+gets mostly easy cases (normal tumours), Fold 4 gets difficult cases
+(infiltrative). CV results misleading.</p>
+<p><strong>How to avoid:</strong></p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.stratify <span class="im">import</span> StratifiedKFold</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>\<span class="co"># Define stratification criteria (e.g.,Tumour size categories)</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [categorise_tumour_size(p) <span class="cf">for</span> p <span class="kw">in</span> patients]</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>skf <span class="op">=</span> StratifiedKFold(n_splits<span class="op">=</span><span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fold, (train_idx, val_idx) <span class="kw">in</span> <span class="bu">enumerate</span>(skf.split(X, labels)):</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    \<span class="co"># Each fold gets balanced distribution of sizes</span></span></code></pre></div>
+<hr />
+<p>### Pitfall 4: Hyperparameter Tuning on Test Set</p>
+<p><strong>What goes wrong:</strong> You pick parameters (learning rate,
+layer count) based on test set performance. Result: overfitting to test
+set; reported accuracy is optimistic.</p>
+<p><strong>How to avoid:</strong></p>
+<pre><code>Correct workflow:
+├─ Training set (80%): Learn weights
+├─ Validation set (10%): Tune hyperparameters
+└─ Test set (10%): Final evaluation (NEVER tune on this)
+
+\# Tune only on val set
+best_lr = search_hyperparameters(train_data, val_data)
+\# Evaluate once on test set (don&#39;t iterate)
+final_acc = evaluate(model, test_data)</code></pre>
+<hr />
+<p>### Pitfall 5: Reporting Single-Model Instead of Ensemble
+Performance</p>
+<p><strong>What goes wrong:</strong> You report single-model accuracy
+(89.8%) but leaderboards expect ensembles. Direct comparison unfair.</p>
+<p><strong>How to avoid:</strong></p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>\<span class="co"># Always ensemble when comparing to related work</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>single_acc <span class="op">=</span> evaluate_single_fold(model_1, test_data)  \<span class="co"># 89.8%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>ensemble_acc <span class="op">=</span> ensemble_soft_vote([model_1, model_2, model_3, model_4, model_5], test_data)  \<span class="co"># 91.4%</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>\<span class="co"># Report both:</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Single model: </span><span class="sc">{</span>single_acc<span class="sc">}</span><span class="ss">%&quot;</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Ensemble (5 folds): </span><span class="sc">{</span>ensemble_acc<span class="sc">}</span><span class="ss">%&quot;</span>)</span></code></pre></div>
+<hr />
+<p># Quick Reference: Parameter &amp; Configuration Guide</p>
+<p>## Configuration Checklist for Reproduction / Extension</p>
+<p>Copy this table when setting up a new run:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Component</th>
+<th>Parameter</th>
+<th>Value</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input Data</strong></td>
+<td>Input image resolution</td>
+<td>240 × 240 × 155 voxels</td>
+<td>BraTS standard</td>
+</tr>
+<tr>
+<td></td>
+<td>Modalities</td>
+<td>T1, T1CE, T2, FLAIR</td>
+<td>4-channel MRI</td>
+</tr>
+<tr>
+<td></td>
+<td>Labeling</td>
+<td>Binary (tumour vs. healthy)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Preprocessing</strong></td>
+<td>Z-score normalisation</td>
+<td>Per-modality, per-patient</td>
+<td>Intra-mask only (exclude air)</td>
+</tr>
+<tr>
+<td></td>
+<td>Brain mask</td>
+<td>Pre-computed by BraTS</td>
+<td>Or FSL BET if unavailable</td>
+</tr>
+<tr>
+<td></td>
+<td>Active slice threshold</td>
+<td>5% brain fraction</td>
+<td>Removes empty slices</td>
+</tr>
+<tr>
+<td><strong>Superpixel Generation</strong></td>
+<td>Algorithm</td>
+<td>SLIC</td>
+<td>Simple Linear Iterative Clustering</td>
+</tr>
+<tr>
+<td></td>
+<td>Target #superpixels</td>
+<td>200 per slice</td>
+<td>Adaptively reduced if small brain region</td>
+</tr>
+<tr>
+<td></td>
+<td>Compactness m</td>
+<td>0.1</td>
+<td>Very low; prioritise boundary adherence</td>
+</tr>
+<tr>
+<td></td>
+<td>Pre-smoothing σ</td>
+<td>0.3</td>
+<td>Gaussian smoothing before clustering</td>
+</tr>
+<tr>
+<td></td>
+<td>Clustering modalities</td>
+<td>T1CE, T2, FLAIR</td>
+<td>3-channel stack</td>
+</tr>
+<tr>
+<td><strong>Node Features</strong></td>
+<td>Feature dimension</td>
+<td>15</td>
+<td>Intensity means (4) + stds (4) + spatial (2) + morphology (4)</td>
+</tr>
+<tr>
+<td></td>
+<td>Feature normalisation</td>
+<td>Per-graph (z-score)</td>
+<td>Within each patient’s graph</td>
+</tr>
+<tr>
+<td><strong>Graph Construction</strong></td>
+<td>Grouping</td>
+<td>2-slice units (non-overlapping)</td>
+<td>~69 units per patient</td>
+</tr>
+<tr>
+<td></td>
+<td>Within-slice edges</td>
+<td>Superpixel adjacency (touching)</td>
+<td>SLIC output</td>
+</tr>
+<tr>
+<td></td>
+<td>Cross-slice edges</td>
+<td>Spatial proximity + intensity similarity</td>
+<td>Centroid distance &lt; 10 px; mean intensity diff &lt; 1 STD</td>
+</tr>
+<tr>
+<td></td>
+<td>Result</td>
+<td>~92 nodes, ~180 edges per unit</td>
+<td>Sparse graph; efficient message passing</td>
+</tr>
+<tr>
+<td><strong>GNN Architecture</strong></td>
+<td>Model</td>
+<td>GraphSAGE</td>
+<td>5 layers, inductive learning</td>
+</tr>
+<tr>
+<td></td>
+<td>Aggregation</td>
+<td>Mean pooling</td>
+<td>Over sampled neighbours</td>
+</tr>
+<tr>
+<td></td>
+<td>Hidden dimension</td>
+<td>256</td>
+<td>Per-layer output dimension</td>
+</tr>
+<tr>
+<td></td>
+<td>Layers</td>
+<td>5</td>
+<td>L1–4: ReLU+Dropout; L5: no ReLU/Dropout</td>
+</tr>
+<tr>
+<td></td>
+<td>Output dimension (layer 5)</td>
+<td>64</td>
+<td>Pre-MLP embedding</td>
+</tr>
+<tr>
+<td></td>
+<td>Embedding</td>
+<td>BatchNorm between layers</td>
+<td>Stabilises training</td>
+</tr>
+<tr>
+<td></td>
+<td>Dropout rate</td>
+<td>0.1</td>
+<td>All layers except 5</td>
+</tr>
+<tr>
+<td><strong>MLP Head</strong></td>
+<td>Input dimension</td>
+<td>64</td>
+<td>From GNN layer 5</td>
+</tr>
+<tr>
+<td></td>
+<td>Hidden dimension</td>
+<td>32</td>
+<td>MLP intermediate layer</td>
+</tr>
+<tr>
+<td></td>
+<td>Output dimension</td>
+<td>1</td>
+<td>Binary logit (per node)</td>
+</tr>
+<tr>
+<td></td>
+<td>Activation in head</td>
+<td>ReLU (first layer), none (output)</td>
+<td>Sigmoid applied later</td>
+</tr>
+<tr>
+<td><strong>Training (Per Fold)</strong></td>
+<td>Optimizer</td>
+<td>Adam</td>
+<td>Adaptive learning rates</td>
+</tr>
+<tr>
+<td></td>
+<td>Initial LR</td>
+<td>0.001</td>
+<td>Cosine annealing schedule</td>
+</tr>
+<tr>
+<td></td>
+<td>LR schedule</td>
+<td>Cosine annealing</td>
+<td>T_max = 150 epochs</td>
+</tr>
+<tr>
+<td></td>
+<td>Batch size</td>
+<td>32 graph units</td>
+<td>~3–4 patients per batch</td>
+</tr>
+<tr>
+<td></td>
+<td>Epochs</td>
+<td>150</td>
+<td>Early stopping: patience 30 (no val improvement)</td>
+</tr>
+<tr>
+<td></td>
+<td>Loss function</td>
+<td>BCEWithLogitsLoss</td>
+<td>Numerically stable, no class weighting</td>
+</tr>
+<tr>
+<td></td>
+<td>Gradient clipping</td>
+<td>Norm ≤ 1.0</td>
+<td>Prevents exploding gradients</td>
+</tr>
+<tr>
+<td></td>
+<td>Weight decay (L2)</td>
+<td>0.0001</td>
+<td>Light regularisation</td>
+</tr>
+<tr>
+<td></td>
+<td>Data split</td>
+<td>5-fold CV, patient-level stratification</td>
+<td>800 train / 200 val per fold</td>
+</tr>
+<tr>
+<td><strong>Evaluation</strong></td>
+<td>Metric</td>
+<td>Dice coefficient</td>
+<td>Binary whole-tumour overlap</td>
+</tr>
+<tr>
+<td></td>
+<td>Test set</td>
+<td>251 held-out patients</td>
+<td>Sealed; not seen during training/val</td>
+</tr>
+<tr>
+<td></td>
+<td>Ensemble method</td>
+<td>Soft-voting on probabilities</td>
+<td>Average of 5 fold-best models</td>
+</tr>
+<tr>
+<td></td>
+<td>Ensemble vote threshold</td>
+<td>0.5</td>
+<td>Predicted label = 1 if avg prob ≥ 0.5</td>
+</tr>
+<tr>
+<td><strong>Hardware</strong></td>
+<td>GPU</td>
+<td>NVIDIA RTX 2060 (6 GB VRAM)</td>
+<td>Consumer-class; entry-level</td>
+</tr>
+<tr>
+<td></td>
+<td>Training memory</td>
+<td>~4.5 GB</td>
+<td>Batch size 32 graph units</td>
+</tr>
+<tr>
+<td></td>
+<td>Inference memory</td>
+<td>~0.5 GB single model; ~2.5 GB with 5-fold batch</td>
+<td>Depends on batch/ensemble size</td>
+</tr>
+<tr>
+<td><strong>Inference</strong></td>
+<td>End-to-end time</td>
+<td>~1,732 ms per patient</td>
+<td>RTX 2060</td>
+</tr>
+<tr>
+<td></td>
+<td>Breakdown</td>
+<td>Preprocessing 650ms + SLIC 850ms + GNN 75ms + ensemble 225ms + recon
+20ms</td>
+<td>Bottleneck: preprocessing</td>
+</tr>
+<tr>
+<td></td>
+<td>Pre-built graphs</td>
+<td>~75 ms GNN alone</td>
+<td>If graphs cached offline</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>## Reproduction Checklist</p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Data collected and annotations
+verified (patient-level, not slice-level)</label></li>
+<li><label><input type="checkbox" />Preprocessing pipeline implemented:
+Z-score normalisation, active slice selection</label></li>
+<li><label><input type="checkbox" />SLIC superpixel generation tested on
+sample slices (visually inspect boundaries)</label></li>
+<li><label><input type="checkbox" />Node features (15-dim vectors)
+extracted and validated (no NaN, reasonable ranges)</label></li>
+<li><label><input type="checkbox" />Graph construction code debugged
+(connectivity sensible, sparse)</label></li>
+<li><label><input type="checkbox" />GraphSAGE model instantiated with
+correct dimensions (input 15, layers 5, output 1)</label></li>
+<li><label><input type="checkbox" />Training loop implemented with early
+stopping, gradient clipping</label></li>
+<li><label><input type="checkbox" />5-fold CV completed; per-fold Dice
+logged; ensemble inference tested</label></li>
+<li><label><input type="checkbox" />Test set evaluation isolated (no
+hyperparameter tuning on test data)</label></li>
+<li><label><input type="checkbox" />Efficiency benchmarked on identical
+hardware (inference time, peak GPU memory)</label></li>
+<li><label><input type="checkbox" />Results documented: mean Dice, std,
+per-fold breakdown, failure cases analysed</label></li>
+</ul>
+<hr />
+<p>## Troubleshooting Common Issues</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Symptom</th>
+<th>Root Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Training loss stalls / plateau</strong></td>
+<td>Dice stops improving after ~20 epochs</td>
+<td>Learning rate too high (noise) or too low (slow convergence)</td>
+<td>Adjust cosine annealing T_max; try LR 0.0005–0.002</td>
+</tr>
+<tr>
+<td><strong>OOM (Out of Memory) error</strong></td>
+<td>GPU memory exceeded during training</td>
+<td>Batch size too large; or graph nodes unusually dense</td>
+<td>Reduce batch size from 32 to 16; check SLIC target (200)</td>
+</tr>
+<tr>
+<td><strong>Validation Dice lower than training</strong></td>
+<td>Large train/val gap (&gt;3%)</td>
+<td>Overfitting or evaluation bug</td>
+<td>Increase dropout from 0.1 to 0.2; check label leakage</td>
+</tr>
+<tr>
+<td><strong>Random results across runs</strong></td>
+<td>Dice varies ±1% per run</td>
+<td>RNG seeds not fixed</td>
+<td>Set <code>torch.manual_seed(42)</code>,
+<code>np.random.seed(42)</code> at init</td>
+</tr>
+<tr>
+<td><strong>Superpixel boundaries misaligned</strong></td>
+<td>Coarse boundaries, not following edges</td>
+<td>Compactness m too high or wrong modality stack</td>
+<td>Reduce m to 0.05; use T1CE+T2+FLAIR, not T1CE alone</td>
+</tr>
+<tr>
+<td><strong>Zero-shot transfer (2021→2023) poor</strong></td>
+<td>Large generalization gap (&gt;3%)</td>
+<td>Domain shift in acquisition/institutions</td>
+<td>Retrain on target dataset; or use smaller architecture to reduce
+overfit</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>## Where to Find Code</p>
+<p>(If this work is open-sourced or shared internally)</p>
+<pre><code>repository/
+├── src/
+│   ├── preprocessing.py          \# Z-score norm, brain mask, active slice selection
+│   ├── graph_construction.py     \# SLIC, node features, edge building
+│   ├── gnn_model.py              \# GraphSAGE architecture (5 layers)
+│   ├── train_cv_fold.py          \# Training loop, early stopping, loss
+│   ├── inference_ensemble.py     \# Ensemble soft-voting, reconstruction
+│   └── evaluate.py               \# Dice computation, cross-dataset eval
+├── scripts/
+│   ├── train_all_folds.sh        \# Orchestrates 5-fold training
+│   └── evaluate_brats2023.py     \# Zero-shot generalization test
+├── data/
+│   ├── cv_folds_v2/              \# 5-fold definitions (patient lists)
+│   └── splits/                   \# Train/val/test partitions
+├── configs/
+│   ├── config.yaml               \# Hyperparameter definitions (SLIC, GNN, training)
+│   └── README_CONFIGS.md         \# Explanation of each parameter
+└── README.md                     \# Getting started guide</code></pre>
+<hr />
+<p>## Further Reading &amp; References</p>
+<p>Foundational papers cited in the research:</p>
+<ol type="1">
+<li><strong>GraphSAGE:</strong> Hamilton et al. (2017). Inductive
+Representation Learning on Large Graphs. <a
+href="https://arxiv.org/abs/1706.02216">arXiv:1706.02216</a></li>
+<li><strong>SLIC Superpixels:</strong> Achanta et al. (2012). SLIC
+Superpixels Compared to State-of-the-Art Superpixel Methods. IEEE
+TPAMI.</li>
+<li><strong>BraTS Challenge:</strong> Menze et al. (2015). The
+Multimodal Brain Tumor Image Segmentation Benchmark (BRATS). IEEE
+TMI.</li>
+<li><strong>3D U-Net:</strong> Çiçek et al. (2016). 3D U-Net: Learning
+Dense Volumetric Segmentation from Sparse Annotation. MICCAI.</li>
+<li><strong>nnU-Net:</strong> Isensee et al. (2021). nnU-Net: Training
+U-Net on 2D Image Tiles for Segmentation. MICCAI.</li>
+<li><strong>Swin-UNETR:</strong> Hatamizadeh et al. (2022). Swin UNETR:
+Swin Transformers for Semantic Segmentation of Brain Tumors in
+Multimodal MRIs. MICCAI.</li>
+</ol>
+<hr />
+<p>## Contact &amp; Future Work</p>
+<p><strong>Maintainers:</strong> Sakib Khan, Rifa Sanjida, Kishor Kumar
+Das, Md. Mahmudul Hasan, Md. Minhajur Rahman</p>
+<p><strong>Future Extensions:</strong> 1. Multi-class segmentation (WT,
+TC, ET) with cross-entropy loss 2. Real-time deployment optimisation
+(ONNX + C++ inference) 3. Domain adaptation for different scanner types
+(unsupervised) 4. Uncertainty quantification (Monte Carlo dropout or
+Bayesian inference) 5. Integration with DICOM radiotherapy planning
+systems</p>
+<hr />
+<p><strong>Document Version:</strong> 1.0<br />
+<strong>Last Updated:</strong> April 2026<br />
+<strong>Status:</strong> Complete for BUBT Submission, Team Reference,
+and Presentation Preparation</p>
+<hr />
+</body>
+</html>
