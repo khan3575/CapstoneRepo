@@ -212,7 +212,7 @@ I will now pass to Sakib Khan, who will present our results.
 
 ---
 
-## PERSON 3 — Sakib Khan (Slides 15–18)
+## PERSON 3 — Sakib Khan (Slides 15–19)
 
 ---
 
@@ -274,22 +274,11 @@ That is a 3.57 percentage point improvement in Dice.
 So not only is our model much more efficient — which we will see in the next part — it is also more accurate.
 This shows that using superpixel graphs and GNNs is a genuinely better approach, not just a cheaper one.
 
-I will now hand over to Md. Minhajur Rahman, who will show you the efficiency comparison and generalisation results.
-
----
-
----
-
-## PERSON 4 — Md. Minhajur Rahman (Slides 19–22)
-
 ---
 
 **[Slide 19 — Efficiency Comparison]**
 
-Thank you, Sakib.
-My name is Md. Minhajur Rahman.
-The results Sakib showed you are impressive in terms of accuracy.
-But I believe the efficiency results are the most exciting part of our project.
+Now beyond accuracy, let me show you how efficient our model is — because I believe this is equally important.
 Let me show you exactly how much lighter our model is compared to U-Net.
 
 For inference time, our full end-to-end pipeline — including superpixel construction and graph building — takes 1,732 milliseconds per patient.
@@ -313,12 +302,21 @@ What does this mean in practice?
 It means our model can run on a basic consumer GPU with just 6 gigabytes of VRAM.
 It means a hospital or clinic that cannot afford a high-end computing setup can still use our system.
 This is why we believe efficiency is not just a technical achievement — it is a real-world impact.
+I will now hand over to Md. Minhajur Rahman, who will present our generalisation results and remaining findings.
+
+---
+
+---
+
+## PERSON 4 — Md. Minhajur Rahman (Slides 20–22)
 
 ---
 
 **[Slide 20 — BraTS 2023 Zero-Shot Generalisation]**
 
-Now let's talk about generalisation.
+Thank you, Sakib.
+My name is Md. Minhajur Rahman.
+Sakib has shown you that our model is both accurate and highly efficient. Now let me show you how it performs on completely unseen data.
 One of our four research objectives was to test whether the model can transfer to a completely different dataset without retraining.
 We took our trained model — trained only on BraTS 2021 — and ran it directly on BraTS 2023.
 No fine-tuning. No adaptation. Zero-shot.
