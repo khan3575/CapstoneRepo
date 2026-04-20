@@ -1,4 +1,4 @@
-# Presentation Speech — 5 Persons
+# Presentation Speech — 5 Persons (28 Slides)
 ## "Efficient Brain Tumour Segmentation using Graph Neural Networks on BraTS Datasets"
 ### BUBT Capstone — Supervisor: Mr. Shamim Ahmed
 
@@ -6,7 +6,7 @@
 
 ---
 
-## PERSON 1 — Kishor Kumar Das (Slides 1–8)
+## PERSON 1 — Kishor Kumar Das (Slides 1–9)
 
 ---
 
@@ -15,13 +15,20 @@
 Good morning, everyone.
 My name is Kishor Kumar Das, and I am here today with my team to present our capstone project.
 Our project is titled: **"Efficient Brain Tumour Segmentation using Graph Neural Networks on BraTS Datasets."**
-We have five team members — myself, Rifa Sanjida, Kishor Kumar Das, Md. Mahamudul Hasan, and Md. Minhajur Rahman.
+We have five team members — myself, Rifa Sanjida, Sakib Khan, Md. Minhajur Rahman, and Md. Mahamudul Hasan.
 Our supervisor is Mr. Shamim Ahmed, from the Department of Computer Science and Engineering at BUBT.
 Let me start by giving you a broad overview of what we worked on and why it matters.
 
 ---
 
-**[Slide 2 — Introduction / Background]**
+**[Slide 2 — Team Members]**
+
+As you can see on this slide, here are all five of us with our student IDs.
+We are all from the Department of Computer Science and Engineering at BUBT.
+
+---
+
+**[Slide 3 — Introduction / Background]**
 
 Brain tumours are one of the most serious medical conditions a person can face.
 Detecting them early and accurately can make the difference between life and death.
@@ -32,7 +39,7 @@ This is what we tried to solve.
 
 ---
 
-**[Slide 3 — Problem Statement]**
+**[Slide 4 — Problem Statement]**
 
 The existing deep learning methods, especially the popular CNN and U-Net based approaches, do solve this problem to some degree.
 But they come with a big drawback — they are extremely heavy computationally.
@@ -44,7 +51,7 @@ That is the core problem we addressed in this project.
 
 ---
 
-**[Slide 4 — Research Gap]**
+**[Slide 5 — Research Gap]**
 
 When we looked at the existing literature, we found that almost all state-of-the-art methods focus only on accuracy.
 Nobody was paying much attention to efficiency — to memory usage, inference time, and model size.
@@ -56,7 +63,7 @@ Our goal was to match their accuracy as closely as possible, while being dramati
 
 ---
 
-**[Slide 5 — Proposed Approach Overview]**
+**[Slide 6 — Proposed Approach Overview]**
 
 To solve this, we proposed a Graph Neural Network based pipeline.
 Instead of feeding the full MRI volume directly into a heavy model, we first convert each MRI slice into a compact graph.
@@ -68,7 +75,7 @@ This compression is the foundation of why our method is so efficient.
 
 ---
 
-**[Slide 6 — Research Objectives]**
+**[Slide 7 — Research Objectives]**
 
 We had four clear research objectives for this project.
 
@@ -84,7 +91,7 @@ These four objectives guided every design decision we made.
 
 ---
 
-**[Slide 7 — Dataset: BraTS]**
+**[Slide 8 — Dataset: BraTS]**
 
 We used the BraTS datasets for this project.
 BraTS stands for Brain Tumour Segmentation Challenge.
@@ -97,7 +104,7 @@ For generalisation testing, we used the BraTS 2023 dataset — a completely sepa
 
 ---
 
-**[Slide 8 — MRI Modalities]**
+**[Slide 9 — MRI Modalities]**
 
 Let me briefly explain what these four MRI modalities mean.
 T1 gives us the basic anatomical structure of the brain.
@@ -108,16 +115,15 @@ Each modality shows us something different about the brain.
 By combining all four, we give the model a much richer picture of what is happening.
 This concludes my part. I will now hand over to Rifa Sanjida, who will walk you through our methodology in detail.
 
-
 ---
 
 ---
 
-## PERSON 2 — Rifa Sanjida (Slides 9–14)
+## PERSON 2 — Rifa Sanjida (Slides 10–15)
 
 ---
 
-**[Slide 9 — Methodology Overview]**
+**[Slide 10 — Methodology Overview]**
 
 Thank you, Kishor.
 My name is Rifa Sanjida, and I will explain how our system is built.
@@ -126,7 +132,7 @@ Let me walk you through each step carefully.
 
 ---
 
-**[Slide 10 — SLIC Superpixels]**
+**[Slide 11 — SLIC Superpixels]**
 
 The first step is to take each 2D axial slice of the MRI and divide it into small, compact regions called superpixels.
 We use an algorithm called SLIC — Simple Linear Iterative Clustering.
@@ -141,7 +147,7 @@ That is a compression ratio of 2,284 times.
 
 ---
 
-**[Slide 11 — Graph Construction]**
+**[Slide 12 — Graph Construction]**
 
 Once we have the superpixels, we build a graph.
 We take two consecutive axial slices and combine them into one graph unit.
@@ -154,7 +160,7 @@ This paired-slice structure allows the model to learn from spatial relationships
 
 ---
 
-**[Slide 12 — Node Features]**
+**[Slide 13 — Node Features]**
 
 Each node in the graph represents one superpixel.
 We describe each superpixel using 15 features, organised into three groups.
@@ -172,7 +178,7 @@ Together these 15 features give the model enough information to understand both 
 
 ---
 
-**[Slide 13 — GraphSAGE Architecture]**
+**[Slide 14 — GraphSAGE Architecture]**
 
 For the GNN model, we use GraphSAGE — Graph Sample and Aggregate.
 We chose GraphSAGE because it is an inductive method.
@@ -189,7 +195,7 @@ The final prediction is a binary classification per node: is this superpixel par
 
 ---
 
-**[Slide 14 — Training Protocol]**
+**[Slide 15 — Training Protocol]**
 
 Now let me explain how we trained this model.
 We used the AdamW optimiser with a learning rate of 0.001 and weight decay of 0.01.
@@ -212,11 +218,11 @@ I will now pass to Sakib Khan, who will present our results.
 
 ---
 
-## PERSON 3 — Sakib Khan (Slides 15–19)
+## PERSON 3 — Sakib Khan (Slides 16–20)
 
 ---
 
-**[Slide 15 — Evaluation Metrics]**
+**[Slide 16 — Evaluation Metrics]**
 
 Thank you, Rifa.
 My name is Sakib Khan.
@@ -231,7 +237,7 @@ And the fifth is Specificity — of all the healthy superpixels, how many did we
 
 ---
 
-**[Slide 16 — Cross-Validation Results]**
+**[Slide 17 — Cross-Validation Results]**
 
 Now let's look at the results on our 5-fold cross-validation on BraTS 2021 with 1,000 patients.
 
@@ -247,7 +253,7 @@ It is not just getting lucky on one fold.
 
 ---
 
-**[Slide 17 — Held-Out Test Results]**
+**[Slide 18 — Held-Out Test Results]**
 
 Now for the most important result — the evaluation on our sealed held-out test set of 251 patients.
 Remember, these patients were never used during training or fold selection.
@@ -264,7 +270,7 @@ The sensitivity of 87.77% means we still correctly find nearly 88% of all actual
 
 ---
 
-**[Slide 18 — Comparison with U-Net Baseline]**
+**[Slide 19 — Comparison with U-Net Baseline]**
 
 To understand how good these results are, let's compare with the U-Net baseline we trained on the same hardware.
 U-Net is a very well-known deep learning model for medical image segmentation.
@@ -276,7 +282,7 @@ This shows that using superpixel graphs and GNNs is a genuinely better approach,
 
 ---
 
-**[Slide 19 — Efficiency Comparison]**
+**[Slide 20 — Efficiency Comparison]**
 
 Now beyond accuracy, let me show you how efficient our model is — because I believe this is equally important.
 Let me show you exactly how much lighter our model is compared to U-Net.
@@ -308,11 +314,11 @@ I will now hand over to Md. Minhajur Rahman, who will present our generalisation
 
 ---
 
-## PERSON 4 — Md. Minhajur Rahman (Slides 20–22)
+## PERSON 4 — Md. Minhajur Rahman (Slides 21–23)
 
 ---
 
-**[Slide 20 — BraTS 2023 Zero-Shot Generalisation]**
+**[Slide 21 — BraTS 2023 Zero-Shot Generalisation]**
 
 Thank you, Sakib.
 My name is Md. Minhajur Rahman.
@@ -335,7 +341,7 @@ This is a very strong sign of genuine generalisation — the model has learned f
 
 ---
 
-**[Slide 21 — Failure Cases]**
+**[Slide 22 — Failure Cases]**
 
 Every model has cases where it fails, and we believe it is important to be transparent about this.
 Approximately 5% of slices are not segmented well.
@@ -353,7 +359,7 @@ This is an honest limitation of our current design, and it directly informs our 
 
 ---
 
-**[Slide 22 — Ablation Study]**
+**[Slide 23 — Ablation Study]**
 
 We also ran an ablation study to justify the specific architecture choices we made.
 We tested four variants on Fold 0.
@@ -373,11 +379,11 @@ I will now hand over to Md. Mahamudul Hasan, who will present our conclusions, l
 
 ---
 
-## PERSON 5 — Md. Mahamudul Hasan (Slides 23–27)
+## PERSON 5 — Md. Mahamudul Hasan (Slides 24–28)
 
 ---
 
-**[Slide 23 — Limitations]**
+**[Slide 24 — Limitations]**
 
 Thank you, Minhajur.
 My name is Md. Mahamudul Hasan.
@@ -402,7 +408,7 @@ This is an important gap for clinical deployment.
 
 ---
 
-**[Slide 24 — Future Work]**
+**[Slide 25 — Future Work]**
 
 Based on these limitations, we have five directions for future work.
 
@@ -420,7 +426,7 @@ If we can bring inference down to under a second on low-power hardware, this sys
 
 ---
 
-**[Slide 25 — Conclusions]**
+**[Slide 26 — Conclusions]**
 
 Let me now summarise what we achieved in this project.
 
@@ -440,7 +446,7 @@ We believe this is not just a research contribution — it is a step toward maki
 
 ---
 
-**[Slide 26 — References]**
+**[Slide 27 — References]**
 
 We built on a strong body of existing work.
 The BraTS benchmark datasets, the GraphSAGE algorithm, the SLIC superpixel method, and prior medical image segmentation approaches all informed our design.
@@ -448,7 +454,7 @@ The full list of references is available in our written paper.
 
 ---
 
-**[Slide 27 — Thank You / Q&A]**
+**[Slide 28 — Thank You / Q&A]**
 
 That concludes our presentation.
 On behalf of all five team members — Kishor Kumar Das, Rifa Sanjida, Sakib Khan, Minhajur Rahman, and myself, Mahamudul Hasan — I want to thank our supervisor, Mr. Shamim Ahmed, for his guidance throughout this project.
