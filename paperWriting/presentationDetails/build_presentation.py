@@ -18,7 +18,7 @@ Final 27-slide order (source indices, 0-based):
   pos 10  → src[11]  SLIC Superpixels
   pos 11  → src[12]  Graph Construction
   pos 12  → src[13]  Node Features
-  pos 13  → src[14]  GraphSAGE Architecture
+  pos 13  → NEW      GraphSAGE Architecture (visualization image)
   pos 14  → src[15]  Training Protocol
   pos 15  → src[17]  Evaluation Metrics
   pos 16  → src[18]  Cross-Validation Results
@@ -43,6 +43,7 @@ import shutil
 import os
 from io import BytesIO
 from lxml import etree
+from pathlib import Path
 
 from pptx import Presentation
 from pptx.util import Inches, Pt, Emu
@@ -236,6 +237,41 @@ def build_proposed_approach(prs, bg_blob):
     return sl
 
 
+def build_graphsage_architecture(prs, bg_blob):
+    """GraphSAGE Architecture slide — full-width visualization image + header."""
+    sl = _new_slide(prs)
+    _add_background(sl, bg_blob)
+    _header(sl, "GraphSAGE Architecture",
+            "Graph Sample and Aggregate — 5-layer inductive GNN for node-level tumour classification")
+    _rule(sl, y=Inches(1.22))
+
+    img_path = os.path.join(BASE, "graphsage_architecture.png")
+    if not os.path.exists(img_path):
+        raise FileNotFoundError(f"Missing image: {img_path}\n"
+                                "Run gen_graphsage_visual.py first.")
+
+    # Full-width image, centred vertically in the remaining space
+    img_w = Inches(9.40)
+    img_h = Inches(3.95)
+    img_l = (SLIDE_W - img_w) / 2
+    img_t = Inches(1.36)
+
+    with open(img_path, "rb") as f:
+        sl.shapes.add_picture(f, img_l, img_t, img_w, img_h)
+
+    # Bottom key-stats strip
+    strip = sl.shapes.add_shape(1, Inches(0.42), Inches(5.28),
+                                 Inches(9.16), Inches(0.24))
+    strip.fill.solid()
+    strip.fill.fore_color.rgb = RGBColor(0x00, 0x1E, 0x30)
+    strip.line.fill.background()
+    _txb(sl, Inches(0.55), Inches(5.28), Inches(8.90), Inches(0.24),
+         "5 layers  ·  256 hidden dims  ·  64 output dims  ·  "
+         "Mean-pool aggregation  ·  439,041 parameters  ·  ReLU + BatchNorm",
+         size=8.5, color=C_CYAN)
+    return sl
+
+
 def build_mri_modalities(prs, bg_blob):
     sl = _new_slide(prs)
     _add_background(sl, bg_blob)
@@ -364,6 +400,9 @@ def main():
     print("  Building MRI Modalities slide …")
     build_mri_modalities(prs, bg_blob)    # → index 33
 
+    print("  Building GraphSAGE Architecture slide …")
+    build_graphsage_architecture(prs, bg_blob)  # → index 34
+
     print(f"  Slides after additions: {len(prs.slides)}")
 
     # ── 5. Strip Material Symbols icon-only subshapes ──────────────────────
@@ -407,7 +446,7 @@ def main():
     print(f"  Stripped icon shapes from slides: {ICON_SLIDES}")
 
     # ── 6. Reorder to the final 27-slide sequence ──
-    # Indices reference the list AFTER step 4 (34 slides total, 0-33)
+    # Indices reference the list AFTER step 4 (35 slides total, 0-34)
     DESIRED = [
         0,   # Title
         3,   # Introduction
@@ -421,7 +460,7 @@ def main():
         11,  # SLIC Superpixels
         12,  # Graph Construction
         13,  # Node Features
-        14,  # GraphSAGE Architecture
+        34,  # GraphSAGE Architecture [NEW — replaces src[14]]
         15,  # Training Protocol
         17,  # Evaluation Metrics
         18,  # Cross-Validation Results
