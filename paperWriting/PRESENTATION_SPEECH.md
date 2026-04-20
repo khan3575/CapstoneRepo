@@ -6,14 +6,14 @@
 
 ---
 
-## PERSON 1 — Sakib Khan (Slides 1–8)
+## PERSON 1 — Kishor Kumar Das (Slides 1–8)
 
 ---
 
 **[Slide 1 — Title Slide]**
 
 Good morning, everyone.
-My name is Sakib Khan, and I am here today with my team to present our capstone project.
+My name is Kishor Kumar Das, and I am here today with my team to present our capstone project.
 Our project is titled: **"Efficient Brain Tumour Segmentation using Graph Neural Networks on BraTS Datasets."**
 We have five team members — myself, Rifa Sanjida, Kishor Kumar Das, Md. Mahamudul Hasan, and Md. Minhajur Rahman.
 Our supervisor is Mr. Shamim Ahmed, from the Department of Computer Science and Engineering at BUBT.
@@ -108,6 +108,7 @@ Each modality shows us something different about the brain.
 By combining all four, we give the model a much richer picture of what is happening.
 This concludes my part. I will now hand over to Rifa Sanjida, who will walk you through our methodology in detail.
 
+
 ---
 
 ---
@@ -118,7 +119,7 @@ This concludes my part. I will now hand over to Rifa Sanjida, who will walk you 
 
 **[Slide 9 — Methodology Overview]**
 
-Thank you, Sakib.
+Thank you, Kishor.
 My name is Rifa Sanjida, and I will explain how our system is built.
 Our pipeline has several steps — from raw MRI data all the way to a final segmentation mask.
 Let me walk you through each step carefully.
@@ -205,20 +206,20 @@ We ran 5-fold cross-validation at the patient level.
 Each fold used 720 patients for training, 80 for validation, and 200 for testing.
 After training all 5 folds, we combined their predictions using soft voting — averaging the sigmoid probabilities from all 5 models — with a decision threshold of 0.5.
 
-I will now pass to Kishor Kumar Das, who will present our results.
+I will now pass to Sakib Khan, who will present our results.
 
 ---
 
 ---
 
-## PERSON 3 — Kishor Kumar Das (Slides 15–18)
+## PERSON 3 — Sakib Khan (Slides 15–18)
 
 ---
 
 **[Slide 15 — Evaluation Metrics]**
 
 Thank you, Rifa.
-My name is Kishor Kumar Das.
+My name is Sakib Khan.
 I will now present the results of our experiments.
 Before showing the numbers, let me briefly explain the metrics we used.
 We evaluated our model using five metrics.
@@ -273,21 +274,21 @@ That is a 3.57 percentage point improvement in Dice.
 So not only is our model much more efficient — which we will see in the next part — it is also more accurate.
 This shows that using superpixel graphs and GNNs is a genuinely better approach, not just a cheaper one.
 
-I will now hand over to Md. Mahamudul Hasan, who will show you the efficiency comparison and generalisation results.
+I will now hand over to Md. Minhajur Rahman, who will show you the efficiency comparison and generalisation results.
 
 ---
 
 ---
 
-## PERSON 4 — Md. Mahamudul Hasan (Slides 19–22)
+## PERSON 4 — Md. Minhajur Rahman (Slides 19–22)
 
 ---
 
 **[Slide 19 — Efficiency Comparison]**
 
-Thank you, Kishor.
-My name is Md. Mahamudul Hasan.
-The results Kishor showed you are impressive in terms of accuracy.
+Thank you, Sakib.
+My name is Md. Minhajur Rahman.
+The results Sakib showed you are impressive in terms of accuracy.
 But I believe the efficiency results are the most exciting part of our project.
 Let me show you exactly how much lighter our model is compared to U-Net.
 
@@ -368,20 +369,20 @@ Our 5-layer, 256-dimensional GraphSAGE is the sweet spot.
 It delivers the best efficiency-to-accuracy trade-off.
 This is not a random choice — it is supported by evidence.
 
-I will now hand over to Md. Minhajur Rahman, who will present our conclusions, limitations, and future work.
+I will now hand over to Md. Mahamudul Hasan, who will present our conclusions, limitations, and future work.
 
 ---
 
 ---
 
-## PERSON 5 — Md. Minhajur Rahman (Slides 23–27)
+## PERSON 5 — Md. Mahamudul Hasan (Slides 23–27)
 
 ---
 
 **[Slide 23 — Limitations]**
 
-Thank you, Mahamudul.
-My name is Md. Minhajur Rahman.
+Thank you, Minhajur.
+My name is Md. Mahamudul Hasan.
 I will close the presentation with our limitations, future work, and final conclusions.
 
 We identified four main limitations of our current work.
@@ -452,7 +453,7 @@ The full list of references is available in our written paper.
 **[Slide 27 — Thank You / Q&A]**
 
 That concludes our presentation.
-On behalf of all five team members — Sakib Khan, Rifa Sanjida, Kishor Kumar Das, Mahamudul Hasan, and myself, Minhajur Rahman — I want to thank our supervisor, Mr. Shamim Ahmed, for his guidance throughout this project.
+On behalf of all five team members — Kishor Kumar Das, Rifa Sanjida, Sakib Khan, Minhajur Rahman, and myself, Mahamudul Hasan — I want to thank our supervisor, Mr. Shamim Ahmed, for his guidance throughout this project.
 We are happy to answer any questions you may have.
 Thank you.
 
